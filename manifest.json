@@ -1,0 +1,21 @@
+{
+  "name": "Contact Lens Converter",
+  "short_name": "CL Converter",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "description": "Convert spectacle prescriptions to contact lens power using vertex distance and cylinder conversion.",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
