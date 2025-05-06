@@ -35,17 +35,25 @@
       flex: 1;
       overflow-y: auto;
       padding-right: 20px;
+      
     }
 
     .result-section {
       padding-left: 20px;
       border-left: 1px solid #ccc;
+ border-radius: 1px;
+  background: #fff;
+  padding: 30px;
+  width: 200px;
+  height: 500px;
+	
     }
 
     .input-group {
       display: flex;
       align-items: center;
       margin-bottom: 12px;
+      
     }
 
     .radio-group {
@@ -74,19 +82,30 @@
       display: inline-block;
       padding: 4px 6px;
       margin-left: 10px;
-      border-radius: 4px;
+      border-radius: 10px;
       font-weight: bold;
       min-width: 120px;
     }
 
     .result-container {
       margin-left: 10px;
+
     }
 
     .buttons {
       display: flex;
       justify-content: flex-end;
       margin-top: 20px;
+background: #ccc;
+float: right; 
+    }
+
+ .buttons2 {
+ display: flex;
+      justify-content: flex-end;
+background: #ccc;
+margin-top: 30px;
+float: right; 
     }
 
     button {
@@ -99,13 +118,21 @@
       color: #555;
       font-size: 0.9em;
     }
+    
+    .corner {
+    border-radius: 20px;
+  background: #ccc;
+  padding: 20px;
+  width: 300px;
+  height: 200px;
+  }
   </style>
 </head>
 <body>
   <div class="header">
     <h2><font color=green>Spectacles To Contact Lens Converter</font></h2>
 
-    <button onclick="resetForm()">🔄Reset</button>
+   
   </div>
 
   <div class="main">
@@ -119,7 +146,7 @@
         <label><input type="radio" name="vertexDistance" value="12" checked onchange="convertPrescription()">12 mm</label>
         <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()">14 mm</label>
       </div>
-<hr color=#d3d3d3>
+
       <!-- Right Eye (OD) -->
       <h3>🇷 Right Eye (OD)</h3>
       <div class="input-group">
@@ -137,7 +164,7 @@
         <input type="number" id="axisOD" placeholder="180">
         <div class="result-container" id="resultOD_axis"></div>
       </div>
-<hr color=#d3d3d3>
+<br>
       <!-- Left Eye (OS) -->
       <h3>🇱 Left Eye (OS)</h3>
       <div class="input-group">
@@ -154,26 +181,33 @@
         <label for="axisOS">📐Axis:</label>
         <input type="number" id="axisOS" placeholder="180">
         <div class="result-container" id="resultOS_axis"></div>
-      </div><hr color=d3d3d3>
-    </div>
+      </div>
+ <button onclick="resetForm()" class=buttons>🔄Clear</button>
+</div>
+  
 
     <!-- Live Results Section -->
     <div class="result-section">
-      <h3>Live Results</h3>
+      <h3>Results</h3>
       <div id="liveResults" style="font-size: 16px;"></div>
    
 </div>
-  </div>
+ </div>
+   </div>
 
-
-  <div class="disclaimer"><hr color=green>
+<table>
+  <tr>
+    <td><div class="disclaimer"><hr color=green>
 ©️2025 Optom. Akhtar <a href="https://www.instagram.com/crosscylinder/" target="_blank" style="text-decoration: none;">@crosscylinder</a> | 
 🌐Online presence: <a href="http://tinyurl.com/sp2clapp" target="_blank" style="text-decoration: none;">tinyurl.com/sp2clapp</a> | 
 ⬇️Download this file from: <a href="http://tiny.cc/sp2cl" target="_blank" style="text-decoration: none;">tiny.cc/sp2cl</a> | 
 🟢This file can be used offline without connecting to the internet
-   <div align="right"><!-- COUNTER -->
+  </td>
+    <td> <div align="right"><!-- COUNTER -->
 <a href='http://www.freevisitorcounters.com'>www.freevisitorcounters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=24c83937ac65c93d65e5f922b38f6ecd4bfccac7'></script>
-<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1336459/t/1"></script></div> </div>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1336459/t/1"></script></div></td>
+  </tr>
+</table>
 
   <script>
     function mround(value, multiple) {
@@ -215,10 +249,10 @@
       // Create a container for formatted results
       const resultsBox = document.createElement("div");
       resultsBox.style.lineHeight = "1.6";
-      resultsBox.style.padding = "10px";
-      resultsBox.style.border = "1px solid #ddd";
-      resultsBox.style.borderRadius = "6px";
-      resultsBox.style.backgroundColor = "#f9f9f9";
+      resultsBox.style.padding = "20px";
+      resultsBox.style.border = "1px solid #ccc";
+      resultsBox.style.borderRadius = "20px";
+      resultsBox.style.backgroundColor = "#ffffff";
 
       // Right Eye (OD)
       const sphOD = parseFloat(document.getElementById("sphOD").value) || 0;
@@ -292,8 +326,8 @@
             SPH: ${convertedSphOS.toFixed(2)} D | CYL: ${convertedCylOS.toFixed(2)} D | Axis: ${roundedAxisOS}
           </div>
         </div>
-        <div style="margin-top: 20px;">
-          <button onclick="copyResults()" class="buttons">📑Copy Results</button>
+        <div style="margin-top: 5px;">
+          <button onclick="copyResults()" class="buttons2">📑Copy</button>
         </div>
       `;
       resultsBox.innerHTML = output;
