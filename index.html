@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<title>iTestEye v1.4</title>
+   
+ <link rel="icon" href="https://github.com/meteredgh/contact-lens-converter/blob/main/favicon.ico">
+    
     <!-- SEO Meta Tags -->
     <meta name="keywords" content="contact lens script converter, spectacle to contact lens conversion, vertex distance calculator, cylinder conversion for contact lenses, online contact lens formula tool, spherical equivalent calculator, axis rounding for contact lenses, offline contact lens converter, toric lens prescription tool, eyecare professional tool, optometry calculator, glasses to contacts conversion, contact lens vertex formula, contact lens sph cyl axis converter, south africa, driver, license, licence, screening, criteria">
     <meta name="description" content="An offline contact lens prescription converter that calculates contact lens power from spectacle scripts using vertex distance, cylinder conversion, and axis rounding. Ideal for optometrists and eyecare professionals.">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iTestEye v1.3</title>
-    <link rel="icon" href="https://github.com/meteredgh/contact-lens-converter/blob/main/favicon.ico">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -139,10 +142,46 @@
             background: #ddd;
             padding: 5px 20px;
         }
+
+        /* Visual Acuity Table Styles */
+        .vision-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        .vision-table th {
+            background-color: #0056b3;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .vision-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        .vision-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .vision-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .vision-table strong {
+            font-weight: bold;
+        }
+        .vision-note {
+            font-size: 0.9em;
+            color: #555;
+            font-style: italic;
+            font-family: Arial, sans-serif;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-
     <h1>iTestEye</h1>
 
     <!-- Tabs -->
@@ -150,6 +189,7 @@
         <div class="tab-buttons">
             <button class="tab-button active" onclick="openTab('tab1')">Calculator</button>
             <button class="tab-button" onclick="openTab('tab2')">Driver's</button>
+            <button class="tab-button" onclick="openTab('tab3')">Vision Charts</button>
         </div>
 
         <div class="tab-content">
@@ -216,6 +256,90 @@
                 <h2>Driving License Test Passing Criteria</h2>
                 <img src="https://meteredgh.github.io/contact-lens-converter/drivers.png" alt="Driver's License Criteria" style="max-width: 100%;">
             </div>
+
+            <!-- Tab 3: Visual Acuity Reference -->
+            <div id="tab3" class="tab-pane">
+                <h2>Visual Acuity Quick Reference Conversion</h2>
+                <table class="vision-table">
+                    <thead>
+                        <tr>
+                            <th>Snellen (ft)</th>
+                            <th>Snellen (m)</th>
+                            <th>Decimal</th>
+                            <th>LogMAR</th>
+                            <th>Near Vision (approx.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>20/10</td>
+                            <td>6/3</td>
+                            <td>2.0</td>
+                            <td>-0.1</td>
+                            <td>N4–N5 / J1</td>
+                        </tr>
+                        <tr>
+                            <td>20/15</td>
+                            <td>6/4.5</td>
+                            <td>1.33</td>
+                            <td>-0.12</td>
+                            <td>N5 / J1–J2</td>
+                        </tr>
+                        <tr style="font-weight: bold;">
+                            <td>20/20</td>
+                            <td>6/6</td>
+                            <td>1.0</td>
+                            <td>0.0</td>
+                            <td>N6 / J2–J3</td>
+                        </tr>
+                        <tr>
+                            <td>20/25</td>
+                            <td>6/7.5</td>
+                            <td>0.8</td>
+                            <td>0.1</td>
+                            <td>N8 / J3–J4</td>
+                        </tr>
+                        <tr>
+                            <td>20/30</td>
+                            <td>6/9</td>
+                            <td>0.67</td>
+                            <td>0.18</td>
+                            <td>N10 / J5</td>
+                        </tr>
+                        <tr>
+                            <td>20/40</td>
+                            <td>6/12</td>
+                            <td>0.5</td>
+                            <td>0.3</td>
+                            <td>N12 / J6</td>
+                        </tr>
+                        <tr>
+                            <td>20/50</td>
+                            <td>6/15</td>
+                            <td>0.4</td>
+                            <td>0.4</td>
+                            <td>N14 / J7</td>
+                        </tr>
+                        <tr>
+                            <td>20/100</td>
+                            <td>6/30</td>
+                            <td>0.2</td>
+                            <td>0.7</td>
+                            <td>N24 / J10</td>
+                        </tr>
+                        <tr>
+                            <td>20/200</td>
+                            <td>6/60</td>
+                            <td>0.1</td>
+                            <td>1.0</td>
+                            <td>N36 / J12+</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="vision-note">
+                    <strong>Note:</strong> 20/20 (6/6) is considered "normal" visual acuity. Each 0.1 step in LogMAR equals one line on the eye chart. Near vision (J/N) may vary by test chart.
+                </p>
+            </div>
         </div>
     </div>
 
@@ -228,7 +352,8 @@
                     ©️2025 Optom. Akhtar <a href="https://www.instagram.com/itesteye/" target="_blank" style="text-decoration: none;">@i<i>test</i>eye</a> | 
                     🌐 <a href="http://tinyurl.com/sp2clapp" target="_blank" style="text-decoration: none;">Online App</a> | 
                     ⬇️ <a href="http://tiny.cc/sp2cl" target="_blank" style="text-decoration: none;">Download</a> | 
-                    🟢 Works offline            
+                    🟢 Works offline
+              
                 </div>
             </td>
             <td align="right">
@@ -242,6 +367,22 @@
 
     <!-- JavaScript -->
     <script>
+        // Tab switching function
+        function openTab(tabId) {
+            const tabPanes = document.getElementsByClassName('tab-pane');
+            const tabButtons = document.getElementsByClassName('tab-button');
+            
+            for (let i = 0; i < tabPanes.length; i++) {
+                tabPanes[i].classList.remove('active');
+            }
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Contact Lens Converter Functions
         function mround(value, multiple) {
             return Math.round(value / multiple) * multiple;
         }
@@ -376,7 +517,7 @@
             document.getElementById("liveResults").innerHTML = "";
         }
 
-        // Initialize
+        // Initialize on page load
         document.addEventListener("DOMContentLoaded", () => {
             const inputs = document.querySelectorAll("input[type='number']");
             inputs.forEach(input => {
@@ -393,26 +534,6 @@
             });
             convertPrescription(); // Initial run
         });
-
-        // Tab switching function
-        function openTab(tabId) {
-            // Hide all tab panes
-            const tabPanes = document.getElementsByClassName('tab-pane');
-            for (let i = 0; i < tabPanes.length; i++) {
-                tabPanes[i].classList.remove('active');
-            }
-            // Remove active class from all tab buttons
-            const tabButtons = document.getElementsByClassName('tab-button');
-            for (let i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove('active');
-            }
-            // Show the selected tab pane
-            document.getElementById(tabId).classList.add('active');
-            // Set the clicked button as active
-            const clickedButton = event.currentTarget;
-            clickedButton.classList.add('active');
-        }
     </script>
-
 </body>
 </html>
