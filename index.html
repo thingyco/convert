@@ -1,388 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iTestEye v1.3</title>
+    <link rel="icon" href="https://github.com/meteredgh/contact-lens-converter/blob/main/favicon.ico">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .tab-container {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .tab-buttons {
+            display: flex;
+            gap: 1px;
+            background: #f0f0f0;
+        }
+        .tab-button {
+            padding: 12px 24px;
+            background-color: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .tab-button:hover {
+            background-color: #e0e0e0;
+        }
+        .tab-button.active {
+            background-color: #fff;
+            border-bottom: 2px solid #00aa00;
+        }
+        .tab-content {
+            padding: 20px;
+            min-height: 500px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
 
-<link rel="icon" href="https://github.com/meteredgh/contact-lens-converter/blob/main/favicon.ico">
-
-  <meta charset="UTF-8">
-  <title>Spectacles To Contact Lens Converter</title>
-  <meta name="keywords" content="contact lens script converter, spectacle to contact lens conversion, vertex distance calculator, cylinder conversion for contact lenses, south africa, driver, license, licence, screening, criteria, online contact lens formula tool, spherical equivalent calculator, axis rounding for contact lenses, offline contact lens converter, toric lens prescription tool, eyecare professional tool, optometry calculator, glasses to contacts conversion, contact lens vertex formula, contact lens sph cyl axis converter">
-  <meta name="description" content="An offline contact lens prescription converter that calculates contact lens power from spectacle scripts using vertex distance, cylinder conversion, and axis rounding. Ideal for optometrists and eyecare professionals.">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .main {
-      display: flex;
-      flex: 1;
-      overflow: hidden;
-    }
-
-    .input-section, .result-section {
-      flex: 1;
-      overflow-y: auto;
-      padding-right: 20px;
-      
-    }
-
-    .result-section {
-      padding-left: 20px;
-      border-left: 1px solid #ccc;
- border-radius: 1px;
-  background: #fff;
-  padding: 30px;
-  width: 200px;
-  height: 500px;
-	
-    }
-
-    .input-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 12px;
-      
-    }
-
-    .radio-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 12px;
-      gap: 15px;
-    }
-
-    label {
-      width: 120px;
-      font-weight: bold;
-    }
-
-    input[type="radio"] {
-      margin-right: 5px;
-    }
-
-    input[type="number"] {
-      width: 80px;
-      padding: 5px;
-      margin-right: 10px;
-    }
-
-    .result-line {
-      display: inline-block;
-      padding: 4px 6px;
-      margin-left: 10px;
-      border-radius: 10px;
-      font-weight: bold;
-      min-width: 120px;
-    }
-
-    .result-container {
-      margin-left: 10px;
-
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 20px;
-background: #ccc;
-float: right; 
-    }
-
- .buttons2 {
- display: flex;
-      justify-content: flex-end;
-background: #ccc;
-margin-top: 30px;
-float: right; 
-    }
-
-    button {
-      padding: 10px 20px;
-      margin-left: 10px;
-    }
-
-    .disclaimer {
-      margin-top: 30px;
-      color: #555;
-      font-size: 0.9em;
-    }
-    
-    .corner {
-    border-radius: 20px;
-  background: #ddd;
-  padding: 5px 20px;
- 
-  }
-  </style>
+        /* Styles for the contact lens converter */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .main {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .input-section, .result-section {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 20px;
+        }
+        .result-section {
+            padding-left: 20px;
+            border-left: 1px solid #ccc;
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .radio-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 15px;
+        }
+        label {
+            width: 120px;
+            font-weight: bold;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        input[type="number"] {
+            width: 80px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .result-line {
+            display: inline-block;
+            padding: 4px 6px;
+            margin-left: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            min-width: 120px;
+        }
+        .result-container {
+            margin-left: 10px;
+        }
+        .buttons {
+            padding: 8px 16px;
+            margin-left: 10px;
+            background: #ccc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons2 {
+            padding: 8px 16px;
+            margin-top: 10px;
+            background: #ccc;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .disclaimer {
+            margin-top: 30px;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .corner {
+            border-radius: 20px;
+            background: #ddd;
+            padding: 5px 20px;
+        }
+    </style>
 </head>
 <body>
-  <div class="header">
-  <h2><font color=green>Spectacles To Contact Lens Converter</font></h2>
 
-   
-  </div>
+    <h1>iTestEye</h1>
 
-  <div class="main">
-    <!-- Input Section -->
-    <div class="input-section">
-
-
-      <div class="radio-group">
-        <label>Vertex Distance:</label>
-        <label><input type="radio" name="vertexDistance" value="10" onchange="convertPrescription()">10 mm</label>
-        <label><input type="radio" name="vertexDistance" value="12" checked onchange="convertPrescription()">12 mm</label>
-        <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()">14 mm</label>
-      </div>
-
-      <!-- Right Eye (OD) -->
-      <h3>🇷 Right Eye (OD)</h3>
-      <div class="input-group">
-        <label for="sphOD">🔵Sphere:</label>
-        <input type="number" step="0.25" id="sphOD" placeholder="0.00">
-        <div class="result-container" id="resultOD_sph"></div>
-      </div>
-      <div class="input-group">
-        <label for="cylOD">🛢️Cylinder:</label>
-        <input type="number" step="0.25" id="cylOD" placeholder="0.00">
-        <div class="result-container" id="resultOD_cyl"></div>
-      </div>
-      <div class="input-group">
-        <label for="axisOD">📐Axis:</label>
-        <input type="number" id="axisOD" placeholder="180">
-        <div class="result-container" id="resultOD_axis"></div>
-      </div>
-<br>
-      <!-- Left Eye (OS) -->
-      <h3>🇱 Left Eye (OS)</h3>
-      <div class="input-group">
-        <label for="sphOS">🔵Sphere:</label>
-        <input type="number" step="0.25" id="sphOS" placeholder="0.00">
-        <div class="result-container" id="resultOS_sph"></div>
-      </div>
-      <div class="input-group">
-        <label for="cylOS">🛢️Cylinder:</label>
-        <input type="number" step="0.25" id="cylOS" placeholder="0.00">
-        <div class="result-container" id="resultOS_cyl"></div>
-      </div>
-      <div class="input-group">
-        <label for="axisOS">📐Axis:</label>
-        <input type="number" id="axisOS" placeholder="180">
-        <div class="result-container" id="resultOS_axis"></div>
-      </div>
- <button onclick="resetForm()" class=buttons>🔄Clear</button>
-</div>
-  
-
-    <!-- Live Results Section -->
-    <div class="result-section">
-      <h3>Results</h3>
-      <div id="liveResults" style="font-size: 16px;"></div>
-   
-</div>
- </div>
-   </div>
-
-<table>
-  <tr>
-    <td><div class="disclaimer"><hr color=green>
-©️2025 Optom. Akhtar <a href="https://www.instagram.com/itesteye/" target="_blank" style="text-decoration: none;">@i<i>test</i>eye</a> | 
-🌐Online presence: <a href="http://tinyurl.com/sp2clapp" target="_blank" style="text-decoration: none;">tinyurl.com/sp2clapp</a> | 
-⬇️Download this file from: <a href="http://tiny.cc/sp2cl" target="_blank" style="text-decoration: none;">tiny.cc/sp2cl</a> | 
-🟢This file can be used offline without connecting to the internet <br> 🚗<a href='https://meteredgh.github.io/contact-lens-converter/drivers.png' target="_blank" style="text-decoration: none;">Driver's License Screening</a>
-  </td>
-    <td> <div align="right"><!-- COUNTER -->
-<a href='http://www.freevisitorcounters.com'>www.freevisitorcounters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=24c83937ac65c93d65e5f922b38f6ecd4bfccac7'></script>
-<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1336459/t/1"></script></div></td>
-  </tr>
-</table>
-
-  <script>
-    function mround(value, multiple) {
-      return Math.round(value / multiple) * multiple;
-    }
-
-    function convertPower(value, vertexDistance) {
-      return ((value * value) * vertexDistance / 1000) + value;
-    }
-
-    function roundAxis(axis) {
-      let rounded = mround(axis, 10);
-      return rounded === 0 ? 180 : rounded;
-    }
-
-    function setResultColor(element, value) {
-      element.style.backgroundColor = value > 0 ? "lightgreen" : value < 0 ? "lightcoral" : "white";
-    }
-
-    function clearResultContainers() {
-      document.querySelectorAll(".result-container").forEach(el => el.innerHTML = "");
-    }
-
-    function getVertexDistance() {
-      const selected = document.querySelector('input[name="vertexDistance"]:checked');
-      return parseFloat(selected.value);
-    }
-
-    function convertPrescription() {
-      clearResultContainers();
-
-      // Get selected vertex distance
-      const vertexDistance = getVertexDistance();
-
-      // Clear live results
-      const liveResults = document.getElementById("liveResults");
-      liveResults.innerHTML = "";
-
-      // Create a container for formatted results
-      const resultsBox = document.createElement("div");
-      resultsBox.style.lineHeight = "1.6";
-      resultsBox.style.padding = "20px";
-      resultsBox.style.border = "1px solid #ccc";
-      resultsBox.style.borderRadius = "20px";
-      resultsBox.style.backgroundColor = "#ffffff";
-
-      // Right Eye (OD)
-      const sphOD = parseFloat(document.getElementById("sphOD").value) || 0;
-      const cylOD = parseFloat(document.getElementById("cylOD").value) || 0;
-      const axisOD = parseFloat(document.getElementById("axisOD").value) || 0;
-
-      const d4OD = sphOD + cylOD;
-      const d7OD = convertPower(sphOD, vertexDistance);
-      const d14OD = convertPower(d4OD, vertexDistance);
-      const d9OD = d14OD - d7OD;
-      const convertedCylOD = mround(d9OD, 0.25);
-      const convertedSphOD = mround(d7OD, 0.25);
-      const roundedAxisOD = roundAxis(axisOD);
-
-      // Display OD Inline Results
-      const sphODResult = document.createElement("span");
-      sphODResult.className = "result-line";
-      sphODResult.textContent = `SPH: ${convertedSphOD.toFixed(2)} D`;
-      setResultColor(sphODResult, convertedSphOD);
-      document.getElementById("resultOD_sph").appendChild(sphODResult);
-
-      const cylODResult = document.createElement("span");
-      cylODResult.className = "result-line";
-      cylODResult.textContent = `CYL: ${convertedCylOD.toFixed(2)} D`;
-      setResultColor(cylODResult, convertedCylOD);
-      document.getElementById("resultOD_cyl").appendChild(cylODResult);
-
-      const axisODResult = document.createElement("span");
-      axisODResult.className = "result-line";
-      axisODResult.textContent = `Axis: ${roundedAxisOD}`;
-      document.getElementById("resultOD_axis").appendChild(axisODResult);
-
-      // Left Eye (OS)
-      const sphOS = parseFloat(document.getElementById("sphOS").value) || 0;
-      const cylOS = parseFloat(document.getElementById("cylOS").value) || 0;
-      const axisOS = parseFloat(document.getElementById("axisOS").value) || 0;
-
-      const d4OS = sphOS + cylOS;
-      const d7OS = convertPower(sphOS, vertexDistance);
-      const d14OS = convertPower(d4OS, vertexDistance);
-      const d9OS = d14OS - d7OS;
-      const convertedCylOS = mround(d9OS, 0.25);
-      const convertedSphOS = mround(d7OS, 0.25);
-      const roundedAxisOS = roundAxis(axisOS);
-
-      // Display OS Inline Results
-      const sphOSResult = document.createElement("span");
-      sphOSResult.className = "result-line";
-      sphOSResult.textContent = `SPH: ${convertedSphOS.toFixed(2)} D`;
-      setResultColor(sphOSResult, convertedSphOS);
-      document.getElementById("resultOS_sph").appendChild(sphOSResult);
-
-      const cylOSResult = document.createElement("span");
-      cylOSResult.className = "result-line";
-      cylOSResult.textContent = `CYL: ${convertedCylOS.toFixed(2)} D`;
-      setResultColor(cylOSResult, convertedCylOS);
-      document.getElementById("resultOS_cyl").appendChild(cylOSResult);
-
-      const axisOSResult = document.createElement("span");
-      axisOSResult.className = "result-line";
-      axisOSResult.textContent = `Axis: ${roundedAxisOS}`;
-      document.getElementById("resultOS_axis").appendChild(axisOSResult);
-
-      // Build Live Results Output
-      const output = `
-        <div id="resultsText">
-          <div><strong>Right Eye (OD)</strong><br>
-            SPH: ${convertedSphOD.toFixed(2)} D | CYL: ${convertedCylOD.toFixed(2)} D | Axis: ${roundedAxisOD}
-          </div>
-          <div style="margin-top: 15px;"><strong>Left Eye (OS)</strong><br>
-            SPH: ${convertedSphOS.toFixed(2)} D | CYL: ${convertedCylOS.toFixed(2)} D | Axis: ${roundedAxisOS}
-          </div>
+    <!-- Tabs -->
+    <div class="tab-container">
+        <div class="tab-buttons">
+            <button class="tab-button active" onclick="openTab('tab1')">Calculator</button>
+            <button class="tab-button" onclick="openTab('tab2')">Driver's</button>
         </div>
-        <div style="margin-top: 5px;">
-          <button onclick="copyResults()" class="buttons2">📑Copy</button>
+
+        <div class="tab-content">
+            <!-- Tab 1: Calculator -->
+            <div id="tab1" class="tab-pane active">
+                <h2>Spectacles To Contact Lens Converter</h2>
+                <div class="header">
+                    <h3><font color="green"></font></h3>
+                </div>
+                <div class="main">
+                    <div class="input-section">
+                        <div class="radio-group">
+                            <label>Vertex Distance:</label>
+                            <label><input type="radio" name="vertexDistance" value="10" onchange="convertPrescription()">10 mm</label>
+                            <label><input type="radio" name="vertexDistance" value="12" checked onchange="convertPrescription()">12 mm</label>
+                            <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()">14 mm</label>
+                        </div>
+
+                        <h3>🇷 Right Eye (OD)</h3>
+                        <div class="input-group">
+                            <label for="sphOD">🔵Sphere:</label>
+                            <input type="number" step="0.25" id="sphOD" placeholder="0.00">
+                            <div class="result-container" id="resultOD_sph"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="cylOD">🛢️Cylinder:</label>
+                            <input type="number" step="0.25" id="cylOD" placeholder="0.00">
+                            <div class="result-container" id="resultOD_cyl"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="axisOD">📐Axis:</label>
+                            <input type="number" id="axisOD" placeholder="180">
+                            <div class="result-container" id="resultOD_axis"></div>
+                        </div>
+
+                        <h3>🇱 Left Eye (OS)</h3>
+                        <div class="input-group">
+                            <label for="sphOS">🔵Sphere:</label>
+                            <input type="number" step="0.25" id="sphOS" placeholder="0.00">
+                            <div class="result-container" id="resultOS_sph"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="cylOS">🛢️Cylinder:</label>
+                            <input type="number" step="0.25" id="cylOS" placeholder="0.00">
+                            <div class="result-container" id="resultOS_cyl"></div>
+                        </div>
+                        <div class="input-group">
+                            <label for="axisOS">📐Axis:</label>
+                            <input type="number" id="axisOS" placeholder="180">
+                            <div class="result-container" id="resultOS_axis"></div>
+                        </div>
+                        <button onclick="resetForm()" class="buttons">🔄 Clear</button>
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Results</h3>
+                        <div id="liveResults" style="font-size: 16px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Driver's License -->
+            <div id="tab2" class="tab-pane">
+                <h2>Driving License Test Passing Criteria</h2>
+                <img src="https://meteredgh.github.io/contact-lens-converter/drivers.png" alt="Driver's License Criteria" style="max-width: 100%;">
+            </div>
         </div>
-      `;
-      resultsBox.innerHTML = output;
-      liveResults.appendChild(resultsBox);
-    }
+    </div>
 
-    function copyResults() {
-      const resultsText = document.getElementById("resultsText");
-      if (!resultsText) {
-        alert("No results to copy!");
-        return;
-      }
+    <!-- Footer -->
+    <table width="100%">
+        <tr>
+            <td>
+                <div class="disclaimer">
+                    <hr color="green">
+                    ©️2025 Optom. Akhtar <a href="https://www.instagram.com/itesteye/" target="_blank" style="text-decoration: none;">@i<i>test</i>eye</a> | 
+                    🌐 <a href="http://tinyurl.com/sp2clapp" target="_blank" style="text-decoration: none;">Online App</a> | 
+                    ⬇️ <a href="http://tiny.cc/sp2cl" target="_blank" style="text-decoration: none;">Download</a> | 
+                    🟢 Works offline            
+                </div>
+            </td>
+            <td align="right">
+                <!-- Visitor Counter -->
+                <a href='http://www.freevisitorcounters.com'>www.freevisitorcounters</a>
+                <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=24c83937ac65c93d65e5f922b38f6ecd4bfccac7'></script>
+                <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1336459/t/1"></script>
+            </td>
+        </tr>
+    </table>
 
-      const textToCopy = resultsText.textContent.trim();
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        alert("Results copied to clipboard!");
-      }).catch(err => {
-        console.error("Failed to copy: ", err);
-      });
-    }
+    <!-- JavaScript -->
+    <script>
+        function mround(value, multiple) {
+            return Math.round(value / multiple) * multiple;
+        }
+        function convertPower(value, vertexDistance) {
+            return ((value * value) * vertexDistance / 1000) + value;
+        }
+        function roundAxis(axis) {
+            let rounded = mround(axis, 10);
+            return rounded === 0 ? 180 : rounded;
+        }
+        function setResultColor(element, value) {
+            element.style.backgroundColor = value > 0 ? "lightgreen" : value < 0 ? "lightcoral" : "white";
+        }
+        function clearResultContainers() {
+            document.querySelectorAll(".result-container").forEach(el => el.innerHTML = "");
+        }
+        function getVertexDistance() {
+            const selected = document.querySelector('input[name="vertexDistance"]:checked');
+            return parseFloat(selected.value);
+        }
+        function convertPrescription() {
+            clearResultContainers();
+            const vertexDistance = getVertexDistance();
+            const liveResults = document.getElementById("liveResults");
+            liveResults.innerHTML = "";
 
-    function resetForm() {
-      document.querySelector('input[name="vertexDistance"][value="12"]').checked = true;
-      document.getElementById("sphOD").value = "";
-      document.getElementById("cylOD").value = "";
-      document.getElementById("axisOD").value = "";
-      document.getElementById("sphOS").value = "";
-      document.getElementById("cylOS").value = "";
-      document.getElementById("axisOS").value = "";
-      clearResultContainers();
-      document.getElementById("liveResults").innerHTML = "";
-    }
+            const resultsBox = document.createElement("div");
+            resultsBox.style.lineHeight = "1.6";
+            resultsBox.style.padding = "20px";
+            resultsBox.style.border = "1px solid #ccc";
+            resultsBox.style.borderRadius = "20px";
+            resultsBox.style.backgroundColor = "#ffffff";
 
-    // Initialize live updates and keyboard navigation
-    document.addEventListener("DOMContentLoaded", () => {
-      const inputs = document.querySelectorAll("input[type='number']");
+            // Right Eye (OD)
+            const sphOD = parseFloat(document.getElementById("sphOD").value) || 0;
+            const cylOD = parseFloat(document.getElementById("cylOD").value) || 0;
+            const axisOD = parseFloat(document.getElementById("axisOD").value) || 0;
+            const d4OD = sphOD + cylOD;
+            const d7OD = convertPower(sphOD, vertexDistance);
+            const d14OD = convertPower(d4OD, vertexDistance);
+            const d9OD = d14OD - d7OD;
+            const convertedCylOD = mround(d9OD, 0.25);
+            const convertedSphOD = mround(d7OD, 0.25);
+            const roundedAxisOD = roundAxis(axisOD);
 
-      // Live update on input
-      inputs.forEach(input => {
-        input.addEventListener("input", convertPrescription);
-      });
+            const sphODResult = document.createElement("span");
+            sphODResult.className = "result-line";
+            sphODResult.textContent = `SPH: ${convertedSphOD.toFixed(2)} D`;
+            setResultColor(sphODResult, convertedSphOD);
+            document.getElementById("resultOD_sph").appendChild(sphODResult);
 
-      // Press Enter to go to next field
-      inputs.forEach((input, index) => {
-        input.addEventListener("keydown", (e) => {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            const nextIndex = (index + 1) % inputs.length;
-            inputs[nextIndex].focus();
-          }
+            const cylODResult = document.createElement("span");
+            cylODResult.className = "result-line";
+            cylODResult.textContent = `CYL: ${convertedCylOD.toFixed(2)} D`;
+            setResultColor(cylODResult, convertedCylOD);
+            document.getElementById("resultOD_cyl").appendChild(cylODResult);
+
+            const axisODResult = document.createElement("span");
+            axisODResult.className = "result-line";
+            axisODResult.textContent = `Axis: ${roundedAxisOD}`;
+            document.getElementById("resultOD_axis").appendChild(axisODResult);
+
+            // Left Eye (OS)
+            const sphOS = parseFloat(document.getElementById("sphOS").value) || 0;
+            const cylOS = parseFloat(document.getElementById("cylOS").value) || 0;
+            const axisOS = parseFloat(document.getElementById("axisOS").value) || 0;
+            const d4OS = sphOS + cylOS;
+            const d7OS = convertPower(sphOS, vertexDistance);
+            const d14OS = convertPower(d4OS, vertexDistance);
+            const d9OS = d14OS - d7OS;
+            const convertedCylOS = mround(d9OS, 0.25);
+            const convertedSphOS = mround(d7OS, 0.25);
+            const roundedAxisOS = roundAxis(axisOS);
+
+            const sphOSResult = document.createElement("span");
+            sphOSResult.className = "result-line";
+            sphOSResult.textContent = `SPH: ${convertedSphOS.toFixed(2)} D`;
+            setResultColor(sphOSResult, convertedSphOS);
+            document.getElementById("resultOS_sph").appendChild(sphOSResult);
+
+            const cylOSResult = document.createElement("span");
+            cylOSResult.className = "result-line";
+            cylOSResult.textContent = `CYL: ${convertedCylOS.toFixed(2)} D`;
+            setResultColor(cylOSResult, convertedCylOS);
+            document.getElementById("resultOS_cyl").appendChild(cylOSResult);
+
+            const axisOSResult = document.createElement("span");
+            axisOSResult.className = "result-line";
+            axisOSResult.textContent = `Axis: ${roundedAxisOS}`;
+            document.getElementById("resultOS_axis").appendChild(axisOSResult);
+
+            const output = `
+                <div id="resultsText">
+                    <div><strong>Right Eye (OD)</strong><br>
+                        SPH: ${convertedSphOD.toFixed(2)} D | CYL: ${convertedCylOD.toFixed(2)} D | Axis: ${roundedAxisOD}
+                    </div>
+                    <div style="margin-top: 15px;"><strong>Left Eye (OS)</strong><br>
+                        SPH: ${convertedSphOS.toFixed(2)} D | CYL: ${convertedCylOS.toFixed(2)} D | Axis: ${roundedAxisOS}
+                    </div>
+                </div>
+                <div style="margin-top: 10px;">
+                    <button onclick="copyResults()" class="buttons2">📑 Copy</button>
+                </div>
+            `;
+            resultsBox.innerHTML = output;
+            liveResults.appendChild(resultsBox);
+        }
+
+        function copyResults() {
+            const resultsText = document.getElementById("resultsText");
+            if (!resultsText) {
+                alert("No results to copy!");
+                return;
+            }
+            const textToCopy = resultsText.textContent.trim();
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert("Results copied to clipboard!");
+            }).catch(err => {
+                console.error("Failed to copy: ", err);
+            });
+        }
+
+        function resetForm() {
+            document.querySelector('input[name="vertexDistance"][value="12"]').checked = true;
+            document.getElementById("sphOD").value = "";
+            document.getElementById("cylOD").value = "";
+            document.getElementById("axisOD").value = "";
+            document.getElementById("sphOS").value = "";
+            document.getElementById("cylOS").value = "";
+            document.getElementById("axisOS").value = "";
+            clearResultContainers();
+            document.getElementById("liveResults").innerHTML = "";
+        }
+
+        // Initialize
+        document.addEventListener("DOMContentLoaded", () => {
+            const inputs = document.querySelectorAll("input[type='number']");
+            inputs.forEach(input => {
+                input.addEventListener("input", convertPrescription);
+            });
+            inputs.forEach((input, index) => {
+                input.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        const nextIndex = (index + 1) % inputs.length;
+                        inputs[nextIndex].focus();
+                    }
+                });
+            });
+            convertPrescription(); // Initial run
         });
-      });
 
-      // Radio buttons already trigger convertPrescription via onchange
-    });
-  </script>
+        // Tab switching function
+        function openTab(tabId) {
+            // Hide all tab panes
+            const tabPanes = document.getElementsByClassName('tab-pane');
+            for (let i = 0; i < tabPanes.length; i++) {
+                tabPanes[i].classList.remove('active');
+            }
+            // Remove active class from all tab buttons
+            const tabButtons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            // Show the selected tab pane
+            document.getElementById(tabId).classList.add('active');
+            // Set the clicked button as active
+            const clickedButton = event.currentTarget;
+            clickedButton.classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
