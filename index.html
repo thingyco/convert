@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-<title>iTestEye v1.5</title>
+<title>itesteye v1.6</title>
    
  <link rel="icon" href="https://github.com/meteredgh/contact-lens-converter/blob/main/favicon.ico">
     
@@ -346,6 +346,219 @@ i {
                 <p class="vision-note">
                     <strong>Note:</strong> 20/20 (6/6) is considered "normal" visual acuity. Each 0.1 step in LogMAR equals one line on the eye chart. Near vision (J/N) may vary by test chart.
                 </p>
+
+
+  <div class="container">
+    <h2>👁️ Visual Acuity Converter</h2>
+    <p>Enter your visual acuity in any unit — it will be converted to all others.</p>
+
+    <div class="input-group">
+      <label for="snellen">Snellen (e.g., 20/20, 6/6)</label>
+      <input type="text" id="snellen" placeholder="e.g., 20/20" oninput="convertFrom('snellen')">
+    </div>
+
+    <div class="input-group">
+      <label for="decimal">Decimal (e.g., 1.0, 0.5)</label>
+      <input type="number" id="decimal" step="0.01" placeholder="e.g., 1.0" oninput="convertFrom('decimal')">
+    </div>
+
+    <div class="input-group">
+      <label for="logmar">LogMAR (e.g., 0.0, 0.3)</label>
+      <input type="number" id="logmar" step="0.01" placeholder="e.g., 0.0" oninput="convertFrom('logmar')">
+    </div>
+
+    <div class="input-group">
+      <label for="nearVision">Near Vision (e.g., N6, J2)</label>
+      <input type="text" id="nearVision" placeholder="e.g., N6 or J2" oninput="convertFrom('near')">
+    </div>
+
+    <div id="error" class="error"></div>
+
+    <h3>Converted Values</h3>
+    <table>
+      <tr>
+        <th>Snellen (ft)</th>
+        <td id="outSnellenFt">—</td>
+      </tr>
+      <tr>
+        <th>Snellen (m)</th>
+        <td id="outSnellenM">—</td>
+      </tr>
+      <tr>
+        <th>Decimal</th>
+        <td id="outDecimal">—</td>
+      </tr>
+      <tr>
+        <th>LogMAR</th>
+        <td id="outLogMAR">—</td>
+      </tr>
+      <tr>
+        <th>Near Vision</th>
+        <td id="outNear">—</td>
+      </tr>
+    </table>
+
+    <p class="note">
+      <strong>Note:</strong> Conversion is based on standard optometric formulas. Near vision (J/N) is approximate due to chart variability.
+    </p>
+  </div>
+
+  <script>
+    // Helper: Parse Snellen string like "20/40" or "6/6"
+    function parseSnellen(str) {
+      const match = str.trim().match(/^(\d+)\/(\d+)$/);
+      if (!match) return null;
+      const [_, top, bottom] = match;
+      return parseInt(bottom) / parseInt(top);
+    }
+
+    // Convert Snellen fraction to decimal (e.g., 20/40 → 0.5)
+    function snellenToDecimal(snellenStr) {
+      const ratio = parseSnellen(snellenStr);
+      if (!ratio) return null;
+      // If in feet (20/x), divide 20; if in meters (6/x), divide 6
+      if (snellenStr.includes('20/')) return 20 / (20 * ratio); // 20/x → x/20
+      if (snellenStr.includes('6/')) return 6 / (6 * ratio);
+      return 1 / ratio;
+    }
+
+    // Reverse: decimal to Snellen fraction (returns {ft, m})
+    function decimalToSnellen(decimal) {
+      if (!decimal || decimal <= 0) return { ft: '—', m: '—' };
+      const ft = (20 / decimal).toFixed(0);
+      const m = (6 / decimal).toFixed(0);
+      return {
+        ft: `20/${ft}`,
+        m: `6/${m}`
+      };
+    }
+
+    // Approximate near vision from decimal (based on standard N ratings)
+    function decimalToNear(decimal) {
+      if (decimal >= 1.25) return "N4 / J1";
+      if (decimal >= 1.0) return "N5 / J1–J2";
+      if (decimal >= 0.8) return "N6 / J2–J3";
+      if (decimal >= 0.67) return "N8 / J3–J4";
+      if (decimal >= 0.5) return "N10 / J5";
+      if (decimal >= 0.4) return "N12 / J6";
+      if (decimal >= 0.33) return "N14 / J7";
+      if (decimal >= 0.25) return "N18 / J9";
+      if (decimal >= 0.2) return "N24 / J10";
+      return "N36+ / J12+";
+    }
+
+    // Parse near vision (N6 or J2) and estimate decimal
+    function nearToDecimal(nearStr) {
+      const str = nearStr.trim().toUpperCase();
+      if (str.startsWith('N')) {
+        const n = parseInt(str.replace('N', ''));
+        if (n === 5 || n === 6) return 1.0;
+        if (n <= 8) return 0.8;
+        if (n <= 10) return 0.67;
+        if (n <= 12) return 0.5;
+        if (n <= 14) return 0.4;
+        if (n <= 18) return 0.33;
+        if (n <= 24) return 0.2;
+        if (n <= 36) return 0.1;
+        return 0.1;
+      }
+      if (str.startsWith('J')) {
+        const j = parseInt(str.replace('J', ''));
+        if (j <= 2) return 1.0;
+        if (j <= 4) return 0.8;
+        if (j <= 5) return 0.67;
+        if (j <= 6) return 0.5;
+        if (j <= 7) return 0.4;
+        if (j <= 9) return 0.33;
+        if (j <= 10) return 0.2;
+        return 0.1;
+      }
+      return null;
+    }
+
+    // Update all output fields
+    function updateOutputs(decimal, logmar) {
+      const snellen = decimalToSnellen(decimal);
+
+      document.getElementById('outSnellenFt').textContent = snellen.ft;
+      document.getElementById('outSnellenM').textContent = snellen.m;
+      document.getElementById('outDecimal').textContent = decimal ? decimal.toFixed(2) : '—';
+      document.getElementById('outLogMAR').textContent = logmar ? logmar.toFixed(2) : '—';
+      document.getElementById('outNear').textContent = decimal ? decimalToNear(decimal) : '—';
+    }
+
+    // Main conversion function
+    function convertFrom(source) {
+      let decimal = null;
+      let logmar = null;
+      document.getElementById('error').textContent = '';
+
+      try {
+        if (source === 'snellen') {
+          const val = document.getElementById('snellen').value;
+          if (val) {
+            decimal = snellenToDecimal(val);
+            if (decimal === null) throw new Error("Invalid Snellen format. Use '20/20' or '6/6'.");
+            logmar = Math.log10(1 / decimal);
+          }
+        }
+
+        else if (source === 'decimal') {
+          decimal = parseFloat(document.getElementById('decimal').value);
+          if (isNaN(decimal) || decimal <= 0) throw new Error("Please enter a positive number.");
+          logmar = Math.log10(1 / decimal);
+        }
+
+        else if (source === 'logmar') {
+          logmar = parseFloat(document.getElementById('logmar').value);
+          if (isNaN(logmar)) throw new Error("Please enter a valid number.");
+          decimal = 1 / Math.pow(10, logmar);
+        }
+
+        else if (source === 'near') {
+          const val = document.getElementById('nearVision').value;
+          if (val) {
+            decimal = nearToDecimal(val);
+            if (decimal === null) throw new Error("Enter N6 or J2 format.");
+            logmar = Math.log10(1 / decimal);
+          }
+        }
+
+        // Sync all input fields to avoid confusion
+        if (decimal) {
+          document.getElementById('decimal').value = decimal.toFixed(2);
+          const snellen = decimalToSnellen(decimal);
+          document.getElementById('snellen').value = snellen.ft;
+          document.getElementById('logmar').value = logmar.toFixed(2);
+        } else {
+          clearAllInputs();
+        }
+
+        updateOutputs(decimal, logmar);
+
+      } catch (e) {
+        document.getElementById('error').textContent = e.message;
+        clearOutputs();
+      }
+    }
+
+    function clearOutputs() {
+      document.getElementById('outSnellenFt').textContent = '—';
+      document.getElementById('outSnellenM').textContent = '—';
+      document.getElementById('outDecimal').textContent = '—';
+      document.getElementById('outLogMAR').textContent = '—';
+      document.getElementById('outNear').textContent = '—';
+    }
+
+    function clearAllInputs() {
+      document.getElementById('snellen').value = '';
+      document.getElementById('decimal').value = '';
+      document.getElementById('logmar').value = '';
+      document.getElementById('nearVision').value = '';
+    }
+  </script>
+
+
             </div>
 
 
