@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-<title>itesteye v1.64</title>
+<title>itesteye v1.65</title>
    
  <link rel="icon" href="https://github.com/meteredgh/contact-lens-converter/blob/main/favicon.ico">
     
@@ -22,7 +22,7 @@
         .tab-container {
             margin-bottom: 20px;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 20px;
             overflow: hidden;
         }
         .tab-buttons {
@@ -40,6 +40,7 @@
         }
         .tab-button:hover {
             background-color: #e0e0e0;
+transition: background 1.0s ease;
         }
         .tab-button.active {
             background-color: #fff;
@@ -79,7 +80,7 @@
             padding-left: 20px;
             border-left: 1px solid #ccc;
             background: #f9f9f9;
-            border-radius: 10px;
+            border-radius: 20px;
             padding: 15px;
         }
         .input-group {
@@ -109,7 +110,7 @@
             display: inline-block;
             padding: 4px 6px;
             margin-left: 10px;
-            border-radius: 10px;
+            border-radius: 20px;
             font-weight: bold;
             min-width: 120px;
         }
@@ -119,21 +120,17 @@
         .buttons {
             padding: 8px 16px;
             margin-left: 10px;
-            background: #ccc;
+            background: #f0f0f0;
             border: none;
-            border-radius: 5px;
+            border-radius: 20px;
             cursor: pointer;
 font-weight: bold;
         }
-        .buttons2 {
-            padding: 8px 16px;
-            margin-top: 10px;
-            background: #ccc;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-font-weight: bold;
-        }
+       
+.buttons:hover {
+    background: #e0e0e0;
+ transition: background 1.0s ease;
+}
         .disclaimer {
             margin-top: 0px;
             color: #555;
@@ -149,6 +146,10 @@ font-weight: bold;
             background: #ddd;
             padding: 5px 20px;
         }
+ .shadow {
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      border-radius: 20px; /* Optional: rounded corners */
+    }
 
 
 /* Table style */
@@ -161,7 +162,7 @@ table {
   border-collapse: collapse;
   margin: 20px auto;
   font-family: Arial, sans-serif;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
 }
 
 th {
@@ -195,7 +196,7 @@ i {
     </style>
 </head>
 <body>
-    <h1><b>i</b><i>test</i><b>eye</b></h1>
+     <a href="https://www.instagram.com/itesteye/" target="_blank" style="text-decoration: none;"><h1><b>i</b><i>test</i><b>eye</b></h1></a>
 
     <!-- Tabs -->
     <div class="tab-container">
@@ -260,7 +261,7 @@ i {
 
                     <div class="result-section">
                         <h3>Results</h3>
-                        <div id="liveResults" style="font-size: 16px;"></div>
+                        <div id="liveResults" style="font-size: 16px;" class="shadow"></div>
                     </div>
                 </div>
             </div>
@@ -268,7 +269,9 @@ i {
             <!-- Tab 2: Driver's License -->
             <div id="tab2" class="tab-pane">
                 <h2>Driving License Test Passing Criteria</h2>
-                <img src="https://meteredgh.github.io/contact-lens-converter/drivers.png" alt="Driver's License Criteria" style="max-width: 100%;">
+            
+<img src="https://meteredgh.github.io/contact-lens-converter/drivers.png" alt="Driver's License Criteria" style="max-width: 100%;" class="shadow">
+
             </div>
 
             <!-- Tab 3: Visual Acuity Reference -->
@@ -638,14 +641,14 @@ i {
     </div>
 
     <!-- Footer -->
-    <table width="100%">
+    <table width="100%" class=shadow>
         <tr>
             <td>
                 <div class="disclaimer">
                  
-                    ©️2025 Optom. Akhtar <a href="https://www.instagram.com/itesteye/" target="_blank" style="text-decoration: none;">@i<i>test</i>eye</a> | 
-                    🌐 <a href="http://tinyurl.com/sp2clapp" target="_blank" style="text-decoration: none;">Online App</a> | 
-                    ⬇️ <a href="http://tiny.cc/sp2cl" target="_blank" style="text-decoration: none;">Download</a> | 
+                    ©️2025 Optom. Akhtar 
+                     <a href="http://tinyurl.com/sp2clapp" target="_blank" style="text-decoration: none;" class=buttons>🌐Online App</a>  
+                     <a href="http://tiny.cc/sp2cl" target="_blank" style="text-decoration: none;" class=buttons>⬇️Download</a> 
                     🟢 Works offline
               
                 </div>
@@ -778,7 +781,7 @@ i {
                     </div>
                 </div>
                 <div style="margin-top: 10px;">
-                    <button onclick="copyResults()" class="buttons2">📑 Copy</button>
+                    <button onclick="copyResults()" class="buttons">📑 Copy</button>
                 </div>
             `;
             resultsBox.innerHTML = output;
