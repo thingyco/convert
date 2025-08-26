@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-<title>itesteye v1.66</title>
+<title>itesteye v1.67</title>
    
  <link rel="icon" href="https://github.com/meteredgh/contact-lens-converter/blob/main/favicon.ico">
     
@@ -154,6 +154,7 @@ box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
     }
 
 
+
 /* Table style */
 h2 {
   text-align: center;
@@ -224,7 +225,7 @@ i {
                             <label><input type="radio" name="vertexDistance" value="12" checked onchange="convertPrescription()">12 mm</label>
                             <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()">14 mm</label>
                         </div>
-
+<hr color=#ddd>
                         <h3>🇷 Right Eye (OD)</h3>
                         <div class="input-group">
                             <label for="sphOD">🔵Sphere:</label>
@@ -241,7 +242,7 @@ i {
                             <input type="number" id="axisOD" placeholder="180">
                             <div class="result-container" id="resultOD_axis"></div>
                         </div>
-
+<hr color=#ddd>
                         <h3>🇱 Left Eye (OS)</h3>
                         <div class="input-group">
                             <label for="sphOS">🔵Sphere:</label>
@@ -257,7 +258,7 @@ i {
                             <label for="axisOS">📐Axis:</label>
                             <input type="number" id="axisOS" placeholder="180">
                             <div class="result-container" id="resultOS_axis"></div>
-                        </div><div>
+                        </div><hr color=#ddd><div align=right>
                         <button onclick="resetForm()" class="buttons">🔄 Clear</button></div> <font class=disclaimer>*Results may vary for values >10.75</font>
                     </div>
 
