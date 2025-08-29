@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-<title>itesteye v1.70</title>
+<title>itesteye v1.71</title>
    
  <link rel="icon" href="https://github.com/meteredgh/contact-lens-converter/blob/main/favicon.ico">
     
@@ -24,7 +24,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  font-size: 24px;
+  font-size: 48px;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.05);
   pointer-events: none; /* Don't block clicks */
@@ -71,14 +71,14 @@
 
   .tab-button.active {
     background-color: #fff;
-    border-bottom: 2px solid #00aa00;
+    border-bottom: 0 solid #00aa00;
   }
 
   .tab-content {
     padding: 20px;
     min-height: 500px;
     background-color: #fff;
-    border-top: 1px solid #ddd;
+    border-top: 0 solid #ddd;
   }
 
   .tab-pane {
@@ -156,7 +156,7 @@
   }
 
   .buttons:hover {
-    background: #e0e0e0;
+    background: #ddd;
     box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.3);
   }
 
@@ -907,7 +907,7 @@ function createWatermark(text = "CONFIDENTIAL", count = 15) {
 
 // Run on load
 window.addEventListener("load", () => {
-  createWatermark("ITESTEYE", 1);
+  createWatermark("𝗶𝘵𝘦𝘴𝘵𝗲𝘆𝗲", 1);
 });
     </script>
 
