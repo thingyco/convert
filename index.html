@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-<title>itesteye v1.70</title>
+<title>itesteye v1.72</title>
    
- <link rel="icon" href="https://github.com/thingyco/contact-lens-converter/blob/main/favicon.ico">
+ <link rel="icon" href="https://github.com/thingyco/contact-lens-converter/blob/main/favicon.ico  ">
     
     <!-- SEO Meta Tags -->
     <meta name="keywords" content="contact lens script converter, spectacle to contact lens conversion, vertex distance calculator, cylinder conversion for contact lenses, online contact lens formula tool, spherical equivalent calculator, axis rounding for contact lenses, offline contact lens converter, toric lens prescription tool, eyecare professional tool, optometry calculator, glasses to contacts conversion, contact lens vertex formula, contact lens sph cyl axis converter, south africa, driver, license, licence, screening, criteria">
@@ -25,7 +24,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  font-size: 36px;
+  font-size: 72px;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.05);
   pointer-events: none; /* Don't block clicks */
@@ -142,6 +141,7 @@
     width: 80px;
     padding: 5px;
     margin-right: 10px;
+	font-size: 20px;
   }
 
   /* Buttons and results */
@@ -159,19 +159,6 @@
   .buttons:hover {
     background: #ddd;
     box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.3);
-  }
-
-  .result-container {
-    margin-left: 10px;
-  }
-
-  .result-line {
-    display: inline-block;
-    padding: 4px 6px;
-    margin-left: 10px;
-    border-radius: 20px;
-    font-weight: bold;
-    min-width: 120px;
   }
 
   /* Typography & utility */
@@ -246,7 +233,7 @@
 
 </head>
 <body>
-     <a href="https://thingyco.github.io/contact-lens-converter/" style="text-decoration: none;"><h1><b>i</b><i>test</i><b>eye</b></h1></a>
+     <a href="https://thingyco.github.io/contact-lens-converter/  " style="text-decoration: none;"><h1><b>i</b><i>test</i><b>eye</b></h1></a>
 
     <!-- Tabs -->
     <div class="tab-container">
@@ -254,7 +241,7 @@
             <button class="tab-button active" onclick="openTab('tab1')">Calculator</button>
             <button class="tab-button" onclick="openTab('tab2')">Driver's</button>
             <button class="tab-button" onclick="openTab('tab3')">Vision Charts</button>
- 	<button class="tab-button" onclick="openTab('tab4')">Prescription Terms</button>
+ 	        <button class="tab-button" onclick="openTab('tab4')">Prescription Terms</button>
         </div>
 
         <div class="tab-content">
@@ -270,46 +257,45 @@
                             <label><input type="radio" name="vertexDistance" value="12" checked onchange="convertPrescription()">12 mm</label>
                             <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()">14 mm</label>
                         </div>
-<hr>
+                        <hr>
                         <h3>🇷 Right Eye (OD)</h3>
                         <div class="input-group">
                             <label for="sphOD">🔵Sphere:</label>
                             <input type="number" step="0.25" id="sphOD" placeholder="0.00">
-                            <div class="result-container" id="resultOD_sph"></div>
                         </div>
                         <div class="input-group">
                             <label for="cylOD">🛢️Cylinder:</label>
                             <input type="number" step="0.25" id="cylOD" placeholder="0.00">
-                            <div class="result-container" id="resultOD_cyl"></div>
                         </div>
                         <div class="input-group">
                             <label for="axisOD">📐Axis:</label>
                             <input type="number" id="axisOD" placeholder="180">
-                            <div class="result-container" id="resultOD_axis"></div>
                         </div>
-<hr>
+
+                        <hr>
                         <h3>🇱 Left Eye (OS)</h3>
                         <div class="input-group">
                             <label for="sphOS">🔵Sphere:</label>
                             <input type="number" step="0.25" id="sphOS" placeholder="0.00">
-                            <div class="result-container" id="resultOS_sph"></div>
                         </div>
                         <div class="input-group">
                             <label for="cylOS">🛢️Cylinder:</label>
                             <input type="number" step="0.25" id="cylOS" placeholder="0.00">
-                            <div class="result-container" id="resultOS_cyl"></div>
                         </div>
                         <div class="input-group">
                             <label for="axisOS">📐Axis:</label>
                             <input type="number" id="axisOS" placeholder="180">
-                            <div class="result-container" id="resultOS_axis"></div>
-                        </div><hr><div align=right>
-                        <button onclick="resetForm()" class="buttons">🔄 Clear</button></div> <font class=disclaimer>*Results may vary for values >10.75</font>
+                        </div>
+                        <hr>
+                        <div align="right">
+                            <button onclick="resetForm()" class="buttons">🔄 Clear</button>
+                        </div> 
+                        <font class="disclaimer">*Results may vary for values >10.75</font>
                     </div>
 
                     <div class="result-section">
                         <h3>Results</h3>
-                        <div id="liveResults" style="font-size: 16px;" class="shadow"></div>
+                        <div id="liveResults" style="font-size: 20px;" class="shadow"></div>
                     </div>
                 </div>
             </div>
@@ -317,15 +303,13 @@
             <!-- Tab 2: Driver's License -->
             <div id="tab2" class="tab-pane">
                 <h2>Driving License Test Passing Criteria</h2>
-            
-<img src="https://thingyco.github.io/contact-lens-converter/drivers.png" alt="Driver's License Criteria" style="max-width: 100%;" class="shadow">
-
+                <img src="https://thingyco.github.io/contact-lens-converter/drivers.png" alt="Driver's License Criteria" style="max-width: 100%;" class="shadow">
             </div>
 
             <!-- Tab 3: Visual Acuity Reference -->
             <div id="tab3" class="tab-pane">
                 <h2>Visual Acuity Quick Reference Conversion</h2>
-                <table class=shadow>
+                <table class="shadow">
                     <thead>
                         <tr>
                             <th>Snellen (ft)</th>
@@ -336,355 +320,216 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>20/10</td>
-                            <td>6/3</td>
-                            <td>2.0</td>
-                            <td>-0.1</td>
-                            <td>N4–N5 / J1</td>
-                        </tr>
-                        <tr>
-                            <td>20/15</td>
-                            <td>6/4.5</td>
-                            <td>1.33</td>
-                            <td>-0.12</td>
-                            <td>N5 / J1–J2</td>
-                        </tr>
-                        <tr style="font-weight: bold;">
-                            <td>20/20</td>
-                            <td>6/6</td>
-                            <td>1.0</td>
-                            <td>0.0</td>
-                            <td>N6 / J2–J3</td>
-                        </tr>
-                        <tr>
-                            <td>20/25</td>
-                            <td>6/7.5</td>
-                            <td>0.8</td>
-                            <td>0.1</td>
-                            <td>N8 / J3–J4</td>
-                        </tr>
-                        <tr>
-                            <td>20/30</td>
-                            <td>6/9</td>
-                            <td>0.67</td>
-                            <td>0.18</td>
-                            <td>N10 / J5</td>
-                        </tr>
-                        <tr>
-                            <td>20/40</td>
-                            <td>6/12</td>
-                            <td>0.5</td>
-                            <td>0.3</td>
-                            <td>N12 / J6</td>
-                        </tr>
-                        <tr>
-                            <td>20/50</td>
-                            <td>6/15</td>
-                            <td>0.4</td>
-                            <td>0.4</td>
-                            <td>N14 / J7</td>
-                        </tr>
-                        <tr>
-                            <td>20/100</td>
-                            <td>6/30</td>
-                            <td>0.2</td>
-                            <td>0.7</td>
-                            <td>N24 / J10</td>
-                        </tr>
-                        <tr>
-                            <td>20/200</td>
-                            <td>6/60</td>
-                            <td>0.1</td>
-                            <td>1.0</td>
-                            <td>N36 / J12+</td>
-                        </tr>
+                        <tr><td>20/10</td><td>6/3</td><td>2.0</td><td>-0.1</td><td>N4–N5 / J1</td></tr>
+                        <tr><td>20/15</td><td>6/4.5</td><td>1.33</td><td>-0.12</td><td>N5 / J1–J2</td></tr>
+                        <tr style="font-weight: bold;"><td>20/20</td><td>6/6</td><td>1.0</td><td>0.0</td><td>N6 / J2–J3</td></tr>
+                        <tr><td>20/25</td><td>6/7.5</td><td>0.8</td><td>0.1</td><td>N8 / J3–J4</td></tr>
+                        <tr><td>20/30</td><td>6/9</td><td>0.67</td><td>0.18</td><td>N10 / J5</td></tr>
+                        <tr><td>20/40</td><td>6/12</td><td>0.5</td><td>0.3</td><td>N12 / J6</td></tr>
+                        <tr><td>20/50</td><td>6/15</td><td>0.4</td><td>0.4</td><td>N14 / J7</td></tr>
+                        <tr><td>20/100</td><td>6/30</td><td>0.2</td><td>0.7</td><td>N24 / J10</td></tr>
+                        <tr><td>20/200</td><td>6/60</td><td>0.1</td><td>1.0</td><td>N36 / J12+</td></tr>
                     </tbody>
                 </table>
-               
 
+                <div class="container">
+                    <h2>👁️ Visual Acuity Converter</h2>
+                    <p>Enter your visual acuity in any unit — it will be converted to all others.</p>
 
-  <div class="container">
-    <h2>👁️ Visual Acuity Converter</h2>
-    <p>Enter your visual acuity in any unit — it will be converted to all others.</p>
+                    <div class="input-group">
+                        <label for="snellen">Snellen</label>
+                        <input type="text" id="snellen" placeholder="e.g., 20/20" oninput="convertFrom('snellen')">
+                    </div>
 
-    <div class="input-group">
-      <label for="snellen">Snellen</label>
-      <input type="text" id="snellen" placeholder="e.g., 20/20" oninput="convertFrom('snellen')">
-    </div>
+                    <div class="input-group">
+                        <label for="decimal">Decimal</label>
+                        <input type="number" id="decimal" step="0.01" placeholder="e.g., 1.0" oninput="convertFrom('decimal')">
+                    </div>
 
-    <div class="input-group">
-      <label for="decimal">Decimal</label>
-      <input type="number" id="decimal" step="0.01" placeholder="e.g., 1.0" oninput="convertFrom('decimal')">
-    </div>
+                    <div class="input-group">
+                        <label for="logmar">LogMAR</label>
+                        <input type="number" id="logmar" step="0.01" placeholder="e.g., 0.0" oninput="convertFrom('logmar')">
+                    </div>
 
-    <div class="input-group">
-      <label for="logmar">LogMAR</label>
-      <input type="number" id="logmar" step="0.01" placeholder="e.g., 0.0" oninput="convertFrom('logmar')">
-    </div>
+                    <div class="input-group">
+                        <label for="nearVision">Near Vision</label>
+                        <input type="text" id="nearVision" placeholder="e.g., N6 or J2" oninput="convertFrom('near')">
+                    </div>
 
-    <div class="input-group">
-      <label for="nearVision">Near Vision</label>
-      <input type="text" id="nearVision" placeholder="e.g., N6 or J2" oninput="convertFrom('near')">
-    </div>
+                    <div id="error" class="error"></div>
 
-    <div id="error" class="error"></div>
+                    <h3>Converted Values</h3>
+                    <table>
+                        <tr><th>Snellen (ft)</th><td id="outSnellenFt">—</td></tr>
+                        <tr><th>Snellen (m)</th><td id="outSnellenM">—</td></tr>
+                        <tr><th>Decimal</th><td id="outDecimal">—</td></tr>
+                        <tr><th>LogMAR</th><td id="outLogMAR">—</td></tr>
+                        <tr><th>Near Vision</th><td id="outNear">—</td></tr>
+                    </table>
 
-    <h3>Converted Values</h3>
-    <table>
-      <tr>
-        <th>Snellen (ft)</th>
-        <td id="outSnellenFt">—</td>
-      </tr>
-      <tr>
-        <th>Snellen (m)</th>
-        <td id="outSnellenM">—</td>
-      </tr>
-      <tr>
-        <th>Decimal</th>
-        <td id="outDecimal">—</td>
-      </tr>
-      <tr>
-        <th>LogMAR</th>
-        <td id="outLogMAR">—</td>
-      </tr>
-      <tr>
-        <th>Near Vision</th>
-        <td id="outNear">—</td>
-      </tr>
-    </table>
+                    <p class="disclaimer">
+                     <b>Note:</b> Conversion is based on standard optometric formulas. 20/20 (6/6) is considered "normal" visual acuity. Each 0.1 step in LogMAR equals one line on the eye chart. Near vision (J/N) may vary by test chart.
+                    </p>
+                </div>
 
-    <p class="disclaimer">
-     <b>Note:</b> Conversion is based on standard optometric formulas. 20/20 (6/6) is considered "normal" visual acuity. Each 0.1 step in LogMAR equals one line on the eye chart. Near vision (J/N) may vary by test chart.
-    </p>
-  </div>
+                <script>
+                    function parseSnellen(str) {
+                      const match = str.trim().match(/^(\d+)\/(\d+)$/);
+                      if (!match) return null;
+                      const [_, top, bottom] = match;
+                      return parseInt(bottom) / parseInt(top);
+                    }
 
-  <script>
-    // Helper: Parse Snellen string like "20/40" or "6/6"
-    function parseSnellen(str) {
-      const match = str.trim().match(/^(\d+)\/(\d+)$/);
-      if (!match) return null;
-      const [_, top, bottom] = match;
-      return parseInt(bottom) / parseInt(top);
-    }
+                    function snellenToDecimal(snellenStr) {
+                      const ratio = parseSnellen(snellenStr);
+                      if (!ratio) return null;
+                      if (snellenStr.includes('20/')) return 20 / (20 * ratio);
+                      if (snellenStr.includes('6/')) return 6 / (6 * ratio);
+                      return 1 / ratio;
+                    }
 
-    // Convert Snellen fraction to decimal (e.g., 20/40 → 0.5)
-    function snellenToDecimal(snellenStr) {
-      const ratio = parseSnellen(snellenStr);
-      if (!ratio) return null;
-      // If in feet (20/x), divide 20; if in meters (6/x), divide 6
-      if (snellenStr.includes('20/')) return 20 / (20 * ratio); // 20/x → x/20
-      if (snellenStr.includes('6/')) return 6 / (6 * ratio);
-      return 1 / ratio;
-    }
+                    function decimalToSnellen(decimal) {
+                      if (!decimal || decimal <= 0) return { ft: '—', m: '—' };
+                      const ft = (20 / decimal).toFixed(0);
+                      const m = (6 / decimal).toFixed(0);
+                      return { ft: `20/${ft}`, m: `6/${m}` };
+                    }
 
-    // Reverse: decimal to Snellen fraction (returns {ft, m})
-    function decimalToSnellen(decimal) {
-      if (!decimal || decimal <= 0) return { ft: '—', m: '—' };
-      const ft = (20 / decimal).toFixed(0);
-      const m = (6 / decimal).toFixed(0);
-      return {
-        ft: `20/${ft}`,
-        m: `6/${m}`
-      };
-    }
+                    function decimalToNear(decimal) {
+                      if (decimal >= 1.25) return "N4 / J1";
+                      if (decimal >= 1.0) return "N5 / J1–J2";
+                      if (decimal >= 0.8) return "N6 / J2–J3";
+                      if (decimal >= 0.67) return "N8 / J3–J4";
+                      if (decimal >= 0.5) return "N10 / J5";
+                      if (decimal >= 0.4) return "N12 / J6";
+                      if (decimal >= 0.33) return "N14 / J7";
+                      if (decimal >= 0.25) return "N18 / J9";
+                      if (decimal >= 0.2) return "N24 / J10";
+                      return "N36+ / J12+";
+                    }
 
-    // Approximate near vision from decimal (based on standard N ratings)
-    function decimalToNear(decimal) {
-      if (decimal >= 1.25) return "N4 / J1";
-      if (decimal >= 1.0) return "N5 / J1–J2";
-      if (decimal >= 0.8) return "N6 / J2–J3";
-      if (decimal >= 0.67) return "N8 / J3–J4";
-      if (decimal >= 0.5) return "N10 / J5";
-      if (decimal >= 0.4) return "N12 / J6";
-      if (decimal >= 0.33) return "N14 / J7";
-      if (decimal >= 0.25) return "N18 / J9";
-      if (decimal >= 0.2) return "N24 / J10";
-      return "N36+ / J12+";
-    }
+                    function nearToDecimal(nearStr) {
+                      const str = nearStr.trim().toUpperCase();
+                      if (str.startsWith('N')) {
+                        const n = parseInt(str.replace('N', ''));
+                        if (n === 5 || n === 6) return 1.0;
+                        if (n <= 8) return 0.8;
+                        if (n <= 10) return 0.67;
+                        if (n <= 12) return 0.5;
+                        if (n <= 14) return 0.4;
+                        if (n <= 18) return 0.33;
+                        if (n <= 24) return 0.2;
+                        if (n <= 36) return 0.1;
+                        return 0.1;
+                      }
+                      if (str.startsWith('J')) {
+                        const j = parseInt(str.replace('J', ''));
+                        if (j <= 2) return 1.0;
+                        if (j <= 4) return 0.8;
+                        if (j <= 5) return 0.67;
+                        if (j <= 6) return 0.5;
+                        if (j <= 7) return 0.4;
+                        if (j <= 9) return 0.33;
+                        if (j <= 10) return 0.2;
+                        return 0.1;
+                      }
+                      return null;
+                    }
 
-    // Parse near vision (N6 or J2) and estimate decimal
-    function nearToDecimal(nearStr) {
-      const str = nearStr.trim().toUpperCase();
-      if (str.startsWith('N')) {
-        const n = parseInt(str.replace('N', ''));
-        if (n === 5 || n === 6) return 1.0;
-        if (n <= 8) return 0.8;
-        if (n <= 10) return 0.67;
-        if (n <= 12) return 0.5;
-        if (n <= 14) return 0.4;
-        if (n <= 18) return 0.33;
-        if (n <= 24) return 0.2;
-        if (n <= 36) return 0.1;
-        return 0.1;
-      }
-      if (str.startsWith('J')) {
-        const j = parseInt(str.replace('J', ''));
-        if (j <= 2) return 1.0;
-        if (j <= 4) return 0.8;
-        if (j <= 5) return 0.67;
-        if (j <= 6) return 0.5;
-        if (j <= 7) return 0.4;
-        if (j <= 9) return 0.33;
-        if (j <= 10) return 0.2;
-        return 0.1;
-      }
-      return null;
-    }
+                    function updateOutputs(decimal, logmar) {
+                      const snellen = decimalToSnellen(decimal);
+                      document.getElementById('outSnellenFt').textContent = snellen.ft;
+                      document.getElementById('outSnellenM').textContent = snellen.m;
+                      document.getElementById('outDecimal').textContent = decimal ? decimal.toFixed(2) : '—';
+                      document.getElementById('outLogMAR').textContent = logmar ? logmar.toFixed(2) : '—';
+                      document.getElementById('outNear').textContent = decimal ? decimalToNear(decimal) : '—';
+                    }
 
-    // Update all output fields
-    function updateOutputs(decimal, logmar) {
-      const snellen = decimalToSnellen(decimal);
+                    function convertFrom(source) {
+                      let decimal = null;
+                      let logmar = null;
+                      document.getElementById('error').textContent = '';
+                      try {
+                        if (source === 'snellen') {
+                          const val = document.getElementById('snellen').value;
+                          if (val) {
+                            decimal = snellenToDecimal(val);
+                            if (decimal === null) throw new Error("Invalid Snellen format. Use '20/20' or '6/6'.");
+                            logmar = Math.log10(1 / decimal);
+                          }
+                        } else if (source === 'decimal') {
+                          decimal = parseFloat(document.getElementById('decimal').value);
+                          if (isNaN(decimal) || decimal <= 0) throw new Error("Please enter a positive number.");
+                          logmar = Math.log10(1 / decimal);
+                        } else if (source === 'logmar') {
+                          logmar = parseFloat(document.getElementById('logmar').value);
+                          if (isNaN(logmar)) throw new Error("Please enter a valid number.");
+                          decimal = 1 / Math.pow(10, logmar);
+                        } else if (source === 'near') {
+                          const val = document.getElementById('nearVision').value;
+                          if (val) {
+                            decimal = nearToDecimal(val);
+                            if (decimal === null) throw new Error("Enter N6 or J2 format.");
+                            logmar = Math.log10(1 / decimal);
+                          }
+                        }
+                        if (decimal) {
+                          document.getElementById('decimal').value = decimal.toFixed(2);
+                          const snellen = decimalToSnellen(decimal);
+                          document.getElementById('snellen').value = snellen.ft;
+                          document.getElementById('logmar').value = logmar.toFixed(2);
+                        } else {
+                          clearAllInputs();
+                        }
+                        updateOutputs(decimal, logmar);
+                      } catch (e) {
+                        document.getElementById('error').textContent = e.message;
+                        clearOutputs();
+                      }
+                    }
 
-      document.getElementById('outSnellenFt').textContent = snellen.ft;
-      document.getElementById('outSnellenM').textContent = snellen.m;
-      document.getElementById('outDecimal').textContent = decimal ? decimal.toFixed(2) : '—';
-      document.getElementById('outLogMAR').textContent = logmar ? logmar.toFixed(2) : '—';
-      document.getElementById('outNear').textContent = decimal ? decimalToNear(decimal) : '—';
-    }
+                    function clearOutputs() {
+                      document.getElementById('outSnellenFt').textContent = '—';
+                      document.getElementById('outSnellenM').textContent = '—';
+                      document.getElementById('outDecimal').textContent = '—';
+                      document.getElementById('outLogMAR').textContent = '—';
+                      document.getElementById('outNear').textContent = '—';
+                    }
 
-    // Main conversion function
-    function convertFrom(source) {
-      let decimal = null;
-      let logmar = null;
-      document.getElementById('error').textContent = '';
-
-      try {
-        if (source === 'snellen') {
-          const val = document.getElementById('snellen').value;
-          if (val) {
-            decimal = snellenToDecimal(val);
-            if (decimal === null) throw new Error("Invalid Snellen format. Use '20/20' or '6/6'.");
-            logmar = Math.log10(1 / decimal);
-          }
-        }
-
-        else if (source === 'decimal') {
-          decimal = parseFloat(document.getElementById('decimal').value);
-          if (isNaN(decimal) || decimal <= 0) throw new Error("Please enter a positive number.");
-          logmar = Math.log10(1 / decimal);
-        }
-
-        else if (source === 'logmar') {
-          logmar = parseFloat(document.getElementById('logmar').value);
-          if (isNaN(logmar)) throw new Error("Please enter a valid number.");
-          decimal = 1 / Math.pow(10, logmar);
-        }
-
-        else if (source === 'near') {
-          const val = document.getElementById('nearVision').value;
-          if (val) {
-            decimal = nearToDecimal(val);
-            if (decimal === null) throw new Error("Enter N6 or J2 format.");
-            logmar = Math.log10(1 / decimal);
-          }
-        }
-
-        // Sync all input fields to avoid confusion
-        if (decimal) {
-          document.getElementById('decimal').value = decimal.toFixed(2);
-          const snellen = decimalToSnellen(decimal);
-          document.getElementById('snellen').value = snellen.ft;
-          document.getElementById('logmar').value = logmar.toFixed(2);
-        } else {
-          clearAllInputs();
-        }
-
-        updateOutputs(decimal, logmar);
-
-      } catch (e) {
-        document.getElementById('error').textContent = e.message;
-        clearOutputs();
-      }
-    }
-
-    function clearOutputs() {
-      document.getElementById('outSnellenFt').textContent = '—';
-      document.getElementById('outSnellenM').textContent = '—';
-      document.getElementById('outDecimal').textContent = '—';
-      document.getElementById('outLogMAR').textContent = '—';
-      document.getElementById('outNear').textContent = '—';
-    }
-
-    function clearAllInputs() {
-      document.getElementById('snellen').value = '';
-      document.getElementById('decimal').value = '';
-      document.getElementById('logmar').value = '';
-      document.getElementById('nearVision').value = '';
-    }
-  </script>
-
-
+                    function clearAllInputs() {
+                      document.getElementById('snellen').value = '';
+                      document.getElementById('decimal').value = '';
+                      document.getElementById('logmar').value = '';
+                      document.getElementById('nearVision').value = '';
+                    }
+                </script>
             </div>
 
-
-            <!-- Tab 4: Abbreivations -->
+            <!-- Tab 4: Abbreviations -->
             <div id="tab4" class="tab-pane">
                 <h2>Top 10 Most Used Prescription Terms</h2>
-               <table class=shadow>
-  <thead>
-    <tr>
-      <th>Abbreviation</th>
-      <th>Latin Meaning</th>
-      <th>English Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><b>p.o.</b></td>
-      <td><i>per os</i></td>
-      <td>by mouth, orally</td>
-    </tr>
-    <tr>
-      <td><b>gtt(s)</b></td>
-      <td><i>gutta(e)</i></td>
-      <td>drop(s)</td>
-    </tr>
-    <tr>
-      <td><b>b.i.d.</b></td>
-      <td><i>bis in die</i></td>
-      <td>twice daily</td>
-    </tr>
-    <tr>
-      <td><b>t.i.d.</b></td>
-      <td><i>ter in die</i></td>
-      <td>three times a day</td>
-    </tr>
-    <tr>
-      <td><b>q.i.d.</b></td>
-      <td><i>quater in die</i></td>
-      <td>four times a day</td>
-    </tr>
-    <tr>
-      <td><b>prn</b></td>
-      <td><i>pro re nata</i></td>
-      <td>as needed</td>
-    </tr>
-    <tr>
-      <td><b>h.s.</b></td>
-      <td><i>hora somni</i></td>
-      <td>at bedtime</td>
-    </tr>
-    <tr>
-      <td><b>stat</b></td>
-      <td><i>statim</i></td>
-      <td>immediately</td>
-    </tr>
-    <tr>
-      <td><b>o.d.</b></td>
-      <td><i>oculus dexter</i></td>
-      <td>right eye</td>
-    </tr>
-    <tr>
-      <td><b>o.s.</b></td>
-      <td><i>oculus sinister</i></td>
-      <td>left eye</td>
-    </tr>
-  </tbody>
-</table>
+                <table class="shadow">
+                  <thead>
+                    <tr>
+                      <th>Abbreviation</th>
+                      <th>Latin Meaning</th>
+                      <th>English Meaning</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><b>p.o.</b></td><td><i>per os</i></td><td>by mouth, orally</td></tr>
+                    <tr><td><b>gtt(s)</b></td><td><i>gutta(e)</i></td><td>drop(s)</td></tr>
+                    <tr><td><b>b.i.d.</b></td><td><i>bis in die</i></td><td>twice daily</td></tr>
+                    <tr><td><b>t.i.d.</b></td><td><i>ter in die</i></td><td>three times a day</td></tr>
+                    <tr><td><b>q.i.d.</b></td><td><i>quater in die</i></td><td>four times a day</td></tr>
+                    <tr><td><b>prn</b></td><td><i>pro re nata</i></td><td>as needed</td></tr>
+                    <tr><td><b>h.s.</b></td><td><i>hora somni</i></td><td>at bedtime</td></tr>
+                    <tr><td><b>stat</b></td><td><i>statim</i></td><td>immediately</td></tr>
+                    <tr><td><b>o.d.</b></td><td><i>oculus dexter</i></td><td>right eye</td></tr>
+                    <tr><td><b>o.s.</b></td><td><i>oculus sinister</i></td><td>left eye</td></tr>
+                  </tbody>
+                </table>
             </div>
-
-
         </div>
     </div>
 
@@ -693,66 +538,110 @@
         <tr>
             <td>
                 <div class="disclaimer">
-                
-                   
-                     <a href="https://tinyurl.com/spclweb" target="_blank" style="text-decoration: none;" class=buttons>🌐Online App</a>  
-                     
-                   🟢 This Page Works offline
-              
+                     <a href="https://tinyurl.com/spclweb" target="_blank" style="text-decoration: none;" class="buttons">🌐Online App</a>  
+                     🟢 This Page Works offline
                 </div>
             </td>
             <td align="right">
-                <!-- Visitor Counter -->
-                <a href='http://www.freevisitorcounters.com' class=disclaimer2>www.freevisitorcounters</a>
+                <a href='http://www.freevisitorcounters.com' class='disclaimer2'>www.freevisitorcounters</a>
                 <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=24c83937ac65c93d65e5f922b38f6ecd4bfccac7'></script>
                 <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1336459/t/1"></script>
             </td>
         </tr>
     </table>
 
-    <!-- JavaScript -->
+    <!-- Main Script -->
     <script>
-        // Tab switching function
         function openTab(tabId) {
             const tabPanes = document.getElementsByClassName('tab-pane');
             const tabButtons = document.getElementsByClassName('tab-button');
-            
-            for (let i = 0; i < tabPanes.length; i++) {
-                tabPanes[i].classList.remove('active');
-            }
-            for (let i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove('active');
-            }
+            for (let i = 0; i < tabPanes.length; i++) tabPanes[i].classList.remove('active');
+            for (let i = 0; i < tabButtons.length; i++) tabButtons[i].classList.remove('active');
             document.getElementById(tabId).classList.add('active');
             event.currentTarget.classList.add('active');
         }
 
-        // Contact Lens Converter Functions
         function mround(value, multiple) {
             return Math.round(value / multiple) * multiple;
         }
+
         function convertPower(value, vertexDistance) {
             return ((value * value) * vertexDistance / 1000) + value;
         }
+
         function roundAxis(axis) {
             let rounded = mround(axis, 10);
             return rounded === 0 ? 180 : rounded;
         }
-        function setResultColor(element, value) {
-            element.style.backgroundColor = value > 0 ? "lightgreen" : value < 0 ? "lightcoral" : "white";
+
+        function calculateSE(sphere, cylinder) {
+            return sphere + (cylinder / 2);
         }
-        function clearResultContainers() {
-            document.querySelectorAll(".result-container").forEach(el => el.innerHTML = "");
+
+        let seOD = 0;
+        let seOS = 0;
+
+        function updateSphericalEquivalentPreservation() {
+            const sphOD = parseFloat(document.getElementById("sphOD").value) || 0;
+            const cylOD = parseFloat(document.getElementById("cylOD").value) || 0;
+            const sphOS = parseFloat(document.getElementById("sphOS").value) || 0;
+            const cylOS = parseFloat(document.getElementById("cylOS").value) || 0;
+
+            seOD = calculateSE(sphOD, cylOD);
+            seOS = calculateSE(sphOS, cylOS);
+
+            const sphODEl = document.getElementById("sphOD");
+            const cylODEl = document.getElementById("cylOD");
+            const sphOSEl = document.getElementById("sphOS");
+            const cylOSEl = document.getElementById("cylOS");
+
+            if (!sphODEl.dataset.listener) {
+                sphODEl.addEventListener('input', function () {
+                    const newSphere = parseFloat(this.value) || 0;
+                    const newCyl = 2 * (seOD - newSphere);
+                    document.getElementById("cylOD").value = newCyl.toFixed(2);
+                    convertPrescription();
+                });
+                sphODEl.dataset.listener = 'true';
+            }
+
+            if (!cylODEl.dataset.listener) {
+                cylODEl.addEventListener('input', function () {
+                    const newCyl = parseFloat(this.value) || 0;
+                    const newSphere = seOD - (newCyl / 2);
+                    document.getElementById("sphOD").value = newSphere.toFixed(2);
+                    convertPrescription();
+                });
+                cylODEl.dataset.listener = 'true';
+            }
+
+            if (!sphOSEl.dataset.listener) {
+                sphOSEl.addEventListener('input', function () {
+                    const newSphere = parseFloat(this.value) || 0;
+                    const newCyl = 2 * (seOS - newSphere);
+                    document.getElementById("cylOS").value = newCyl.toFixed(2);
+                    convertPrescription();
+                });
+                sphOSEl.dataset.listener = 'true';
+            }
+
+            if (!cylOSEl.dataset.listener) {
+                cylOSEl.addEventListener('input', function () {
+                    const newCyl = parseFloat(this.value) || 0;
+                    const newSphere = seOS - (newCyl / 2);
+                    document.getElementById("sphOS").value = newSphere.toFixed(2);
+                    convertPrescription();
+                });
+                cylOSEl.dataset.listener = 'true';
+            }
         }
-        function getVertexDistance() {
-            const selected = document.querySelector('input[name="vertexDistance"]:checked');
-            return parseFloat(selected.value);
-        }
+
         function convertPrescription() {
-            clearResultContainers();
             const vertexDistance = getVertexDistance();
             const liveResults = document.getElementById("liveResults");
             liveResults.innerHTML = "";
+
+            updateSphericalEquivalentPreservation();
 
             const resultsBox = document.createElement("div");
             resultsBox.style.lineHeight = "1.6";
@@ -765,6 +654,8 @@
             const sphOD = parseFloat(document.getElementById("sphOD").value) || 0;
             const cylOD = parseFloat(document.getElementById("cylOD").value) || 0;
             const axisOD = parseFloat(document.getElementById("axisOD").value) || 0;
+            const seOD = calculateSE(sphOD, cylOD);
+
             const d4OD = sphOD + cylOD;
             const d7OD = convertPower(sphOD, vertexDistance);
             const d14OD = convertPower(d4OD, vertexDistance);
@@ -773,27 +664,12 @@
             const convertedSphOD = mround(d7OD, 0.25);
             const roundedAxisOD = roundAxis(axisOD);
 
-            const sphODResult = document.createElement("span");
-            sphODResult.className = "result-line";
-            sphODResult.textContent = `SPH: ${convertedSphOD.toFixed(2)} D`;
-            setResultColor(sphODResult, convertedSphOD);
-            document.getElementById("resultOD_sph").appendChild(sphODResult);
-
-            const cylODResult = document.createElement("span");
-            cylODResult.className = "result-line";
-            cylODResult.textContent = `CYL: ${convertedCylOD.toFixed(2)} D`;
-            setResultColor(cylODResult, convertedCylOD);
-            document.getElementById("resultOD_cyl").appendChild(cylODResult);
-
-            const axisODResult = document.createElement("span");
-            axisODResult.className = "result-line";
-            axisODResult.textContent = `Axis: ${roundedAxisOD}`;
-            document.getElementById("resultOD_axis").appendChild(axisODResult);
-
             // Left Eye (OS)
             const sphOS = parseFloat(document.getElementById("sphOS").value) || 0;
             const cylOS = parseFloat(document.getElementById("cylOS").value) || 0;
             const axisOS = parseFloat(document.getElementById("axisOS").value) || 0;
+            const seOS = calculateSE(sphOS, cylOS);
+
             const d4OS = sphOS + cylOS;
             const d7OS = convertPower(sphOS, vertexDistance);
             const d14OS = convertPower(d4OS, vertexDistance);
@@ -802,33 +678,18 @@
             const convertedSphOS = mround(d7OS, 0.25);
             const roundedAxisOS = roundAxis(axisOS);
 
-            const sphOSResult = document.createElement("span");
-            sphOSResult.className = "result-line";
-            sphOSResult.textContent = `SPH: ${convertedSphOS.toFixed(2)} D`;
-            setResultColor(sphOSResult, convertedSphOS);
-            document.getElementById("resultOS_sph").appendChild(sphOSResult);
-
-            const cylOSResult = document.createElement("span");
-            cylOSResult.className = "result-line";
-            cylOSResult.textContent = `CYL: ${convertedCylOS.toFixed(2)} D`;
-            setResultColor(cylOSResult, convertedCylOS);
-            document.getElementById("resultOS_cyl").appendChild(cylOSResult);
-
-            const axisOSResult = document.createElement("span");
-            axisOSResult.className = "result-line";
-            axisOSResult.textContent = `Axis: ${roundedAxisOS}`;
-            document.getElementById("resultOS_axis").appendChild(axisOSResult);
-
             const output = `
                 <div id="resultsText">
                     <div><strong>Right Eye (OD)</strong><br>
-                        SPH: ${convertedSphOD.toFixed(2)} D | CYL: ${convertedCylOD.toFixed(2)} D | Axis: ${roundedAxisOD}
+                        <b>SPH:</b> ${convertedSphOD.toFixed(2)} D | <b>CYL:</b> ${convertedCylOD.toFixed(2)} D | <b>Axis:</b> ${roundedAxisOD}<br>
+                        <small style="color: #ccc;">Spherical Eq: ${seOD.toFixed(2)} D</small>
                     </div>
                     <div style="margin-top: 15px;"><strong>Left Eye (OS)</strong><br>
-                        SPH: ${convertedSphOS.toFixed(2)} D | CYL: ${convertedCylOS.toFixed(2)} D | Axis: ${roundedAxisOS}
+                        <b>SPH:</b> ${convertedSphOS.toFixed(2)} D | <b>CYL:</b> ${convertedCylOS.toFixed(2)} D | <b>Axis:</b> ${roundedAxisOS}<br>
+                        <small style="color: #ccc;">Spherical Eq: ${seOS.toFixed(2)} D</small>
                     </div>
                 </div>
-                <div style="margin-top: 10px;" align=right>
+                <div style="margin-top: 10px;" align="right">
                     <button onclick="copyResults()" class="buttons">📑 Copy</button>
                 </div>
             `;
@@ -858,16 +719,16 @@
             document.getElementById("sphOS").value = "";
             document.getElementById("cylOS").value = "";
             document.getElementById("axisOS").value = "";
-            clearResultContainers();
             document.getElementById("liveResults").innerHTML = "";
         }
 
-        // Watermark Initialize on page load
+        function getVertexDistance() {
+            return parseFloat(document.querySelector('input[name="vertexDistance"]:checked').value);
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             const inputs = document.querySelectorAll("input[type='number']");
-            inputs.forEach(input => {
-                input.addEventListener("input", convertPrescription);
-            });
+            inputs.forEach(input => input.addEventListener("input", convertPrescription));
             inputs.forEach((input, index) => {
                 input.addEventListener("keydown", (e) => {
                     if (e.key === "Enter") {
@@ -877,57 +738,32 @@
                     }
                 });
             });
-            convertPrescription(); // Initial run
+            convertPrescription();
         });
 
-function createWatermark(text = "CONFIDENTIAL", count = 15) {
-  const container = document.body;
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+        function createWatermark(text = "+", count = 1) {
+            const container = document.body;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            for (let i = 0; i < count; i++) {
+                const span = document.createElement("span");
+                span.className = "watermark-word";
+                span.textContent = text;
+                const x = Math.random() * (width - 200);
+                const y = Math.random() * (height - 50);
+                const rotation = Math.random() * 60 - 30;
+                span.style.left = `${x}px`;
+                span.style.top = `${y}px`;
+                span.style.transform = `rotate(${rotation}deg)`;
+                container.appendChild(span);
+            }
+        }
 
-  for (let i = 0; i < count; i++) {
-    const span = document.createElement("span");
-    span.className = "watermark-word";
-    span.textContent = text;
-
-    // Random position
-    const x = Math.random() * (width - 200); // Leave margin
-    const y = Math.random() * (height - 50);
-
-    // Random rotation
-    const rotation = Math.random() * 60 - 30; // -30 to +30 degrees
-
-    // Apply styles
-    span.style.left = `${x}px`;
-    span.style.top = `${y}px`;
-    span.style.transform = `rotate(${rotation}deg)`;
-
-    container.appendChild(span);
-  }
-}
-
-// Run on load
-window.addEventListener("load", () => {
-  createWatermark("𝗶𝘵𝘦𝘴𝘵𝗲𝘆𝗲", 1);
-});
+        window.addEventListener("load", () => createWatermark("+", 1));
     </script>
 
-<div style="
-  position: fixed;
-  top: 90%;
-  left: 0;
-  transform: translateY(-50%);
-  background: #ffffff;
-  padding: 10px 5px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-  z-index: 1000;
-">
-   <a href="https://www.instagram.com/itesteye/" target="_blank" style="text-decoration: none;"><img src="akh.png" alt="AKHTAR" style="height: 10px; display: block;"></a>
-  
-</div>
-
+    <div style="position: fixed; top: 90%; left: 0; transform: translateY(-50%); background: #ffffff; padding: 10px 5px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; box-shadow: 2px 0 5px rgba(0,0,0,0.1); z-index: 1000;">
+        <a href="https://www.instagram.com/itesteye/" target="_blank" style="text-decoration: none;"><img src="akh.png" alt="AKHTAR" style="height: 10px; display: block;"></a>
+    </div>
 </body>
-
 </html>
