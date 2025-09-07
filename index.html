@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-<title>itesteye v1.72</title>
+<title>itesteye v1.73</title>
    
- <link rel="icon" href="https://github.com/thingyco/contact-lens-converter/blob/main/favicon.ico  ">
+ <link rel="icon" href="https://github.com/thingyco/contact-lens-converter/blob/main/favicon.ico">
     
     <!-- SEO Meta Tags -->
-    <meta name="keywords" content="contact lens script converter, spectacle to contact lens conversion, vertex distance calculator, cylinder conversion for contact lenses, online contact lens formula tool, spherical equivalent calculator, axis rounding for contact lenses, offline contact lens converter, toric lens prescription tool, eyecare professional tool, optometry calculator, glasses to contacts conversion, contact lens vertex formula, contact lens sph cyl axis converter, south africa, driver, license, licence, screening, criteria">
+    <meta name="keywords" content="contact lens script converter, spectacle to contact lens conversion, vertex distance calculator, cylinder conversion for contact lenses, online contact lens formula tool, offline contact lens converter, toric lens prescription tool, eyecare professional tool, optometry calculator, glasses to contacts conversion, contact lens vertex formula, contact lens sph cyl axis converter, south africa, driver, license, licence, screening, criteria">
     <meta name="description" content="An offline contact lens prescription converter that calculates contact lens power from spectacle scripts using vertex distance, cylinder conversion, and axis rounding. Ideal for optometrists and eyecare professionals.">
 
  <style>
@@ -27,17 +27,17 @@
   font-size: 72px;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.05);
-  pointer-events: none; /* Don't block clicks */
-  user-select: none;     /* Prevent text selection */
+  pointer-events: none;
+  user-select: none;
   transform-origin: center;
   z-index: 9999;
 }
 
   hr {
-  height: 1px;                    /* Desired thickness */
-  background-color: #ddd;         /* Color of the line */
-  border: none;                   /* Remove default border */
-  margin: 20px 0;                 /* Optional: adjust spacing */
+  height: 1px;
+  background-color: #ddd;
+  border: none;
+  margin: 20px 0;
 }
 
   /* Tab styles */
@@ -194,7 +194,6 @@
     border-collapse: collapse;
     margin: 20px auto;
     font-family: Arial, sans-serif;
-    
   }
 
   th {
@@ -214,10 +213,6 @@
     background-color: #f5f5f5;
   }
 
-  tr:hover {
-    background-color: ;
-  }
-
   b {
     color: #0056b3;
   }
@@ -233,7 +228,7 @@
 
 </head>
 <body>
-     <a href="https://thingyco.github.io/contact-lens-converter/  " style="text-decoration: none;"><h1><b>i</b><i>test</i><b>eye</b></h1></a>
+     <a href="https://thingyco.github.io/contact-lens-converter/" style="text-decoration: none;"><h1><b>i</b><i>test</i><b>eye</b></h1></a>
 
     <!-- Tabs -->
     <div class="tab-container">
@@ -574,128 +569,80 @@
             return rounded === 0 ? 180 : rounded;
         }
 
-        function calculateSE(sphere, cylinder) {
-            return sphere + (cylinder / 2);
-        }
+function convertPrescription() {
+    const vertexDistance = getVertexDistance();
+    const liveResults = document.getElementById("liveResults");
+    liveResults.innerHTML = "";
 
-        let seOD = 0;
-        let seOS = 0;
+    const resultsBox = document.createElement("div");
+    resultsBox.style.lineHeight = "1.6";
+    resultsBox.style.padding = "20px";
+    resultsBox.style.border = "1px solid #ccc";
+    resultsBox.style.borderRadius = "20px";
+    resultsBox.style.backgroundColor = "#ffffff";
 
-        function updateSphericalEquivalentPreservation() {
-            const sphOD = parseFloat(document.getElementById("sphOD").value) || 0;
-            const cylOD = parseFloat(document.getElementById("cylOD").value) || 0;
-            const sphOS = parseFloat(document.getElementById("sphOS").value) || 0;
-            const cylOS = parseFloat(document.getElementById("cylOS").value) || 0;
+    // Right Eye (OD)
+    const sphOD = parseFloat(document.getElementById("sphOD").value) || 0;
+    const cylOD = parseFloat(document.getElementById("cylOD").value) || 0;
+    const axisOD = parseFloat(document.getElementById("axisOD").value) || 0;
 
-            seOD = calculateSE(sphOD, cylOD);
-            seOS = calculateSE(sphOS, cylOS);
+    const d4OD = sphOD + cylOD;
+    const d7OD = convertPower(sphOD, vertexDistance);
+    const d14OD = convertPower(d4OD, vertexDistance);
+    const d9OD = d14OD - d7OD;
+    const convertedCylOD = mround(d9OD, 0.25);
+    const convertedSphOD = mround(d7OD, 0.25);
+    const roundedAxisOD = roundAxis(axisOD);
 
-            const sphODEl = document.getElementById("sphOD");
-            const cylODEl = document.getElementById("cylOD");
-            const sphOSEl = document.getElementById("sphOS");
-            const cylOSEl = document.getElementById("cylOS");
+    // Calculate original (exact) SE from converted values
+    const seODExact = convertedSphOD + (convertedCylOD / 2);
+    const seODRounded = mround(seODExact, 0.25);
 
-            if (!sphODEl.dataset.listener) {
-                sphODEl.addEventListener('input', function () {
-                    const newSphere = parseFloat(this.value) || 0;
-                    const newCyl = 2 * (seOD - newSphere);
-                    document.getElementById("cylOD").value = newCyl.toFixed(2);
-                    convertPrescription();
-                });
-                sphODEl.dataset.listener = 'true';
-            }
+    // Left Eye (OS)
+    const sphOS = parseFloat(document.getElementById("sphOS").value) || 0;
+    const cylOS = parseFloat(document.getElementById("cylOS").value) || 0;
+    const axisOS = parseFloat(document.getElementById("axisOS").value) || 0;
 
-            if (!cylODEl.dataset.listener) {
-                cylODEl.addEventListener('input', function () {
-                    const newCyl = parseFloat(this.value) || 0;
-                    const newSphere = seOD - (newCyl / 2);
-                    document.getElementById("sphOD").value = newSphere.toFixed(2);
-                    convertPrescription();
-                });
-                cylODEl.dataset.listener = 'true';
-            }
+    const d4OS = sphOS + cylOS;
+    const d7OS = convertPower(sphOS, vertexDistance);
+    const d14OS = convertPower(d4OS, vertexDistance);
+    const d9OS = d14OS - d7OS;
+    const convertedCylOS = mround(d9OS, 0.25);
+    const convertedSphOS = mround(d7OS, 0.25);
+    const roundedAxisOS = roundAxis(axisOS);
 
-            if (!sphOSEl.dataset.listener) {
-                sphOSEl.addEventListener('input', function () {
-                    const newSphere = parseFloat(this.value) || 0;
-                    const newCyl = 2 * (seOS - newSphere);
-                    document.getElementById("cylOS").value = newCyl.toFixed(2);
-                    convertPrescription();
-                });
-                sphOSEl.dataset.listener = 'true';
-            }
+    // Calculate original (exact) SE from converted values
+    const seOSExact = convertedSphOS + (convertedCylOS / 2);
+    const seOSRounded = mround(seOSExact, 0.25);
 
-            if (!cylOSEl.dataset.listener) {
-                cylOSEl.addEventListener('input', function () {
-                    const newCyl = parseFloat(this.value) || 0;
-                    const newSphere = seOS - (newCyl / 2);
-                    document.getElementById("sphOS").value = newSphere.toFixed(2);
-                    convertPrescription();
-                });
-                cylOSEl.dataset.listener = 'true';
-            }
-        }
-
-        function convertPrescription() {
-            const vertexDistance = getVertexDistance();
-            const liveResults = document.getElementById("liveResults");
-            liveResults.innerHTML = "";
-
-            updateSphericalEquivalentPreservation();
-
-            const resultsBox = document.createElement("div");
-            resultsBox.style.lineHeight = "1.6";
-            resultsBox.style.padding = "20px";
-            resultsBox.style.border = "1px solid #ccc";
-            resultsBox.style.borderRadius = "20px";
-            resultsBox.style.backgroundColor = "#ffffff";
-
-            // Right Eye (OD)
-            const sphOD = parseFloat(document.getElementById("sphOD").value) || 0;
-            const cylOD = parseFloat(document.getElementById("cylOD").value) || 0;
-            const axisOD = parseFloat(document.getElementById("axisOD").value) || 0;
-            const seOD = calculateSE(sphOD, cylOD);
-
-            const d4OD = sphOD + cylOD;
-            const d7OD = convertPower(sphOD, vertexDistance);
-            const d14OD = convertPower(d4OD, vertexDistance);
-            const d9OD = d14OD - d7OD;
-            const convertedCylOD = mround(d9OD, 0.25);
-            const convertedSphOD = mround(d7OD, 0.25);
-            const roundedAxisOD = roundAxis(axisOD);
-
-            // Left Eye (OS)
-            const sphOS = parseFloat(document.getElementById("sphOS").value) || 0;
-            const cylOS = parseFloat(document.getElementById("cylOS").value) || 0;
-            const axisOS = parseFloat(document.getElementById("axisOS").value) || 0;
-            const seOS = calculateSE(sphOS, cylOS);
-
-            const d4OS = sphOS + cylOS;
-            const d7OS = convertPower(sphOS, vertexDistance);
-            const d14OS = convertPower(d4OS, vertexDistance);
-            const d9OS = d14OS - d7OS;
-            const convertedCylOS = mround(d9OS, 0.25);
-            const convertedSphOS = mround(d7OS, 0.25);
-            const roundedAxisOS = roundAxis(axisOS);
-
-            const output = `
-                <div id="resultsText">
-                    <div><strong>Right Eye (OD)</strong><br>
-                        <b>SPH:</b> ${convertedSphOD.toFixed(2)} D | <b>CYL:</b> ${convertedCylOD.toFixed(2)} D | <b>Axis:</b> ${roundedAxisOD}<br>
-                        <small style="color: #ccc;">Spherical Eq: ${seOD.toFixed(2)} D</small>
-                    </div>
-                    <div style="margin-top: 15px;"><strong>Left Eye (OS)</strong><br>
-                        <b>SPH:</b> ${convertedSphOS.toFixed(2)} D | <b>CYL:</b> ${convertedCylOS.toFixed(2)} D | <b>Axis:</b> ${roundedAxisOS}<br>
-                        <small style="color: #ccc;">Spherical Eq: ${seOS.toFixed(2)} D</small>
-                    </div>
-                </div>
-                <div style="margin-top: 10px;" align="right">
-                    <button onclick="copyResults()" class="buttons">📑 Copy</button>
-                </div>
-            `;
-            resultsBox.innerHTML = output;
-            liveResults.appendChild(resultsBox);
-        }
+    const output = `
+        <div id="resultsText">
+            <div><strong>Right Eye (OD)</strong><br>
+                <b>SPH:</b> ${convertedSphOD.toFixed(2)} D | 
+                <b>CYL:</b> ${convertedCylOD.toFixed(2)} D | 
+                <b>Axis:</b> ${roundedAxisOD}<br>
+                <small style="color: #555;">
+                    Spherical Eq: ${seODExact.toFixed(2)} D (or
+                   ${seODRounded.toFixed(2)} D)
+                </small>
+            </div>
+            <div style="margin-top: 15px;"><strong>Left Eye (OS)</strong><br>
+                <b>SPH:</b> ${convertedSphOS.toFixed(2)} D | 
+                <b>CYL:</b> ${convertedCylOS.toFixed(2)} D | 
+                <b>Axis:</b> ${roundedAxisOS}<br>
+                <small style="color: #555;">
+                    Spherical Eq: ${seOSExact.toFixed(2)} D (or
+                    ${seOSRounded.toFixed(2)} D)
+                </small>
+            </div>
+        </div>
+        <div style="margin-top: 10px;" align="right">
+            <button onclick="copyResults()" class="buttons">📑 Copy</button>
+        </div>
+    `;
+    resultsBox.innerHTML = output;
+    liveResults.appendChild(resultsBox);
+}
 
         function copyResults() {
             const resultsText = document.getElementById("resultsText");
@@ -763,7 +710,7 @@
     </script>
 
     <div style="position: fixed; top: 90%; left: 0; transform: translateY(-50%); background: #ffffff; padding: 10px 5px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; box-shadow: 2px 0 5px rgba(0,0,0,0.1); z-index: 1000;">
-        <a href="https://www.instagram.com/itesteye/" target="_blank" style="text-decoration: none;"><img src="akh.png" alt="AKHTAR" style="height: 10px; display: block;"></a>
+        <a href="https://www.instagram.com/itesteye/" target="_blank" style="text-decoration: none;"><img src="https://thingyco.github.io/contact-lens-converter/akh.png" alt="AKHTAR" style="height: 10px; display: block;"></a>
     </div>
 </body>
 </html>
