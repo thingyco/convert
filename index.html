@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-<title>itesteye v1.73</title>
+<title>itesteye v1.74</title>
    
  <link rel="icon" href="https://github.com/thingyco/contact-lens-converter/blob/main/favicon.ico">
     
@@ -18,7 +18,7 @@
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
-  }
+  }    
 
   .watermark-word {
   position: absolute;
@@ -228,7 +228,7 @@
 
 </head>
 <body>
-     <a href="https://thingyco.github.io/contact-lens-converter/" style="text-decoration: none;"><h1><b>i</b><i>test</i><b>eye</b></h1></a>
+     <a href="https://thingyco.github.io/contact-lens-converter/" style="text-decoration: none;"></a>
 
     <!-- Tabs -->
     <div class="tab-container">
@@ -237,6 +237,8 @@
             <button class="tab-button" onclick="openTab('tab2')">Driver's</button>
             <button class="tab-button" onclick="openTab('tab3')">Vision Charts</button>
  	        <button class="tab-button" onclick="openTab('tab4')">Prescription Terms</button>
+<button class="tab-button" onclick="openTab('tab5')">WHO</button>
+
         </div>
 
         <div class="tab-content">
@@ -525,8 +527,81 @@
                   </tbody>
                 </table>
             </div>
-        </div>
+       
+
+  <!-- Tab 4: Abbreviations -->
+            <div id="tab5" class="tab-pane">
+
+
+  <h2>WHO Visual Impairment (VI) Classification with Refractive Error</h2>
+ 
+
+
+
+<table class="vision-table">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Visual Acuity (Snellen)</th>
+      <th>% of Normal Vision*</th>
+      <th>Estimated Uncorrected Refractive Error (Diopters)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Normal</strong></td>
+      <td>≥ 6/12 (≈20/40)</td>
+      <td>100% – 50%</td>
+      <td>Plano to ±0.50 D</td>
+    </tr>
+    <tr>
+      <td><strong>Mild VI</strong></td>
+      <td><6/12 to ≥6/18 (20/40–20/60)</td>
+      <td>50% – 33%</td>
+      <td>-0.75 to -1.50 D (myopia)<br>+1.50 to +2.50 D (hyperopia)</td>
+    </tr>
+    <tr>
+      <td><strong>Moderate VI</strong></td>
+      <td><6/18 to ≥6/60 (20/60–20/200)</td>
+      <td>33% – 10%</td>
+      <td>-2.00 to -3.00 D (myopia)<br>+3.00 to +5.00 D (hyperopia)</td>
+    </tr>
+    <tr>
+      <td><strong>Severe VI</strong></td>
+      <td><6/60 to ≥3/60 (20/200–20/400)</td>
+      <td>10% – 5%</td>
+      <td>-3.50 to -5.00 D (myopia)<br>+5.50 to +8.00 D (hyperopia)</td>
+    </tr>
+    <tr>
+      <td><strong>Blindness</strong></td>
+      <td><3/60 to ≥1/60 (CF at 1m)<br>OR visual field <10°</td>
+      <td>5% – 1%</td>
+      <td>-6.00 to -10.00 D (myopia)<br>>+8.00 D (hyperopia)</td>
+    </tr>
+    <tr>
+      <td><strong>Near Total Blindness</strong></td>
+      <td><1/60 to LP (Light Perception)</td>
+      <td>1% – 0.1%</td>
+      <td>-10.00 to -15.00+ D (myopia)<br>Hyperopia rarely causes LP</td>
+    </tr>
+    <tr>
+      <td><strong>Total Blindness</strong></td>
+      <td>No Light Perception (NLP)</td>
+      <td>0%</td>
+      <td>Not caused by refractive error — structural/neurological damage</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class=disclaimer><em>*Note: “% of normal vision” is a simplified approximation for public understanding. It is based on relative Snellen acuity (20/20 = 100%, 20/40 = 50%, 20/200 = 10%, etc.), and is not a medical or functional vision score. Real-world function depends on contrast, field, color, lighting, and brain processing.</em></p>
+ </div> </div>
     </div>
+
+
+
+
+
+
 
     <!-- Footer -->
     <table width="100%">
@@ -706,7 +781,7 @@ function convertPrescription() {
             }
         }
 
-        window.addEventListener("load", () => createWatermark("+", 1));
+        window.addEventListener("load", () => createWatermark("ITESTEYE", 1));
     </script>
 
     <div style="position: fixed; top: 90%; left: 0; transform: translateY(-50%); background: #ffffff; padding: 10px 5px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; box-shadow: 2px 0 5px rgba(0,0,0,0.1); z-index: 1000;">
