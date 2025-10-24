@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-<title>itesteye v1.74</title>
+<title>opttanvir v1.74</title>
    
  <link rel="icon" href="https://github.com/thingyco/contact-lens-converter/blob/main/favicon.ico">
     
@@ -20,17 +20,20 @@
     padding: 20px;
   }    
 
-  .watermark-word {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 72px;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.05);
-  pointer-events: none;
-  user-select: none;
-  transform-origin: center;
-  z-index: 9999;
+.logo-float {
+    position: fixed;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    /* Control size via --logo-scale (0.5 = 50%, 1 = 100%, etc.) */
+    transform: translateY(-50%) scale(var(--logo-scale, 1));
+    transform-origin: left center;
+}
+.logo-float img {
+    height: 60px; /* Base height — scale will adjust it */
+    width: auto;
+    display: block;
 }
 
   hr {
@@ -763,29 +766,10 @@ function convertPrescription() {
             convertPrescription();
         });
 
-        function createWatermark(text = "+", count = 1) {
-            const container = document.body;
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            for (let i = 0; i < count; i++) {
-                const span = document.createElement("span");
-                span.className = "watermark-word";
-                span.textContent = text;
-                const x = Math.random() * (width - 200);
-                const y = Math.random() * (height - 50);
-                const rotation = Math.random() * 60 - 30;
-                span.style.left = `${x}px`;
-                span.style.top = `${y}px`;
-                span.style.transform = `rotate(${rotation}deg)`;
-                container.appendChild(span);
-            }
-        }
-
-        window.addEventListener("load", () => createWatermark("ITESTEYE", 1));
-    </script>
-
-    <div style="position: fixed; top: 90%; left: 0; transform: translateY(-50%); background: #ffffff; padding: 10px 5px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; box-shadow: 2px 0 5px rgba(0,0,0,0.1); z-index: 1000;">
-        <a href="https://www.instagram.com/itesteye/" target="_blank" style="text-decoration: none;"><img src="https://thingyco.github.io/contact-lens-converter/akh.png" alt="AKHTAR" style="height: 10px; display: block;"></a><font class="disclaimer">© 2025</font>
-    </div>
+         </script>
+<div class="logo-float" style="--logo-scale: 1.5;">
+    <a href="https://instagram.com/opttanvir" style="text-decoration: none;"><img src="opt.png" alt="opttanvir"></a>
+</div>
+   
 </body>
 </html>
