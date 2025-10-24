@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S25 Ultra → Fujifilm X-T4 Converter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+.logo-float {
+    position: fixed;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    /* Control size via --logo-scale (0.5 = 50%, 1 = 100%, etc.) */
+    transform: translateY(-50%) scale(var(--logo-scale, 1));
+    transform-origin: left center;
+}
+.logo-float img {
+    height: 60px; /* Base height — scale will adjust it */
+    width: auto;
+    display: block;
+}
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .input-group {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .btn-reset {
+            background-color: #95a5a6;
+        }
+        .btn-reset:hover {
+            background-color: #7f8c8d;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .note {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .warning {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .success {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .critical {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .shutter-input {
+            display: flex;
+            align-items: center;
+        }
+        .shutter-input span {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="logo-float" style="--logo-scale: 1.5;">
+    <a href="https://instagram.com/opttanvir" style="text-decoration: none;"><img src="opt.png" alt="opttanvir"></a>
+</div>
+    <h1>📱 S25 Ultra → 📷 Fujifilm X-T4 Converter</h1>
+    <p>Enter your Galaxy S25 Ultra settings to get equivalent Fujifilm X-T4 (APS-C) settings.</p>
+
+    <div class="input-group">
+        <label for="fl">Focal Length (mm) — Full-frame equiv (e.g., 23)</label>
+        <input type="number" id="fl" value="23" step="1" min="1">
+    </div>
+
+    <div class="input-group">
+        <label for="aperture">Aperture (f-number, e.g., 1.7)</label>
+        <input type="number" id="aperture" value="1.7" step="0.1" min="1">
+    </div>
+
+    <div class="input-group">
+        <label for="shutterInput">Shutter Speed (e.g., 1/100, 1/250)</label>
+        <div class="shutter-input">
+            <span>1/</span>
+            <input type="number" id="shutterDenom" value="100" step="1" min="1" placeholder="100">
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label for="iso">ISO (e.g., 50)</label>
+        <input type="number" id="iso" value="50" step="1" min="1">
+    </div>
+
+    <button onclick="calculate()">Calculate Equivalent Settings</button>
+    <button onclick="resetForm()" class="btn-reset">Reset Form</button>
+
+    <div id="result" class="result" style="display:none;">
+        <h3>✅ Fujifilm X-T4 Equivalent Settings:</h3>
+        <p><strong>Focal Length:</strong> <span id="xt4_fl"></span> mm (≈<span id="xt4_fl_equiv"></span>mm full-frame equiv)</p>
+        <p><strong>Aperture:</strong> <span id="xt4_aperture"></span> (your lens max is f/4 — cannot match shallow DoF)</p>
+        <p><strong>Shutter Speed:</strong> <span id="xt4_shutter_display"></span></p>
+        <p><strong>ISO:</strong> <span id="xt4_iso"></span> (native Fujifilm ISO)</p>
+        <div class="note"><strong>Note:</strong> You’re using an f/4 lens — you’ll need to increase ISO or slow shutter to match exposure. Background will be sharper than phone.</div>
+        <div id="doftext" class="note warning"></div>
+        <div id="exposuretext" class="note success"></div>
+        <div id="finalnote" class="note critical"></div>
+    </div>
+
+    <script>
+        // Fujifilm X-T4 native ISOs (standard range)
+        const nativeISOs = [160, 320, 640, 1280, 2560, 5120];
+
+        function findNearestNativeISO(target) {
+            let closest = nativeISOs[0];
+            let minDiff = Math.abs(target - closest);
+
+            for (let i = 1; i < nativeISOs.length; i++) {
+                let diff = Math.abs(target - nativeISOs[i]);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closest = nativeISOs[i];
+                }
+            }
+            return closest;
+        }
+
+        // Convert shutter denominator to seconds (e.g., 100 → 0.01)
+        function shutterToSeconds(denom) {
+            return 1 / denom;
+        }
+
+        // Convert seconds back to "1/X" format, rounded to common denominators
+        function secondsToShutterDisplay(seconds) {
+            const commonDenoms = [1, 2, 4, 8, 15, 30, 60, 125, 250, 500, 1000, 2000, 4000];
+            let bestDenom = 1;
+            let minDiff = Math.abs(seconds - 1/bestDenom);
+
+            for (let d of commonDenoms) {
+                let diff = Math.abs(seconds - 1/d);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    bestDenom = d;
+                }
+            }
+            return `1/${bestDenom}`;
+        }
+
+        function calculate() {
+            const fl = parseFloat(document.getElementById('fl').value);
+            const aperture = parseFloat(document.getElementById('aperture').value);
+            const shutterDenom = parseFloat(document.getElementById('shutterDenom').value);
+            const iso = parseFloat(document.getElementById('iso').value);
+
+            // Convert shutter denominator to seconds
+            const shutter = shutterToSeconds(shutterDenom);
+
+            // APS-C crop factor
+            const cropFactor = 1.5;
+
+            // Calculate equivalent focal length on APS-C
+            let xt4Fl = fl / cropFactor;
+            // Round to nearest 1mm, but respect lens range (16-80mm)
+            xt4Fl = Math.max(16, Math.min(80, Math.round(xt4Fl)));
+
+            // Equivalent full-frame focal length (for reference)
+            const xt4FlEquiv = xt4Fl * cropFactor;
+
+            // Aperture for same DoF would be: aperture * cropFactor
+            const dofAperture = aperture * cropFactor;
+            let xt4Aperture = 4; // Your lens max aperture
+
+            // Exposure compensation needed (stops difference between f/aperture and f/4)
+            const apertureRatio = aperture / xt4Aperture;
+            const stopsDiff = 2 * Math.log2(apertureRatio); // This is negative if aperture is smaller
+
+            // Adjust ISO to compensate for exposure loss
+            let newIso = iso * Math.pow(2, -stopsDiff); // Negative stopsDiff means we need higher ISO
+            let roundedIso = findNearestNativeISO(newIso);
+
+            // Display results
+            document.getElementById('xt4_fl').textContent = xt4Fl;
+            document.getElementById('xt4_fl_equiv').textContent = xt4FlEquiv.toFixed(1);
+            document.getElementById('xt4_aperture').textContent = xt4Aperture;
+            document.getElementById('xt4_iso').textContent = roundedIso;
+
+            // Shutter speed display
+            const xt4ShutterDisplay = secondsToShutterDisplay(shutter);
+            document.getElementById('xt4_shutter_display').textContent = xt4ShutterDisplay;
+
+            // DoF note
+            const doftext = document.getElementById('doftext');
+            if (dofAperture <= 4.0) {
+                doftext.textContent = `✅ You can nearly match depth of field — f/${dofAperture.toFixed(1)} is achievable with faster lenses.`;
+                doftext.className = "note success";
+            } else {
+                doftext.textContent = `⚠️ Cannot match depth of field — you’d need f/${dofAperture.toFixed(1)} (your lens is f/4). Background will be sharper.`;
+                doftext.className = "note warning";
+            }
+
+            // Exposure note
+            const exposuretext = document.getElementById('exposuretext');
+            if (stopsDiff > 0) {
+                exposuretext.textContent = `📉 Exposure reduced: -${stopsDiff.toFixed(1)} stops (you may need to reduce ISO or speed up shutter).`;
+            } else {
+                exposuretext.textContent = `📈 Exposure compensated: +${(-stopsDiff).toFixed(1)} stops via ISO (from ${iso} → ${roundedIso}).`;
+            }
+
+            // Final note: Why might it still look darker?
+            const finalnote = document.getElementById('finalnote');
+            if (stopsDiff < 0 && roundedIso >= 320) {
+                finalnote.textContent = `💡 If image still looks darker: Check camera metering mode (use Manual), ensure no exposure compensation, and consider that phones process images brighter than cameras.`;
+            } else {
+                finalnote.textContent = `✅ Exposure should match — if not, verify camera settings (Manual mode, correct ISO, no EV compensation).`;
+            }
+
+            // Show result
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function resetForm() {
+            document.getElementById('fl').value = '23';
+            document.getElementById('aperture').value = '1.7';
+            document.getElementById('shutterDenom').value = '100';
+            document.getElementById('iso').value = '50';
+            document.getElementById('result').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
