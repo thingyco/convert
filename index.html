@@ -12,36 +12,38 @@
     <meta name="keywords" content="contact lens script converter, spectacle to contact lens conversion, vertex distance calculator, cylinder conversion for contact lenses, online contact lens formula tool, offline contact lens converter, toric lens prescription tool, eyecare professional tool, optometry calculator, glasses to contacts conversion, contact lens vertex formula, contact lens sph cyl axis converter, south africa, driver, license, licence, screening, criteria">
     <meta name="description" content="An offline contact lens prescription converter that calculates contact lens power from spectacle scripts using vertex distance, cylinder conversion, and axis rounding. Ideal for optometrists and eyecare professionals.">
 
- <style>
+<style>
   body {
     font-family: "Century Gothic", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.25px;
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
-  }    
+  }
 
-.logo-float {
+  .logo-float {
     position: fixed;
     left: 10px;
     top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000;
-    /* Control size via --logo-scale (0.5 = 50%, 1 = 100%, etc.) */
     transform: translateY(-50%) scale(var(--logo-scale, 1));
     transform-origin: left center;
-}
-.logo-float img {
-    height: 60px; /* Base height — scale will adjust it */
+    z-index: 1000;
+  }
+
+  .logo-float img {
+    height: 60px;
     width: auto;
     display: block;
-}
+  }
 
   hr {
-  height: 1px;
-  background-color: #ddd;
-  border: none;
-  margin: 20px 0;
-}
+    height: 1px;
+    background-color: #ddd;
+    border: none;
+    margin: 20px 0;
+  }
 
   /* Tab styles */
   .tab-container {
@@ -106,7 +108,8 @@
     overflow: hidden;
   }
 
-  .input-section, .result-section {
+  .input-section,
+  .result-section {
     flex: 1;
     overflow-y: auto;
     padding-right: 20px;
@@ -121,7 +124,8 @@
   }
 
   /* Form elements */
-  .input-group, .radio-group {
+  .input-group,
+  .radio-group {
     display: flex;
     align-items: center;
     margin-bottom: 12px;
@@ -144,7 +148,7 @@
     width: 80px;
     padding: 5px;
     margin-right: 10px;
-	font-size: 20px;
+    font-size: 20px;
   }
 
   /* Buttons and results */
@@ -196,7 +200,7 @@
     max-width: 800px;
     border-collapse: collapse;
     margin: 20px auto;
-    font-family: Arial, sans-serif;
+    font-family: inherit; /* Ensures Century Gothic is used */
   }
 
   th {
@@ -224,9 +228,9 @@
     color: #444;
   }
 
-.textsh {
-  text-shadow: 1px 4px 8px rgba(0, 0, 0, 0.5);
-}
+  .textsh {
+    text-shadow: 1px 4px 8px rgba(0, 0, 0, 0.5);
+  }
 </style>
 
 </head>
