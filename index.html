@@ -455,8 +455,8 @@
             height: 60px;
             width: auto;
             display: block;
-            border-radius: 16px;
-          
+            border-radius: 1px;
+           
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
         }
@@ -482,7 +482,7 @@
         }
 
         #resultsText b {
-            color: #64c8ff;
+            color: #000000;
         }
 
         #resultsText small {
@@ -1014,7 +1014,7 @@
 <!-- Footer -->
     <!-- Footer -->
 <div class="disclaimer" style="text-align: center; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 12px; padding: 8px 0;">
-    <a href="https://tinyurl.com/optco" target="_blank" style="text-decoration: none;" class="buttons">🌐 Online App</a>
+    <a href="https://opto.xo.je/" target="_blank" style="text-decoration: none;" class="buttons">🌐 opto.xo.je</a>
     <a href="https://optco.github.io/search/" target="_blank" style="text-decoration: none;" class="buttons">🔎 Advanced File Search</a>
     <a href="https://instagram.com/tnvrakhtar" style="text-decoration: none;" title="Follow me" class="buttons">© tnvr</a>
     <span style="color: var(--text-secondary); font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
@@ -1025,7 +1025,7 @@
 <!-- Floating Logo (unchanged) -->
 <div class="logo-float" style="--logo-scale: 1.5;">
     <a href="https://instagram.com/tnvrakhtar" style="text-decoration: none;" title="Follow me">
-        <img src="opt.png" alt="Akhtar">
+        <img src="https://opto.xo.je/opt.png" alt="Akhtar">
     </a>
 </div>
           
@@ -1103,15 +1103,15 @@
 
             const output = `
                 <div id="resultsText">
-                    <div><strong>Right Eye (OD)</strong><br>
+                    <div><strong>Right Eye (OD)</strong>
                         <b>SPH:</b> ${convertedSphOD.toFixed(2)} D | 
                         <b>CYL:</b> ${convertedCylOD.toFixed(2)} D | 
                         <b>Axis:</b> ${roundedAxisOD}<br>
                         <small style="color: var(--text-secondary);">
                             Spherical Eq: ${seODExact.toFixed(2)} D (or ${seODRounded.toFixed(2)} D)
                         </small>
-                    </div>
-                    <div style="margin-top: 15px;"><strong>Left Eye (OS)</strong><br>
+                    </div><br>
+                    <div style="margin-top: 15px;"><strong>Left Eye (OS)</strong>
                         <b>SPH:</b> ${convertedSphOS.toFixed(2)} D | 
                         <b>CYL:</b> ${convertedCylOS.toFixed(2)} D | 
                         <b>Axis:</b> ${roundedAxisOS}<br>
