@@ -3,321 +3,694 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-<title>Specs to CL Converter</title>
-   
- <link rel="icon" href="https://github.com/optco/convert/blob/main/favicon.ico">
+    <title>Specs to CL Converter</title>
+    <link rel="icon" href="https://github.com/optco/convert/blob/main/favicon.ico">
     
     <!-- SEO Meta Tags -->
     <meta name="keywords" content="contact lens script converter, spectacle to contact lens conversion, vertex distance calculator, cylinder conversion for contact lenses, online contact lens formula tool, offline contact lens converter, toric lens prescription tool, eyecare professional tool, optometry calculator, glasses to contacts conversion, contact lens vertex formula, contact lens sph cyl axis converter, south africa, driver, license, licence, screening, criteria">
     <meta name="description" content="An offline contact lens prescription converter that calculates contact lens power from spectacle scripts using vertex distance, cylinder conversion, and axis rounding. Ideal for optometrists and eyecare professionals.">
 
-<style>
-  body {
-    font-family: "Century Gothic", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: 0.25px;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+    <style>
+        /* ===== LIQUID GLASS THEME - iOS Style ===== */
+        :root {
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.25);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    --glass-highlight: rgba(255, 255, 255, 0.1);
+    
+    /* 👇 CHANGE THESE TWO LINES 👇 */
+    --text-primary: rgba(30, 30, 40, 0.95);      /* Was: rgba(255,255,255,0.95) */
+    --text-secondary: rgba(60, 60, 80, 0.85);    /* Was: rgba(255,255,255,0.7) */
+    
+    --accent-glow: rgba(50, 120, 200, 0.5);
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-  /* Apply font globally to all elements for consistency */
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  /* Ensure all text elements inherit the desired font */
-  h1, h2, h3, h4, h5, h6,
-  p, div, span, label, td, th,
-  input, button, select, textarea {
-    font-family: inherit;
-  }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            letter-spacing: 0.25px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            color: var(--text-primary);
+            background: var(--dynamic-gradient, linear-gradient(135deg, #667eea 0%, #764ba2 100%));
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-  .logo-float {
-    position: fixed;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%) scale(var(--logo-scale, 1));
-    transform-origin: left center;
-    z-index: 1000;
-  }
+        /* Animated liquid background overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(120, 180, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(180, 120, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
+        }
 
-  .logo-float img {
-    height: 60px;
-    width: auto;
-    display: block;
-  }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-  hr {
-    height: 1px;
-    background-color: #ddd;
-    border: none;
-    margin: 20px 0;
-  }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.02); }
+        }
 
-  /* Tab styles */
-  .tab-container {
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    overflow: hidden;
-  }
+        /* Glassmorphism base class */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+        }
 
-  .tab-buttons {
-    display: flex;
-    gap: 1px;
-    background: #f0f0f0;
-  }
+        .glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+            transition: left 0.6s ease;
+            pointer-events: none;
+        }
 
-  .tab-button {
-    padding: 12px 24px;
-    background-color: #f0f0f0;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: "Century Gothic", "Gill Sans", "Gill Sans MT", Calibri, sans-serif; /* Explicitly set */
-    transition: background 1.0s ease, box-shadow 0.3s ease;
-  }
+        .glass:hover::before {
+            left: 100%;
+        }
 
-  .tab-button:hover {
-    background-color: #e0e0e0;
-    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.3);
-  }
+        /* Typography */
+        h1, h2, h3, h4, h5, h6,
+        p, div, span, label, td, th,
+        input, button, select, textarea {
+            font-family: inherit;
+            color: var(--text-primary);
+        }
 
-  .tab-button.active {
-    background-color: #fff;
-    border-bottom: 0 solid #00aa00;
-  }
+        h2 {
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-  .tab-content {
-    padding: 20px;
-    min-height: 500px;
-    background-color: #fff;
-    border-top: 0 solid #ddd;
-    font-family: inherit;
-  }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-glow);
+            border-radius: 2px;
+        }
 
-  .tab-pane {
-    display: none;
-  }
+        /* Tab styles - Liquid Glass */
+        .tab-container {
+            margin-bottom: 24px;
+            border-radius: 28px;
+            overflow: hidden;
+        }
 
-  .tab-pane.active {
-    display: block;
-  }
+        .tab-buttons {
+            display: flex;
+            gap: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 6px;
+            border-radius: 24px;
+        }
 
-  /* Contact lens converter layout */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
+        .tab-button {
+            flex: 1;
+            padding: 14px 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-radius: 20px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
 
-  .main {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-  }
+        .tab-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 20px;
+        }
 
-  .input-section,
-  .result-section {
-    flex: 1;
-    overflow-y: auto;
-    padding-right: 20px;
-  }
+        .tab-button:hover {
+            color: var(--text-primary);
+        }
 
-  .result-section {
-    padding: 15px;
-    padding-left: 20px;
-    border-left: 1px solid #ccc;
-    background: #f9f9f9;
-    border-radius: 0;
-  }
+        .tab-button:hover::after {
+            opacity: 1;
+        }
 
-  /* Form elements */
-  .input-group,
-  .radio-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-  }
+        .tab-button.active {
+            background: rgba(255, 255, 255, 0.25);
+            color: var(--text-primary);
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
 
-  .radio-group {
-    gap: 15px;
-  }
+        .tab-button.active::after {
+            opacity: 0.3;
+        }
 
-  label {
-    width: 120px;
-    font-weight: bold;
-  }
+        .tab-content {
+            padding: 28px;
+            min-height: 520px;
+            border-radius: 24px;
+        }
 
-  input[type="radio"] {
-    margin-right: 5px;
-  }
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
 
-  input[type="number"] {
-    width: 80px;
-    padding: 5px;
-    margin-right: 10px;
-    font-size: 20px;
-    font-family: inherit;
-  }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-  /* Buttons and results */
-  .buttons {
-    padding: 8px 16px;
-    margin-left: 10px;
-    background: #f0f0f0;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: inherit;
-    transition: background 1.0s ease, box-shadow 0.3s ease;
-  }
+        .tab-pane.active {
+            display: block;
+        }
 
-  .buttons:hover {
-    background: #ddd;
-    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.3);
-  }
+        /* Input Section */
+        .main {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
 
-  /* Typography & utility */
-  .disclaimer {
-    color: #555;
-    font-size: 0.9em;
-  }
+        .input-section,
+        .result-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 24px;
+        }
 
-  .disclaimer2 {
-    color: #fff;
-    font-size: 0.6em;
-  }
+        .result-section {
+            border-left: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+        }
 
-  .corner {
-    border-radius: 20px;
-    background: #ddd;
-    padding: 5px 20px;
-    font-family: inherit;
-  }
+        /* Form elements */
+        .input-group,
+        .radio-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
 
-  .shadow {
-    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-  }
+        .radio-group {
+            flex-wrap: wrap;
+            gap: 6px 10px;
+        }
 
-  /* Table styles */
-  h2 {
-    text-align: center;
-  }
+        label {
+            font-weight: 500;
+            min-width: auto;
+            color: var(--text-secondary);
+        }
 
-  table {
-    width: 100%;
-    max-width: 800px;
-    border-collapse: collapse;
-    margin: 20px auto;
-    font-family: inherit;
-  }
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #64c8ff;
+            cursor: pointer;
+        }
 
-  th {
-    background-color: #0056b3;
-    color: white;
-    padding: 14px 16px;
-    text-align: left;
-    font-weight: bold;
-  }
+        input[type="number"],
+        input[type="text"] {
+            width: 90px;
+            padding: 12px 16px;
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            color: var(--text-primary);
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+        }
 
-  td {
-    padding: 12px 16px;
-    border-bottom: 0;
-  }
+        input[type="number"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: rgba(100, 200, 255, 0.6);
+            box-shadow: 0 0 0 3px rgba(100, 200, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
 
-  tr:nth-child(even) {
-    background-color: #f5f5f5;
-  }
+        input[type="number"]::placeholder,
+        input[type="text"]::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
 
-  b {
-    color: #0056b3;
-  }
+        /* Buttons */
+        .buttons {
+            padding: 12px 28px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
 
-  i {
-    color: #444;
-  }
+        .buttons::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
 
-  .textsh {
-    text-shadow: 1px 4px 8px rgba(0, 0, 0, 0.5);
-  }
-</style>
+        .buttons:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .buttons:hover::before {
+            left: 100%;
+        }
+
+        .buttons:active {
+            transform: translateY(0);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 24px auto;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        th {
+            background: rgba(80, 140, 220, 0.25);
+            color: rgba(25, 25, 35, 0.95);
+            padding: 16px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        td {
+            padding: 14px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        b {
+            color: rgba(30, 80, 150, 0.95);
+            font-weight: 600;
+        }
+
+        i {
+            color: var(--text-secondary);
+            font-style: normal;
+        }
+
+        /* Utility classes */
+        .disclaimer {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            opacity: 0.85;
+            margin-top: 12px;
+            display: block;
+        }
+
+        .disclaimer2 {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.7rem;
+        }
+
+        .shadow {
+            box-shadow: var(--glass-shadow);
+            border-radius: 20px;
+        }
+
+        .textsh {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        hr {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+            border: none;
+            margin: 24px 0;
+            opacity: 0.6;
+        }
+
+        /* Logo float */
+        .logo-float {
+            position: fixed;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%) scale(var(--logo-scale, 1));
+            transform-origin: left center;
+            z-index: 1000;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+            transition: var(--transition-smooth);
+        }
+
+        .logo-float:hover {
+            transform: translateY(-50%) scale(calc(var(--logo-scale, 1) * 1.05));
+        }
+
+        .logo-float img {
+            height: 60px;
+            width: auto;
+            display: block;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Results display */
+        #liveResults {
+            font-size: 1.1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        #resultsText {
+            line-height: 1.8;
+        }
+
+        #resultsText strong {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        #resultsText b {
+            color: #64c8ff;
+        }
+
+        #resultsText small {
+            display: block;
+            margin-top: 4px;
+            color: var(--text-secondary);
+        }
+
+        /* Error message */
+        .error {
+            color: rgba(180, 40, 60, 0.95);
+            font-size: 0.9rem;
+            margin: 12px 0;
+            padding: 10px 16px;
+            background: rgba(255, 107, 107, 0.15);
+            border-radius: 12px;
+            border-left: 3px solid #ff6b6b;
+        }
+
+        /* Footer */
+        table[width="100%"] {
+            margin-top: 32px;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        table[width="100%"] td {
+            border: none !important;
+            padding: 8px 0 !important;
+            background: transparent !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 16px;
+            }
+            
+            .main {
+                flex-direction: column;
+            }
+            
+            .result-section {
+                border-left: none;
+                border-top: 1px solid var(--glass-border);
+                padding-top: 24px;
+            }
+            
+            .tab-buttons {
+                flex-wrap: wrap;
+            }
+            
+            .tab-button {
+                flex: 0 0 calc(50% - 4px);
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tab-button {
+                flex: 0 0 100%;
+            }
+            
+            .input-group,
+            .radio-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            label {
+                min-width: auto;
+                margin-bottom: 4px;
+            }
+            
+            input[type="number"]::placeholder,
+            input[type="text"]::placeholder {
+            color: rgba(70, 70, 90, 0.7);
+	width: 100%;
+            }
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 4px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        /* Selection */
+        ::selection {
+            background: rgba(100, 200, 255, 0.4);
+            color: var(--text-primary);
+        }
+    </style>
 </head>
 <body>
-     <a href="https://optco.github.io/convert/" style="text-decoration: none;"></a>
+    <!-- Dynamic Gradient Script -->
+    <script>
+        // Generate random liquid glass gradient on page load
+        (function generateDynamicGradient() {
+            const gradients = [
+                'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+                'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+                'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
+                'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+                'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+                'linear-gradient(135deg, #d299c2 0%, #fef9d7 100%)',
+                'linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)',
+                'linear-gradient(135deg, #cd9cf2 0%, #f6f3ff 100%)',
+                'linear-gradient(135deg, #fbc7d4 0%, #9796f0 100%)',
+                'linear-gradient(135deg, #fddb92 0%, #d1fdff 100%)'
+            ];
+            
+            const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+            document.documentElement.style.setProperty('--dynamic-gradient', randomGradient);
+        })();
+
+// Auto-detect if gradient is light/dark and adjust text color
+(function autoAdjustTextColor() {
+    const gradient = getComputedStyle(document.documentElement)
+        .getPropertyValue('--dynamic-gradient');
+    
+    // Simple heuristic: check if gradient contains light colors
+    const lightGradients = [
+        '#a8edea', '#fed6e3', '#ffecd2', '#fcb69f', 
+        '#a1c4fd', '#c2e9fb', '#fddb92', '#d1fdff'
+    ];
+    
+    const isLight = lightGradients.some(color => gradient.includes(color));
+    
+    if (isLight) {
+        document.documentElement.style.setProperty('--text-primary', 'rgba(25, 25, 35, 0.95)');
+        document.documentElement.style.setProperty('--text-secondary', 'rgba(60, 60, 80, 0.85)');
+        document.documentElement.style.setProperty('--accent-glow', 'rgba(40, 100, 180, 0.5)');
+    }
+})();
+
+    </script>
+
+    <a href="https://optco.github.io/convert/" style="text-decoration: none;"></a>
 
     <!-- Tabs -->
-    <div class="tab-container">
+    <div class="tab-container glass">
         <div class="tab-buttons">
-            <button class="tab-button active" onclick="openTab('tab1')">Calculator</button>
-            <button class="tab-button" onclick="openTab('tab2')">Driver's</button>
-            <button class="tab-button" onclick="openTab('tab3')">Vision Charts</button>
- 	        <button class="tab-button" onclick="openTab('tab4')">Prescription Terms</button>
-<button class="tab-button" onclick="openTab('tab5')">WHO</button>
-
+            <button class="tab-button active" onclick="openTab('tab1', event)">Calculator</button>
+            <button class="tab-button" onclick="openTab('tab2', event)">Driver's</button>
+            <button class="tab-button" onclick="openTab('tab3', event)">Vision Charts</button>
+            <button class="tab-button" onclick="openTab('tab4', event)">Prescription Terms</button>
+            <button class="tab-button" onclick="openTab('tab5', event)">WHO</button>
         </div>
 
-        <div class="tab-content">
+        <div class="tab-content glass">
             <!-- Tab 1: Calculator -->
             <div id="tab1" class="tab-pane active">
                 <h2>Spectacles To Contact Lens Converter</h2>
                
                 <div class="main">
-                    <div class="input-section">
+                    <div class="input-section glass">
                         <div class="radio-group">
                             <label>Vertex Distance:</label>
-                            <label><input type="radio" name="vertexDistance" value="10" onchange="convertPrescription()">10 mm</label>
-                            <label><input type="radio" name="vertexDistance" value="12" checked onchange="convertPrescription()">12 mm</label>
-                            <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()">14 mm</label>
+                            <label><input type="radio" name="vertexDistance" value="10" onchange="convertPrescription()"> 10 mm</label>
+                            <label><input type="radio" name="vertexDistance" value="12" checked onchange="convertPrescription()"> 12 mm</label>
+                            <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()"> 14 mm</label>
                         </div>
                         <hr>
-                        <h3>🇷 Right Eye (OD)</h3>
+                        <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇷 Right Eye (OD)</h3>
                         <div class="input-group">
-                            <label for="sphOD">🔵Sphere:</label>
+                            <label for="sphOD">🔵 Sphere:</label>
                             <input type="number" step="0.25" id="sphOD" placeholder="0.00">
                         </div>
                         <div class="input-group">
-                            <label for="cylOD">🛢️Cylinder:</label>
+                            <label for="cylOD">🛢️ Cylinder:</label>
                             <input type="number" step="0.25" id="cylOD" placeholder="0.00">
                         </div>
                         <div class="input-group">
-                            <label for="axisOD">📐Axis:</label>
+                            <label for="axisOD">📐 Axis:</label>
                             <input type="number" id="axisOD" placeholder="180">
                         </div>
 
                         <hr>
-                        <h3>🇱 Left Eye (OS)</h3>
+                        <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇱 Left Eye (OS)</h3>
                         <div class="input-group">
-                            <label for="sphOS">🔵Sphere:</label>
+                            <label for="sphOS">🔵 Sphere:</label>
                             <input type="number" step="0.25" id="sphOS" placeholder="0.00">
                         </div>
                         <div class="input-group">
-                            <label for="cylOS">🛢️Cylinder:</label>
+                            <label for="cylOS">🛢️ Cylinder:</label>
                             <input type="number" step="0.25" id="cylOS" placeholder="0.00">
                         </div>
                         <div class="input-group">
-                            <label for="axisOS">📐Axis:</label>
+                            <label for="axisOS">📐 Axis:</label>
                             <input type="number" id="axisOS" placeholder="180">
                         </div>
                         <hr>
-                        <div align="right">
+                        <div style="text-align: right;">
                             <button onclick="resetForm()" class="buttons">🔄 Clear</button>
                         </div> 
-                        <font class="disclaimer">*Results may vary for values >10.75</font>
+                        <span class="disclaimer">*Results may vary for values &gt;10.75</span>
                     </div>
 
-                    <div class="result-section">
-                        <h3>Results</h3>
-                        <div id="liveResults" style="font-size: 20px;" class="shadow"></div>
+                    <div class="result-section glass">
+                        <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Results</h3>
+                        <div id="liveResults"></div>
                     </div>
                 </div>
             </div>
@@ -325,13 +698,15 @@
             <!-- Tab 2: Driver's License -->
             <div id="tab2" class="tab-pane">
                 <h2>Driving License Test Passing Criteria</h2>
-                <img src="https://optco.github.io/convert/drivers.png" alt="Driver's License Criteria" style="max-width: 100%;" class="shadow">
+                <div class="glass" style="padding: 20px; display: inline-block; max-width: 100%;">
+                    <img src="https://optco.github.io/convert/drivers.png" alt="Driver's License Criteria" style="max-width: 100%; border-radius: 16px;">
+                </div>
             </div>
 
             <!-- Tab 3: Visual Acuity Reference -->
             <div id="tab3" class="tab-pane">
                 <h2>Visual Acuity Quick Reference Conversion</h2>
-                <table class="shadow">
+                <table class="glass shadow">
                     <thead>
                         <tr>
                             <th>Snellen (ft)</th>
@@ -344,7 +719,7 @@
                     <tbody>
                         <tr><td>20/10</td><td>6/3</td><td>2.0</td><td>-0.1</td><td>N4–N5 / J1</td></tr>
                         <tr><td>20/15</td><td>6/4.5</td><td>1.33</td><td>-0.12</td><td>N5 / J1–J2</td></tr>
-                        <tr style="font-weight: bold;"><td>20/20</td><td>6/6</td><td>1.0</td><td>0.0</td><td>N6 / J2–J3</td></tr>
+                        <tr style="font-weight: 600;"><td>20/20</td><td>6/6</td><td>1.0</td><td>0.0</td><td>N6 / J2–J3</td></tr>
                         <tr><td>20/25</td><td>6/7.5</td><td>0.8</td><td>0.1</td><td>N8 / J3–J4</td></tr>
                         <tr><td>20/30</td><td>6/9</td><td>0.67</td><td>0.18</td><td>N10 / J5</td></tr>
                         <tr><td>20/40</td><td>6/12</td><td>0.5</td><td>0.3</td><td>N12 / J6</td></tr>
@@ -354,9 +729,9 @@
                     </tbody>
                 </table>
 
-                <div class="container">
-                    <h2>👁️ Visual Acuity Converter</h2>
-                    <p>Enter your visual acuity in any unit — it will be converted to all others.</p>
+                <div class="container glass" style="padding: 24px; margin-top: 24px;">
+                    <h2 style="margin-top: 0;">👁️ Visual Acuity Converter</h2>
+                    <p style="margin-bottom: 20px; color: var(--text-secondary);">Enter your visual acuity in any unit — it will be converted to all others.</p>
 
                     <div class="input-group">
                         <label for="snellen">Snellen</label>
@@ -380,16 +755,16 @@
 
                     <div id="error" class="error"></div>
 
-                    <h3>Converted Values</h3>
-                    <table>
-                        <tr><th>Snellen (ft)</th><td id="outSnellenFt">—</td></tr>
+                    <h3 style="margin: 24px 0 16px;">Converted Values</h3>
+                    <table style="margin: 0; width: 100%;">
+                        <tr><th style="width: 40%;">Snellen (ft)</th><td id="outSnellenFt">—</td></tr>
                         <tr><th>Snellen (m)</th><td id="outSnellenM">—</td></tr>
                         <tr><th>Decimal</th><td id="outDecimal">—</td></tr>
                         <tr><th>LogMAR</th><td id="outLogMAR">—</td></tr>
                         <tr><th>Near Vision</th><td id="outNear">—</td></tr>
                     </table>
 
-                    <p class="disclaimer">
+                    <p class="disclaimer" style="margin-top: 20px;">
                      <b>Note:</b> Conversion is based on standard optometric formulas. 20/20 (6/6) is considered "normal" visual acuity. Each 0.1 step in LogMAR equals one line on the eye chart. Near vision (J/N) may vary by test chart.
                     </p>
                 </div>
@@ -530,7 +905,7 @@
             <!-- Tab 4: Abbreviations -->
             <div id="tab4" class="tab-pane">
                 <h2>Top 10 Most Used Prescription Terms</h2>
-                <table class="shadow">
+                <table class="glass shadow">
                   <thead>
                     <tr>
                       <th>Abbreviation</th>
@@ -552,107 +927,100 @@
                   </tbody>
                 </table>
             </div>
-       
 
-  <!-- Tab 4: Abbreviations -->
+            <!-- Tab 5: WHO Classification -->
             <div id="tab5" class="tab-pane">
-
-
-  <h2>WHO Visual Impairment (VI) Classification with Refractive Error</h2>
- 
-
-
-
-<table class="vision-table">
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Visual Acuity (Snellen)</th>
-      <th>% of Normal Vision*</th>
-      <th>Estimated Uncorrected Refractive Error (Diopters)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Normal</strong></td>
-      <td>≥ 6/12 (≈20/40)</td>
-      <td>100% – 50%</td>
-      <td>Plano to ±0.50 D</td>
-    </tr>
-    <tr>
-      <td><strong>Mild VI</strong></td>
-      <td><6/12 to ≥6/18 (20/40–20/60)</td>
-      <td>50% – 33%</td>
-      <td>-0.75 to -1.50 D (myopia)<br>+1.50 to +2.50 D (hyperopia)</td>
-    </tr>
-    <tr>
-      <td><strong>Moderate VI</strong></td>
-      <td><6/18 to ≥6/60 (20/60–20/200)</td>
-      <td>33% – 10%</td>
-      <td>-2.00 to -3.00 D (myopia)<br>+3.00 to +5.00 D (hyperopia)</td>
-    </tr>
-    <tr>
-      <td><strong>Severe VI</strong></td>
-      <td><6/60 to ≥3/60 (20/200–20/400)</td>
-      <td>10% – 5%</td>
-      <td>-3.50 to -5.00 D (myopia)<br>+5.50 to +8.00 D (hyperopia)</td>
-    </tr>
-    <tr>
-      <td><strong>Blindness</strong></td>
-      <td><3/60 to ≥1/60 (CF at 1m)<br>OR visual field <10°</td>
-      <td>5% – 1%</td>
-      <td>-6.00 to -10.00 D (myopia)<br>>+8.00 D (hyperopia)</td>
-    </tr>
-    <tr>
-      <td><strong>Near Total Blindness</strong></td>
-      <td><1/60 to LP (Light Perception)</td>
-      <td>1% – 0.1%</td>
-      <td>-10.00 to -15.00+ D (myopia)<br>Hyperopia rarely causes LP</td>
-    </tr>
-    <tr>
-      <td><strong>Total Blindness</strong></td>
-      <td>No Light Perception (NLP)</td>
-      <td>0%</td>
-      <td>Not caused by refractive error — structural/neurological damage</td>
-    </tr>
-  </tbody>
-</table>
-
-<p class=disclaimer><em>*Note: “% of normal vision” is a simplified approximation for public understanding. It is based on relative Snellen acuity (20/20 = 100%, 20/40 = 50%, 20/200 = 10%, etc.), and is not a medical or functional vision score. Real-world function depends on contrast, field, color, lighting, and brain processing.</em></p>
- </div> </div>
+                <h2>WHO Visual Impairment (VI) Classification with Refractive Error</h2>
+                <table class="vision-table glass shadow">
+                  <thead>
+                    <tr>
+                      <th>Category</th>
+                      <th>Visual Acuity (Snellen)</th>
+                      <th>% of Normal Vision*</th>
+                      <th>Estimated Uncorrected Refractive Error (Diopters)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Normal</strong></td>
+                      <td>≥ 6/12 (≈20/40)</td>
+                      <td>100% – 50%</td>
+                      <td>Plano to ±0.50 D</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Mild VI</strong></td>
+                      <td>&lt;6/12 to ≥6/18 (20/40–20/60)</td>
+                      <td>50% – 33%</td>
+                      <td>-0.75 to -1.50 D (myopia)<br>+1.50 to +2.50 D (hyperopia)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Moderate VI</strong></td>
+                      <td>&lt;6/18 to ≥6/60 (20/60–20/200)</td>
+                      <td>33% – 10%</td>
+                      <td>-2.00 to -3.00 D (myopia)<br>+3.00 to +5.00 D (hyperopia)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Severe VI</strong></td>
+                      <td>&lt;6/60 to ≥3/60 (20/200–20/400)</td>
+                      <td>10% – 5%</td>
+                      <td>-3.50 to -5.00 D (myopia)<br>+5.50 to +8.00 D (hyperopia)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Blindness</strong></td>
+                      <td>&lt;3/60 to ≥1/60 (CF at 1m)<br>OR visual field &lt;10°</td>
+                      <td>5% – 1%</td>
+                      <td>-6.00 to -10.00 D (myopia)<br>&gt;+8.00 D (hyperopia)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Near Total Blindness</strong></td>
+                      <td>&lt;1/60 to LP (Light Perception)</td>
+                      <td>1% – 0.1%</td>
+                      <td>-10.00 to -15.00+ D (myopia)<br>Hyperopia rarely causes LP</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Total Blindness</strong></td>
+                      <td>No Light Perception (NLP)</td>
+                      <td>0%</td>
+                      <td>Not caused by refractive error — structural/neurological damage</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="disclaimer"><em>*Note: "% of normal vision" is a simplified approximation for public understanding. It is based on relative Snellen acuity (20/20 = 100%, 20/40 = 50%, 20/200 = 10%, etc.), and is not a medical or functional vision score. Real-world function depends on contrast, field, color, lighting, and brain processing.</em></p>
+            </div>
+        </div>
     </div>
 
-
-
-
-
-
-
+    
+<!-- Footer -->
     <!-- Footer -->
-    <table width="100%">
-        <tr>
-            <td>
-                <div class="disclaimer">
-                     <a href="https://tinyurl.com/optco" target="_blank" style="text-decoration: none;" class="buttons">🌐Online App</a>
-					 <a href="https://optco.github.io/search/" target="_blank" style="text-decoration: none;" class="buttons">🔎Advanced File Search</a>  
-                     🟢 This Page Works offline
-                </div>
-            </td>
-            <td align="right">
-            
-            </td>
-        </tr>
-    </table>
+<div class="disclaimer" style="text-align: center; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 12px; padding: 8px 0;">
+    <a href="https://tinyurl.com/optco" target="_blank" style="text-decoration: none;" class="buttons">🌐 Online App</a>
+    <a href="https://optco.github.io/search/" target="_blank" style="text-decoration: none;" class="buttons">🔎 Advanced File Search</a>
+    <a href="https://instagram.com/tnvrakhtar" style="text-decoration: none;" title="Follow me" class="buttons">© tnvr</a>
+    <span style="color: var(--text-secondary); font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
+        🟢 Works Offline
+    </span>
+</div>
+
+<!-- Floating Logo (unchanged) -->
+<div class="logo-float" style="--logo-scale: 1.5;">
+    <a href="https://instagram.com/tnvrakhtar" style="text-decoration: none;" title="Follow me">
+        <img src="opt.png" alt="Akhtar">
+    </a>
+</div>
+          
 
     <!-- Main Script -->
     <script>
-        function openTab(tabId) {
+        function openTab(tabId, event) {
             const tabPanes = document.getElementsByClassName('tab-pane');
             const tabButtons = document.getElementsByClassName('tab-button');
             for (let i = 0; i < tabPanes.length; i++) tabPanes[i].classList.remove('active');
             for (let i = 0; i < tabButtons.length; i++) tabButtons[i].classList.remove('active');
             document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
+            }
         }
 
         function mround(value, multiple) {
@@ -668,80 +1036,77 @@
             return rounded === 0 ? 180 : rounded;
         }
 
-function convertPrescription() {
-    const vertexDistance = getVertexDistance();
-    const liveResults = document.getElementById("liveResults");
-    liveResults.innerHTML = "";
+        function convertPrescription() {
+            const vertexDistance = getVertexDistance();
+            const liveResults = document.getElementById("liveResults");
+            liveResults.innerHTML = "";
 
-    const resultsBox = document.createElement("div");
-    resultsBox.style.lineHeight = "1.6";
-    resultsBox.style.padding = "20px";
-    resultsBox.style.border = "1px solid #ccc";
-    resultsBox.style.borderRadius = "20px";
-    resultsBox.style.backgroundColor = "#ffffff";
+            const resultsBox = document.createElement("div");
+            resultsBox.style.lineHeight = "1.6";
+            resultsBox.style.padding = "20px";
+            resultsBox.style.border = "1px solid var(--glass-border)";
+            resultsBox.style.borderRadius = "20px";
+            resultsBox.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+            resultsBox.style.backdropFilter = "blur(10px)";
 
-    // Right Eye (OD)
-    const sphOD = parseFloat(document.getElementById("sphOD").value) || 0;
-    const cylOD = parseFloat(document.getElementById("cylOD").value) || 0;
-    const axisOD = parseFloat(document.getElementById("axisOD").value) || 0;
+            // Right Eye (OD)
+            const sphOD = parseFloat(document.getElementById("sphOD").value) || 0;
+            const cylOD = parseFloat(document.getElementById("cylOD").value) || 0;
+            const axisOD = parseFloat(document.getElementById("axisOD").value) || 0;
 
-    const d4OD = sphOD + cylOD;
-    const d7OD = convertPower(sphOD, vertexDistance);
-    const d14OD = convertPower(d4OD, vertexDistance);
-    const d9OD = d14OD - d7OD;
-    const convertedCylOD = mround(d9OD, 0.25);
-    const convertedSphOD = mround(d7OD, 0.25);
-    const roundedAxisOD = roundAxis(axisOD);
+            const d4OD = sphOD + cylOD;
+            const d7OD = convertPower(sphOD, vertexDistance);
+            const d14OD = convertPower(d4OD, vertexDistance);
+            const d9OD = d14OD - d7OD;
+            const convertedCylOD = mround(d9OD, 0.25);
+            const convertedSphOD = mround(d7OD, 0.25);
+            const roundedAxisOD = roundAxis(axisOD);
 
-    // Calculate original (exact) SE from converted values
-    const seODExact = convertedSphOD + (convertedCylOD / 2);
-    const seODRounded = mround(seODExact, 0.25);
+            const seODExact = convertedSphOD + (convertedCylOD / 2);
+            const seODRounded = mround(seODExact, 0.25);
 
-    // Left Eye (OS)
-    const sphOS = parseFloat(document.getElementById("sphOS").value) || 0;
-    const cylOS = parseFloat(document.getElementById("cylOS").value) || 0;
-    const axisOS = parseFloat(document.getElementById("axisOS").value) || 0;
+            // Left Eye (OS)
+            const sphOS = parseFloat(document.getElementById("sphOS").value) || 0;
+            const cylOS = parseFloat(document.getElementById("cylOS").value) || 0;
+            const axisOS = parseFloat(document.getElementById("axisOS").value) || 0;
 
-    const d4OS = sphOS + cylOS;
-    const d7OS = convertPower(sphOS, vertexDistance);
-    const d14OS = convertPower(d4OS, vertexDistance);
-    const d9OS = d14OS - d7OS;
-    const convertedCylOS = mround(d9OS, 0.25);
-    const convertedSphOS = mround(d7OS, 0.25);
-    const roundedAxisOS = roundAxis(axisOS);
+            const d4OS = sphOS + cylOS;
+            const d7OS = convertPower(sphOS, vertexDistance);
+            const d14OS = convertPower(d4OS, vertexDistance);
+            const d9OS = d14OS - d7OS;
+            const convertedCylOS = mround(d9OS, 0.25);
+            const convertedSphOS = mround(d7OS, 0.25);
+            const roundedAxisOS = roundAxis(axisOS);
 
-    // Calculate original (exact) SE from converted values
-    const seOSExact = convertedSphOS + (convertedCylOS / 2);
-    const seOSRounded = mround(seOSExact, 0.25);
+            const seOSExact = convertedSphOS + (convertedCylOS / 2);
+            const seOSRounded = mround(seOSExact, 0.25);
 
-    const output = `
-        <div id="resultsText">
-            <div><strong>Right Eye (OD)</strong><br>
-                <b>SPH:</b> ${convertedSphOD.toFixed(2)} D | 
-                <b>CYL:</b> ${convertedCylOD.toFixed(2)} D | 
-                <b>Axis:</b> ${roundedAxisOD}<br>
-                <small style="color: #555;">
-                    Spherical Eq: ${seODExact.toFixed(2)} D (or
-                   ${seODRounded.toFixed(2)} D)
-                </small>
-            </div>
-            <div style="margin-top: 15px;"><strong>Left Eye (OS)</strong><br>
-                <b>SPH:</b> ${convertedSphOS.toFixed(2)} D | 
-                <b>CYL:</b> ${convertedCylOS.toFixed(2)} D | 
-                <b>Axis:</b> ${roundedAxisOS}<br>
-                <small style="color: #555;">
-                    Spherical Eq: ${seOSExact.toFixed(2)} D (or
-                    ${seOSRounded.toFixed(2)} D)
-                </small>
-            </div>
-        </div>
-        <div style="margin-top: 10px;" align="right">
-            <button onclick="copyResults()" class="buttons">📑 Copy</button>
-        </div>
-    `;
-    resultsBox.innerHTML = output;
-    liveResults.appendChild(resultsBox);
-}
+            const output = `
+                <div id="resultsText">
+                    <div><strong>Right Eye (OD)</strong><br>
+                        <b>SPH:</b> ${convertedSphOD.toFixed(2)} D | 
+                        <b>CYL:</b> ${convertedCylOD.toFixed(2)} D | 
+                        <b>Axis:</b> ${roundedAxisOD}<br>
+                        <small style="color: var(--text-secondary);">
+                            Spherical Eq: ${seODExact.toFixed(2)} D (or ${seODRounded.toFixed(2)} D)
+                        </small>
+                    </div>
+                    <div style="margin-top: 15px;"><strong>Left Eye (OS)</strong><br>
+                        <b>SPH:</b> ${convertedSphOS.toFixed(2)} D | 
+                        <b>CYL:</b> ${convertedCylOS.toFixed(2)} D | 
+                        <b>Axis:</b> ${roundedAxisOS}<br>
+                        <small style="color: var(--text-secondary);">
+                            Spherical Eq: ${seOSExact.toFixed(2)} D (or ${seOSRounded.toFixed(2)} D)
+                        </small>
+                    </div>
+                </div>
+                <div style="margin-top: 16px; text-align: right;">
+                    <button onclick="copyResults()" class="buttons">📑 Copy</button>
+                </div>
+            `;
+            resultsBox.innerHTML = output;
+            liveResults.appendChild(resultsBox);
+        }
 
         function copyResults() {
             const resultsText = document.getElementById("resultsText");
@@ -751,9 +1116,27 @@ function convertPrescription() {
             }
             const textToCopy = resultsText.textContent.trim();
             navigator.clipboard.writeText(textToCopy).then(() => {
-                alert("Results copied to clipboard!");
+                // Show subtle toast instead of alert for better UX
+                const toast = document.createElement('div');
+                toast.textContent = '✓ Results copied!';
+                toast.style.cssText = `
+                    position: fixed;
+                    bottom: 24px;
+                    right: 24px;
+                    background: rgba(50, 200, 100, 0.9);
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: 16px;
+                    font-weight: 500;
+                    z-index: 9999;
+                    animation: slideIn 0.3s ease, fadeOut 0.3s ease 2s forwards;
+                    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+                `;
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 2500);
             }).catch(err => {
                 console.error("Failed to copy: ", err);
+                alert("Failed to copy results");
             });
         }
 
@@ -773,7 +1156,7 @@ function convertPrescription() {
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            const inputs = document.querySelectorAll("input[type='number']");
+            const inputs = document.querySelectorAll("input[type='number'], input[type='text']");
             inputs.forEach(input => input.addEventListener("input", convertPrescription));
             inputs.forEach((input, index) => {
                 input.addEventListener("keydown", (e) => {
@@ -786,11 +1169,20 @@ function convertPrescription() {
             });
             convertPrescription();
         });
+    </script>
 
-         </script>
-<div class="logo-float" style="--logo-scale: 1.5;">
-    <a href="https://instagram.com/tnvrakhtar" style="text-decoration: none;" title="Follow me"><img src="opt.png" alt="Akhtar"></a>
-</div>
+   
   
+    <!-- Toast Animation Keyframes -->
+    <style>
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+    </style>
 </body>
 </html>
