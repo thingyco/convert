@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Specs to CL Converter</title>
-   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/optco/convert/main/favicon.ico">
+    <link rel="icon" href="https://github.com/optco/convert/blob/main/favicon.ico">
     
     <!-- SEO Meta Tags -->
     <meta name="keywords" content="contact lens script converter, spectacle to contact lens conversion, vertex distance calculator, cylinder conversion for contact lenses, online contact lens formula tool, offline contact lens converter, toric lens prescription tool, eyecare professional tool, optometry calculator, glasses to contacts conversion, contact lens vertex formula, contact lens sph cyl axis converter, south africa, driver, license, licence, screening, criteria">
@@ -243,10 +243,30 @@
         .input-group,
         .radio-group {
             display: flex;
-            align-items: center;
+            align-items: baseline;
             margin-bottom: 16px;
             gap: 12px;
         }
+
+.input-group {
+    display: flex;
+    align-items: baseline;    /* 👈 Aligns label text baseline with input text */
+    margin-bottom: 14px;
+    gap: 10px;
+}
+
+.input-group label {
+    min-width: 100px;         /* 👈 Consistent label width */
+    font-weight: 500;
+    color: rgba(25, 25, 35, 0.9);
+    text-align: right;        /* 👈 Right-align labels for cleaner look */
+    padding-right: 4px;
+}
+
+.input-group input[type="number"] {
+    flex-shrink: 0;           /* 👈 Prevents input from shrinking */
+    text-align: center;       /* 👈 Center numbers inside box */
+}
 
         .radio-group {
             flex-wrap: wrap;
@@ -271,7 +291,7 @@
             width: 90px;
             padding: 12px 16px;
             font-size: 18px;
-            background: rgba(255, 255, 255, 0.1);
+            background: #ffffff;
             border: 1px solid var(--glass-border);
             border-radius: 16px;
             color: var(--text-primary);
