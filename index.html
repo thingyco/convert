@@ -11,6 +11,27 @@
     <meta name="description" content="An offline contact lens prescription converter that calculates contact lens power from spectacle scripts using vertex distance, cylinder conversion, and axis rounding. Ideal for optometrists and eyecare professionals.">
 
     <style>
+		 /* Logo */
+    .logo-link {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    .logo-link:hover {
+      transform: scale(1.05);
+    }
+    
+    .logo-link img {
+      height: 48px;
+      width: auto;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      transition: var(--transition);
+    }
+
         /* ===== LIQUID GLASS THEME - iOS Style ===== */
         :root {
     --glass-bg: rgba(255, 255, 255, 0.15);
@@ -1022,13 +1043,12 @@
     </span>
 </div>
 
-  <a href="https://optco.github.io/convert/" target="_blank" style="position: fixed; top: 0; left: 0; z-index: 1000;">
-  <img 
-    src="https://optco.github.io/convert/optco.png" 
-    alt="Home" 
-    style="height: 50px; width: auto; object-fit: contain; display: block;"
-  >
-</a>
+   <a href="https://optco.github.io/convert/" target="_blank" class="logo-link">
+    <img 
+      src="https://optco.github.io/convert/optco.png" 
+      alt="Home" 
+    >
+  </a>
           
 
     <!-- Main Script -->
