@@ -767,177 +767,8 @@
                     </tbody>
                 </table>
 
-                <div class="container glass" style="padding: 24px; margin-top: 24px;">
-                    <h2 style="margin-top: 0;">👁️ Visual Acuity Converter</h2>
-                    <p style="margin-bottom: 20px; color: var(--text-secondary);">Enter your visual acuity in any unit — it will be converted to all others.</p>
-
-                    <div class="input-group">
-                        <label for="snellen">Snellen</label>
-                        <input type="text" id="snellen" placeholder="e.g., 20/20" oninput="convertFrom('snellen')">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="decimal">Decimal</label>
-                        <input type="number" id="decimal" step="0.01" placeholder="e.g., 1.0" oninput="convertFrom('decimal')">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="logmar">LogMAR</label>
-                        <input type="number" id="logmar" step="0.01" placeholder="e.g., 0.0" oninput="convertFrom('logmar')">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="nearVision">Near Vision</label>
-                        <input type="text" id="nearVision" placeholder="e.g., N6 or J2" oninput="convertFrom('near')">
-                    </div>
-
-                    <div id="error" class="error"></div>
-
-                    <h3 style="margin: 24px 0 16px;">Converted Values</h3>
-                    <table style="margin: 0; width: 100%;">
-                        <tr><th style="width: 40%;">Snellen (ft)</th><td id="outSnellenFt">—</td></tr>
-                        <tr><th>Snellen (m)</th><td id="outSnellenM">—</td></tr>
-                        <tr><th>Decimal</th><td id="outDecimal">—</td></tr>
-                        <tr><th>LogMAR</th><td id="outLogMAR">—</td></tr>
-                        <tr><th>Near Vision</th><td id="outNear">—</td></tr>
-                    </table>
-
-                    <p class="disclaimer" style="margin-top: 20px;">
-                     <b>Note:</b> Conversion is based on standard optometric formulas. 20/20 (6/6) is considered "normal" visual acuity. Each 0.1 step in LogMAR equals one line on the eye chart. Near vision (J/N) may vary by test chart.
-                    </p>
-                </div>
-
-                <script>
-                    function parseSnellen(str) {
-                      const match = str.trim().match(/^(\d+)\/(\d+)$/);
-                      if (!match) return null;
-                      const [_, top, bottom] = match;
-                      return parseInt(bottom) / parseInt(top);
-                    }
-
-                    function snellenToDecimal(snellenStr) {
-                      const ratio = parseSnellen(snellenStr);
-                      if (!ratio) return null;
-                      if (snellenStr.includes('20/')) return 20 / (20 * ratio);
-                      if (snellenStr.includes('6/')) return 6 / (6 * ratio);
-                      return 1 / ratio;
-                    }
-
-                    function decimalToSnellen(decimal) {
-                      if (!decimal || decimal <= 0) return { ft: '—', m: '—' };
-                      const ft = (20 / decimal).toFixed(0);
-                      const m = (6 / decimal).toFixed(0);
-                      return { ft: `20/${ft}`, m: `6/${m}` };
-                    }
-
-                    function decimalToNear(decimal) {
-                      if (decimal >= 1.25) return "N4 / J1";
-                      if (decimal >= 1.0) return "N5 / J1–J2";
-                      if (decimal >= 0.8) return "N6 / J2–J3";
-                      if (decimal >= 0.67) return "N8 / J3–J4";
-                      if (decimal >= 0.5) return "N10 / J5";
-                      if (decimal >= 0.4) return "N12 / J6";
-                      if (decimal >= 0.33) return "N14 / J7";
-                      if (decimal >= 0.25) return "N18 / J9";
-                      if (decimal >= 0.2) return "N24 / J10";
-                      return "N36+ / J12+";
-                    }
-
-                    function nearToDecimal(nearStr) {
-                      const str = nearStr.trim().toUpperCase();
-                      if (str.startsWith('N')) {
-                        const n = parseInt(str.replace('N', ''));
-                        if (n === 5 || n === 6) return 1.0;
-                        if (n <= 8) return 0.8;
-                        if (n <= 10) return 0.67;
-                        if (n <= 12) return 0.5;
-                        if (n <= 14) return 0.4;
-                        if (n <= 18) return 0.33;
-                        if (n <= 24) return 0.2;
-                        if (n <= 36) return 0.1;
-                        return 0.1;
-                      }
-                      if (str.startsWith('J')) {
-                        const j = parseInt(str.replace('J', ''));
-                        if (j <= 2) return 1.0;
-                        if (j <= 4) return 0.8;
-                        if (j <= 5) return 0.67;
-                        if (j <= 6) return 0.5;
-                        if (j <= 7) return 0.4;
-                        if (j <= 9) return 0.33;
-                        if (j <= 10) return 0.2;
-                        return 0.1;
-                      }
-                      return null;
-                    }
-
-                    function updateOutputs(decimal, logmar) {
-                      const snellen = decimalToSnellen(decimal);
-                      document.getElementById('outSnellenFt').textContent = snellen.ft;
-                      document.getElementById('outSnellenM').textContent = snellen.m;
-                      document.getElementById('outDecimal').textContent = decimal ? decimal.toFixed(2) : '—';
-                      document.getElementById('outLogMAR').textContent = logmar ? logmar.toFixed(2) : '—';
-                      document.getElementById('outNear').textContent = decimal ? decimalToNear(decimal) : '—';
-                    }
-
-                    function convertFrom(source) {
-                      let decimal = null;
-                      let logmar = null;
-                      document.getElementById('error').textContent = '';
-                      try {
-                        if (source === 'snellen') {
-                          const val = document.getElementById('snellen').value;
-                          if (val) {
-                            decimal = snellenToDecimal(val);
-                            if (decimal === null) throw new Error("Invalid Snellen format. Use '20/20' or '6/6'.");
-                            logmar = Math.log10(1 / decimal);
-                          }
-                        } else if (source === 'decimal') {
-                          decimal = parseFloat(document.getElementById('decimal').value);
-                          if (isNaN(decimal) || decimal <= 0) throw new Error("Please enter a positive number.");
-                          logmar = Math.log10(1 / decimal);
-                        } else if (source === 'logmar') {
-                          logmar = parseFloat(document.getElementById('logmar').value);
-                          if (isNaN(logmar)) throw new Error("Please enter a valid number.");
-                          decimal = 1 / Math.pow(10, logmar);
-                        } else if (source === 'near') {
-                          const val = document.getElementById('nearVision').value;
-                          if (val) {
-                            decimal = nearToDecimal(val);
-                            if (decimal === null) throw new Error("Enter N6 or J2 format.");
-                            logmar = Math.log10(1 / decimal);
-                          }
-                        }
-                        if (decimal) {
-                          document.getElementById('decimal').value = decimal.toFixed(2);
-                          const snellen = decimalToSnellen(decimal);
-                          document.getElementById('snellen').value = snellen.ft;
-                          document.getElementById('logmar').value = logmar.toFixed(2);
-                        } else {
-                          clearAllInputs();
-                        }
-                        updateOutputs(decimal, logmar);
-                      } catch (e) {
-                        document.getElementById('error').textContent = e.message;
-                        clearOutputs();
-                      }
-                    }
-
-                    function clearOutputs() {
-                      document.getElementById('outSnellenFt').textContent = '—';
-                      document.getElementById('outSnellenM').textContent = '—';
-                      document.getElementById('outDecimal').textContent = '—';
-                      document.getElementById('outLogMAR').textContent = '—';
-                      document.getElementById('outNear').textContent = '—';
-                    }
-
-                    function clearAllInputs() {
-                      document.getElementById('snellen').value = '';
-                      document.getElementById('decimal').value = '';
-                      document.getElementById('logmar').value = '';
-                      document.getElementById('nearVision').value = '';
-                    }
-                </script>
+                
+              
             </div>
 
             <!-- Tab 4: Abbreviations -->
@@ -1125,16 +956,16 @@
             const output = `
                 <div id="resultsText">
                     <div><strong>Right Eye (OD)</strong>
-                        <b>SPH:</b> ${convertedSphOD.toFixed(2)} D | 
-                        <b>CYL:</b> ${convertedCylOD.toFixed(2)} D | 
+                        <b>SPH:</b> ${convertedSphOD.toFixed(2)} D  
+                        <b>CYL:</b> ${convertedCylOD.toFixed(2)} D  
                         <b>Axis:</b> ${roundedAxisOD}<br>
                         <small style="color: var(--text-secondary);">
                             Spherical Eq: ${seODExact.toFixed(2)} D (or ${seODRounded.toFixed(2)} D)
                         </small>
                     </div><br>
-                    <div style="margin-top: 15px;"><strong>Left Eye (OS)</strong>
-                        <b>SPH:</b> ${convertedSphOS.toFixed(2)} D | 
-                        <b>CYL:</b> ${convertedCylOS.toFixed(2)} D | 
+                    <div><strong>Left Eye (OS)</strong>
+                        <b>SPH:</b> ${convertedSphOS.toFixed(2)} D  
+                        <b>CYL:</b> ${convertedCylOS.toFixed(2)} D  
                         <b>Axis:</b> ${roundedAxisOS}<br>
                         <small style="color: var(--text-secondary);">
                             Spherical Eq: ${seOSExact.toFixed(2)} D (or ${seOSRounded.toFixed(2)} D)
@@ -1149,37 +980,64 @@
             liveResults.appendChild(resultsBox);
         }
 
-        function copyResults() {
-            const resultsText = document.getElementById("resultsText");
-            if (!resultsText) {
-                alert("No results to copy!");
-                return;
-            }
-            const textToCopy = resultsText.textContent.trim();
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                // Show subtle toast instead of alert for better UX
-                const toast = document.createElement('div');
-                toast.textContent = '✓ Results copied!';
-                toast.style.cssText = `
-                    position: fixed;
-                    bottom: 24px;
-                    right: 24px;
-                    background: rgba(50, 200, 100, 0.9);
-                    color: white;
-                    padding: 12px 24px;
-                    border-radius: 16px;
-                    font-weight: 500;
-                    z-index: 9999;
-                    animation: slideIn 0.3s ease, fadeOut 0.3s ease 2s forwards;
-                    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-                `;
-                document.body.appendChild(toast);
-                setTimeout(() => toast.remove(), 2500);
-            }).catch(err => {
-                console.error("Failed to copy: ", err);
-                alert("Failed to copy results");
-            });
-        }
+      function copyResults() {
+    // Get current values directly from variables (more reliable than DOM parsing)
+    const sphOD = parseFloat(document.getElementById("sphOD").value) || 0;
+    const cylOD = parseFloat(document.getElementById("cylOD").value) || 0;
+    const axisOD = parseFloat(document.getElementById("axisOD").value) || 0;
+    const sphOS = parseFloat(document.getElementById("sphOS").value) || 0;
+    const cylOS = parseFloat(document.getElementById("cylOS").value) || 0;
+    const axisOS = parseFloat(document.getElementById("axisOS").value) || 0;
+    const vertexDistance = getVertexDistance();
+    
+    // Recalculate converted values (same logic as convertPrescription)
+    function convertPower(value, vd) { return ((value * value) * vd / 1000) + value; }
+    function mround(value, multiple) { return Math.round(value / multiple) * multiple; }
+    function roundAxis(axis) { let r = mround(axis, 10); return r === 0 ? 180 : r; }
+    
+    const d4OD = sphOD + cylOD;
+    const d7OD = convertPower(sphOD, vertexDistance);
+    const d14OD = convertPower(d4OD, vertexDistance);
+    const convertedCylOD = mround(d14OD - d7OD, 0.25);
+    const convertedSphOD = mround(d7OD, 0.25);
+    const roundedAxisOD = roundAxis(axisOD);
+    
+    const d4OS = sphOS + cylOS;
+    const d7OS = convertPower(sphOS, vertexDistance);
+    const d14OS = convertPower(d4OS, vertexDistance);
+    const convertedCylOS = mround(d14OS - d7OS, 0.25);
+    const convertedSphOS = mround(d7OS, 0.25);
+    const roundedAxisOS = roundAxis(axisOS);
+
+    // ✅ Plain text output - LEFT ALIGNED, NO formatting, NO spherical equivalent
+    const textToCopy = 
+`Right Eye (OD)
+SPH: ${convertedSphOD.toFixed(2)} D
+CYL: ${convertedCylOD.toFixed(2)} D
+Axis: ${roundedAxisOD}
+
+Left Eye (OS)
+SPH: ${convertedSphOS.toFixed(2)} D
+CYL: ${convertedCylOS.toFixed(2)} D
+Axis: ${roundedAxisOS}`;
+
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        // Minimal toast - no emojis if you want pure text
+        showToast("Copied");
+    }).catch(err => {
+        console.error("Copy failed:", err);
+        alert("Failed to copy");
+    });
+}
+
+// Minimal toast helper (optional - remove if you prefer alert)
+function showToast(msg) {
+    const t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = `position:fixed;bottom:24px;right:24px;background:#1a1a2e;color:#fff;padding:10px 18px;border-radius:12px;font-size:14px;z-index:9999;animation:slideIn 0.2s ease,fadeOut 0.2s ease 1.5s forwards`;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 1800);
+}
 
         function resetForm() {
             document.querySelector('input[name="vertexDistance"][value="12"]').checked = true;
