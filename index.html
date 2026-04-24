@@ -727,11 +727,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="main">
                     <div class="input-section glass">
                         <div class="radio-group">
-                            <label>Vertex Distance:</label>
-                            <label><input type="radio" name="vertexDistance" value="10" onchange="convertPrescription()"> 10 mm</label>
-                            <label><input type="radio" name="vertexDistance" value="12" checked onchange="convertPrescription()"> 12 mm</label>
-                            <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()"> 14 mm</label>
-                        </div>
+    <span class="radio-title">Vertex Distance:</span>
+    <div class="radio-options">
+        <label><input type="radio" name="vertexDistance" value="10" onchange="convertPrescription()"> 10 mm</label>
+        <label><input type="radio" name="vertexDistance" value="12" checked onchange="convertPrescription()"> 12 mm</label>
+        <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()"> 14 mm</label>
+    </div>
+</div>
                         <hr>
                         <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇷 Right Eye (OD)</h3>
                         <div class="input-group">
