@@ -643,8 +643,8 @@ function toggleCompact() {
     document.body.classList.toggle('compact');
     const btn = event.currentTarget;
     btn.textContent = document.body.classList.contains('compact') 
-        ? '🔼 Normal' 
-        : '🔽 Compact';
+        ? '⌞ ⌝' 
+        : '⛶';
     // Save preference
     localStorage.setItem('compactMode', document.body.classList.contains('compact'));
 }
@@ -655,7 +655,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('compact');
         // Update button text if it exists
         const btn = document.querySelector('button[onclick="toggleCompact()"]');
-        if (btn) btn.textContent = '🔼 Normal';
+        if (btn) btn.textContent = '⌞ ⌝';
     }
 });
 </script>
@@ -917,8 +917,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
     </span>
 </div>
-<div class=logo-link><button onclick="toggleCompact()" class="buttons" style="font-size:13px;padding:8px 16px;">
-    🔽 Compact
+<div class=logo-link><button onclick="toggleCompact()" class="buttons" style="font-size:13px;padding:8px 16px;">⛶
 </button></div>
    
           
