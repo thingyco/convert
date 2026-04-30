@@ -666,7 +666,9 @@ body.compact th, body.compact td { padding: 10px 14px; }
 .stepper-btn:active { background: #e2e4e8; }
 .stepper-btn:first-child { border-radius: 10px 0 0 10px; }
 .stepper-btn:last-child { border-radius: 0 10px 10px 0; }
-    </style>
+   
+
+   </style>
 </head>
 <body>
 
@@ -768,7 +770,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="main">
                     <div class="input-section glass">
     <!-- Vertex Distance -->
-	
+	 
     <div class="radio-group">
         <span class="radio-title">Vertex Distance:</span>
         <div class="radio-options">
@@ -780,6 +782,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     <!-- Right Eye (OD) -->
+	<div class="result-section glass">
     <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇷 Right Eye (OD)</h3>
     
     <div class="input-group">
@@ -799,7 +802,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="stepper-btn" type="button" onclick="adjustValue('cylOD', 0.25)">+</button>
         </div>
     </div>
-
     <div class="input-group">
         <label for="axisOD">📐 Axis:</label>
         <div class="stepper">
@@ -808,10 +810,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="stepper-btn" type="button" onclick="adjustValue('axisOD', 5)">+</button>
         </div>
     </div>
-
-    
+</div>
+    <br>
 
     <!-- Left Eye (OS) -->
+	<div class="result-section glass">
     <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇱 Left Eye (OS)</h3>
     
     <div class="input-group">
@@ -839,9 +842,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="text" inputmode="numeric" pattern="[0-9]*" id="axisOS" placeholder="180" oninput="convertPrescription()">
             <button class="stepper-btn" type="button" onclick="adjustValue('axisOS', 5)">+</button>
         </div>
-    </div>
-
-    <div style="text-align: right;">
+    </div></div>
+<br>
+  <div style="text-align: right;">
         <button onclick="resetForm()" style="font-size:20px;padding:3px 3px;" class="buttons" title="Reset">🔄</button>
     </div> 
    
