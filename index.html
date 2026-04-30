@@ -634,6 +634,38 @@ body.compact th, body.compact td { padding: 10px 14px; }
             background: rgba(100, 200, 255, 0.4);
             color: var(--text-primary);
         }
+		.stepper {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.stepper input {
+    width: 72px;
+    text-align: center;
+    padding: 8px 4px;
+    font-size: 16px;
+    border-radius: 10px 0 0 10px;
+}
+.stepper-btn {
+    width: 30px;
+    height: 38px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    background: #f8f9fa;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.15s ease;
+}
+.stepper-btn:active { background: #e2e4e8; }
+.stepper-btn:first-child { border-radius: 10px 0 0 10px; }
+.stepper-btn:last-child { border-radius: 0 10px 10px 0; }
     </style>
 </head>
 <body>
@@ -735,49 +767,85 @@ document.addEventListener('DOMContentLoaded', () => {
                
                 <div class="main">
                     <div class="input-section glass">
-                        <div class="radio-group">
-    <span class="radio-title">Vertex Distance:</span>
-    <div class="radio-options">
-        <label><input type="radio" name="vertexDistance" value="10" onchange="convertPrescription()"> 10 mm</label>
-        <label><input type="radio" name="vertexDistance" value="12" checked onchange="convertPrescription()"> 12 mm</label>
-        <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()"> 14 mm</label>
+    <!-- Vertex Distance -->
+    <div class="radio-group">
+        <span class="radio-title">Vertex Distance:</span>
+        <div class="radio-options">
+            <label><input type="radio" name="vertexDistance" value="10" onchange="convertPrescription()"> 10 mm</label>
+            <label><input type="radio" name="vertexDistance" value="12" checked onchange="convertPrescription()"> 12 mm</label>
+            <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()"> 14 mm</label>
+        </div>
     </div>
-</div>
-                       
-                        <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇷 Right Eye (OD)</h3>
-                        <div class="input-group">
-                            <label for="sphOD">🔵 Sphere:</label>
-                            <input type="text" inputmode="decimal" pattern="[+-]?([0-9]*[.]?[0-9]+)" id="sphOD" placeholder="0.00">
-                        </div>
-                        <div class="input-group">
-                            <label for="cylOD">🛢️ Cylinder:</label>
-                            <input type="text" inputmode="decimal" pattern="[+-]?([0-9]*[.]?[0-9]+)" id="cylOD" placeholder="0.00">
-                        </div>
-                        <div class="input-group">
-                            <label for="axisOD">📐 Axis:</label>
-                            <input type="number" id="axisOD" placeholder="180">
-                        </div>
+    <hr>
 
-                        <hr>
-                        <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇱 Left Eye (OS)</h3>
-                        <div class="input-group">
-                            <label for="sphOS">🔵 Sphere:</label>
-                            <input type="text" inputmode="decimal" pattern="[+-]?([0-9]*[.]?[0-9]+)" id="sphOS" placeholder="0.00">
-                        </div>
-                        <div class="input-group">
-                            <label for="cylOS">🛢️ Cylinder:</label>
-                            <input type="text" inputmode="decimal" pattern="[+-]?([0-9]*[.]?[0-9]+)" id="cylOS" placeholder="0.00">
-                        </div>
-                        <div class="input-group">
-                            <label for="axisOS">📐 Axis:</label>
-                            <input type="number" id="axisOS" placeholder="180">
-                        </div>
-                        <hr>
-                        <div style="text-align: right;">
-                            <button onclick="resetForm()" class="buttons">🔄 Clear</button>
-                        </div> 
-                        <span class="disclaimer">*Results may vary for values &gt;10.75</span>
-                    </div>
+    <!-- Right Eye (OD) -->
+    <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇷 Right Eye (OD)</h3>
+    
+    <div class="input-group">
+        <label for="sphOD">🔵 Sphere:</label>
+        <div class="stepper">
+            <button class="stepper-btn" type="button" onclick="adjustValue('sphOD', -0.25)">−</button>
+            <input type="text" inputmode="decimal" pattern="[+-]?[0-9]*\.?[0-9]*" id="sphOD" placeholder="0.00" oninput="convertPrescription()">
+            <button class="stepper-btn" type="button" onclick="adjustValue('sphOD', 0.25)">+</button>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label for="cylOD">🛢️ Cylinder:</label>
+        <div class="stepper">
+            <button class="stepper-btn" type="button" onclick="adjustValue('cylOD', -0.25)">−</button>
+            <input type="text" inputmode="decimal" pattern="[+-]?[0-9]*\.?[0-9]*" id="cylOD" placeholder="0.00" oninput="convertPrescription()">
+            <button class="stepper-btn" type="button" onclick="adjustValue('cylOD', 0.25)">+</button>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label for="axisOD">📐 Axis:</label>
+        <div class="stepper">
+            <button class="stepper-btn" type="button" onclick="adjustValue('axisOD', -5)">−</button>
+            <input type="text" inputmode="numeric" pattern="[0-9]*" id="axisOD" placeholder="180" oninput="convertPrescription()">
+            <button class="stepper-btn" type="button" onclick="adjustValue('axisOD', 5)">+</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Left Eye (OS) -->
+    <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇱 Left Eye (OS)</h3>
+    
+    <div class="input-group">
+        <label for="sphOS">🔵 Sphere:</label>
+        <div class="stepper">
+            <button class="stepper-btn" type="button" onclick="adjustValue('sphOS', -0.25)">−</button>
+            <input type="text" inputmode="decimal" pattern="[+-]?[0-9]*\.?[0-9]*" id="sphOS" placeholder="0.00" oninput="convertPrescription()">
+            <button class="stepper-btn" type="button" onclick="adjustValue('sphOS', 0.25)">+</button>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label for="cylOS">🛢️ Cylinder:</label>
+        <div class="stepper">
+            <button class="stepper-btn" type="button" onclick="adjustValue('cylOS', -0.25)">−</button>
+            <input type="text" inputmode="decimal" pattern="[+-]?[0-9]*\.?[0-9]*" id="cylOS" placeholder="0.00" oninput="convertPrescription()">
+            <button class="stepper-btn" type="button" onclick="adjustValue('cylOS', 0.25)">+</button>
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label for="axisOS">📐 Axis:</label>
+        <div class="stepper">
+            <button class="stepper-btn" type="button" onclick="adjustValue('axisOS', -5)">−</button>
+            <input type="text" inputmode="numeric" pattern="[0-9]*" id="axisOS" placeholder="180" oninput="convertPrescription()">
+            <button class="stepper-btn" type="button" onclick="adjustValue('axisOS', 5)">+</button>
+        </div>
+    </div>
+
+    <hr>
+    <div style="text-align: right;">
+        <button onclick="resetForm()" class="buttons">🔄 Clear</button>
+    </div> 
+    <span class="disclaimer">*Results may vary for values &gt;10.75</span>
+</div>
 
                     <div class="result-section glass">
                         <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Results</h3>
@@ -785,7 +853,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             </div>
-
+			<script>
+function adjustValue(id, delta) {
+    const input = document.getElementById(id);
+    let val = parseFloat(input.value) || 0;
+    
+    // Step by delta, then snap to nearest 0.25
+    val = Math.round((val + delta) * 4) / 4;
+    
+    input.value = val.toFixed(2);
+    convertPrescription(); // Auto-calculate after change
+}</script>
             <!-- Tab 2: Driver's License -->
             <div id="tab2" class="tab-pane">
                 <h2>Driving License Test Passing Criteria</h2>
