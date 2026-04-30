@@ -643,8 +643,8 @@ function toggleCompact() {
     document.body.classList.toggle('compact');
     const btn = event.currentTarget;
     btn.textContent = document.body.classList.contains('compact') 
-        ? '⌞ ⌝' 
-        : '⛶';
+        ? '⬜' 
+        : '◻️';
     // Save preference
     localStorage.setItem('compactMode', document.body.classList.contains('compact'));
 }
@@ -655,14 +655,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('compact');
         // Update button text if it exists
         const btn = document.querySelector('button[onclick="toggleCompact()"]');
-        if (btn) btn.textContent = '⌞ ⌝';
+        if (btn) btn.textContent = '⬜';
     }
 });
 </script>
 </div>
 <div class=logo-link align=center>
 </button><button type="button" id="page-refresh" aria-label="Refresh page" class=buttons style="font-size:26px;padding:0px 0px;" title="Change Theme">🎨</button>
-<br><br><button onclick="toggleCompact()" class="buttons" style="font-size:26px;padding:3px 3px;" title="Resize">⛶
+<br><br><button onclick="toggleCompact()" class="buttons" style="font-size:26px;padding:3px 3px;" title="Resize">◻️
 </div>
    <script>
   document.getElementById('page-refresh').addEventListener('click', () => location.reload());
@@ -747,11 +747,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇷 Right Eye (OD)</h3>
                         <div class="input-group">
                             <label for="sphOD">🔵 Sphere:</label>
-                            <input type="number" step="0.25" id="sphOD" placeholder="0.00">
+                            <input type="text" inputmode="decimal" pattern="[+-]?([0-9]*[.]?[0-9]+)" id="sphOD" placeholder="0.00">
                         </div>
                         <div class="input-group">
                             <label for="cylOD">🛢️ Cylinder:</label>
-                            <input type="number" step="0.25" id="cylOD" placeholder="0.00">
+                            <input type="text" inputmode="decimal" pattern="[+-]?([0-9]*[.]?[0-9]+)" id="cylOD" placeholder="0.00">
                         </div>
                         <div class="input-group">
                             <label for="axisOD">📐 Axis:</label>
@@ -762,11 +762,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇱 Left Eye (OS)</h3>
                         <div class="input-group">
                             <label for="sphOS">🔵 Sphere:</label>
-                            <input type="number" step="0.25" id="sphOS" placeholder="0.00">
+                            <input type="text" inputmode="decimal" pattern="[+-]?([0-9]*[.]?[0-9]+)" id="sphOS" placeholder="0.00">
                         </div>
                         <div class="input-group">
                             <label for="cylOS">🛢️ Cylinder:</label>
-                            <input type="number" step="0.25" id="cylOS" placeholder="0.00">
+                            <input type="text" inputmode="decimal" pattern="[+-]?([0-9]*[.]?[0-9]+)" id="cylOS" placeholder="0.00">
                         </div>
                         <div class="input-group">
                             <label for="axisOS">📐 Axis:</label>
