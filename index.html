@@ -693,7 +693,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </div>
 <div class=logo-link align=center>
-</button><button type="button" id="page-refresh" aria-label="Refresh page" class=buttons style="font-size:26px;padding:0px 0px;" title="Change Theme">🎨</button>
+</button><button type="button" id="page-refresh" aria-label="Refresh page" class=buttons style="font-size:26px;padding:3px 3px;" title="Change theme">🎨</button>
 <br><br><button onclick="toggleCompact()" class="buttons" style="font-size:26px;padding:3px 3px;" title="Resize">◻️
 </div>
    <script>
@@ -768,6 +768,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="main">
                     <div class="input-section glass">
     <!-- Vertex Distance -->
+	 <div style="text-align: left;">
+        <button onclick="resetForm()" style="font-size:20px;padding:3px 3px;" class="buttons" title="Reset">🔄</button>
+    </div> 
     <div class="radio-group">
         <span class="radio-title">Vertex Distance:</span>
         <div class="radio-options">
@@ -776,7 +779,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <label><input type="radio" name="vertexDistance" value="14" onchange="convertPrescription()"> 14 mm</label>
         </div>
     </div>
-    <hr>
+    
 
     <!-- Right Eye (OD) -->
     <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇷 Right Eye (OD)</h3>
@@ -808,7 +811,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 
-    <hr>
+    
 
     <!-- Left Eye (OS) -->
     <h3 style="margin: 20px 0 16px; font-size: 1.3rem;">🇱 Left Eye (OS)</h3>
@@ -841,9 +844,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <hr>
-    <div style="text-align: right;">
-        <button onclick="resetForm()" class="buttons">🔄 Clear</button>
-    </div> 
+   
     <span class="disclaimer">*Results may vary for values &gt;10.75</span>
 </div>
 
@@ -1100,8 +1101,8 @@ function adjustValue(id, delta) {
                         </small>
                     </div>
                 </div>
-                <div style="margin-top: 16px; text-align: right;">
-                    <button onclick="copyResults()" class="buttons">📑 Copy</button>
+                <div style="margin-top: 16px; text-align: left;">
+                    <button onclick="copyResults()" class="buttons" title="Copy results">📑 Copy</button>
                 </div>
             `;
             resultsBox.innerHTML = output;
