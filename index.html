@@ -538,11 +538,10 @@ body.compact th, body.compact td { padding: 10px 14px; }
 
                     <div class="result-section glass">
                         <h3 style="margin-bottom: 20px; font-size: 1.3rem;">Results</h3>
-                        <div id="liveResults"></div><span class="disclaimer">Results may vary for values &gt;10.75</span><div style="text-align: left;">
-      <p class=disclaimer> Reset</span>
-	  <button onclick="resetForm()" style="font-size:20px;padding:1px 5px;" class="buttons" title="Reset">↩</button>
+                        <div id="liveResults"></div><span class="disclaimer">Results may vary for values &gt;10.75</span>
+	  
     </div> 
-                    </div>
+                    
                 </div>
             </div>
 			<script>
@@ -777,6 +776,7 @@ function adjustValue(id, delta) {
                 </div>
                 <div style="margin-top: 16px; text-align: left;">
                     <button onclick="copyResults()" class="buttons" title="Copy results">📑 Copy</button>
+					<button onclick="resetForm()" class="buttons" title="Reset">↩ Reset</button>
                 </div> 
             `;
             resultsBox.innerHTML = output;
