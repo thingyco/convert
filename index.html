@@ -79,7 +79,7 @@ h2::after {
 	
 }
 .tab-button {
-    flex: 1; padding: 14px 20px; background: transparent; border: 0px;
+    flex: 1; padding: 10px 10px; background: transparent; border: 0px;
     cursor: pointer; font-size: 15px; font-weight: 500; color: var(--text-secondary);
     border-radius: 20px; transition: var(--transition); position: relative; overflow: hidden;
 	
@@ -204,7 +204,7 @@ b { color: rgba(30, 80, 150, 0.95); font-weight: 600; }
 i { color: var(--text-secondary); font-style: normal; }
 
 /* ===== UTILITIES ===== */
-.disclaimer { color: var(--text-secondary); font-size: 0.85rem; opacity: 0.85; margin-top: 12px; display: block; }
+.disclaimer { color: var(--text-secondary); font-size: 0.8rem; opacity: 0.85; margin-top: 1px; display: block; }
 .disclaimer2 { color: rgba(255, 255, 255, 0.85); font-size: 0.7rem; }
 .shadow { box-shadow: var(--glass-shadow); border-radius: 20px; }
 .textsh { text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); }
@@ -288,8 +288,8 @@ body.compact th, body.compact td { padding: 10px 14px; }
     top: 18px;
     left: 18px;
     z-index: 1100;
-    width: 34px;
-    height: 34px;
+    width: 44px;
+    height: 44px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -334,7 +334,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 14px;
+    padding: 1px 14px;
     border-radius: 10px;
     color: var(--text-primary);
     text-decoration: none;
@@ -351,7 +351,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
 .menu-divider {
     height: 2px;
     background: var(--glass-border);
-    margin: 8px 4px;
+    margin: 4px 4px;
     border: 0px;
 }
 
@@ -367,15 +367,24 @@ body.compact th, body.compact td { padding: 10px 14px; }
 <button class="hamburger-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu">☰</button>
 <div class="hamburger-menu" id="hamburgerMenu">
     <div class="menu-links">
+	<button class="tab-button active" onclick="openTab('tab1', event)">Converter</button>
+            <button class="tab-button" onclick="openTab('tab2', event)">Driver's</button>
+            <button class="tab-button" onclick="openTab('tab3', event)">Vision Charts</button>
+            <button class="tab-button" onclick="openTab('tab4', event)">Rx Terms</button>
+            <button class="tab-button" onclick="openTab('tab5', event)">WHO</button>
+			 <hr class="menu-divider">
 	<a href="https://optco.github.io/javeria/" target="_blank" rel="noopener noreferrer" class="menu-item">Properties</a>
         <a href="https://tinyurl.com/optco" target="_blank" rel="noopener noreferrer" class="menu-item">Online App</a>
         <a href="https://optco.github.io/search/" target="_blank" rel="noopener noreferrer" class="menu-item">Advanced Search</a>
-        <a href="https://instagram.com/tnvrakhtar" target="_blank" rel="noopener noreferrer" class="menu-item">Follow me</a>
-    </div>
+        <a href="https://instagram.com/tnvrakhtar" target="_blank" rel="noopener noreferrer" class="menu-item">Follow Akhtar</a>
+   
     <hr class="menu-divider">
-    <button class="menu-item" onclick="toggleCompact()">Resize</button>
-    <button class="menu-item" onclick="changeTheme()">Theme</button>
-</div>
+    <button class="menu-item" onclick="toggleCompact()">↔️ Resize</button>
+    <button class="menu-item" onclick="changeTheme()">🎨 Theme</button>
+	<hr class="menu-divider"><center>
+	<span class=disclaimer2>Version: 7</span>
+	<span class=disclaimer2>©2026</span></center>
+</div> </div>
 
 </div>
 
@@ -435,13 +444,6 @@ body.compact th, body.compact td { padding: 10px 14px; }
 
     <!-- Tabs -->
    
-        <div class="tab-buttons">
-            <button class="tab-button active" onclick="openTab('tab1', event)">Calculator</button>
-            <button class="tab-button" onclick="openTab('tab2', event)">Driver's</button>
-            <button class="tab-button" onclick="openTab('tab3', event)">Vision Charts</button>
-            <button class="tab-button" onclick="openTab('tab4', event)">Prescription Terms</button>
-            <button class="tab-button" onclick="openTab('tab5', event)">WHO</button>
-        </div>
 <br>
         
             <!-- Tab 1: Calculator -->
@@ -528,6 +530,8 @@ body.compact th, body.compact td { padding: 10px 14px; }
   <div style="text-align: right;">
         <button onclick="resetForm()" style="font-size:20px;padding:3px 3px;" class="buttons" title="Reset">🔄</button>
     </div> 
+   
+    
 </div>
 
                     <div class="result-section glass">
@@ -768,7 +772,7 @@ function adjustValue(id, delta) {
                 </div>
                 <div style="margin-top: 16px; text-align: left;">
                     <button onclick="copyResults()" class="buttons" title="Copy results">📑 Copy</button>
-                </div>
+                </div> 
             `;
             resultsBox.innerHTML = output;
             liveResults.appendChild(resultsBox);
