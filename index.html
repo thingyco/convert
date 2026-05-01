@@ -77,11 +77,14 @@ h2::after {
     display: flex; gap: 2px; background: rgba(255, 255, 255, 0.1);
     padding: 6px; border-radius: 24px;
 	
+	
+	
 }
 .tab-button {
     flex: 1; padding: 10px 10px; background: transparent; border: 0px;
     cursor: pointer; font-size: 15px; font-weight: 500; color: var(--text-secondary);
     border-radius: 20px; transition: var(--transition); position: relative; overflow: hidden;
+	text-align: left;
 	
 }
 .tab-button::after {
@@ -323,6 +326,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
     visibility: hidden;
     transform: translateY(-10px) scale(0.95);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	
 }
 .hamburger-menu.active {
     opacity: 1;
@@ -367,11 +371,11 @@ body.compact th, body.compact td { padding: 10px 14px; }
 <button class="hamburger-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu">☰</button>
 <div class="hamburger-menu" id="hamburgerMenu">
     <div class="menu-links">
-	<button class="tab-button active" onclick="openTab('tab1', event)">Converter</button>
-            <button class="tab-button" onclick="openTab('tab2', event)">Driver's</button>
-            <button class="tab-button" onclick="openTab('tab3', event)">Vision Charts</button>
-            <button class="tab-button" onclick="openTab('tab4', event)">Rx Terms</button>
-            <button class="tab-button" onclick="openTab('tab5', event)">WHO</button>
+	<button class="tab-button active" onclick="openTab('tab1', event)">🔀 Converter</button>
+            <button class="tab-button" onclick="openTab('tab2', event)">🚗 Driver's</button>
+            <button class="tab-button" onclick="openTab('tab3', event)">👁️ Vision Charts</button>
+            <button class="tab-button" onclick="openTab('tab4', event)">📝 Rx Terms</button>
+            <button class="tab-button" onclick="openTab('tab5', event)">🇺🇳 WHO</button>
 			 <hr class="menu-divider">
 	<a href="https://optco.github.io/javeria/" target="_blank" rel="noopener noreferrer" class="menu-item">Properties</a>
         <a href="https://tinyurl.com/optco" target="_blank" rel="noopener noreferrer" class="menu-item">Online App</a>
@@ -448,7 +452,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
         
             <!-- Tab 1: Calculator -->
             <div id="tab1" class="tab-pane active">
-                <h2>Spectacles To Contact Lens Converter</h2>
+                <h2>🔀 Spectacles To Contact Lens Converter</h2>
                
                 <div class="main">
                     <div class="input-section glass">
@@ -553,7 +557,7 @@ function adjustValue(id, delta) {
 }</script>
             <!-- Tab 2: Driver's License -->
             <div id="tab2" class="tab-pane">
-                <h2>Driving License Test Passing Criteria</h2>
+                <h2>🚗 Driving License Test Passing Criteria</h2>
                 <div class="glass" style="padding: 20px; display: inline-block; max-width: 100%;">
                     <img src="https://optco.github.io/convert/drivers.png" alt="Driver's License Criteria" style="max-width: 100%; border-radius: 16px;">
                 </div>
@@ -561,7 +565,7 @@ function adjustValue(id, delta) {
 
             <!-- Tab 3: Visual Acuity Reference -->
             <div id="tab3" class="tab-pane">
-                <h2>Visual Acuity Quick Reference Conversion</h2>
+                <h2>👁️ Visual Acuity Quick Reference Conversion</h2>
                 <table class="glass shadow">
                     <thead>
                         <tr>
@@ -591,7 +595,7 @@ function adjustValue(id, delta) {
 
             <!-- Tab 4: Abbreviations -->
             <div id="tab4" class="tab-pane">
-                <h2>Top 10 Most Used Prescription Terms</h2>
+                <h2>📝 Most Used Prescription Terms</h2>
                 <table class="glass shadow">
                   <thead>
                     <tr>
@@ -617,7 +621,7 @@ function adjustValue(id, delta) {
 
             <!-- Tab 5: WHO Classification -->
             <div id="tab5" class="tab-pane">
-                <h2>WHO Visual Impairment (VI) Classification with Refractive Error</h2>
+                <h2>🇺🇳 WHO Visual Impairment (VI) Classification</h2>
                 <table class="vision-table glass shadow">
                   <thead>
                     <tr>
