@@ -72,15 +72,17 @@ h2::after {
 }
 
 /* ===== TABS ===== */
-.tab-container { margin-bottom: 24px; border-radius: 28px; overflow: hidden; }
+
 .tab-buttons {
     display: flex; gap: 2px; background: rgba(255, 255, 255, 0.1);
     padding: 6px; border-radius: 24px;
+	
 }
 .tab-button {
-    flex: 1; padding: 14px 20px; background: transparent; border: none;
+    flex: 1; padding: 14px 20px; background: transparent; border: 0px;
     cursor: pointer; font-size: 15px; font-weight: 500; color: var(--text-secondary);
     border-radius: 20px; transition: var(--transition); position: relative; overflow: hidden;
+	
 }
 .tab-button::after {
     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -279,36 +281,104 @@ body.compact th, body.compact td { padding: 10px 14px; }
 .tab-button::after {
     display: none !important;
 }
+
+/* ===== HAMBURGER MENU ===== */
+.hamburger-btn {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 1100;
+    width: 34px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    font-size: 20px;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.hamburger-btn:hover { background: rgba(255, 255, 255, 0.3); transform: scale(1.05); }
+
+.hamburger-menu {
+    position: fixed;
+    top: 68px;
+    left: 16px;
+    z-index: 1099;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 8px;
+    min-width: 120px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hamburger-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+.menu-links { display: flex; flex-direction: column; gap: 4px; }
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: background 0.2s ease;
+}
+.menu-item:hover { background: rgba(255, 255, 255, 0.2); }
+.menu-divider {
+    height: 2px;
+    background: var(--glass-border);
+    margin: 8px 4px;
+    border: 0px;
+}
+
+/* Mobile tweak: push content slightly to avoid overlap */
+@media (max-width: 768px) {
+    .hamburger-btn { top: 12px; left: 12px; width: 40px; height: 40px; }
+    .hamburger-menu { top: 60px; left: 12px; min-width: 200px; }
+}
 </style>
 </head>
 <body>
-
-<script>
-function toggleCompact() {
-    document.body.classList.toggle('compact');
-    const btn = event.currentTarget;
-    btn.textContent = document.body.classList.contains('compact') 
-        ? '⬜' 
-        : '◻️';
-    // Save preference
-    localStorage.setItem('compactMode', document.body.classList.contains('compact'));
-}
-
-// Load saved preference on page load
-document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('compactMode') === 'true') {
-        document.body.classList.add('compact');
-        // Update button text if it exists
-        const btn = document.querySelector('button[onclick="toggleCompact()"]');
-        if (btn) btn.textContent = '⬜';
-    }
-});
-</script>
+<!-- Hamburger Menu -->
+<button class="hamburger-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+<div class="hamburger-menu" id="hamburgerMenu">
+    <div class="menu-links">
+	<a href="https://optco.github.io/javeria/" target="_blank" rel="noopener noreferrer" class="menu-item">Properties</a>
+        <a href="https://tinyurl.com/optco" target="_blank" rel="noopener noreferrer" class="menu-item">Online App</a>
+        <a href="https://optco.github.io/search/" target="_blank" rel="noopener noreferrer" class="menu-item">Advanced Search</a>
+        <a href="https://instagram.com/tnvrakhtar" target="_blank" rel="noopener noreferrer" class="menu-item">Follow me</a>
+    </div>
+    <hr class="menu-divider">
+    <button class="menu-item" onclick="toggleCompact()">Resize</button>
+    <button class="menu-item" onclick="changeTheme()">Theme</button>
 </div>
-<div class=logo-link align=center>
-</button><button type="button" id="page-refresh" aria-label="Refresh page" class=buttons style="font-size:26px;padding:3px 3px;" title="Change theme">🎨</button>
-<br><br><button onclick="toggleCompact()" class="buttons" style="font-size:26px;padding:3px 3px;" title="Resize">◻️
+
 </div>
+
    <script>
   document.getElementById('page-refresh').addEventListener('click', () => location.reload());
 </script>
@@ -364,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <a href="https://optco.github.io/convert/" style="text-decoration: none;"></a>
 
     <!-- Tabs -->
-    
+   
         <div class="tab-buttons">
             <button class="tab-button active" onclick="openTab('tab1', event)">Calculator</button>
             <button class="tab-button" onclick="openTab('tab2', event)">Driver's</button>
@@ -607,22 +677,6 @@ function adjustValue(id, delta) {
 
     
 <!-- Footer -->
-    <!-- Footer -->
-<div class="disclaimer" style="text-align: center; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 12px; padding: 8px 0;">
-    <a href="https://tinyurl.com/optco" target="_blank" style="text-decoration: none;" class="buttons">🌐 tinyurl.com/optco</a>
-    <a href="https://optco.github.io/search/" target="_blank" style="text-decoration: none;" class="buttons">🔎 Advanced File Search</a>
-    <a href="https://instagram.com/tnvrakhtar" style="text-decoration: none;" title="Follow me" class="buttons">© Akhtar</a>
-    <span style="color: var(--text-secondary); font-size: 0.85rem; display: flex; align-items: center; gap: 4px;">
-	<a href="https://optco.github.io/javeria/" style="text-decoration: none;" title="Rent, Sell, Buy." class="buttons">Properties</a>
- 
-       🟢 Works Offline
-
-
-
-		
-    </span>
-
-          
 
     <!-- Main Script -->
     <script>
@@ -812,8 +866,71 @@ function showToast(msg) {
         });
     </script>
 
-   
-  
+   <script>
+  // ===== HAMBURGER MENU & CONTROLS =====
+function toggleMenu() {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('hamburgerMenu');
+    menu.classList.toggle('active');
+    btn.classList.toggle('active');
+    btn.textContent = menu.classList.contains('active') ? '✕' : '☰';
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    const menu = document.getElementById('hamburgerMenu');
+    const btn = document.getElementById('menuBtn');
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.remove('active');
+        btn.classList.remove('active');
+        btn.textContent = '☰';
+    }
+});
+
+// Compact Mode Toggle
+function toggleCompact() {
+    document.body.classList.toggle('compact');
+    const isCompact = document.body.classList.contains('compact');
+    localStorage.setItem('compactMode', isCompact);
+}
+
+// Theme Changer
+const gradients = [
+    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+    'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+    'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+    'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
+    'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+    'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+    'linear-gradient(135deg, #d299c2 0%, #fef9d7 100%)',
+    'linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)',
+    'linear-gradient(135deg, #cd9cf2 0%, #f6f3ff 100%)',
+    'linear-gradient(135deg, #fbc7d4 0%, #9796f0 100%)',
+    'linear-gradient(135deg, #fddb92 0%, #d1fdff 100%)'
+];
+
+function changeTheme() {
+    let idx = parseInt(localStorage.getItem('themeIndex') || '0');
+    idx = (idx + 1) % gradients.length;
+    localStorage.setItem('themeIndex', idx);
+    document.documentElement.style.setProperty('--dynamic-gradient', gradients[idx]);
+}
+
+// Load saved preferences on page load
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('compactMode') === 'true') {
+        document.body.classList.add('compact');
+    }
+    const savedTheme = localStorage.getItem('themeIndex');
+    const themeIdx = savedTheme !== null ? parseInt(savedTheme) : Math.floor(Math.random() * gradients.length);
+    document.documentElement.style.setProperty('--dynamic-gradient', gradients[themeIdx]);
+    localStorage.setItem('themeIndex', themeIdx);
+});
+</script>
 
 </body>
 </html>
