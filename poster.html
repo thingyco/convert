@@ -106,19 +106,19 @@
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         #header-preview { top: 1.5rem; font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; }
-        #footer-preview { bottom: 1.5rem; font-size: 0.8rem; letter-spacing: 1px; }
+        #footer-preview { bottom: 1.5rem; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
         
         #backdrop-grid {
             position: absolute; inset: 0; display: flex; flex-wrap: wrap;
             justify-content: center; align-items: center; gap: 1.5rem; padding: 10%;
             pointer-events: none; z-index: 1; overflow: hidden;
         }
-        .backdrop-item {
-            display: flex; justify-content: center; align-items: center;
-            background-size: contain; background-repeat: no-repeat; background-position: center;
-            word-break: break-word; line-height: 1; color: inherit;
-            transition: transform 0.3s, opacity 0.3s;
-        }
+      .backdrop-item {
+    display: flex; justify-content: center; align-items: center;
+    background-size: contain; background-repeat: no-repeat; background-position: center;
+    white-space: nowrap; line-height: 1; color: inherit;
+    transition: transform 0.3s, opacity 0.3s;
+}
 
         #output-text { position: relative; z-index: 3; word-break: break-word; max-width: 95%; max-height: 95%; line-height: 1.25; }
 
@@ -142,9 +142,20 @@
 <body>
     <div class="app-container">
         <div class="controls">
+		<div class="control-group">
+                <label>Aspect Ratio</label>
+                <select id="ratioSelect">
+				<option value="ratio-a4">A4 (Print/PDF)</option>
+                    <option value="ratio-9-16">9:16 (Stories/Reels)</option>
+                    <option value="ratio-16-9">16:9 (YouTube/Presentation)</option>
+                    <option value="ratio-1-1">1:1 (Post/Profile)</option>
+                    
+                </select>
+            </div>
+		
             <div class="control-group">
                 <label>Canvas Text</label>
-                <textarea id="textInput" placeholder="Type your main message...">Design is intelligence made visible.</textarea>
+                <textarea id="textInput" placeholder="Type your main message..."></textarea>
             </div>
 
             <div class="control-group">
@@ -161,15 +172,7 @@
                 <textarea id="footerInput" placeholder="Optional footer (e.g., © 2026 Studio)" style="min-height: 40px;"></textarea>
             </div>
 
-            <div class="control-group">
-                <label>Aspect Ratio</label>
-                <select id="ratioSelect">
-                    <option value="ratio-9-16">9:16 (Stories/Reels)</option>
-                    <option value="ratio-16-9">16:9 (YouTube/Presentation)</option>
-                    <option value="ratio-1-1">1:1 (Post/Profile)</option>
-                    <option value="ratio-a4">A4 (Print/PDF)</option>
-                </select>
-            </div>
+            
 
             <div class="control-group">
                 <label>Font Style</label>
@@ -294,7 +297,7 @@
             const textColor = document.querySelector('input[name="fontColor"]:checked')?.value || '#FFFFFF';
             
             // Main text
-            els.output.textContent = els.text.value || 'Type something...';
+            els.output.textContent = els.text.value || '← Type something';
             els.output.style.fontSize = els.textSize.value + 'rem';
             els.sizeVal.textContent = els.textSize.value + 'rem';
             els.output.style.fontFamily = fontMap[activeCategory];
