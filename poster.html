@@ -38,15 +38,18 @@
             display: grid; grid-template-columns: 340px 1fr;
             gap: clamp(1.5rem, 4vw, 2.5rem); 
             box-shadow: var(--glass-shadow);
-            align-items: start; /* Critical for sticky to work correctly */
+            align-items: start;
         }
 
         .controls { display: flex; flex-direction: column; gap: 1.5rem; }
-        .control-group { display: flex; flex-direction: column; gap: 0.6rem; }
+        .control-group { display: flex; flex-direction: column; gap: 0.5rem; }
         .control-group > label { 
             font-size: 0.7rem; font-weight: 600; text-transform: uppercase; 
             letter-spacing: 1px; color: var(--text-sub); margin: 0; 
         }
+
+        .row-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
+        .row-label span { font-size: 0.8rem; color: var(--text-sub); font-weight: 500; }
 
         textarea, select, input[type="color"], .stepper-control {
             width: 100%; background: rgba(255, 255, 255, 0.5);
@@ -66,6 +69,17 @@
         .color-pick-row { display: flex; gap: 1rem; }
         .color-pick-row .wrap { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
         .color-pick-row span { font-size: 0.75rem; color: var(--text-sub); text-align: center; font-weight: 500; }
+
+        input[type="range"] {
+            -webkit-appearance: none; appearance: none; width: 100%; height: 6px;
+            background: rgba(0,0,0,0.1); border-radius: 3px; outline: none; margin: 0; padding: 0; cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%;
+            background: #fff; border: 2px solid var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer; margin-top: -8px;
+        }
+        input[type="range"]::-moz-range-track { background: rgba(0,0,0,0.1); height: 6px; border-radius: 3px; border: none; }
+        input[type="range"]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 2px solid var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer; border: none; }
 
         .cat-btns, .style-btns, .btn-group { display: flex; gap: 0.6rem; flex-wrap: wrap; }
         
@@ -100,11 +114,15 @@
             color: #007AFF; font-size: 1.5rem; font-weight: 300; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
         }
-        .stepper-btn:active { background: rgba(0,0,0,0.03); }
+        .stepper-btn:active { background: rgba(0,0,0,0.05); }
         .stepper-value {
             flex: 1; text-align: center; color: var(--text-main); font-size: 1rem; font-weight: 600;
             pointer-events: none; letter-spacing: 0.5px;
         }
+
+        .tilt-options { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .tilt-pill { flex: 1; min-width: 0; text-align: center; padding: 0.65rem 0.5rem; background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 10px; cursor: pointer; font-size: 0.85rem; font-weight: 500; color: #555; }
+        .tilt-pill.active { background: var(--text-main); color: #fff; border-color: var(--text-main); }
 
         .backdrop-section { 
             border-top: 1px solid rgba(0,0,0,0.08); 
@@ -119,6 +137,17 @@
         .btn { flex: 1; padding: 1rem; border: none; border-radius: 14px; font-weight: 600; cursor: pointer; font-size: 1rem; min-height: 52px; letter-spacing: 0.5px; }
         .btn-primary { background: var(--text-main); color: #fff; }
         .btn-secondary { background: rgba(255,255,255,0.8); color: var(--text-main); border: 1px solid rgba(0,0,0,0.1); }
+
+        /* Footer Link */
+        .app-footer {
+            text-align: center; padding-top: 1rem; margin-top: 0.5rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+        .app-footer a {
+            color: var(--text-sub); font-size: 0.75rem; text-decoration: none;
+            letter-spacing: 0.5px; opacity: 0.8; transition: opacity 0.2s;
+        }
+        .app-footer a:hover { opacity: 1; }
 
         /* STICKY PREVIEW */
         .preview-area {
@@ -170,7 +199,7 @@
             .controls { order: 2; max-height: none; overflow: visible; }
             .preview-area { 
                 order: 1; min-height: 280px; padding: 1rem; 
-                position: static; align-self: auto; top: auto; /* Disable sticky on mobile */
+                position: static; align-self: auto; top: auto; 
             }
             .btn-group { flex-direction: column; }
         }
@@ -195,8 +224,8 @@
 
             <div class="control-group">
                 <label>Header & Footer</label>
-                <textarea id="headerInput" placeholder="Optional header (e.g., @tnvrakhtar)"></textarea>
-                <textarea id="footerInput" placeholder="Optional footer (e.g., © 2026 Optco Poster Design v1)"></textarea>
+                <textarea id="headerInput" placeholder="Optional header (e.g., Chapter One)"></textarea>
+                <textarea id="footerInput" placeholder="Optional footer (e.g., © 2026 Studio)"></textarea>
             </div>
 
             <div class="control-group">
@@ -206,7 +235,6 @@
                     <option value="ratio-9-16">9:16 (Stories/Reels)</option>
                     <option value="ratio-16-9">16:9 (YouTube/Presentation)</option>
                     <option value="ratio-1-1">1:1 (Post/Profile)</option>
-                    
                 </select>
             </div>
 
@@ -251,31 +279,23 @@
                         <button class="clear-btn" id="clearImgBtn" style="display: none;">✕</button>
                     </div>
                 </div>
+
+                <div class="control-group">
+                    <div class="row-label">
+                        <label>Opacity</label>
+                        <span id="opVal">100%</span>
+                    </div>
+                    <input type="range" id="opacity" min="0" max="100" step="1" value="100">
+                </div>
                 
                 <div class="control-group">
-                    <label>Repeat Count</label>
-                    <div class="stepper-control" data-key="repeat">
-                        <button class="stepper-btn minus">−</button>
-                        <span class="stepper-value">1</span>
-                        <button class="stepper-btn plus">+</button>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label>Opacity</label>
-                    <div class="stepper-control" data-key="opacity">
-                        <button class="stepper-btn minus">−</button>
-                        <span class="stepper-value">100%</span>
-                        <button class="stepper-btn plus">+</button>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label>Tilt</label>
-                    <div class="stepper-control" data-key="tilt">
-                        <button class="stepper-btn minus">−</button>
-                        <span class="stepper-value">0°</span>
-                        <button class="stepper-btn plus">+</button>
+                    <label>Tilt (Anti-clockwise)</label>
+                    <div class="tilt-options" id="tiltOptions">
+                        <button class="tilt-pill active" data-val="0">0°</button>
+                        <button class="tilt-pill" data-val="-45">−45°</button>
+                        <button class="tilt-pill" data-val="-90">−90°</button>
+                        <button class="tilt-pill" data-val="-135">−135°</button>
+                        <button class="tilt-pill" data-val="-180">−180°</button>
                     </div>
                 </div>
 
@@ -287,16 +307,29 @@
                         <button class="stepper-btn plus">+</button>
                     </div>
                 </div>
+
+                <div class="control-group">
+                    <label>Repeat Count</label>
+                    <div class="stepper-control" data-key="repeat">
+                        <button class="stepper-btn minus">−</button>
+                        <span class="stepper-value">1</span>
+                        <button class="stepper-btn plus">+</button>
+                    </div>
+                </div>
             </div>
 
             <div class="btn-group">
                 <button class="btn btn-secondary" id="downloadJpgBtn">Save JPEG</button>
                 <button class="btn btn-primary" id="downloadPngBtn">Save PNG</button>
             </div>
+
+            <div class="app-footer">
+                <a href="https://optco.github.io/convert" target="_blank" rel="noopener">2026 Optco Post-D</a>
+            </div>
         </div>
 
         <div class="preview-area">
-            <div id="canvas-preview" class="ratio-9-16">
+            <div id="canvas-preview" class="ratio-a4">
                 <div id="header-preview"></div>
                 <div id="backdrop-grid"></div>
                 <div id="output-text">Design is intelligence made visible.</div>
@@ -315,12 +348,11 @@
         let activeCategory = 'modern';
         let styles = { bold: false, italic: false, underline: false };
         let backdropDataURL = null;
+        let currentTilt = 0;
 
         const controls = {
             textSize: { val: 3, min: 1, max: 6, step: 0.1, fmt: v => v.toFixed(1) + 'rem' },
             repeat:   { val: 1, min: 1, max: 20, step: 1, fmt: v => v.toString() },
-            opacity:  { val: 1, min: 0, max: 1, step: 0.01, fmt: v => Math.round(v * 100) + '%' },
-            tilt:     { val: 0, min: -180, max: 180, step: 1, fmt: v => v + '°' },
             scale:    { val: 1, min: 0.2, max: 4, step: 0.1, fmt: v => v.toFixed(1) + 'x' }
         };
 
@@ -342,6 +374,9 @@
             bdText: document.getElementById('backdropText'),
             bdFile: document.getElementById('backdropFile'),
             clearBtn: document.getElementById('clearImgBtn'),
+            opacity: document.getElementById('opacity'),
+            opVal: document.getElementById('opVal'),
+            tiltOptions: document.getElementById('tiltOptions'),
             downloadPngBtn: document.getElementById('downloadPngBtn'),
             downloadJpgBtn: document.getElementById('downloadJpgBtn')
         };
@@ -365,6 +400,9 @@
         function updatePreview() {
             const c = controls;
             const textColor = document.querySelector('input[name="fontColor"]:checked')?.value || '#FFFFFF';
+            const opacityVal = parseInt(els.opacity.value) / 100;
+            
+            els.opVal.textContent = `${Math.round(opacityVal * 100)}%`;
             
             els.output.textContent = els.text.value || 'Type something...';
             els.output.style.fontSize = c.textSize.val + 'rem';
@@ -385,10 +423,10 @@
             els.preview.className = els.ratio.value;
             els.preview.style.background = `linear-gradient(135deg, ${els.bg1.value}, ${els.bg2.value})`;
 
-            renderBackdrop(textColor);
+            renderBackdrop(textColor, opacityVal);
         }
 
-        function renderBackdrop(textColor) {
+        function renderBackdrop(textColor, opacityVal) {
             const c = controls;
             els.backdropGrid.innerHTML = '';
             const hasContent = backdropDataURL || els.bdText.value.trim();
@@ -409,13 +447,13 @@
                     item.style.fontFamily = fontMap[activeCategory];
                 }
 
-                item.style.opacity = c.opacity.val;
-                item.style.transform = `rotate(${c.tilt.val}deg) scale(${c.scale.val})`;
+                item.style.opacity = opacityVal;
+                item.style.transform = `rotate(${currentTilt}deg) scale(${c.scale.val})`;
                 els.backdropGrid.appendChild(item);
             }
         }
 
-        [els.text, els.headerIn, els.footerIn, els.ratio, els.bg1, els.bg2].forEach(el => {
+        [els.text, els.headerIn, els.footerIn, els.ratio, els.bg1, els.bg2, els.opacity].forEach(el => {
             el.addEventListener('input', updatePreview);
         });
 
@@ -447,6 +485,16 @@
             const key = el.dataset.key;
             el.querySelector('.minus').addEventListener('click', () => adjustStepper(key, -1));
             el.querySelector('.plus').addEventListener('click', () => adjustStepper(key, 1));
+        });
+
+        // Tilt Pill Selection (anti-clockwise = negative values)
+        els.tiltOptions.addEventListener('click', (e) => {
+            const btn = e.target.closest('.tilt-pill');
+            if (!btn) return;
+            els.tiltOptions.querySelectorAll('.tilt-pill').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            currentTilt = parseInt(btn.dataset.val);
+            updatePreview();
         });
 
         els.bdFile.addEventListener('change', (e) => {
