@@ -1,0 +1,55 @@
+.glass-link {
+    position: fixed;
+    left: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    text-decoration: none;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 22px;
+    color: #111;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    z-index: 9999;
+}
+
+.glass-link:hover {
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.glass-link:active {
+    transform: translateY(0) scale(0.97);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.glass-link:focus-visible {
+    outline: 2px solid #007AFF;
+    outline-offset: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .glass-link {
+        background: rgba(30, 30, 30, 0.6);
+        color: #f5f5f7;
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+    .glass-link:hover { background: rgba(40, 40, 40, 0.75); }
+    .glass-link:active { background: rgba(25, 25, 25, 0.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .glass-link { transition: none; }
+}
