@@ -66,7 +66,6 @@
         input[type="radio"] { display: none; }
         input[type="radio"]:checked + label { background: #fff; color: #000; }
 
-        /* Stepper Control */
         .stepper-control {
             display: flex; align-items: center; justify-content: center;
             background: rgba(255,255,255,0.03); border: 1px solid var(--ui-border);
@@ -145,8 +144,8 @@
         }
     </style>
 </head>
-<body>    <div class="app-container">
-        <div class="controls">
+<body>
+    <div class="app-container">        <div class="controls">
             <div class="control-group">
                 <label>Canvas Text</label>
                 <textarea id="textInput" placeholder="Type your main message...">Design is intelligence made visible.</textarea>
@@ -194,8 +193,8 @@
             <div class="control-group">
                 <label>Text Color</label>
                 <div class="color-toggle">
-                    <input type="radio" name="fontColor" id="colorWhite" value="#FFFFFF" checked>                    <label for="colorWhite">White</label>
-                    <input type="radio" name="fontColor" id="colorBlack" value="#000000">
+                    <input type="radio" name="fontColor" id="colorWhite" value="#FFFFFF" checked>
+                    <label for="colorWhite">White</label>                    <input type="radio" name="fontColor" id="colorBlack" value="#000000">
                     <label for="colorBlack">Black</label>
                 </div>
             </div>
@@ -210,31 +209,42 @@
 
             <div class="backdrop-section">
                 <div class="control-group">
-                    <label>Backdrop Layer</label>
+                    <label>Backdrop Content</label>
                     <textarea id="backdropText" placeholder="Optional backdrop text..." style="min-height: 50px;"></textarea>
                     <div class="file-row">
                         <input type="file" id="backdropFile" class="file-input" accept="image/png, image/jpeg, image/webp">
                         <button class="clear-btn" id="clearImgBtn" style="display: none;">✕</button>
                     </div>
-                    
-                    <div class="stepper-control" data-key="repeat" style="margin-bottom: 0.6rem;">
+                </div>
+                
+                <div class="control-group">
+                    <label>Repeat Count</label>
+                    <div class="stepper-control" data-key="repeat">
                         <button class="stepper-btn minus">−</button>
                         <span class="stepper-value">1</span>
                         <button class="stepper-btn plus">+</button>
                     </div>
+                </div>
 
-                    <div class="stepper-control" data-key="opacity" style="margin-bottom: 0.6rem;">
+                <div class="control-group">
+                    <label>Opacity</label>
+                    <div class="stepper-control" data-key="opacity">
                         <button class="stepper-btn minus">−</button>
                         <span class="stepper-value">100%</span>
                         <button class="stepper-btn plus">+</button>
                     </div>
+                </div>
 
-                    <div class="stepper-control" data-key="tilt" style="margin-bottom: 0.6rem;">
+                <div class="control-group">
+                    <label>Tilt</label>
+                    <div class="stepper-control" data-key="tilt">
                         <button class="stepper-btn minus">−</button>
                         <span class="stepper-value">0°</span>
                         <button class="stepper-btn plus">+</button>
                     </div>
-
+                </div>
+                <div class="control-group">
+                    <label>Scale</label>
                     <div class="stepper-control" data-key="scale">
                         <button class="stepper-btn minus">−</button>
                         <span class="stepper-value">1.0x</span>
@@ -243,7 +253,8 @@
                 </div>
             </div>
 
-            <div class="btn-group">                <button class="btn btn-secondary" id="downloadJpgBtn">Save JPEG</button>
+            <div class="btn-group">
+                <button class="btn btn-secondary" id="downloadJpgBtn">Save JPEG</button>
                 <button class="btn btn-primary" id="downloadPngBtn">Save PNG</button>
             </div>
         </div>
@@ -269,7 +280,6 @@
         let styles = { bold: false, italic: false, underline: false };
         let backdropDataURL = null;
 
-        // Centralized state for all steppers
         const controls = {
             textSize: { val: 3, min: 1, max: 6, step: 0.1, fmt: v => v.toFixed(1) + 'rem' },
             repeat:   { val: 1, min: 1, max: 20, step: 1, fmt: v => v.toString() },
@@ -282,8 +292,7 @@
             text: document.getElementById('textInput'),
             headerIn: document.getElementById('headerInput'),
             footerIn: document.getElementById('footerInput'),
-            ratio: document.getElementById('ratioSelect'),
-            fontCategories: document.getElementById('fontCategories'),
+            ratio: document.getElementById('ratioSelect'),            fontCategories: document.getElementById('fontCategories'),
             styleToggles: document.getElementById('styleToggles'),
             fontColors: document.querySelectorAll('input[name="fontColor"]'),
             bg1: document.getElementById('bgColor1'),
@@ -292,7 +301,8 @@
             output: document.getElementById('output-text'),
             headerPrev: document.getElementById('header-preview'),
             footerPrev: document.getElementById('footer-preview'),
-            backdropGrid: document.getElementById('backdrop-grid'),            bdText: document.getElementById('backdropText'),
+            backdropGrid: document.getElementById('backdrop-grid'),
+            bdText: document.getElementById('backdropText'),
             bdFile: document.getElementById('backdropFile'),
             clearBtn: document.getElementById('clearImgBtn'),
             downloadPngBtn: document.getElementById('downloadPngBtn'),
@@ -309,7 +319,6 @@
         function adjustStepper(key, dir) {
             const c = controls[key];
             let next = c.val + (c.step * dir);
-            // Fix floating point drift
             next = parseFloat(next.toFixed(c.step < 1 ? 2 : 0));
             c.val = Math.max(c.min, Math.min(c.max, next));
             updateStepperUI();
@@ -332,8 +341,7 @@
             els.headerPrev.style.color = textColor;
             els.headerPrev.style.fontFamily = fontMap[activeCategory];
             
-            els.footerPrev.textContent = els.footerIn.value.trim();
-            els.footerPrev.style.color = textColor;
+            els.footerPrev.textContent = els.footerIn.value.trim();            els.footerPrev.style.color = textColor;
             els.footerPrev.style.fontFamily = fontMap[activeCategory];
 
             els.preview.className = els.ratio.value;
@@ -341,6 +349,7 @@
 
             renderBackdrop(textColor);
         }
+
         function renderBackdrop(textColor) {
             const c = controls;
             els.backdropGrid.innerHTML = '';
@@ -368,7 +377,6 @@
             }
         }
 
-        // Event Listeners
         [els.text, els.headerIn, els.footerIn, els.ratio, els.bg1, els.bg2].forEach(el => {
             el.addEventListener('input', updatePreview);
         });
@@ -382,21 +390,20 @@
             const btn = e.target.closest('.pill');
             if (!btn) return;
             els.fontCategories.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-            btn.classList.add('active');
-            activeCategory = btn.dataset.cat;
+            btn.classList.add('active');            activeCategory = btn.dataset.cat;
             updatePreview();
         });
 
         els.styleToggles.addEventListener('click', (e) => {
             const btn = e.target.closest('.style-btn');
             if (!btn) return;
-            btn.classList.toggle('active');            if (btn.classList.contains('b')) styles.bold = btn.classList.contains('active');
+            btn.classList.toggle('active');
+            if (btn.classList.contains('b')) styles.bold = btn.classList.contains('active');
             if (btn.classList.contains('i')) styles.italic = btn.classList.contains('active');
             if (btn.classList.contains('u')) styles.underline = btn.classList.contains('active');
             updatePreview();
         });
 
-        // Stepper Event Delegation
         document.querySelectorAll('.stepper-control').forEach(el => {
             const key = el.dataset.key;
             el.querySelector('.minus').addEventListener('click', () => adjustStepper(key, -1));
@@ -423,7 +430,6 @@
             updatePreview();
         });
 
-        // PNG Export
         els.downloadPngBtn.addEventListener('click', async () => {
             els.downloadPngBtn.textContent = 'Rendering...';
             els.downloadPngBtn.disabled = true;
@@ -433,13 +439,12 @@
                 const link = document.createElement('a');
                 link.download = `canvas-${Date.now()}.png`;
                 link.href = canvas.toDataURL('image/png', 0.95);
-                link.click();
-            } catch (e) { alert('Export failed: ' + e.message); }
+                link.click();            } catch (e) { alert('Export failed: ' + e.message); }
             els.downloadPngBtn.textContent = 'Save PNG';
             els.downloadPngBtn.disabled = false;
         });
 
-        // JPEG Export        els.downloadJpgBtn.addEventListener('click', async () => {
+        els.downloadJpgBtn.addEventListener('click', async () => {
             els.downloadJpgBtn.textContent = 'Rendering...';
             els.downloadJpgBtn.disabled = true;
             try {
@@ -454,7 +459,6 @@
             els.downloadJpgBtn.disabled = false;
         });
 
-        // Boot
         updateStepperUI();
         updatePreview();
     </script>
