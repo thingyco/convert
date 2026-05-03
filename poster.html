@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Text Canvas Generator</title>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Pacifico&display=swap" rel="stylesheet">
@@ -14,28 +14,26 @@
             --accent: #3A86FF;
         }
 
-        * { box-sizing: border-box; outline: none; }
+        * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
         body {
             margin: 0; padding: 0;
             background: #080808;
             color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             display: flex; justify-content: center; align-items: flex-start;
-            min-height: 100vh; padding: 1.5rem;
+            min-height: 100vh; padding: clamp(0.75rem, 4vw, 1.5rem);
+            overflow-x: hidden;
         }
 
         .app-container {
             width: 100%; max-width: 1150px;
             background: var(--ui-bg); backdrop-filter: blur(24px);
             border: 1px solid var(--ui-border); border-radius: 24px;
-            padding: 2rem; display: grid; grid-template-columns: 340px 1fr;
-            gap: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+            padding: clamp(1rem, 4vw, 2rem); display: grid; grid-template-columns: 340px 1fr;
+            gap: clamp(1rem, 4vw, 2rem); box-shadow: 0 20px 60px rgba(0,0,0,0.7);
         }
 
-        .controls { display: flex; flex-direction: column; gap: 1.1rem; max-height: 90vh; overflow-y: auto; padding-right: 4px; }
-        .controls::-webkit-scrollbar { width: 6px; }
-        .controls::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
-        
+        .controls { display: flex; flex-direction: column; gap: 1rem; }
         .control-group { display: flex; flex-direction: column; gap: 0.5rem; }
         .control-group > label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; color: #777; margin-bottom: 0.2rem; }
 
@@ -43,54 +41,66 @@
             width: 100%; background: rgba(255,255,255,0.03);
             border: 1px solid var(--ui-border); border-radius: 10px;
             color: #fff; padding: 0.75rem; font-size: 0.9rem;
-            transition: 0.2s;
+            transition: 0.2s; -webkit-appearance: none;
         }
         textarea { resize: vertical; min-height: 60px; font-family: inherit; }
         
-        input[type="color"] { height: 40px; padding: 4px; cursor: pointer; }
+        input[type="color"] { height: 44px; padding: 4px; cursor: pointer; }
         input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
-        input[type="color"]::-webkit-color-swatch { border: none; border-radius: 6px; }
-        input[type="color"]::-moz-color-swatch { border: none; border-radius: 6px; }
+        input[type="color"]::-webkit-color-swatch { border: none; border-radius: 6px; }        input[type="color"]::-moz-color-swatch { border: none; border-radius: 6px; }
 
         .color-pick-row { display: flex; gap: 0.8rem; }
         .color-pick-row .wrap { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; }
         .color-pick-row span { font-size: 0.75rem; color: #888; text-align: center; }
 
         .cat-btns, .style-btns, .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .pill { background: rgba(255,255,255,0.04); border: 1px solid var(--ui-border); color: #aaa; padding: 0.4rem 0.9rem; border-radius: 20px; cursor: pointer; font-size: 0.75rem; transition: 0.2s; user-select: none; }
+        .pill { background: rgba(255,255,255,0.04); border: 1px solid var(--ui-border); color: #aaa; padding: 0.5rem 0.9rem; border-radius: 20px; cursor: pointer; font-size: 0.8rem; transition: 0.2s; user-select: none; min-height: 36px; display: inline-flex; align-items: center; }
         .pill.active { background: #fff; color: #000; border-color: #fff; }
         
-        .style-btn { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); border: 1px solid var(--ui-border); border-radius: 8px; cursor: pointer; color: #aaa; font-size: 0.85rem; transition: 0.2s; }
+        .style-btn { width: 40px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); border: 1px solid var(--ui-border); border-radius: 8px; cursor: pointer; color: #aaa; font-size: 0.9rem; transition: 0.2s; }
         .style-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
         .style-btn.u { text-decoration: underline; }
 
         .color-toggle { display: flex; background: rgba(255,255,255,0.04); border-radius: 10px; padding: 3px; width: fit-content; }
-        .color-toggle label { flex: 1; padding: 0.5rem 1.2rem; cursor: pointer; border-radius: 8px; margin: 0; font-size: 0.85rem; font-weight: 500; color: #777; text-align: center; transition: 0.2s; }
+        .color-toggle label { flex: 1; padding: 0.5rem 1.2rem; cursor: pointer; border-radius: 8px; margin: 0; font-size: 0.85rem; font-weight: 500; color: #777; text-align: center; transition: 0.2s; min-height: 36px; display: inline-flex; align-items: center; justify-content: center; }
         input[type="radio"] { display: none; }
         input[type="radio"]:checked + label { background: #fff; color: #000; }
 
-        .slider-control { display: flex; flex-direction: column; gap: 0.3rem; }
-        .slider-control .label-row { display: flex; justify-content: space-between; font-size: 0.8rem; color: #999; }
-        input[type="range"] { width: 100%; accent-color: var(--accent); height: 4px; border-radius: 2px; cursor: pointer; }
+        /* Stepper Control */
+        .stepper-control {
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--ui-border);
+            border-radius: 10px; overflow: hidden; height: 44px; user-select: none;
+        }
+        .stepper-btn {
+            width: 48px; height: 100%; background: transparent; border: none;
+            color: #aaa; font-size: 1.4rem; font-weight: 300; cursor: pointer; transition: 0.15s;
+            display: flex; align-items: center; justify-content: center;
+            -webkit-touch-callout: none; touch-action: manipulation;
+        }
+        .stepper-btn:active { background: rgba(255,255,255,0.15); color: #fff; }
+        .stepper-value {
+            flex: 1; text-align: center; color: #fff; font-size: 0.9rem; font-weight: 500;
+            pointer-events: none; letter-spacing: 0.5px;
+        }
 
         .backdrop-section { border-top: 1px solid var(--ui-border); padding-top: 1rem; margin-top: 0.5rem; }
         .file-row { display: flex; gap: 0.5rem; }
-        .file-input { flex: 1; padding: 0.6rem; font-size: 0.8rem; color: #888; background: rgba(255,255,255,0.02); border: 1px dashed var(--ui-border); border-radius: 8px; cursor: pointer; }
-        .clear-btn { background: rgba(255,70,70,0.15); color: #ff6b6b; border: 1px solid rgba(255,70,70,0.3); padding: 0 0.8rem; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: 600; }
+        .file-input { flex: 1; padding: 0.6rem; font-size: 0.8rem; color: #888; background: rgba(255,255,255,0.02); border: 1px dashed var(--ui-border); border-radius: 8px; cursor: pointer; min-height: 44px; }
+        .clear-btn { background: rgba(255,70,70,0.15); color: #ff6b6b; border: 1px solid rgba(255,70,70,0.3); padding: 0 0.8rem; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: 600; min-height: 44px; }
         .clear-btn:hover { background: rgba(255,70,70,0.25); }
 
         .btn-group { margin-top: auto; gap: 0.8rem; }
-        .btn { flex: 1; padding: 0.85rem; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+        .btn { flex: 1; padding: 0.85rem; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: 0.2s; min-height: 48px; }
         .btn-primary { background: var(--accent); color: #fff; }
         .btn-primary:hover { background: #2563EB; }
         .btn-secondary { background: rgba(255,255,255,0.08); color: #ddd; border: 1px solid var(--ui-border); }
         .btn-secondary:hover { background: rgba(255,255,255,0.15); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
         .preview-area {
             display: flex; justify-content: center; align-items: center;
             background: repeating-conic-gradient(#111 0% 25%, #1a1a1a 0% 50%) 50% / 16px 16px;
-            border-radius: 16px; padding: 1.5rem; min-height: 450px;
+            border-radius: 16px; padding: 1rem; min-height: 350px;
         }
 
         #canvas-preview {
@@ -105,74 +115,67 @@
             text-align: center; z-index: 4; pointer-events: none;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-        #header-preview { top: 1.5rem; font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; }
-        #footer-preview { bottom: 1.5rem; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
+        #header-preview { top: 1.5rem; font-size: 0.95rem; letter-spacing: 2px; }
+        #footer-preview { bottom: 1.5rem; font-size: 0.8rem; letter-spacing: 1px; }
         
         #backdrop-grid {
             position: absolute; inset: 0; display: flex; flex-wrap: wrap;
             justify-content: center; align-items: center; gap: 1.5rem; padding: 10%;
             pointer-events: none; z-index: 1; overflow: hidden;
         }
-      .backdrop-item {
-    display: flex; justify-content: center; align-items: center;
-    background-size: contain; background-repeat: no-repeat; background-position: center;
-    white-space: nowrap; line-height: 1; color: inherit;
-    transition: transform 0.3s, opacity 0.3s;
-}
+        .backdrop-item {
+            display: flex; justify-content: center; align-items: center;
+            background-size: contain; background-repeat: no-repeat; background-position: center;
+            white-space: nowrap; line-height: 1; color: inherit;
+            transition: transform 0.3s, opacity 0.3s;
+        }
 
         #output-text { position: relative; z-index: 3; word-break: break-word; max-width: 95%; max-height: 95%; line-height: 1.25; }
 
-        .ratio-9-16 { aspect-ratio: 9/16; width: 300px; }
-        .ratio-16-9 { aspect-ratio: 16/9; width: 520px; }
-        .ratio-1-1 { aspect-ratio: 1/1; width: 380px; }
-        .ratio-a4 { aspect-ratio: 210/297; width: 340px; }
+        .ratio-9-16 { aspect-ratio: 9/16; width: 100%; max-width: 320px; }
+        .ratio-16-9 { aspect-ratio: 16/9; width: 100%; max-width: 100%; }
+        .ratio-1-1 { aspect-ratio: 1/1; width: 100%; max-width: 380px; }
+        .ratio-a4 { aspect-ratio: 210/297; width: 100%; max-width: 340px; }
 
-        @media print {
-            @page { size: auto; margin: 0; }
-            body { background: none !important; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .app-container { background: none; border: none; padding: 0; box-shadow: none; grid-template-columns: 1fr; }
-            .controls, .preview-area { display: none !important; }
-            #canvas-preview { display: flex !important; position: fixed; inset: 0; width: 100vw; height: 100vh; border-radius: 0; box-shadow: none; }
+        @media (max-width: 850px) {
+            .app-container { grid-template-columns: 1fr; padding: 1rem; gap: 1.5rem; }
+            .controls { order: 2; max-height: none; overflow: visible; }
+            .preview-area { order: 1; min-height: 280px; padding: 0.75rem; }
+            .btn-group { flex-direction: column; }
         }
-
-        @media (max-width: 900px) { .app-container { grid-template-columns: 1fr; } }
-		.disclaimer2 { color: rgba(255, 255, 255, 0.85); font-size: 0.7rem; text-decoration: none;}
     </style>
 </head>
-<body>
-    <div class="app-container">
+<body>    <div class="app-container">
         <div class="controls">
-		<div class="control-group">
-                <label>Aspect Ratio</label>
-                <select id="ratioSelect">
-				<option value="ratio-a4">A4 (Print/PDF)</option>
-                    <option value="ratio-9-16">9:16 (Stories/Reels)</option>
-                    <option value="ratio-16-9">16:9 (YouTube/Presentation)</option>
-                    <option value="ratio-1-1">1:1 (Post/Profile)</option>
-                    
-                </select>
-            </div>
-		
             <div class="control-group">
                 <label>Canvas Text</label>
-                <textarea id="textInput" placeholder="Type your main message..."></textarea>
+                <textarea id="textInput" placeholder="Type your main message...">Design is intelligence made visible.</textarea>
             </div>
 
             <div class="control-group">
                 <label>Text Size</label>
-                <div class="slider-control">
-                    <div class="label-row"><span>Small</span><span id="sizeVal">3rem</span><span>Large</span></div>
-                    <input type="range" id="textSize" min="1" max="6" step="0.1" value="3">
+                <div class="stepper-control" data-key="textSize">
+                    <button class="stepper-btn minus">−</button>
+                    <span class="stepper-value">3.0rem</span>
+                    <button class="stepper-btn plus">+</button>
                 </div>
             </div>
 
             <div class="control-group">
                 <label>Header & Footer</label>
-                <textarea id="headerInput" placeholder="Optional header (e.g., CHAPTER ONE)" style="min-height: 40px;"></textarea>
+                <textarea id="headerInput" placeholder="Optional header (e.g., Chapter One)" style="min-height: 40px;"></textarea>
                 <textarea id="footerInput" placeholder="Optional footer (e.g., © 2026 Studio)" style="min-height: 40px;"></textarea>
             </div>
 
-            
+            <div class="control-group">
+                <label>Aspect Ratio</label>
+                <select id="ratioSelect">
+                    <option value="ratio-9-16">9:16 (Stories/Reels)</option>
+                    <option value="ratio-16-9">16:9 (YouTube/Presentation)</option>
+                    <option value="ratio-1-1">1:1 (Post/Profile)</option>
+                    <option value="ratio-a4">A4 (Print/PDF)</option>
+                </select>
+            </div>
 
             <div class="control-group">
                 <label>Font Style</label>
@@ -191,8 +194,7 @@
             <div class="control-group">
                 <label>Text Color</label>
                 <div class="color-toggle">
-                    <input type="radio" name="fontColor" id="colorWhite" value="#FFFFFF" checked>
-                    <label for="colorWhite">White</label>
+                    <input type="radio" name="fontColor" id="colorWhite" value="#FFFFFF" checked>                    <label for="colorWhite">White</label>
                     <input type="radio" name="fontColor" id="colorBlack" value="#000000">
                     <label for="colorBlack">Black</label>
                 </div>
@@ -214,28 +216,35 @@
                         <input type="file" id="backdropFile" class="file-input" accept="image/png, image/jpeg, image/webp">
                         <button class="clear-btn" id="clearImgBtn" style="display: none;">✕</button>
                     </div>
-                    <div class="slider-control">
-                        <div class="label-row"><span>Repeat Count</span><span id="repeatVal">1</span></div>
-                        <input type="range" id="repeatCount" min="1" max="20" step="1" value="1">
+                    
+                    <div class="stepper-control" data-key="repeat" style="margin-bottom: 0.6rem;">
+                        <button class="stepper-btn minus">−</button>
+                        <span class="stepper-value">1</span>
+                        <button class="stepper-btn plus">+</button>
                     </div>
-                    <div class="slider-control">
-                        <div class="label-row"><span>Opacity</span><span id="opVal">100%</span></div>
-                        <input type="range" id="opacity" min="0" max="1" step="0.01" value="1">
+
+                    <div class="stepper-control" data-key="opacity" style="margin-bottom: 0.6rem;">
+                        <button class="stepper-btn minus">−</button>
+                        <span class="stepper-value">100%</span>
+                        <button class="stepper-btn plus">+</button>
                     </div>
-                    <div class="slider-control">
-                        <div class="label-row"><span>Tilt</span><span id="tiltVal">0°</span></div>
-                        <input type="range" id="tilt" min="-180" max="180" step="1" value="0">
+
+                    <div class="stepper-control" data-key="tilt" style="margin-bottom: 0.6rem;">
+                        <button class="stepper-btn minus">−</button>
+                        <span class="stepper-value">0°</span>
+                        <button class="stepper-btn plus">+</button>
                     </div>
-                    <div class="slider-control">
-                        <div class="label-row"><span>Scale</span><span id="scaleVal">1.0x</span></div>
-                        <input type="range" id="scale" min="0.2" max="4" step="0.1" value="1">
+
+                    <div class="stepper-control" data-key="scale">
+                        <button class="stepper-btn minus">−</button>
+                        <span class="stepper-value">1.0x</span>
+                        <button class="stepper-btn plus">+</button>
                     </div>
                 </div>
             </div>
 
-            <div class="btn-group">
-                <button class="btn btn-secondary" id="printBtn">🖨️ Print</button>
-                <button class="btn btn-primary" id="downloadBtn">Export PNG</button>
+            <div class="btn-group">                <button class="btn btn-secondary" id="downloadJpgBtn">Save JPEG</button>
+                <button class="btn btn-primary" id="downloadPngBtn">Save PNG</button>
             </div>
         </div>
 
@@ -246,7 +255,7 @@
                 <div id="output-text">Design is intelligence made visible.</div>
                 <div id="footer-preview"></div>
             </div>
-        </div><a href=https://tinyurl.com/optco class=disclaimer2 title="Home">©2026 Optco Poster Design v1</a>
+        </div>
     </div>
 
     <script>
@@ -260,10 +269,17 @@
         let styles = { bold: false, italic: false, underline: false };
         let backdropDataURL = null;
 
+        // Centralized state for all steppers
+        const controls = {
+            textSize: { val: 3, min: 1, max: 6, step: 0.1, fmt: v => v.toFixed(1) + 'rem' },
+            repeat:   { val: 1, min: 1, max: 20, step: 1, fmt: v => v.toString() },
+            opacity:  { val: 1, min: 0, max: 1, step: 0.01, fmt: v => Math.round(v * 100) + '%' },
+            tilt:     { val: 0, min: -180, max: 180, step: 1, fmt: v => v + '°' },
+            scale:    { val: 1, min: 0.2, max: 4, step: 0.1, fmt: v => v.toFixed(1) + 'x' }
+        };
+
         const els = {
             text: document.getElementById('textInput'),
-            textSize: document.getElementById('textSize'),
-            sizeVal: document.getElementById('sizeVal'),
             headerIn: document.getElementById('headerInput'),
             footerIn: document.getElementById('footerInput'),
             ratio: document.getElementById('ratioSelect'),
@@ -276,37 +292,42 @@
             output: document.getElementById('output-text'),
             headerPrev: document.getElementById('header-preview'),
             footerPrev: document.getElementById('footer-preview'),
-            backdropGrid: document.getElementById('backdrop-grid'),
-            bdText: document.getElementById('backdropText'),
+            backdropGrid: document.getElementById('backdrop-grid'),            bdText: document.getElementById('backdropText'),
             bdFile: document.getElementById('backdropFile'),
             clearBtn: document.getElementById('clearImgBtn'),
-            repeat: document.getElementById('repeatCount'),
-            repeatVal: document.getElementById('repeatVal'),
-            opacity: document.getElementById('opacity'),
-            opVal: document.getElementById('opVal'),
-            tilt: document.getElementById('tilt'),
-            tiltVal: document.getElementById('tiltVal'),
-            scale: document.getElementById('scale'),
-            scaleVal: document.getElementById('scaleVal'),
-            downloadBtn: document.getElementById('downloadBtn'),
-            printBtn: document.getElementById('printBtn')
+            downloadPngBtn: document.getElementById('downloadPngBtn'),
+            downloadJpgBtn: document.getElementById('downloadJpgBtn')
         };
 
+        function updateStepperUI() {
+            document.querySelectorAll('.stepper-control').forEach(el => {
+                const key = el.dataset.key;
+                el.querySelector('.stepper-value').textContent = controls[key].fmt(controls[key].val);
+            });
+        }
+
+        function adjustStepper(key, dir) {
+            const c = controls[key];
+            let next = c.val + (c.step * dir);
+            // Fix floating point drift
+            next = parseFloat(next.toFixed(c.step < 1 ? 2 : 0));
+            c.val = Math.max(c.min, Math.min(c.max, next));
+            updateStepperUI();
+            updatePreview();
+        }
+
         function updatePreview() {
-            // Color Switching Fix: Read directly from DOM to prevent state desync
+            const c = controls;
             const textColor = document.querySelector('input[name="fontColor"]:checked')?.value || '#FFFFFF';
             
-            // Main text
-            els.output.textContent = els.text.value || '← Type something';
-            els.output.style.fontSize = els.textSize.value + 'rem';
-            els.sizeVal.textContent = els.textSize.value + 'rem';
+            els.output.textContent = els.text.value || 'Type something...';
+            els.output.style.fontSize = c.textSize.val + 'rem';
             els.output.style.fontFamily = fontMap[activeCategory];
             els.output.style.fontWeight = styles.bold ? '700' : '400';
             els.output.style.fontStyle = styles.italic ? 'italic' : 'normal';
             els.output.style.textDecoration = styles.underline ? 'underline' : 'none';
             els.output.style.color = textColor;
 
-            // Header/Footer
             els.headerPrev.textContent = els.headerIn.value.trim();
             els.headerPrev.style.color = textColor;
             els.headerPrev.style.fontFamily = fontMap[activeCategory];
@@ -315,26 +336,18 @@
             els.footerPrev.style.color = textColor;
             els.footerPrev.style.fontFamily = fontMap[activeCategory];
 
-            // Canvas
             els.preview.className = els.ratio.value;
             els.preview.style.background = `linear-gradient(135deg, ${els.bg1.value}, ${els.bg2.value})`;
 
-            // Backdrop
-            els.repeatVal.textContent = els.repeat.value;
-            els.opVal.textContent = `${Math.round(els.opacity.value * 100)}%`;
-            els.tiltVal.textContent = `${els.tilt.value}°`;
-            els.scaleVal.textContent = `${els.scale.value}x`;
             renderBackdrop(textColor);
         }
-
         function renderBackdrop(textColor) {
-            const count = parseInt(els.repeat.value);
-            const hasContent = backdropDataURL || els.bdText.value.trim();
+            const c = controls;
             els.backdropGrid.innerHTML = '';
-            
+            const hasContent = backdropDataURL || els.bdText.value.trim();
             if (!hasContent) return;
 
-            for (let i = 0; i < count; i++) {
+            for (let i = 0; i < c.repeat.val; i++) {
                 const item = document.createElement('div');
                 item.className = 'backdrop-item';
                 
@@ -349,51 +362,50 @@
                     item.style.fontFamily = fontMap[activeCategory];
                 }
 
-                item.style.opacity = els.opacity.value;
-                item.style.transform = `rotate(${els.tilt.value}deg) scale(${els.scale.value})`;
+                item.style.opacity = c.opacity.val;
+                item.style.transform = `rotate(${c.tilt.val}deg) scale(${c.scale.val})`;
                 els.backdropGrid.appendChild(item);
             }
         }
 
         // Event Listeners
-        [els.text, els.textSize, els.headerIn, els.footerIn, els.ratio, els.bg1, els.bg2, els.repeat, els.opacity, els.tilt, els.scale].forEach(el => {
+        [els.text, els.headerIn, els.footerIn, els.ratio, els.bg1, els.bg2].forEach(el => {
             el.addEventListener('input', updatePreview);
         });
 
-        // Fix for color switch: attach to both change and input for maximum compatibility
         els.fontColors.forEach(r => {
             r.addEventListener('change', updatePreview);
             r.addEventListener('input', updatePreview);
         });
 
-        // Font Category Switching
         els.fontCategories.addEventListener('click', (e) => {
             const btn = e.target.closest('.pill');
             if (!btn) return;
-            
             els.fontCategories.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
             btn.classList.add('active');
             activeCategory = btn.dataset.cat;
             updatePreview();
         });
 
-        // Style Toggles
         els.styleToggles.addEventListener('click', (e) => {
             const btn = e.target.closest('.style-btn');
             if (!btn) return;
-            
-            btn.classList.toggle('active');
-            if (btn.classList.contains('b')) styles.bold = btn.classList.contains('active');
+            btn.classList.toggle('active');            if (btn.classList.contains('b')) styles.bold = btn.classList.contains('active');
             if (btn.classList.contains('i')) styles.italic = btn.classList.contains('active');
             if (btn.classList.contains('u')) styles.underline = btn.classList.contains('active');
             updatePreview();
         });
 
-        // Image handling
+        // Stepper Event Delegation
+        document.querySelectorAll('.stepper-control').forEach(el => {
+            const key = el.dataset.key;
+            el.querySelector('.minus').addEventListener('click', () => adjustStepper(key, -1));
+            el.querySelector('.plus').addEventListener('click', () => adjustStepper(key, 1));
+        });
+
         els.bdFile.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
-            
             const reader = new FileReader();
             reader.onload = (ev) => {
                 backdropDataURL = ev.target.result;
@@ -411,29 +423,40 @@
             updatePreview();
         });
 
-        // Export & Print
-        els.downloadBtn.addEventListener('click', async () => {
-            els.downloadBtn.textContent = 'Rendering...';
-            els.downloadBtn.disabled = true;
+        // PNG Export
+        els.downloadPngBtn.addEventListener('click', async () => {
+            els.downloadPngBtn.textContent = 'Rendering...';
+            els.downloadPngBtn.disabled = true;
             try {
                 await document.fonts.ready;
-                const canvas = await html2canvas(els.preview, { 
-                    scale: 3, useCORS: true, backgroundColor: null, logging: false, allowTaint: true 
-                });
+                const canvas = await html2canvas(els.preview, { scale: 3, useCORS: true, backgroundColor: null, logging: false, allowTaint: true });
                 const link = document.createElement('a');
                 link.download = `canvas-${Date.now()}.png`;
                 link.href = canvas.toDataURL('image/png', 0.95);
                 link.click();
             } catch (e) { alert('Export failed: ' + e.message); }
-            els.downloadBtn.textContent = 'Export PNG';
-            els.downloadBtn.disabled = false;
+            els.downloadPngBtn.textContent = 'Save PNG';
+            els.downloadPngBtn.disabled = false;
         });
 
-        els.printBtn.addEventListener('click', () => window.print());
+        // JPEG Export        els.downloadJpgBtn.addEventListener('click', async () => {
+            els.downloadJpgBtn.textContent = 'Rendering...';
+            els.downloadJpgBtn.disabled = true;
+            try {
+                await document.fonts.ready;
+                const canvas = await html2canvas(els.preview, { scale: 3, useCORS: true, backgroundColor: '#000000', logging: false, allowTaint: true });
+                const link = document.createElement('a');
+                link.download = `canvas-${Date.now()}.jpg`;
+                link.href = canvas.toDataURL('image/jpeg', 0.92);
+                link.click();
+            } catch (e) { alert('Export failed: ' + e.message); }
+            els.downloadJpgBtn.textContent = 'Save JPEG';
+            els.downloadJpgBtn.disabled = false;
+        });
 
         // Boot
+        updateStepperUI();
         updatePreview();
     </script>
-	
 </body>
 </html>
