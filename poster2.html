@@ -8,20 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Liquid Glass Vars */
             --glass-panel: rgba(255, 255, 255, 0.75);
             --glass-border: rgba(255, 255, 255, 0.6);
             --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
             --text-main: #1d1d1f;
             --text-sub: #6e6e73;
-            --accent: #007AFF; /* iOS Blue */
+            --accent: #007AFF;
         }
 
         * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
         
         body {
             margin: 0; padding: 0;
-            /* Soft, bright iOS-style gradient background */
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, sans-serif;
@@ -32,7 +30,6 @@
 
         .app-container {
             width: 100%; max-width: 1100px;
-            /* Frosted Glass Effect */
             background: var(--glass-panel); 
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); 
@@ -41,6 +38,7 @@
             display: grid; grid-template-columns: 340px 1fr;
             gap: clamp(1.5rem, 4vw, 2.5rem); 
             box-shadow: var(--glass-shadow);
+            align-items: start; /* Critical for sticky to work correctly */
         }
 
         .controls { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -50,7 +48,6 @@
             letter-spacing: 1px; color: var(--text-sub); margin: 0; 
         }
 
-        /* Inputs: White glass */
         textarea, select, input[type="color"], .stepper-control {
             width: 100%; background: rgba(255, 255, 255, 0.5);
             border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 12px;
@@ -60,7 +57,7 @@
         textarea { resize: vertical; min-height: 60px; }
         textarea::placeholder, input::placeholder { color: #aaa; }
         
-        select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236e6e73' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+        select { cursor: pointer; background-image: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236e6e73' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
         
         input[type="color"] { height: 48px; padding: 6px; cursor: pointer; }
         input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
@@ -72,7 +69,6 @@
 
         .cat-btns, .style-btns, .btn-group { display: flex; gap: 0.6rem; flex-wrap: wrap; }
         
-        /* Pills: Clean White */
         .pill { 
             background: #fff; border: 1px solid rgba(0,0,0,0.08); color: #555; 
             padding: 0.6rem 1.1rem; border-radius: 24px; cursor: pointer; 
@@ -124,9 +120,13 @@
         .btn-primary { background: var(--text-main); color: #fff; }
         .btn-secondary { background: rgba(255,255,255,0.8); color: var(--text-main); border: 1px solid rgba(0,0,0,0.1); }
 
+        /* STICKY PREVIEW */
         .preview-area {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 1.5rem;
+            align-self: start;
             display: flex; justify-content: center; align-items: center;
-            /* Checkerboard pattern for transparency context */
             background: repeating-conic-gradient(#e5e5e5 0% 25%, #f5f5f5 0% 50%) 50% / 20px 20px;
             border-radius: 20px; padding: 1rem; min-height: 400px;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
@@ -168,7 +168,10 @@
         @media (max-width: 850px) {
             .app-container { grid-template-columns: 1fr; padding: 1.2rem; gap: 2rem; }
             .controls { order: 2; max-height: none; overflow: visible; }
-            .preview-area { order: 1; min-height: 280px; padding: 1rem; }
+            .preview-area { 
+                order: 1; min-height: 280px; padding: 1rem; 
+                position: static; align-self: auto; top: auto; /* Disable sticky on mobile */
+            }
             .btn-group { flex-direction: column; }
         }
     </style>
