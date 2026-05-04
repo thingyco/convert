@@ -180,12 +180,12 @@
 
         <div class="control-group">
             <label>Actions</label>
-            <div>
+            <div><button class="btn btn-primary" onclick="addRow()">➕ Add Row</button>
                 <input type="file" id="logoUpload" accept="image/*" style="display: none;">
                 <button class="btn btn-primary" onclick="document.getElementById('logoUpload').click()">📷 Add Logo</button>
-                <button class="btn btn-primary" onclick="addRow()">➕ Add Row</button>
-                <button class="btn btn-success" onclick="exportPDF()">📄 PDF</button>
-                <button class="btn btn-primary" onclick="window.print()"> Print</button>
+                
+                <button class="btn btn-success" onclick="exportPDF()">📄 Save PDF</button>
+                <button class="btn btn-primary" onclick="window.print()">🖨️ Print</button>
             </div>
         </div><a href="https://optco.github.io/convert/" class="glass-link">🏡 Home</a>
     </div>
