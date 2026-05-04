@@ -4,14 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Invoice Generator</title>
+    <!-- html2pdf library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
- <link rel="stylesheet" href="footer.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,6 +16,7 @@
             font-size: 11px;
         }
 
+        /* --- Controls Area --- */
         .controls {
             max-width: 850px;
             margin: 0 auto 20px;
@@ -28,403 +25,172 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
-        .controls h2 {
-            margin-bottom: 15px;
-            color: #333;
-            font-size: 16px;
+        .controls h2 { margin-bottom: 15px; color: #333; font-size: 16px; }
+        .control-group { display: inline-block; margin: 5px 10px 5px 0; vertical-align: top; }
+        .control-group label { display: block; font-size: 10px; margin-bottom: 3px; color: #666; }
+        
+        /* Color Picker Styling */
+        input[type="color"] {
+            -webkit-appearance: none;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            width: 40px;
+            height: 30px;
+            cursor: pointer;
+            padding: 2px;
         }
-
-        .control-group {
-            display: inline-block;
-            margin: 5px 10px 5px 0;
-        }
-
-        .control-group label {
-            display: block;
-            font-size: 10px;
-            margin-bottom: 3px;
-            color: #666;
-        }
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch { border: none; }
 
         .btn {
-            padding: 6px 12px;
-            margin: 2px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 11px;
-            transition: all 0.3s;
+            padding: 6px 12px; margin: 2px; border: none; border-radius: 4px;
+            cursor: pointer; font-size: 11px; transition: all 0.3s; vertical-align: top;
         }
+        .btn-primary { background: #2c5282; color: white; }
+        .btn-primary:hover { background: #1a365d; }
+        .btn-success { background: #38a169; color: white; }
+        .btn-success:hover { background: #2f855a; }
 
-        .btn-primary {
-            background: #2c5282;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1a365d;
-        }
-
-        .btn-success {
-            background: #38a169;
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #2f855a;
-        }
-
-        select, input[type="text"], input[type="number"] {
-            padding: 4px 8px;
-            border: 1px solid #cbd5e0;
-            border-radius: 4px;
-            font-size: 11px;
-        }
-
-        /* Page sizes */
-        .page-a4 {
-            width: 210mm;
-            min-height: 297mm;
-            padding: 12mm;
-        }
-
-        .page-letter {
-            width: 8.5in;
-            min-height: 11in;
-            padding: 0.6in;
-        }
+        /* --- Invoice Page Styles --- */
+        .page-a4 { width: 210mm; min-height: 297mm; padding: 12mm; }
+        .page-letter { width: 8.5in; min-height: 11in; padding: 0.6in; }
 
         .invoice-container {
-            max-width: 850px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            font-size: 10px;
-            line-height: 1.4;
+            max-width: 850px; margin: 0 auto; background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1); font-size: 10px; line-height: 1.4;
         }
 
-        .invoice-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .company-info {
-            flex: 1;
-            max-width: 50%;
-        }
-
-        .company-info h1 {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        .logo-container {
-            margin-bottom: 10px;
-        }
-
-        #logoPreview {
-            max-width: 150px;
-            max-height: 60px;
-            object-fit: contain;
-            display: none;
-        }
-
-        .invoice-title {
-            text-align: right;
-        }
-
-        .invoice-title h2 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        .invoice-details {
-            text-align: right;
-            font-size: 9px;
-        }
-
-        .detail-row {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin: 3px 0;
-        }
-
-        .detail-row label {
-            width: 100px;
-            text-align: right;
-            margin-right: 8px;
-            font-weight: 600;
-            color: #4a5568;
-        }
-
-        .detail-row input {
-            padding: 3px 6px;
-            border: 1px solid #e2e8f0;
-            border-radius: 3px;
-            width: 100px;
-            font-size: 9px;
-        }
+        .invoice-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .company-info { flex: 1; max-width: 50%; }
+        .company-info h1 { font-size: 20px; margin-bottom: 8px; }
+        .logo-container { margin-bottom: 10px; }
+        #logoPreview { max-width: 150px; max-height: 60px; object-fit: contain; display: none; }
+        .invoice-title { text-align: right; }
+        .invoice-title h2 { font-size: 28px; margin-bottom: 10px; }
+        .invoice-details { text-align: right; font-size: 9px; }
+        .detail-row { display: flex; justify-content: flex-end; align-items: center; margin: 3px 0; }
+        .detail-row label { width: 100px; text-align: right; margin-right: 8px; font-weight: 600; color: #4a5568; }
+        .detail-row input { padding: 3px 6px; border: 1px solid #e2e8f0; border-radius: 3px; width: 100px; font-size: 9px; }
 
         .section-title {
-            padding: 5px 10px;
-            margin: 15px 0 8px;
-            font-weight: 600;
-            font-size: 10px;
-            color: #ffffff !important; /* Force white text */
+            padding: 5px 10px; margin: 15px 0 8px; font-weight: 600;
+            font-size: 10px; color: #ffffff !important;
         }
 
-        .bill-to, .other-comments {
-            margin-bottom: 15px;
-            font-size: 9px;
-        }
+        .bill-to, .other-comments { margin-bottom: 15px; font-size: 9px; }
+        .editable { padding: 3px; border: 1px solid transparent; min-height: 15px; }
+        .editable:hover { border: 1px solid #cbd5e0; background: #f7fafc; }
+        .editable:focus { outline: none; border: 1px solid #4299e1; background: white; }
 
-        .editable {
-            padding: 3px;
-            border: 1px solid transparent;
-            min-height: 15px;
-        }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 10px; }
+        th { padding: 6px 8px; text-align: left; font-weight: 600; font-size: 10px; color: #ffffff !important; }
+        td { padding: 5px 8px; border-bottom: 1px solid #e2e8f0; }
+        tr:nth-child(even) { background: #f7fafc; }
 
-        .editable:hover {
-            border: 1px solid #cbd5e0;
-            background: #f7fafc;
-        }
-
-        .editable:focus {
-            outline: none;
-            border: 1px solid #4299e1;
-            background: white;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-            font-size: 10px;
-        }
-
-        th {
-            padding: 6px 8px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 10px;
-            color: #ffffff !important; /* Force white text */
-        }
-
-        td {
-            padding: 5px 8px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        tr:nth-child(even) {
-            background: #f7fafc;
-        }
-
-        .qty-col { width: 70px; text-align: center; }
-        .cost-col { width: 90px; text-align: right; }
-        .amount-col { width: 90px; text-align: right; }
-        .taxed-col { width: 60px; text-align: center; }
-        .action-col { width: 30px; }
+        .qty-col { width: 15%; text-align: center; }
+        .cost-col { width: 15%; text-align: right; }
+        .amount-col { width: 15%; text-align: right; }
+        .action-col { width: 10%; }
 
         .description-input, .qty-input, .cost-input, .amount-input {
-            width: 100%;
-            border: 1px solid transparent;
-            padding: 3px;
-            background: transparent;
-            font-size: 10px;
-            text-align: right;
+            width: 100%; border: 1px solid transparent; padding: 3px;
+            background: transparent; font-size: 10px; text-align: right;
         }
-
         .qty-input { text-align: center; }
         .amount-input { font-weight: bold; background: #f8f9fa; }
-        
         .description-input:focus, .qty-input:focus, .cost-input:focus {
-            outline: none;
-            border: 1px solid #4299e1;
-            background: white;
+            outline: none; border: 1px solid #4299e1; background: white;
         }
 
-        .totals-section {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 15px;
-        }
+        /* Hide remove buttons during PDF export */
+        .hide-remove-buttons .action-col { display: none !important; }
 
-        .totals-table {
-            width: 260px;
-            font-size: 10px;
-        }
-
-        .totals-table td {
-            padding: 4px 6px;
-            border: none;
-        }
-
-        .totals-table td:first-child {
-            text-align: right;
-            font-weight: 600;
-            color: #4a5568;
-        }
-
-        .totals-table td:last-child {
-            text-align: right;
-        }
-
-        /* Force white text on TOTAL row cells */
-        .totals-table tr.total-row td {
-            color: #ffffff !important;
-            padding: 6px;
-        }
-
-        .total-row {
-            font-size: 11px;
-            font-weight: bold;
-            background-color: #2c5282;
-        }
+        .totals-section { display: flex; justify-content: flex-end; margin-top: 15px; }
+        .totals-table { width: 260px; font-size: 10px; }
+        .totals-table td { padding: 4px 6px; border: none; }
+        .totals-table td:first-child { text-align: right; font-weight: 600; color: #4a5568; }
+        .totals-table td:last-child { text-align: right; }
+        .totals-table tr.total-row td { color: #ffffff !important; padding: 6px; }
+        .total-row { font-size: 11px; font-weight: bold; background-color: #2c5282; }
 
         .comments-box {
-            width: 100%;
-            min-height: 60px;
-            padding: 6px;
-            border: 1px solid #e2e8f0;
-            border-radius: 4px;
-            resize: vertical;
-            font-family: inherit;
-            font-size: 9px;
+            width: 100%; min-height: 60px; padding: 6px; border: 1px solid #e2e8f0;
+            border-radius: 4px; resize: vertical; font-family: inherit; font-size: 9px;
         }
 
         .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px solid #e2e8f0;
-            color: #718096;
-            font-size: 9px;
+            text-align: center; margin-top: 30px; padding-top: 15px;
+            border-top: 1px solid #e2e8f0; color: #718096; font-size: 9px;
         }
-
-        .footer input {
-            border: 1px solid transparent;
-            text-align: center;
-            width: 100%;
-            padding: 3px;
-            font-size: 9px;
-            margin: 5px 0;
-        }
-
-        .footer input:focus {
-            outline: none;
-            border: 1px solid #4299e1;
-        }
+        .footer h3 { margin-top: 0px; font-size: 12px; }
 
         .remove-row {
-            background: #e53e3e;
-            color: white;
-            border: none;
-            padding: 2px 6px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 12px;
+            background: #e53e3e; color: white; border: none; padding: 2px 6px;
+            border-radius: 3px; cursor: pointer; font-size: 12px;
         }
-
-        .remove-row:hover {
-            background: #c53030;
-        }
-
-        .color-option {
-            display: inline-block;
-            margin: 0 5px;
-        }
-
-        .color-option input[type="radio"] {
-            display: none;
-        }
-
-        .color-option label {
-            padding: 3px 8px;
-            border: 1px solid #cbd5e0;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 10px;
-        }
-
-        .color-option input[type="radio"]:checked + label {
-            background: #2c5282;
-            color: white;
-            border-color: #2c5282;
-        }
+        .remove-row:hover { background: #c53030; }
 
         @media print {
             .controls { display: none; }
             body { background: white; padding: 0; }
             .invoice-container { box-shadow: none; margin: 0; }
         }
-
         @page { size: auto; margin: 0; }
     </style>
+<link rel="stylesheet" href="footer.css">
 </head>
 <body>
     <div class="controls">
-        <h2>Optco Invoice Maker</h2>
+        <h2>Invoice Controls</h2>
+
         
         <div class="control-group">
             <label>Paper Size</label>
+            <!-- Default changed to A4 -->
             <select id="paperSize" onchange="changePaperSize()">
-                <option value="a4">A4 (210mm x 297mm)</option>
-<option value="letter">Letter (8.5" x 11")</option>
-                
+                <option value="a4" selected>A4 (210mm x 297mm)</option>
+                <option value="letter">Letter (8.5" x 11")</option>
             </select>
         </div>
 
         <div class="control-group">
             <label>Currency</label>
             <select id="currencySelect" onchange="updateCurrency()">
-<option value="R">ZAR (R)</option>                
-<option value="$">USD ($)</option>
+                <option value="R">Rand (R)</option>
+                <option value="$">USD ($)</option>
                 <option value="€">EUR (€)</option>
                 <option value="£">GBP (£)</option>
                 <option value="¥">JPY (¥)</option>
                 <option value="₹">INR (₹)</option>
-                <option value="">NGN (₦)</option>
+                <option value="₦">NGN (₦)</option>
                 <option value="custom">Custom</option>
             </select>
         </div>
 
         <div class="control-group" id="customCurrencyGroup" style="display: none;">
             <label>Custom Symbol</label>
-            <input type="text" id="customCurrency" placeholder="Enter symbol" maxlength="5" onchange="updateCurrency()">
+            <input type="text" id="customCurrency" value="" maxlength="5" onchange="updateCurrency()">
         </div>
 
         <div class="control-group">
             <label>Theme Color</label>
-            <div class="color-option">
-                <input type="radio" id="colorBlack" name="textColor" value="#000000" checked onchange="updateTextColor()">
-                <label for="colorBlack">Black</label>
-            </div>
-            <div class="color-option">
-                <input type="radio" id="colorBlue" name="textColor" value="#2c5282" onchange="updateTextColor()">
-                <label for="colorBlue">Blue</label>
-            </div>
-            <div class="color-option">
-                <input type="radio" id="colorGreen" name="textColor" value="#38a169" onchange="updateTextColor()">
-                <label for="colorGreen">Green</label>
-            </div>
+            <!-- Replaced radio buttons with color picker -->
+            <input type="color" id="themeColorPicker" value="#2c5282" oninput="updateTextColor(this.value)">
         </div>
 
         <div class="control-group">
             <label>Actions</label>
             <div>
                 <input type="file" id="logoUpload" accept="image/*" style="display: none;">
-                <button class="btn btn-primary" onclick="document.getElementById('logoUpload').click()">📷 Logo</button>
+                <button class="btn btn-primary" onclick="document.getElementById('logoUpload').click()">📷 Add Logo</button>
                 <button class="btn btn-primary" onclick="addRow()">➕ Add Row</button>
                 <button class="btn btn-success" onclick="exportPDF()">📄 PDF</button>
-                <button class="btn btn-primary" onclick="window.print()">️ Print</button>
+                <button class="btn btn-primary" onclick="window.print()"> Print</button>
             </div>
-        </div>
-   <a href="https://optco.github.io/convert/" class="glass-link">🏡 Home</a>  </div>
+        </div><a href="https://optco.github.io/convert/" class="glass-link">🏡 Home</a>
+    </div>
 
-    <div class="invoice-container page-letter" id="invoice">
+    <div class="invoice-container page-a4" id="invoice">
         <div class="invoice-header">
             <div class="company-info">
                 <div class="logo-container">
@@ -436,29 +202,29 @@
                     [City, ST ZIP]<br>
                     Phone: [000-000-0000]<br>
                     Fax: [000-000-0000]<br>
-                    Website: someomain.com<br>
-VAT:
+                    Website: someomain.com
                 </div>
             </div>
             
             <div class="invoice-title">
+                <!-- Title changed to TAX INVOICE -->
                 <h2 id="invoiceTitle">TAX INVOICE</h2>
                 <div class="invoice-details">
                     <div class="detail-row">
                         <label>DATE</label>
-                        <input type="date" id="invoiceDate" value="2026-05-03">
+                        <input type="date" id="invoiceDate" value="">
                     </div>
                     <div class="detail-row">
                         <label>INVOICE #</label>
-                        <input type="text" id="invoiceNumber" value="123456">
+                        <input type="text" id="invoiceNumber" value="">
                     </div>
                     <div class="detail-row">
                         <label>CUSTOMER ID</label>
-                        <input type="text" id="customerId" value="123">
+                        <input type="text" id="customerId" value="">
                     </div>
                     <div class="detail-row">
                         <label>DUE DATE</label>
-                        <input type="date" id="dueDate" value="2026-06-02">
+                        <input type="date" id="dueDate" value="">
                     </div>
                 </div>
             </div>
@@ -469,47 +235,42 @@ VAT:
             <div class="editable" contenteditable="true" id="billToContent">
                 [Name]<br>
                 [Company Name]<br>
-                Street Address:<br>
-                City, ZIP:<br>
-                Phone:<br>
-VAT:
+                [Street Address]<br>
+                [City, ST ZIP]<br>
+                [Phone]
             </div>
         </div>
 
         <table id="itemsTable">
             <thead>
                 <tr>
-                    <th style="width: 35%;">DESCRIPTION</th>
+                    <th style="width: 45%;">DESCRIPTION</th>
                     <th class="qty-col">ITEMS</th>
                     <th class="cost-col">COST/ITEM</th>
                     <th class="amount-col">AMOUNT</th>
-                    <th class="taxed-col">TAXED</th>
                     <th class="action-col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="text" class="description-input" value="[Service Fee]"></td>
-                    <td><input type="number" class="qty-input" value="1" min="0" step="1" oninput="calculateRow(this)"></td>
-                    <td><input type="number" class="cost-input" value="230.00" min="0" step="0.01" oninput="calculateRow(this)"></td>
-                    <td><input type="number" class="amount-input" value="230.00" readonly></td>
-                    <td class="taxed-col"><input type="checkbox" class="taxed-checkbox"></td>
+                    <td><input type="text" class="description-input" value=""></td>
+                    <td><input type="number" class="qty-input" value="" min="0" step="1" oninput="calculateRow(this)"></td>
+                    <td><input type="number" class="cost-input" value="" min="0" step="0.01" oninput="calculateRow(this)"></td>
+                    <td><input type="number" class="amount-input" value="" readonly></td>
                     <td class="action-col"><button class="remove-row" onclick="removeRow(this)">×</button></td>
                 </tr>
                 <tr>
-                    <td><input type="text" class="description-input" value="[Labor: 5 hours at R75/hr]"></td>
-                    <td><input type="number" class="qty-input" value="5" min="0" step="1" oninput="calculateRow(this)"></td>
-                    <td><input type="number" class="cost-input" value="75.00" min="0" step="0.01" oninput="calculateRow(this)"></td>
-                    <td><input type="number" class="amount-input" value="375.00" readonly></td>
-                    <td class="taxed-col"><input type="checkbox" class="taxed-checkbox"></td>
+                    <td><input type="text" class="description-input" value=""></td>
+                    <td><input type="number" class="qty-input" value="" min="0" step="1" oninput="calculateRow(this)"></td>
+                    <td><input type="number" class="cost-input" value="" min="0" step="0.01" oninput="calculateRow(this)"></td>
+                    <td><input type="number" class="amount-input" value="" readonly></td>
                     <td class="action-col"><button class="remove-row" onclick="removeRow(this)">×</button></td>
                 </tr>
                 <tr>
-                    <td><input type="text" class="description-input" value="[Parts]"></td>
-                    <td><input type="number" class="qty-input" value="3" min="0" step="1" oninput="calculateRow(this)"></td>
-                    <td><input type="number" class="cost-input" value="115.00" min="0" step="0.01" oninput="calculateRow(this)"></td>
-                    <td><input type="number" class="amount-input" value="345.00" readonly></td>
-                    <td class="taxed-col"><input type="checkbox" class="taxed-checkbox" checked></td>
+                    <td><input type="text" class="description-input" value=""></td>
+                    <td><input type="number" class="qty-input" value="" min="0" step="1" oninput="calculateRow(this)"></td>
+                    <td><input type="number" class="cost-input" value="" min="0" step="0.01" oninput="calculateRow(this)"></td>
+                    <td><input type="number" class="amount-input" value="" readonly></td>
                     <td class="action-col"><button class="remove-row" onclick="removeRow(this)">×</button></td>
                 </tr>
             </tbody>
@@ -519,51 +280,42 @@ VAT:
             <table class="totals-table">
                 <tr>
                     <td>Subtotal</td>
-                    <td id="subtotal">R950.00</td>
-                </tr>
-                <tr>
-                    <td>Taxable</td>
-                    <td id="taxable">R345.00</td>
+                    <td id="subtotal">R0.00</td>
                 </tr>
                 <tr>
                     <td>Tax rate</td>
-                    <td><input type="number" id="taxRate" value="6.25" step="0.01" oninput="calculateTotals()" style="width: 60px; text-align: right;">%</td>
+                    <td><input type="number" id="taxRate" value="15.00" step="0.01" oninput="calculateTotals()" style="width: 60px; text-align: right;">%</td>
                 </tr>
                 <tr>
                     <td>Tax due</td>
-                    <td id="taxDue">R21.56</td>
+                    <td id="taxDue">R0.00</td>
                 </tr>
                 <tr>
                     <td>Other</td>
-                    <td><input type="number" id="otherAmount" value="0" step="0.01" oninput="calculateTotals()" style="width: 80px; text-align: right;"></td>
+                    <td><input type="number" id="otherAmount" value="" step="0.01" oninput="calculateTotals()" style="width: 80px; text-align: right;"></td>
                 </tr>
                 <tr class="total-row">
                     <td>TOTAL</td>
-                    <td id="total">R971.56</td>
+                    <td id="total">R0.00</td>
                 </tr>
             </table>
         </div>
 
         <div class="section-title" id="commentsTitle">OTHER COMMENTS</div>
         <div class="other-comments">
-            <textarea class="comments-box" id="comments" placeholder="Enter comments or payment terms...">1. Total payment due in 30 days
-2. Please include the invoice number on your check</textarea>
+            <textarea class="comments-box" id="comments"></textarea>
         </div>
 
         <div class="footer">
-            <p style="margin-bottom: 5px;">Make all checks payable to:</p>
-            <input type="text" value="[Your Company Name]" id="payableTo">
-            <p style="margin: 10px 0 5px;">If you have any questions about this invoice, please contact</p>
-            <input type="text" value="[Name, Phone #, E-mail]" id="contactInfo">
-            <h3 style="margin-top: 15px; font-size: 12px;" id="thankYouText">Thank You For Your Business!</h3>
+            <!-- Removed "Make all checks..." and "If you have any questions..." -->
+            <h3 style="margin-top: 0px; font-size: 12px;" id="thankYouText">Thank You For Your Business!</h3>
         </div>
     </div>
 
     <script>
         let currentCurrency = 'R';
-        let currentTextColor = '#000000';
+        let currentTextColor = '#2c5282'; // Match the picker default
 
-        // Logo upload handler
         document.getElementById('logoUpload').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -577,79 +329,68 @@ VAT:
             }
         });
 
-        // Calculate individual row amount
         function calculateRow(inputElement) {
             const row = inputElement.closest('tr');
-            const qty = parseFloat(row.querySelector('.qty-input').value) || 0;
-            const cost = parseFloat(row.querySelector('.cost-input').value) || 0;
+            const qtyVal = row.querySelector('.qty-input').value;
+            const costVal = row.querySelector('.cost-input').value;
+            const qty = parseFloat(qtyVal) || 0;
+            const cost = parseFloat(costVal) || 0;
             const amount = qty * cost;
-            row.querySelector('.amount-input').value = amount.toFixed(2);
+            
+            row.querySelector('.amount-input').value = (qtyVal !== '' && costVal !== '') ? amount.toFixed(2) : '';
             calculateTotals();
         }
 
-        // Calculate overall totals
         function calculateTotals() {
             let subtotal = 0;
-            let taxable = 0;
-            
             const rows = document.querySelectorAll('#itemsTable tbody tr');
             rows.forEach(row => {
-                const amount = parseFloat(row.querySelector('.amount-input').value) || 0;
-                const isTaxed = row.querySelector('.taxed-checkbox').checked;
-                subtotal += amount;
-                if (isTaxed) {
-                    taxable += amount;
-                }
+                const amtVal = row.querySelector('.amount-input').value;
+                subtotal += parseFloat(amtVal) || 0;
             });
 
             const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
-            const taxDue = (taxable * taxRate) / 100;
-            const other = parseFloat(document.getElementById('otherAmount').value) || 0;
+            const taxDue = subtotal * (taxRate / 100);
+            const otherVal = document.getElementById('otherAmount').value;
+            const other = parseFloat(otherVal) || 0;
             const total = subtotal + taxDue + other;
 
-            document.getElementById('subtotal').textContent = currentCurrency + subtotal.toFixed(2);
-            document.getElementById('taxable').textContent = currentCurrency + taxable.toFixed(2);
-            document.getElementById('taxDue').textContent = currentCurrency + taxDue.toFixed(2);
-            document.getElementById('total').textContent = currentCurrency + total.toFixed(2);
+            document.getElementById('subtotal').textContent = currentCurrency + (subtotal > 0 ? subtotal.toFixed(2) : '0.00');
+            document.getElementById('taxDue').textContent = currentCurrency + (taxDue > 0 ? taxDue.toFixed(2) : '0.00');
+            document.getElementById('total').textContent = currentCurrency + (total > 0 ? total.toFixed(2) : '0.00');
         }
 
-        // Add new row
         function addRow() {
             const tbody = document.querySelector('#itemsTable tbody');
             const newRow = document.createElement('tr');
             newRow.innerHTML = `
-                <td><input type="text" class="description-input" placeholder="Enter description"></td>
-                <td><input type="number" class="qty-input" value="1" min="0" step="1" oninput="calculateRow(this)"></td>
-                <td><input type="number" class="cost-input" value="0.00" min="0" step="0.01" oninput="calculateRow(this)"></td>
-                <td><input type="number" class="amount-input" value="0.00" readonly></td>
-                <td class="taxed-col"><input type="checkbox" class="taxed-checkbox"></td>
+                <td><input type="text" class="description-input" value=""></td>
+                <td><input type="number" class="qty-input" value="" min="0" step="1" oninput="calculateRow(this)"></td>
+                <td><input type="number" class="cost-input" value="" min="0" step="0.01" oninput="calculateRow(this)"></td>
+                <td><input type="number" class="amount-input" value="" readonly></td>
                 <td class="action-col"><button class="remove-row" onclick="removeRow(this)">×</button></td>
             `;
             tbody.appendChild(newRow);
         }
 
-        // Remove row
         function removeRow(btn) {
             const row = btn.closest('tr');
             row.remove();
             calculateTotals();
         }
 
-        // Change paper size
         function changePaperSize() {
             const size = document.getElementById('paperSize').value;
-            const invoice = document.getElementById('invoice');
-            invoice.className = 'invoice-container page-' + size;
+            document.getElementById('invoice').className = 'invoice-container page-' + size;
         }
 
-        // Update currency
         function updateCurrency() {
             const select = document.getElementById('currencySelect');
             const customGroup = document.getElementById('customCurrencyGroup');
             
             if (select.value === 'custom') {
                 customGroup.style.display = 'inline-block';
-                currentCurrency = document.getElementById('customCurrency').value || '$';
+                currentCurrency = document.getElementById('customCurrency').value || 'R';
             } else {
                 customGroup.style.display = 'none';
                 currentCurrency = select.value;
@@ -657,15 +398,9 @@ VAT:
             calculateTotals();
         }
 
-        // Update theme color
-        function updateTextColor() {
-            const radios = document.getElementsByName('textColor');
-            for (let radio of radios) {
-                if (radio.checked) {
-                    currentTextColor = radio.value;
-                    break;
-                }
-            }
+        // New function to handle the color picker
+        function updateTextColor(color) {
+            currentTextColor = color;
             
             document.getElementById('companyName').style.color = currentTextColor;
             document.getElementById('invoiceTitle').style.color = currentTextColor;
@@ -678,14 +413,15 @@ VAT:
             document.querySelector('.total-row').style.backgroundColor = currentTextColor;
         }
 
-        // Export as PDF
         function exportPDF() {
             const element = document.getElementById('invoice');
             const size = document.getElementById('paperSize').value;
             
+            element.classList.add('hide-remove-buttons');
+            
             const opt = {
                 margin: 0,
-                filename: 'invoice-' + document.getElementById('invoiceNumber').value + '.pdf',
+                filename: 'invoice-' + (document.getElementById('invoiceNumber').value || 'draft') + '.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true, logging: false },
                 jsPDF: { 
@@ -700,15 +436,17 @@ VAT:
 
             html2pdf().set(opt).from(element).save().then(() => {
                 inputs.forEach(input => input.style.border = '');
+                element.classList.remove('hide-remove-buttons');
             });
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             calculateTotals();
-            updateTextColor();
+            // Apply initial color from the picker
+            updateTextColor(document.getElementById('themeColorPicker').value);
+            // Ensure A4 is set
+            changePaperSize();
         });
     </script>
- 
 </body>
 </html>
