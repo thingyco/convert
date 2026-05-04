@@ -6,6 +6,11 @@
     <title>Text Canvas Generator</title>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Pacifico&display=swap" rel="stylesheet">
+    
+      <!-- SEO Meta Tags -->
+    <meta name="keywords" content="poster, maker, free, canvas, design">
+    <meta name="description" content="Free poster maker for simple announcments.">
+
     <style>
         :root {
             --glass-panel: rgba(255, 255, 255, 0.75);
@@ -481,11 +486,17 @@
             els.output.style.fontSize = c.textSize.val + 'rem';
             applyTextStyles(els.output, textColor);
 
-            // Pre/Post text
+                     // Pre/Post text (inherit font & color, but ignore B/I/U toggles)
             els.preEl.textContent = els.preText.value.trim();
             els.postEl.textContent = els.postText.value.trim();
-            applyTextStyles(els.preEl, textColor);
-            applyTextStyles(els.postEl, textColor);
+            
+            [els.preEl, els.postEl].forEach(el => {
+                el.style.fontFamily = fontMap[activeCategory];
+                el.style.fontWeight = '500'; // Fixed medium weight, ignores Bold toggle
+                el.style.fontStyle = 'normal';
+                el.style.textDecoration = 'none';
+                el.style.color = textColor;
+            });
 
             // Header
             els.headerPrev.textContent = els.headerIn.value.trim();
