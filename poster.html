@@ -33,7 +33,7 @@
         .app-container {
             width: 100%; max-width: 1100px;
             background: var(--glass-panel); 
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            -filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border); 
             border-radius: 24px;
             padding: clamp(1.5rem, 4vw, 2.5rem); 
@@ -329,7 +329,7 @@
                     <label>Backdrop Content</label>
                     <textarea id="backdropText" placeholder="Optional backdrop text..."></textarea>
                     <div class="img-upload-wrap">
-                        <label class="img-upload-btn" for="backdropFile">🖼️ Upload Backdrop</label>
+                        <label class="img-upload-btn" for="backdropFile">🖼️ <i>OR</i> Upload Backdrop</label>
                         <input type="file" id="backdropFile" class="img-upload-input" accept="image/png, image/jpeg, image/webp">
                         <button class="img-clear-btn" id="clearImgBtn" style="display: none;">✕</button>
                     </div>
