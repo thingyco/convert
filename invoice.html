@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Free Invoice Maker</title>
+    <title>Professional Invoice Generator</title>
     <!-- html2pdf library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-   <meta name="keywords" content="invoice, maker, free, professional">
+   
+ <meta name="keywords" content="invoice, maker, free, professional">
     <meta name="description" content="Free Invoice maker for small businesses.">
-    
-    <style>
+
+ <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -22,16 +22,18 @@
 
         /* --- Controls Area --- */
         .controls {
-            max-width: 850px;
+            max-width: 790px;
             margin: 0 auto 20px;
             padding: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: #D4D0C8;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+           
+            
         }
         .controls h2 { margin-bottom: 15px; color: #333; font-size: 16px; }
-        .control-group { display: inline-block; margin: 5px 10px 5px 0; vertical-align: top; }
-        .control-group label { display: block; font-size: 12px; margin-bottom: 3px; color: #666; }
+        .control-group { display: inline-block; margin: 5px 20px 5px 0; vertical-align: center; }
+        .control-group label { display: block; font-size: 12px; margin-bottom: 3px; color: #000000; }
         
         /* Color Picker Styling */
         input[type="color"] {
@@ -52,7 +54,7 @@
         }
         .btn-primary { background: #2c5282; color: white; }
         .btn-primary:hover { background: #1a365d; }
-        .btn-success { background: #38a169; color: white; }
+        .btn-success { background: #38a169; color: white;}
         .btn-success:hover { background: #2f855a; }
 
         /* --- Invoice Page Styles --- */
@@ -144,11 +146,11 @@
 <link rel="stylesheet" href="footer.css">
 </head>
 <body>
-    <div class="controls">
-     
+     <center><div class="controls">
+    
 
         
-        <div class="control-group">
+       <div class="control-group">
             <label>Paper Size</label>
             <!-- Default changed to A4 -->
             <select id="paperSize" onchange="changePaperSize()">
@@ -160,11 +162,11 @@
         <div class="control-group">
             <label>Currency</label>
             <select id="currencySelect" onchange="updateCurrency()">
-                <option value="R">ZAR (R)</option>
+                <option value="R">Rand (R)</option>
                 <option value="$">USD ($)</option>
                 <option value="€">EUR (€)</option>
                 <option value="£">GBP (£)</option>
-                <option value="Rs">PKR (Rs)</option>
+                <option value="¥">JPY (¥)</option>
                 <option value="₹">INR (₹)</option>
                 <option value="₦">NGN (₦)</option>
                 <option value="custom">Custom</option>
@@ -188,11 +190,11 @@
                 <input type="file" id="logoUpload" accept="image/*" style="display: none;">
                 <button class="btn btn-primary" onclick="document.getElementById('logoUpload').click()">📷 Add Logo</button>
                 
-               &nbsp <button class="btn btn-success" onclick="exportPDF()">📄 Save PDF</button>
-                
+               <button class="btn btn-success" onclick="exportPDF()">📄 Save PDF</button>
+         
             </div>
         </div><a href="https://optco.github.io/convert/" class="glass-link">🏡 Home</a>
-    </div>
+    </div></center>
 
     <div class="invoice-container page-a4" id="invoice">
         <div class="invoice-header">
@@ -200,7 +202,7 @@
                 <div class="logo-container">
                     <img id="logoPreview" alt="Company Logo">
                 </div>
-                <h1 class="editable" contenteditable="true" id="companyName">Your Company Name</h1>
+                <h1 class="editable" contenteditable="true" id="companyName">Company Name</h1>
                 <div class="editable" contenteditable="true" id="companyAddress">
                     [Street Address]<br>
                     [City, ST ZIP]<br>
