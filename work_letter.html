@@ -63,41 +63,40 @@
       text-align: center; margin: 0 0 20px;
       font-size: 18pt; font-weight: 700; color: var(--primary-color);
       text-transform: uppercase; letter-spacing: 1px;
-      display: none; /* Hidden by default */
+      display: none;
     }
-.letter-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* Centers logo & text vertically */
-  margin-bottom: 0;
-  padding-bottom: 0;
-  position: relative;
-}
-   .logo-area {
-  width: 200px;
-  height: auto;
-  max-height: 110px; /* Caps height without forcing a fixed box */
-  object-fit: contain;
-  background: var(--letter-bg);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  flex-shrink: 0;
-  margin-right: 40px;
-}
-  .practice-info { 
-  text-align: right; 
-  font-size: 0.85rem; 
-  line-height: 1.6; 
-  color: #444;
-  flex: 1;
-  /* Remove margin-top to let flexbox handle vertical spacing */
-}
+    .letter-header {
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; /* Vertically centers logo with text block */
+      margin-bottom: 0;
+      padding-bottom: 0;
+      position: relative;
+    }
+    .logo-area {
+      width: 200px; 
+      height: auto; 
+      max-height: 110px;
+      object-fit: contain;
+      background: var(--letter-bg);
+      border: none; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-right: 40px;
+    }
+    .practice-info { 
+      text-align: right; 
+      font-size: 0.85rem; 
+      line-height: 1.6; 
+      color: #444;
+      flex: 1;
+    }
     .practice-info strong { color: var(--text-color); }
     
-    /* Color Strip - Fixed for PDF */
+    /* Color Strip */
     .color-strip {
       width: 100%;
       height: 5px;
@@ -111,7 +110,9 @@
     
     .letter-body { font-size: 11pt; line-height: 1.7; color: #111; }
     .letter-body p { margin: 10px 0; }
-    .dynamic { color: var(--primary-color); font-weight: 600; }
+    
+    /* Removed .dynamic class styling */
+    
     .signature { margin-top: 40px; }
     .signature p { margin: 4px 0; }
     .notes-box {
@@ -157,28 +158,25 @@
         min-height: auto !important; 
         page-break-inside: avoid;
       }
-   .letter-header {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    page-break-inside: avoid;
-  }
-
-  .logo-area {
-    width: 200px !important;
-    height: auto !important;
-    max-height: 110px !important;
-    margin-right: 40px !important;
-    flex-shrink: 0 !important;
-    align-self: center !important; /* Fallback for strict PDF engines */
-  }
-}
-       .practice-info {
-    text-align: right !important;
-    flex: 1 !important;
-    margin-top: 0 !important;
-  }
+      .letter-header {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important; /* Keeps alignment in PDF */
+        page-break-inside: avoid;
+      }
+      .logo-area {
+        width: 200px !important;
+        height: auto !important;
+        max-height: 110px !important;
+        margin-right: 40px !important;
+        flex-shrink: 0 !important;
+        align-self: center !important; 
+      }
+      .practice-info {
+        text-align: right !important;
+        flex: 1 !important;
+      }
       .color-strip {
         height: 5px !important;
         background: var(--primary-color) !important;
@@ -197,10 +195,15 @@
       #letter-preview { width: 100%; min-height: auto; padding: 15mm; }
       .letter-header {
         flex-direction: column;
+        align-items: flex-start;
       }
       .practice-info {
         text-align: left;
         margin-top: 20px;
+      }
+      .logo-area {
+        margin-right: 0;
+        margin-bottom: 20px;
       }
     }
   </style>
@@ -313,16 +316,16 @@
 
       <div class="letter-body">
         <p>To whom it may concern,</p>
-        <p>This is to certify that <span class="dynamic" id="p_titleName"></span> <span class="dynamic" id="p_patientName"></span> <span id="p_reason"></span></p>
+        <p>This is to certify that <span id="p_titleName"></span> <span id="p_patientName"></span> <span id="p_reason"></span></p>
         
-        <p><span class="dynamic" id="p_pronounCap"></span> attended our clinic on: <span class="dynamic" id="p_attendanceDate"></span><br>
-        Escorted by: <span id="p_escort">Self</span><br>
-        Tested by: <span id="p_doctor">Optometrist M. T. Akhtar</span></p>
+        <p><span id="p_pronounCap"></span> attended our clinic on: <span id="p_attendanceDate"></span><br>
+        <b>Escorted by:</b> <span id="p_escort">Self</span><br>
+        <b>Tested by:</b> <span id="p_doctor">Optometrist M. T. Akhtar</span></p>
         
-        <p>Kindly excuse <span class="dynamic" id="p_pronounObj"></span> from <span class="dynamic" id="p_excuseType">work</span> for <span class="dynamic" id="p_duration">the day</span> spent at our clinic.</p>
+        
         
         <div id="p_notes" class="notes-box" style="display:none;"></div>
-        
+        <p>Kindly excuse <span id="p_pronounObj"></span> from <span id="p_excuseType"></span> for <span id="p_duration"></span> spent at our clinic.</p>
         <p>Should there be any queries, please do not hesitate to contact us.</p>
         
         <div class="signature">
@@ -395,7 +398,7 @@
 
     function updateLogo() {
       const selector = document.getElementById('logoSelector').value;
-      if (selector === 'custom') return; // Handled by file input
+      if (selector === 'custom') return; 
       if (LOGOS[selector]) {
         document.getElementById('logoImg').src = LOGOS[selector];
       }
