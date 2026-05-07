@@ -402,6 +402,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
 }
 </style>
 <link rel="stylesheet" href="footer2.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 <a href="https://optco.github.io/convert" class="fixed-corner-link">
@@ -409,25 +410,41 @@ body.compact th, body.compact td { padding: 10px 14px; }
 <!-- Hamburger Menu -->
 <!-- Vertical Control Buttons - Outside Menu -->
 <div class="control-stack">
-    <button class="control-btn" onclick="toggleCompact()" title="Toggle Compact">↔️</button>
-    <button class="control-btn" onclick="changeTheme()" title="Change Theme">🎨</button>
+    <button class="control-btn" onclick="toggleCompact()" title="Resize">
+  <i class="fas fa-arrows-left-right" aria-hidden="true"></i>
+</button>
+<button class="control-btn" onclick="changeTheme()" title="Change Theme">
+  <i class="fas fa-palette" aria-hidden="true"></i>
+</button>
 </div>
 
 <button class="hamburger-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu">☰</button>
 <div class="hamburger-menu" id="hamburgerMenu">
     <div class="menu-links">
-	<button class="tab-button active" onclick="openTab('tab1', event)">🔀 Converter</button>
-            <button class="tab-button" onclick="openTab('tab2', event)">🚗 Driver's</button>
-            <button class="tab-button" onclick="openTab('tab3', event)">👁️ Vision Charts</button>
-            <button class="tab-button" onclick="openTab('tab4', event)">📝 Rx Terms</button>
-            <button class="tab-button" onclick="openTab('tab5', event)">🇺🇳 WHO</button>
+	<button class="tab-button active" onclick="openTab('tab1', event)"><i class="fa fa-random" aria-hidden="true"></i> Converter</button>
+<button class="tab-button" onclick="openTab('tab2', event)"><i class="fas fa-id-card" aria-hidden="true"></i> Driver's</button>
+<button class="tab-button" onclick="openTab('tab3', event)"><i class="fas fa-eye" aria-hidden="true"></i> Vision Charts</button>
+<button class="tab-button" onclick="openTab('tab4', event)"><i class="fas fa-prescription" aria-hidden="true"></i> Rx Terms</button>
+<button class="tab-button" onclick="openTab('tab5', event)"><i class="fas fa-globe" aria-hidden="true"></i> WHO</button>
 			 <hr class="menu-divider">
-	<a href="https://optco.github.io/javeria/" target="_blank" rel="noopener noreferrer" class="menu-item">🏘️ Properties</a>
-        <a href="poster.html" target="_blank" rel="noopener noreferrer" class="menu-item">🖼️ Poster Maker</a>
-		<a href="invoice.html" target="_blank" rel="noopener noreferrer" class="menu-item">🧾 Invoice Maker</a>
-		<a href="work_letter.html" target="_blank" rel="noopener noreferrer" class="menu-item">📝 Work Excuse Letter</a>
-        <a href="https://optco.github.io/search/" target="_blank" rel="noopener noreferrer" class="menu-item">🔍 Advanced Search</a>
-        <a href="https://instagram.com/tnvrakhtar" target="_blank" rel="noopener noreferrer" class="menu-item">👤 Follow Akhtar</a>
+	<a href="https://optco.github.io/javeria/" target="_blank" rel="noopener noreferrer" class="menu-item">
+  <i class="fas fa-house-chimney" aria-hidden="true"></i> Properties
+</a>
+<a class="menu-item" href="/poster" rel="noopener noreferrer" target="_blank">
+  <i class="fas fa-image" aria-hidden="true"></i> Poster Maker
+</a>
+<a class="menu-item" href="/invoice" rel="noopener noreferrer" target="_blank">
+  <i class="fas fa-file-invoice-dollar" aria-hidden="true"></i> Invoice Maker
+</a>
+<a class="menu-item" href="/work_letter" rel="noopener noreferrer" target="_blank">
+  <i class="fas fa-file-pen" aria-hidden="true"></i> Work Excuse Letter
+</a>
+<a href="https://optco.github.io/search/" target="_blank" rel="noopener noreferrer" class="menu-item">
+  <i class="fas fa-magnifying-glass" aria-hidden="true"></i> Advanced Search
+</a>
+<a href="https://instagram.com/tnvrakhtar" target="_blank" rel="noopener noreferrer" class="menu-item">
+  <i class="fas fa-user" aria-hidden="true"></i> Follow Akhtar
+</a>
    
     <hr class="menu-divider">
 <center>
@@ -496,7 +513,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
         
             <!-- Tab 1: Calculator -->
             <div id="tab1" class="tab-pane active">
-                <h2>🔀 Spectacles To Contact Lens Converter</h2>
+                <h2><i class="fa fa-random" aria-hidden="true"></i> Spectacles To Contact Lens Converter</h2>
                
                 <div class="main">
                     <div class="input-section glass">
@@ -517,7 +534,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
     <h3 style="font-size: 1.3rem;">🇷 Right Eye (OD)</h3>
     
     <div class="input-group">
-        <label for="sphOD">🔵 Sphere:</label>
+        <label for="sphOD">Sphere:</label>
         <div class="stepper">
             <button class="stepper-btn" type="button" onclick="adjustValue('sphOD', -0.25)">−</button>
             <input type="text" inputmode="decimal" pattern="[+-]?[0-9]*\.?[0-9]*" id="sphOD" placeholder="0.00" oninput="convertPrescription()">
@@ -526,7 +543,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
     </div>
 
     <div class="input-group">
-        <label for="cylOD">🛢️ Cylinder:</label>
+        <label for="cylOD">Cylinder:</label>
         <div class="stepper">
             <button class="stepper-btn" type="button" onclick="adjustValue('cylOD', -0.25)">−</button>
             <input type="text" inputmode="decimal" pattern="[+-]?[0-9]*\.?[0-9]*" id="cylOD" placeholder="0.00" oninput="convertPrescription()">
@@ -534,7 +551,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
         </div>
     </div>
     <div class="input-group">
-        <label for="axisOD">📐 Axis:</label>
+        <label for="axisOD">Axis:</label>
         <div class="stepper">
             <button class="stepper-btn" type="button" onclick="adjustValue('axisOD', -5)">−</button>
             <input type="text" inputmode="numeric" pattern="[0-9]*" id="axisOD" placeholder="180" oninput="convertPrescription()">
@@ -549,7 +566,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
     <h3 style="font-size: 1.3rem;">🇱 Left Eye (OS)</h3>
     
     <div class="input-group">
-        <label for="sphOS">🔵 Sphere:</label>
+        <label for="sphOS">Sphere:</label>
         <div class="stepper">
             <button class="stepper-btn" type="button" onclick="adjustValue('sphOS', -0.25)">−</button>
             <input type="text" inputmode="decimal" pattern="[+-]?[0-9]*\.?[0-9]*" id="sphOS" placeholder="0.00" oninput="convertPrescription()">
@@ -558,7 +575,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
     </div>
 
     <div class="input-group">
-        <label for="cylOS">🛢️ Cylinder:</label>
+        <label for="cylOS">Cylinder:</label>
         <div class="stepper">
             <button class="stepper-btn" type="button" onclick="adjustValue('cylOS', -0.25)">−</button>
             <input type="text" inputmode="decimal" pattern="[+-]?[0-9]*\.?[0-9]*" id="cylOS" placeholder="0.00" oninput="convertPrescription()">
@@ -567,7 +584,7 @@ body.compact th, body.compact td { padding: 10px 14px; }
     </div>
 
     <div class="input-group">
-        <label for="axisOS">📐 Axis:</label>
+        <label for="axisOS">Axis:</label>
         <div class="stepper">
             <button class="stepper-btn" type="button" onclick="adjustValue('axisOS', -5)">−</button>
             <input type="text" inputmode="numeric" pattern="[0-9]*" id="axisOS" placeholder="180" oninput="convertPrescription()">
@@ -601,7 +618,7 @@ function adjustValue(id, delta) {
 }</script>
             <!-- Tab 2: Driver's License -->
             <div id="tab2" class="tab-pane">
-                <h2>🚗 Driving License Test Passing Criteria</h2>
+                <h2><i class="fas fa-id-card" aria-hidden="true"></i> Driving License Test Passing Criteria</h2>
                 <div class="glass" style="padding: 20px; display: inline-block; max-width: 100%;">
                     <img src="https://optco.github.io/convert/drivers.png" alt="Driver's License Criteria" style="max-width: 100%; border-radius: 16px;">
                 </div>
@@ -609,7 +626,7 @@ function adjustValue(id, delta) {
 
             <!-- Tab 3: Visual Acuity Reference -->
             <div id="tab3" class="tab-pane">
-                <h2>👁️ Visual Acuity Quick Reference Conversion</h2>
+                <h2><i class="fas fa-eye" aria-hidden="true"></i> Visual Acuity Quick Reference Conversion</h2>
                 <table class="glass shadow">
                     <thead>
                         <tr>
@@ -639,7 +656,7 @@ function adjustValue(id, delta) {
 
             <!-- Tab 4: Abbreviations -->
             <div id="tab4" class="tab-pane">
-                <h2>📝 Most Used Prescription Terms</h2>
+                <h2><i class="fas fa-prescription" aria-hidden="true"></i> Most Used Prescription Terms</h2>
                 <table class="glass shadow">
                   <thead>
                     <tr>
@@ -665,7 +682,7 @@ function adjustValue(id, delta) {
 
             <!-- Tab 5: WHO Classification -->
             <div id="tab5" class="tab-pane">
-                <h2>🇺🇳 WHO Visual Impairment (VI) Classification</h2>
+                <h2><i class="fas fa-globe" aria-hidden="true"></i> WHO Visual Impairment (VI) Classification</h2>
                 <table class="vision-table glass shadow">
                   <thead>
                     <tr>
@@ -819,8 +836,8 @@ function adjustValue(id, delta) {
                     </div>
                 </div>
                 <div style="margin-top: 16px; text-align: left;">
-                    <button onclick="copyResults()" class="buttons" title="Copy results">📑 Copy</button>&nbsp
-					<button onclick="resetForm()" class="buttons" title="Reset">↩️ Reset</button>
+                    <button onclick="copyResults()" class="buttons" title="Copy results"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy</button>&nbsp
+					<button onclick="resetForm()" class="buttons" title="Reset"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</button>
                 </div> 
             `;
             resultsBox.innerHTML = output;
