@@ -11,7 +11,7 @@
 }
 
 .fixed-corner-img {
-  width: 60px;        /* Fixed pixel size - never shrinks or grows */
+  width: 120px;        /* Fixed pixel size - never shrinks or grows */
   height: auto;       /* Maintain aspect ratio */
   display: block;
   border: none;
