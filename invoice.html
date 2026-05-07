@@ -7,7 +7,7 @@
     <meta name="keywords" content="invoice, maker, free, professional">
     <meta name="description" content="Free Invoice maker for small businesses.">
 
-  
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -214,9 +214,9 @@
 
     .btn {
         width: 100%; padding: 8px 12px; margin-bottom: 8px; border: none; border-radius: 10px;
-        cursor: pointer; font-size: 12px; font-weight: 600; color: white;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.3); min-height: 38px;
-        background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(6px);
+        cursor: pointer; font-size: 12px; font-weight: 600; color: black;
+         min-height: 38px;
+        background: rgba(255, 255, 255, 1); backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(6px); border: 1px solid rgba(255, 255, 255, 0.3);
         box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.2s;
     }
@@ -511,7 +511,7 @@
                         <div class="color-swatch" style="background:#000000" onclick="selectColor('#000000', this)"></div>
                         <div class="color-swatch" style="background:#e53e3e" onclick="selectColor('#e53e3e', this)"></div>
                         <div class="color-swatch" style="background:#805ad5" onclick="selectColor('#805ad5', this)"></div>
-                        <div class="color-swatch" style="background:#ffffff" onclick="toggleCustomColor()">🎨</div>
+                        <div class="color-swatch" style="background:#000000" onclick="toggleCustomColor()"><i class="fas fa-palette" aria-hidden="true"></i></div>
                     </div>
                     <div id="colorPickerWrapper">
                         <input type="color" id="themeColorPicker" value="#2c5282" oninput="updateTextColor(this.value)">
@@ -520,9 +520,9 @@
 
                 <div class="control-group full-width" style="margin-top: 8px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 10px;">
                     <input type="file" id="logoUpload" accept="image/*" style="display: none;">
-                    <button class="btn btn-primary" onclick="document.getElementById('logoUpload').click()">📷 Add Logo</button>
-                    <button class="btn btn-primary" onclick="addRow()">➕ Add Row</button>
-                    <button class="btn btn-success" onclick="exportPDF()">📄 Save PDF</button>
+                    <button class="btn btn-primary" onclick="document.getElementById('logoUpload').click()"><i class="fa fa-paperclip" aria-hidden="true"></i> Add Logo</button>
+                    <button class="btn btn-primary" onclick="addRow()"><i class="fa fa-plus" aria-hidden="true"></i> Add Row</button>
+                    <button class="btn btn-success" onclick="exportPDF()"><i class="fa fa-file-text" aria-hidden="true"></i> Save PDF</button>
                 </div>
             </div>
         </div>
