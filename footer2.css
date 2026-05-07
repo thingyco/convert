@@ -5,14 +5,14 @@
   display: block;
   z-index: 10000;
   line-height: 0;
-  width: 15%; /* Percentage of viewport width */
-  max-width: 180px; /* Prevent it from becoming absurdly large on desktop */
-  min-width: 60px;  /* Prevent it from becoming unusable on mobile */
+  width: auto;        /* Let image dictate container size */
+  max-width: none;    /* Remove old constraints */
+  min-width: 0;       /* Remove old constraints */
 }
 
 .fixed-corner-img {
-  width: 37%; /* Fills the anchor's width */
-  height: auto; /* Maintains aspect ratio */
+  width: 60px;        /* Fixed pixel size - never shrinks or grows */
+  height: auto;       /* Maintain aspect ratio */
   display: block;
   border: none;
 }
