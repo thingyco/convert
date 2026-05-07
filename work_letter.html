@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Excuse Letter Generator</title>
+  <title>Excuse Letter</title>
   <style>
     :root {
       --primary-color: #0056b3;
@@ -207,6 +207,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
   <div class="app-container">
@@ -291,8 +292,8 @@
       </div>
       <div class="field"><label>Additional Notes</label><textarea id="additionalNotes" rows="3" placeholder="Leave blank to hide..."></textarea></div>
 
-      <button class="btn-export" onclick="window.print()">🖨️ Export / Print as PDF (A4)</button>
-      <button class="btn-export btn-reset" onclick="location.reload()">↻ Reset Defaults</button>
+      <button class="btn-export" onclick="window.print()"><i class="fa fa-print" aria-hidden="true"></i> Export / Print as PDF (A4)</button>
+      <button class="btn-export btn-reset" onclick="location.reload()"><i class="fa fa-refresh" aria-hidden="true"></i> Reset Defaults</button>
     </div>
 
     <!-- LETTER PREVIEW -->
@@ -337,7 +338,7 @@
       
       <!-- Footer -->
       <div class="letter-footer">
-        <p>&copy; 2026 Optco by Akhtar | <a href="https://optco.netlify.app/" target="_blank">https://optco.netlify.app/</a></p>
+        <p>&copy; 2026 Akhtar | <a href="https://akhtar.co.za/work_letter" target="_blank">Akhtar.co.za/work_letter</a></p>
       </div>
     </div>
   </div>
