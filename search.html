@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Made by ig: @tnvrakhtar -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Advanced File & Torrent Search">
+  <meta name="description" content="Search software, movies, books, and torrents across public repositories, open directories, Google Drive, Mega, MediaFire, and torrent indexes — all from one tool.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://optco.github.io/">
+  <meta property="og:title" content="Advanced File & Torrent Search Launcher">
+  <meta property="og:description" content="Search software, movies, books, and torrents across public repositories, open directories, Google Drive, Mega, MediaFire, and torrent indexes — all from one tool.">
+  <meta property="og:image" content="https://optco.github.io/convert/optco.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://optco.github.io/">
+  <meta property="twitter:title" content="Advanced File & Torrent Search Launcher">
+  <meta property="twitter:description" content="Search software, movies, books, and torrents across public repositories, open directories, Google Drive, Mega, MediaFire, and torrent indexes — all from one tool.">
+  <meta property="twitter:image" content="https://optco.github.io/convert/optco.png">
+
+  <!-- Additional SEO -->
+  <meta name="keywords" content="file search, torrent search, open directory search, Google Drive search, Mega.nz search, MediaFire search, software download search, movie search, book search, Anna's Archive, archive.is, index of search, public files, OptCo">
+  <meta name="author" content="OptCo">
+  <meta name="robots" content="index, follow">
+  
+  <title>Advanced File Search</title>
+  <style>
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.4);
+      --glass-shadow: 0 8px 32px rgba(31, 41, 55, 0.12);
+      --glass-highlight: rgba(255, 255, 255, 0.7);
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      --primary-glow: rgba(102, 126, 234, 0.4);
+      --text-primary: #1d1d1f;
+      --text-secondary: #6e6e73;
+      --warning-bg: rgba(255, 214, 10, 0.15);
+      --warning-border: rgba(255, 214, 10, 0.5);
+      --radius-card: 28px;
+      --radius-input: 18px;
+      --radius-btn: 22px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px 16px;
+      background: 
+        radial-gradient(ellipse at 20% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(240, 147, 251, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(118, 75, 162, 0.08) 0%, transparent 70%),
+        #f5f5f7;
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated liquid background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: var(--primary-gradient);
+      opacity: 0.06;
+      animation: liquidFlow 18s ease-in-out infinite alternate;
+      z-index: -2;
+      pointer-events: none;
+      filter: blur(40px);
+    }
+
+    @keyframes liquidFlow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(2%, -2%) scale(1.02); }
+      100% { transform: translate(-1%, 1%) scale(0.98); }
+    }
+
+    /* Floating particles */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 35%, rgba(255,255,255,0.4) 0px, transparent 2px),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,0.3) 0px, transparent 2px),
+        radial-gradient(circle at 50% 70%, rgba(255,255,255,0.35) 0px, transparent 2px);
+      background-size: 100px 100px;
+      opacity: 0.5;
+      animation: float 20s linear infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { background-position: 0 0, 0 0, 0 0; }
+      100% { background-position: 100px 100px, -100px 50px, 50px -100px; }
+    }
+
+    /* Logo */
+    .logo-link {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    .logo-link:hover {
+      transform: scale(1.05);
+    }
+    
+    .logo-link img {
+      height: 48px;
+      width: auto;
+      
+      box-shadow: 0 4px 20px rgba(0,0,0,0);
+      transition: var(--transition);
+    }
+
+    /* Main container */
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* Header */
+    h1 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      margin: 40px 0 12px;
+      background: linear-gradient(135deg, #1d1d1f 0%, #444 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.5px;
+    }
+
+    .desc {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      font-size: 17px;
+      line-height: 1.4;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Glass card */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      border-top-color: var(--glass-highlight);
+      border-radius: var(--radius-card);
+      box-shadow: var(--glass-shadow);
+      padding: 28px 24px;
+      margin-bottom: 24px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+      opacity: 0.6;
+    }
+
+    .glass-card:hover {
+      box-shadow: 0 12px 48px rgba(31, 41, 55, 0.18);
+      transform: translateY(-2px);
+    }
+
+    /* Form elements */
+    .control-group {
+      margin: 20px 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-primary);
+      letter-spacing: -0.2px;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 17px;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: var(--radius-input);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.6),
+        0 2px 8px rgba(0,0,0,0.04);
+      color: var(--text-primary);
+      transition: var(--transition);
+      font-family: inherit;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236e6e73' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 16px;
+      padding-right: 44px;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      outline: none;
+      border-color: rgba(102, 126, 234, 0.6);
+      box-shadow: 
+        0 0 0 3px rgba(102, 126, 234, 0.15),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+      transform: scale(1.01);
+    }
+
+    input[type="text"]::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.8;
+    }
+
+    /* Context options panel */
+    .context-options {
+      margin-top: 16px;
+      padding: 18px;
+      background: rgba(245, 245, 247, 0.6);
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.06);
+      display: none;
+      animation: slideDown 0.25s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .context-options label {
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Primary button */
+    button {
+      width: 100%;
+      padding: 18px 24px;
+      font-size: 18px;
+      font-weight: 600;
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      margin-top: 8px;
+      box-shadow: 
+        0 4px 20px var(--primary-glow),
+        0 2px 8px rgba(0,0,0,0.12);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: -0.3px;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    button:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 
+        0 8px 32px var(--primary-glow),
+        0 4px 16px rgba(0,0,0,0.18);
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    button:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    /* Warning box */
+    .warning {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      border-left: 4px solid #ffc107;
+      padding: 18px 20px;
+      font-size: 14px;
+      margin-top: 12px;
+      border-radius: 16px;
+      color: #5a5a5c;
+      line-height: 1.5;
+      backdrop-filter: blur(10px);
+    }
+
+    .warning strong {
+      color: #856404;
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .warning em {
+      font-style: normal;
+      color: #6e6e73;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      padding: 20px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      width: 100%;
+      max-width: 680px;
+    }
+
+    /* Counter container */
+    .counter-container {
+      text-align: center;
+      margin: 16px 0 8px;
+      opacity: 0.7;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .counter-container a {
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      body {
+        padding: 16px 12px;
+      }
+      
+      h1 {
+        font-size: 28px;
+        margin-top: 32px;
+      }
+      
+      .glass-card {
+        padding: 24px 20px;
+        border-radius: 24px;
+      }
+      
+      input[type="text"],
+      select,
+      button {
+        padding: 14px 18px;
+        font-size: 16px;
+      }
+      
+      .logo-link img {
+        height: 42px;
+      }
+    }
+
+    /* Reduce motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+
+<link rel="stylesheet" href="footer2.css">
+</head>
+<body>
+<a href="https://akhtar.co.za" class="fixed-corner-link">
+<img src="opthead.png" alt="Akhtar Home" class="fixed-corner-img"></a>
+
+  <div class="container">
+    <h1>Advanced File Search</h1>
+    <p class="desc">Search software, movies, books, and torrents across public sources</p>
+
+    <form id="dlSearch" class="glass-card">
+      <div class="control-group">
+        <label for="query">Search</label>
+        <input
+          type="text"
+          id="query"
+          placeholder="e.g., Ubuntu 24.04, Interstellar 4K, Deep Learning textbook"
+          required
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="control-group">
+        <label for="searchMode">In</label>
+        <select id="searchMode">
+          <option value="torrent" selected>Torrent Meta-Search</option>
+          <option value="trusted">Trusted Repositories (GitHub, Archive.org, etc.)</option>
+          <option value="open-dirs">Open Directories (Index of listings)</option>
+          <option value="google-drive">Google Drive (Public Files)</option>
+          <option value="mega">Mega.nz</option>
+          <option value="mediafire">MediaFire</option>
+          <option value="archive-is">Web Archives (archive.is, .ph, .today)</option>
+          <option value="anna">Anna's Archive (Books & Papers)</option>
+        </select>
+      </div>
+
+      <!-- Contextual Panels -->
+      <div class="context-options" id="googleDriveOptions">
+        <label for="driveEngine">Search Engine for Google Drive:</label>
+        <select id="driveEngine">
+          <option value="google">Google (Best Coverage)</option>
+          <option value="duckduckgo">DuckDuckGo (Privacy)</option>
+        </select>
+      </div>
+
+      <div class="context-options" id="trustedEngineOptions">
+        <label for="trustedEngine">With:</label>
+        <select id="trustedEngine">
+          <option value="google">Google</option>
+          <option value="bing">Bing</option>
+          <option value="duckduckgo">DuckDuckGo</option>
+        </select>
+      </div>
+
+      <div class="context-options" id="torrentEngineOptions">
+        <label for="torrentEngine">Search Engine for Torrents:</label>
+        <select id="torrentEngine">
+          <option value="google">Google (Most Results)</option>
+          <option value="duckduckgo">DuckDuckGo (Less Filtered)</option>
+        </select>
+      </div>
+
+      <button type="submit">Search</button>
+    </form>
+
+    <div class="warning glass-card">
+      <strong>⚠️ Legal & Safety Notice:</strong>
+      • Torrents may involve copyrighted material — use only where legal.<br>
+      • This tool searches <em>public torrent indexes</em>, not direct downloads.<br>
+      • Anna's Archive and Archive.is are legal meta-services.<br>
+      • Always scan downloads for malware.
+    </div>
+
+    <footer>
+      &copy; 2026 Akhtar
+    </footer>
+    
+    
+  </div>
+
+  <script>
+    const modeSelect = document.getElementById('searchMode');
+    const driveOpt = document.getElementById('googleDriveOptions');
+    const trustedOpt = document.getElementById('trustedEngineOptions');
+    const torrentOpt = document.getElementById('torrentEngineOptions');
+
+    // Show/hide contextual panels with animation
+    function updateUI() {
+      const mode = modeSelect.value;
+      
+      [driveOpt, trustedOpt, torrentOpt].forEach(el => {
+        el.style.display = 'none';
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(-8px)';
+      });
+      
+      if (mode === 'google-drive') {
+        driveOpt.style.display = 'block';
+        setTimeout(() => {
+          driveOpt.style.opacity = '1';
+          driveOpt.style.transform = 'translateY(0)';
+        }, 10);
+      }
+      else if (mode === 'trusted') {
+        trustedOpt.style.display = 'block';
+        setTimeout(() => {
+          trustedOpt.style.opacity = '1';
+          trustedOpt.style.transform = 'translateY(0)';
+        }, 10);
+      }
+      else if (mode === 'torrent') {
+        torrentOpt.style.display = 'block';
+        setTimeout(() => {
+          torrentOpt.style.opacity = '1';
+          torrentOpt.style.transform = 'translateY(0)';
+        }, 10);
+      }
+    }
+
+    modeSelect.addEventListener('change', updateUI);
+    updateUI(); // Initial state
+
+    // Search handler
+    document.getElementById('dlSearch').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const term = document.getElementById('query').value.trim();
+      if (!term) return;
+
+      const mode = modeSelect.value;
+      let url;
+      const enc = (s) => encodeURIComponent(s);
+
+      // File extensions hint (helps filter relevant results)
+      const ext = "(exe OR zip OR rar OR torrent OR dmg OR iso OR apk OR pdf OR epub OR mp4 OR mkv OR avi)";
+
+      if (mode === 'open-dirs') {
+        const query = `intitle:"index of" "${term}" ${ext}`;
+        url = `https://www.google.com/search?q=${enc(query)}`;
+      }
+      else if (mode === 'google-drive') {
+        const engine = document.getElementById('driveEngine').value;
+        const query = `"${term}" site:drive.google.com`;
+        url = engine === 'duckduckgo'
+          ? `https://duckduckgo.com/?q=${enc(query)}`
+          : `https://www.google.com/search?q=${enc(query)}`;
+      }
+      else if (mode === 'mega') {
+        const query = `"${term}" site:mega.nz`;
+        url = `https://www.google.com/search?q=${enc(query)}`;
+      }
+      else if (mode === 'mediafire') {
+        const query = `"${term}" site:mediafire.com`;
+        url = `https://www.google.com/search?q=${enc(query)}`;
+      }
+      else if (mode === 'archive-is') {
+        const query = `"${term}" (site:archive.is OR site:archive.ph OR site:archive.today)`;
+        url = `https://www.google.com/search?q=${enc(query)}`;
+      }
+      else if (mode === 'anna') {
+        url = `https://annas-archive.org/search?q=${enc(term)}`;
+      }
+      else if (mode === 'torrent') {
+        const engine = document.getElementById('torrentEngine').value;
+        // Public torrent index sites (as of 2025)
+        const torrentSites = [
+          '1337x.to',
+          'torrentgalaxy.to',
+          'rarbg.to',
+          'nyaa.si',           // anime
+          'thepiratebay.party',
+          'torrentfunk.com',
+          'bt4g.org'
+        ];
+        const siteFilter = torrentSites.map(s => `site:${s}`).join(' OR ');
+        const query = `"${term}" (${siteFilter})`;
+
+        if (engine === 'duckduckgo') {
+          url = `https://duckduckgo.com/?q=${enc(query)}`;
+        } else {
+          url = `https://www.google.com/search?q=${enc(query)}`;
+        }
+      }
+      else if (mode === 'trusted') {
+        const engine = document.getElementById('trustedEngine').value;
+        const sites = [
+          'archive.org',
+          'github.com',
+          'sourceforge.net',
+          'gitlab.com',
+          'filehippo.com',
+          'fossies.org',
+          'osf.io'
+        ];
+        const siteFilter = sites.map(s => `site:${s}`).join(' OR ');
+        const query = `"${term}" (${siteFilter}) ${ext}`;
+        const q = enc(query);
+        switch(engine) {
+          case 'bing': url = `https://www.bing.com/search?q=${q}`; break;
+          case 'duckduckgo': url = `https://duckduckgo.com/?q=${q}`; break;
+          default: url = `https://www.google.com/search?q=${q}`;
+        }
+      }
+
+      if (url) {
+        // Add subtle button feedback
+        const btn = this.querySelector('button');
+        btn.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          window.open(url, '_blank');
+          btn.style.transform = '';
+        }, 120);
+      }
+    });
+
+    // Add subtle input focus animation
+    document.querySelectorAll('input, select').forEach(el => {
+      el.addEventListener('focus', function() {
+        this.parentElement.style.transform = 'scale(1.01)';
+        this.parentElement.style.transition = 'transform 0.2s ease';
+      });
+      el.addEventListener('blur', function() {
+        this.parentElement.style.transform = 'scale(1)';
+      });
+    });
+  </script>
+</body>
+</html>
