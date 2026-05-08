@@ -163,7 +163,7 @@ body {
 /* COMPANY FOOTER */
 .company-section {
   width: 100%; text-align: center; padding: 24px 18px; margin-top: 10px;
-  background: var(--glass-bg); border-top: 1px solid var(--glass-border);
+  border-top: 1px solid var(--glass-border);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
   animation: fadeInUp 0.8s ease-out 0.9s forwards;
