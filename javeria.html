@@ -97,6 +97,7 @@
 
   <main class="links-box">
     
+    <!-- MOBILE LINKS -->
     <div class="mobile-links glass">
       <div class="box-title"><i class="fas fa-link"></i> Quick Links</div>
       <a href="https://www.property24.com/for-sale/agency/evolate-real-estate/javeria-s-akhtar/465917" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-house"></i> For Sale → Property24</a>
@@ -105,11 +106,12 @@
       <a href="https://www.evolate.co.za/about-us" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-circle-info"></i> About Evolate Properties</a>
       <a href="https://search.google.com/local/writereview?placeid=ChIJs3RFH15zlR4RolPpvy-Aw4g" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-star"></i> Write a Review</a>
       
+      <!-- Mobile Trigger -->
       <button type="button" class="contact-trigger" id="contact-trigger-mobile">
         <i class="fas fa-paper-plane"></i> Contact Javeria
       </button>
       
-      <!-- Smooth Expand Wrapper -->
+      <!-- Mobile Inline Form -->
       <div class="contact-form-wrapper" id="contact-form-mobile">
         <div class="contact-form-inner">
           <div class="contact-form-header">
@@ -142,6 +144,7 @@
       </div>
     </div>
 
+    <!-- DESKTOP CARDS -->
     <div class="desktop-cards">
       <a href="https://www.property24.com/for-sale/agency/evolate-real-estate/javeria-s-akhtar/465917" target="_blank" rel="noopener" class="link-card">
         <div class="card-media">
@@ -198,48 +201,14 @@
         </div>
       </a>
 
-      <div class="form-card glass" id="desktop-form-card">
+      <!-- Desktop Trigger Card (Opens Modal) -->
+      <button type="button" class="contact-trigger-card" id="open-contact-modal">
         <div class="card-content">
           <h3><i class="fas fa-paper-plane"></i> Contact Javeria</h3>
           <p>Have a question or ready to start your property journey? Send a message directly.</p>
-          
-          <button type="button" class="contact-trigger" id="contact-trigger-desktop">
-            <i class="fas fa-paper-plane"></i> Open Contact Form
-          </button>
-          
-          <!-- Smooth Expand Wrapper -->
-          <div class="contact-form-wrapper" id="contact-form-desktop">
-            <div class="contact-form-inner">
-              <div class="contact-form-header">
-                <h4><i class="fas fa-paper-plane"></i> Send a Message</h4>
-                <button type="button" class="contact-close" id="contact-close-desktop" aria-label="Close form">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-              <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-                <input type="hidden" name="access_key" value="e53831f5-bc05-491f-8e5f-6de8293f334e">
-                <input type="hidden" name="subject" value="New Inquiry from Javeria's Profile">
-                <input type="hidden" name="redirect" value="https://akhtar.co.za/javeria?thanks=1">
-                
-                <div class="form-group">
-                  <label for="name-desktop">Your Name *</label>
-                  <input type="text" id="name-desktop" name="name" class="form-input" required placeholder="e.g. John Smith">
-                </div>
-                <div class="form-group">
-                  <label for="email-desktop">Email Address *</label>
-                  <input type="email" id="email-desktop" name="email" class="form-input" required placeholder="you@example.com">
-                </div>
-                <div class="form-group">
-                  <label for="message-desktop">Message *</label>
-                  <textarea id="message-desktop" name="message" class="form-textarea" required placeholder="How can Javeria help you?"></textarea>
-                </div>
-                <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right"></i></button>
-                <p class="form-note">Responses within 24 business hours. All inquiries confidential.</p>
-              </form>
-            </div>
-          </div>
+          <span class="card-cta">Open Form <i class="fas fa-arrow-right"></i></span>
         </div>
-      </div>
+      </button>
     </div>
 
   </main>
@@ -259,6 +228,38 @@
     </div>
   </footer>
 
+</div>
+
+<!-- CONTACT MODAL (DESKTOP) -->
+<div class="modal-overlay" id="contact-modal">
+  <div class="modal-content glass">
+    <button type="button" class="modal-close-btn" id="close-contact-modal" aria-label="Close form">
+      <i class="fas fa-times"></i>
+    </button>
+    <h2 class="modal-title"><i class="fas fa-paper-plane"></i> Contact Javeria</h2>
+    <div class="modal-body">
+      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+        <input type="hidden" name="access_key" value="e53831f5-bc05-491f-8e5f-6de8293f334e">
+        <input type="hidden" name="subject" value="New Inquiry from Javeria's Profile">
+        <input type="hidden" name="redirect" value="https://akhtar.co.za/javeria?thanks=1">
+        
+        <div class="form-group">
+          <label for="name-modal">Your Name *</label>
+          <input type="text" id="name-modal" name="name" class="form-input" required placeholder="e.g. John Smith">
+        </div>
+        <div class="form-group">
+          <label for="email-modal">Email Address *</label>
+          <input type="email" id="email-modal" name="email" class="form-input" required placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="message-modal">Message *</label>
+          <textarea id="message-modal" name="message" class="form-textarea" required placeholder="How can Javeria help you?"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right"></i></button>
+        <p class="form-note">Responses within 24 business hours. All inquiries confidential.</p>
+      </form>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -289,63 +290,63 @@
     });
   })();
 
-  // Expandable Contact Form Toggle
+  // Mobile Inline Form Toggle
   (function() {
-    function setupToggle(triggerId, wrapperId, closeId, cardId) {
-      const trigger = document.getElementById(triggerId);
-      const wrapper = document.getElementById(wrapperId);
-      const closeBtn = document.getElementById(closeId);
-      const card = cardId ? document.getElementById(cardId) : null;
-      
-      if (!trigger || !wrapper) return;
-      
-      const toggleForm = (show) => {
-        wrapper.classList.toggle('active', show);
-        trigger.setAttribute('aria-expanded', show ? 'true' : 'false');
-        if (card) card.classList.toggle('expanded', show);
-        if (show) {
-          setTimeout(() => {
-            const firstInput = wrapper.querySelector('input, textarea');
-            if (firstInput) firstInput.focus();
-          }, 100);
-        }
-      };
-      
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        const isExpanded = wrapper.classList.contains('active');
-        toggleForm(!isExpanded);
-      });
-      
-      if (closeBtn) {
-        closeBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          toggleForm(false);
-          trigger.focus();
-        });
+    const trigger = document.getElementById('contact-trigger-mobile');
+    const wrapper = document.getElementById('contact-form-mobile');
+    const closeBtn = document.getElementById('contact-close-mobile');
+    
+    if (!trigger || !wrapper) return;
+    
+    const toggleForm = (show) => {
+      wrapper.classList.toggle('active', show);
+      trigger.setAttribute('aria-expanded', show ? 'true' : 'false');
+      if (show) {
+        setTimeout(() => {
+          const firstInput = wrapper.querySelector('input, textarea');
+          if (firstInput) firstInput.focus();
+        }, 100);
       }
-      
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && wrapper.classList.contains('active')) {
-          toggleForm(false);
-          trigger.focus();
-        }
-      });
-    }
+    };
+    
+    trigger.addEventListener('click', () => toggleForm(!wrapper.classList.contains('active')));
+    if (closeBtn) closeBtn.addEventListener('click', () => toggleForm(false));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && wrapper.classList.contains('active')) toggleForm(false);
+    });
+  })();
 
-    document.addEventListener('DOMContentLoaded', () => {
-      setupToggle('contact-trigger-mobile', 'contact-form-mobile', 'contact-close-mobile', null);
-      setupToggle('contact-trigger-desktop', 'contact-form-desktop', 'contact-close-desktop', 'desktop-form-card');
-      
-      if (new URLSearchParams(window.location.search).has('contact')) {
-        const isDesktop = window.innerWidth >= 1024;
-        const wrapper = document.getElementById(isDesktop ? 'contact-form-desktop' : 'contact-form-mobile');
-        if (wrapper) wrapper.classList.add('active');
-        if (isDesktop) {
-          const card = document.getElementById('desktop-form-card');
-          if (card) card.classList.add('expanded');
-        }
+  // Desktop Modal Form Toggle
+  (function() {
+    const modal = document.getElementById('contact-modal');
+    const openBtn = document.getElementById('open-contact-modal');
+    const closeBtn = document.getElementById('close-contact-modal');
+    
+    if (!modal || !openBtn) return;
+    
+    const toggleModal = (show) => {
+      modal.classList.toggle('active', show);
+      if (show) {
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        setTimeout(() => {
+          const firstInput = modal.querySelector('input, textarea');
+          if (firstInput) firstInput.focus();
+        }, 100);
+      } else {
+        document.body.style.overflow = '';
       }
+    };
+    
+    openBtn.addEventListener('click', () => toggleModal(true));
+    closeBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleModal(false); });
+    
+    // Close on background click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) toggleModal(false);
+    });
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) toggleModal(false);
     });
   })();
 </script>
