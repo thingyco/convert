@@ -4,15 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Javeria Shamsi Akhtar | Property Broker & Lease Advisor</title>
-
-  <!-- 🔍 SEO & META -->
   <meta name="description" content="Award-winning Property Broker & Lease Advisor at Evolate Properties. Expert guidance for buying, selling, and renting properties.">
   <meta name="author" content="Javeria Shamsi Akhtar">
   <meta name="keywords" content="Javeria Shamsi Akhtar, Evolate Properties, Property Broker, Lease Advisor, Real Estate South Africa, Property24, Titan Property Group">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#6a11cb">
 
-  <!-- 🔗 OPEN GRAPH -->
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Javeria Shamsi Akhtar | Property Broker & Lease Advisor">
   <meta property="og:description" content="Award-winning full-status broker at Evolate Properties. Helping clients find optimal investment properties.">
@@ -23,14 +20,12 @@
   <meta property="profile:last_name" content="Shamsi Akhtar">
   <meta property="profile:username" content="soldbyjaveria">
 
-  <!-- 🐦 TWITTER CARD -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Javeria Shamsi Akhtar | Property Broker & Lease Advisor">
   <meta name="twitter:description" content="Award-winning full-status broker at Evolate Properties.">
   <meta name="twitter:image" content="https://drive.propcon.co.za/user/20241009/acff0b0c2f84b5e7b64a227330eb53be/20241009092534.jpg">
   <meta name="twitter:creator" content="@soldbyjaveria">
 
-  <!-- 📜 STRUCTURED DATA -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -55,26 +50,22 @@
   }
   </script>
 
-  <!-- 🖼️ FAVICON -->
   <link rel="icon" type="image/webp" href="https://drive.propcon.co.za/agency/a3fea99cf5faab20f2348410e677d942/branch/b85d580bd35b51e00d46007739ff5291/images/logo-big-new.webp">
-
-  <!-- EXTERNAL CSS & ICONS -->
-    <link rel="stylesheet" href="footer2.css">
+  <link rel="stylesheet" href="footer2.css">
   <link rel="stylesheet" href="javeria.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+
 <a href="https://akhtar.co.za" class="fixed-corner-link">
   <img src="opthead.png" alt="Home" class="fixed-corner-img">
 </a>
 
-<!-- Theme Toggle -->
 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
   <span class="theme-icon sun"><i class="fas fa-sun"></i></span>
   <span class="theme-icon moon"><i class="fas fa-moon"></i></span>
 </button>
 
-<!-- Background -->
 <div class="bg-gradient"></div>
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
@@ -82,7 +73,6 @@
 
 <div class="container">
 
-  <!-- LEFT SIDEBAR -->
   <aside class="profile-section">
     <div class="profile-header glass">
       <a href="https://agent.propcon.co.za/estate-agent/javeria-akhtar" target="_blank" rel="noopener" title="View Full Profile" class="avatar-link">
@@ -105,21 +95,53 @@
     </div>
   </aside>
 
-  <!-- RIGHT COLUMN: LINKS -->
   <main class="links-box">
     
-    <!-- MOBILE BUTTONS -->
     <div class="mobile-links glass">
       <div class="box-title"><i class="fas fa-link"></i> Quick Links</div>
       <a href="https://www.property24.com/for-sale/agency/evolate-real-estate/javeria-s-akhtar/465917" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-house"></i> For Sale → Property24</a>
       <a href="https://www.property24.com/to-rent/agency/evolate-real-estate/javeria-s-akhtar/465917" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-key"></i> To Rent → Property24</a>
       <a href="https://www.evolate.co.za/estate-agent/javeria-akhtar" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-building"></i> Listings on Evolate.co.za</a>
       <a href="https://www.evolate.co.za/about-us" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-circle-info"></i> About Evolate Properties</a>
-      <a href="https://vcard.link/card/D9HC.vcf" class="link-btn" download><i class="fas fa-address-card"></i> Save Contact (vCard)</a>
       <a href="https://search.google.com/local/writereview?placeid=ChIJs3RFH15zlR4RolPpvy-Aw4g" target="_blank" rel="noopener" class="link-btn"><i class="fas fa-star"></i> Write a Review</a>
+      
+      <button type="button" class="contact-trigger" id="contact-trigger-mobile">
+        <i class="fas fa-paper-plane"></i> Contact Javeria
+      </button>
+      
+      <!-- Smooth Expand Wrapper -->
+      <div class="contact-form-wrapper" id="contact-form-mobile">
+        <div class="contact-form-inner">
+          <div class="contact-form-header">
+            <h4><i class="fas fa-paper-plane"></i> Send a Message</h4>
+            <button type="button" class="contact-close" id="contact-close-mobile" aria-label="Close form">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+            <input type="hidden" name="access_key" value="e53831f5-bc05-491f-8e5f-6de8293f334e">
+            <input type="hidden" name="subject" value="New Inquiry from Javeria's Profile">
+            <input type="hidden" name="redirect" value="https://akhtar.co.za/javeria?thanks=1">
+            
+            <div class="form-group">
+              <label for="name-mobile">Your Name *</label>
+              <input type="text" id="name-mobile" name="name" class="form-input" required placeholder="e.g. John Smith">
+            </div>
+            <div class="form-group">
+              <label for="email-mobile">Email Address *</label>
+              <input type="email" id="email-mobile" name="email" class="form-input" required placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+              <label for="message-mobile">Message *</label>
+              <textarea id="message-mobile" name="message" class="form-textarea" required placeholder="How can Javeria help you?"></textarea>
+            </div>
+            <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right"></i></button>
+            <p class="form-note">Responses within 24 business hours. All inquiries confidential.</p>
+          </form>
+        </div>
+      </div>
     </div>
 
-    <!-- DESKTOP CARDS (2 per row) -->
     <div class="desktop-cards">
       <a href="https://www.property24.com/for-sale/agency/evolate-real-estate/javeria-s-akhtar/465917" target="_blank" rel="noopener" class="link-card">
         <div class="card-media">
@@ -165,17 +187,6 @@
         </div>
       </a>
 
-      <a href="https://vcard.link/card/D9HC.vcf" class="link-card" download>
-        <div class="card-media">
-          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=400&fit=crop&auto=format" alt="Save Contact" loading="lazy">
-        </div>
-        <div class="card-content">
-          <h3><i class="fas fa-address-card"></i> Save Contact (vCard)</h3>
-          <p>Add Javeria directly to your phone contacts with one tap. Includes direct phone, email, and office details.</p>
-          <span class="card-cta">Download vCard <i class="fas fa-download"></i></span>
-        </div>
-      </a>
-
       <a href="https://search.google.com/local/writereview?placeid=ChIJs3RFH15zlR4RolPpvy-Aw4g" target="_blank" rel="noopener" class="link-card">
         <div class="card-media">
           <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&h=400&fit=crop&auto=format" alt="Write a Review" loading="lazy">
@@ -186,11 +197,53 @@
           <span class="card-cta">Leave Review <i class="fas fa-arrow-right"></i></span>
         </div>
       </a>
+
+      <div class="form-card glass" id="desktop-form-card">
+        <div class="card-content">
+          <h3><i class="fas fa-paper-plane"></i> Contact Javeria</h3>
+          <p>Have a question or ready to start your property journey? Send a message directly.</p>
+          
+          <button type="button" class="contact-trigger" id="contact-trigger-desktop">
+            <i class="fas fa-paper-plane"></i> Open Contact Form
+          </button>
+          
+          <!-- Smooth Expand Wrapper -->
+          <div class="contact-form-wrapper" id="contact-form-desktop">
+            <div class="contact-form-inner">
+              <div class="contact-form-header">
+                <h4><i class="fas fa-paper-plane"></i> Send a Message</h4>
+                <button type="button" class="contact-close" id="contact-close-desktop" aria-label="Close form">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                <input type="hidden" name="access_key" value="e53831f5-bc05-491f-8e5f-6de8293f334e">
+                <input type="hidden" name="subject" value="New Inquiry from Javeria's Profile">
+                <input type="hidden" name="redirect" value="https://akhtar.co.za/javeria?thanks=1">
+                
+                <div class="form-group">
+                  <label for="name-desktop">Your Name *</label>
+                  <input type="text" id="name-desktop" name="name" class="form-input" required placeholder="e.g. John Smith">
+                </div>
+                <div class="form-group">
+                  <label for="email-desktop">Email Address *</label>
+                  <input type="email" id="email-desktop" name="email" class="form-input" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="message-desktop">Message *</label>
+                  <textarea id="message-desktop" name="message" class="form-textarea" required placeholder="How can Javeria help you?"></textarea>
+                </div>
+                <button type="submit" class="form-submit">Send Message <i class="fas fa-arrow-right"></i></button>
+                <p class="form-note">Responses within 24 business hours. All inquiries confidential.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="company-section">
     <div class="company-logo-wrap">
       <a href="https://www.evolate.co.za" target="_blank" rel="noopener" title="Visit Evolate Properties">
@@ -233,6 +286,66 @@
     });
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
       if (!localStorage.getItem(STORAGE_KEY)) applyTheme(e.matches ? 'dark' : 'light');
+    });
+  })();
+
+  // Expandable Contact Form Toggle
+  (function() {
+    function setupToggle(triggerId, wrapperId, closeId, cardId) {
+      const trigger = document.getElementById(triggerId);
+      const wrapper = document.getElementById(wrapperId);
+      const closeBtn = document.getElementById(closeId);
+      const card = cardId ? document.getElementById(cardId) : null;
+      
+      if (!trigger || !wrapper) return;
+      
+      const toggleForm = (show) => {
+        wrapper.classList.toggle('active', show);
+        trigger.setAttribute('aria-expanded', show ? 'true' : 'false');
+        if (card) card.classList.toggle('expanded', show);
+        if (show) {
+          setTimeout(() => {
+            const firstInput = wrapper.querySelector('input, textarea');
+            if (firstInput) firstInput.focus();
+          }, 100);
+        }
+      };
+      
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isExpanded = wrapper.classList.contains('active');
+        toggleForm(!isExpanded);
+      });
+      
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleForm(false);
+          trigger.focus();
+        });
+      }
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && wrapper.classList.contains('active')) {
+          toggleForm(false);
+          trigger.focus();
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setupToggle('contact-trigger-mobile', 'contact-form-mobile', 'contact-close-mobile', null);
+      setupToggle('contact-trigger-desktop', 'contact-form-desktop', 'contact-close-desktop', 'desktop-form-card');
+      
+      if (new URLSearchParams(window.location.search).has('contact')) {
+        const isDesktop = window.innerWidth >= 1024;
+        const wrapper = document.getElementById(isDesktop ? 'contact-form-desktop' : 'contact-form-mobile');
+        if (wrapper) wrapper.classList.add('active');
+        if (isDesktop) {
+          const card = document.getElementById('desktop-form-card');
+          if (card) card.classList.add('expanded');
+        }
+      }
     });
   })();
 </script>
