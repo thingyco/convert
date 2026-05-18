@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optco — Professional Eyecare Tools</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/optco/convert/main/favicon.ico">
+    
+    <meta name="description" content="Professional optometry tools and resources for eyecare professionals. Contact lens converters, vision charts, and clinical references.">
+
+<style>
+/* ===== VARIABLES & RESET ===== */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.25);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    --glass-highlight: rgba(255, 255, 255, 0.1);
+    --text-primary: rgba(30, 30, 40, 0.95);
+    --text-secondary: rgba(60, 60, 80, 0.85);
+    --accent-glow: rgba(50, 120, 200, 0.5);
+    --border-color: #e5e7eb;
+    --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ===== BASE & BACKGROUND ===== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    color: var(--text-primary);
+    background: var(--dynamic-gradient, linear-gradient(135deg, #a8edea 0%, #fed6e3 100%));
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(ellipse at 20% 80%, rgba(120, 180, 255, 0.12), transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(180, 120, 255, 0.12), transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.04), transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6, p, div, span, label, td, th, input, button, select, textarea {
+    font-family: inherit; color: var(--text-primary);
+}
+
+.hero-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 3rem;
+    margin: 40px 0 16px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.hero-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== GLASS COMPONENT ===== */
+.glass {
+    background: var(--glass-bg); backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border); border-radius: 24px;
+    box-shadow: var(--glass-shadow); position: relative; overflow: hidden;
+}
+
+/* ===== CARD GRID ===== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin: 40px 0;
+}
+
+/* ===== CARD STYLES ===== */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: var(--transition);
+}
+
+.card-link:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: var(--glass-shadow);
+    transition: var(--transition);
+    aspect-ratio: 1 / 1.1; /* Slightly taller than square */
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+    width: 100%;
+    height: 55%;
+    object-fit: cover;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.card-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.card-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.card-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(59, 130, 246, 0.2);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 12px;
+    width: fit-content;
+}
+
+/* ===== HAMBURGER MENU ===== */
+.hamburger-btn {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 1100;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    font-size: 20px;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.hamburger-btn:hover { background: rgba(255, 255, 255, 0.3); transform: scale(1.05); }
+
+.hamburger-menu {
+    position: fixed;
+    top: 74px;
+    left: 18px;
+    z-index: 1099;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 8px;
+    min-width: 200px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hamburger-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+.menu-links { display: flex; flex-direction: column; gap: 4px; }
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: background 0.2s ease;
+}
+.menu-item:hover { background: rgba(255, 255, 255, 0.2); }
+.menu-divider {
+    height: 2px;
+    background: var(--glass-border);
+    margin: 4px 4px;
+    border: 0px;
+}
+
+/* Vertical Control Stack */
+.control-stack {
+    position: fixed;
+    top: 74px;
+    left: 18px;
+    z-index: 1099;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.control-btn {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    font-size: 18px;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    border-top: 1px solid var(--glass-border);
+}
+.footer-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.2rem; }
+    .hero-subtitle { font-size: 1rem; padding: 0 16px; }
+    .cards-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .card { aspect-ratio: 1 / 1.2; }
+    .hamburger-btn { top: 12px; left: 12px; width: 40px; height: 40px; }
+    .control-stack { top: 64px; left: 12px; }
+    .control-btn { width: 40px; height: 40px; font-size: 16px; }
+    .hamburger-menu { top: 112px; left: 12px; }
+}
+
+@media (max-width: 480px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .card { aspect-ratio: 1 / 1.1; }
+}
+
+/* Disable animations */
+.glass::before, .buttons::before, .tab-button::after {
+    display: none !important;
+}
+</style>
+</head>
+<body>
+
+<!-- Vertical Control Buttons -->
+<div class="control-stack">
+    <button class="control-btn" onclick="toggleCompact()" title="Toggle Compact">↔️</button>
+    <button class="control-btn" onclick="changeTheme()" title="Change Theme">🎨</button>
+</div>
+
+<!-- Hamburger Menu -->
+<button class="hamburger-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu">☰</button>
+<div class="hamburger-menu" id="hamburgerMenu">
+    <div class="menu-links">
+        <a href="index.html" class="menu-item">🏠 Home</a>
+        <a href="converter.html" class="menu-item">🔀 Converter</a>
+        <a href="drivers.html" class="menu-item">🚗 Driver's License</a>
+        <a href="vision.html" class="menu-item">👁️ Vision Charts</a>
+        <a href="prescription.html" class="menu-item">📝 Rx Terms</a>
+        <a href="who.html" class="menu-item">🇺🇳 WHO Classification</a>
+        <hr class="menu-divider">
+        <a href="https://optco.github.io/javeria/" target="_blank" rel="noopener noreferrer" class="menu-item">🏘️ Properties</a>
+        <a href="https://optco.github.io/search/" target="_blank" rel="noopener noreferrer" class="menu-item">🔍 Advanced Search</a>
+        <a href="https://instagram.com/tnvrakhtar" target="_blank" rel="noopener noreferrer" class="menu-item">👤 Follow Akhtar</a>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<h1 class="hero-title">👁️ Optco</h1>
+<p class="hero-subtitle">Professional eyecare tools and resources for optometrists, students, and vision care professionals</p>
+
+<!-- Cards Grid -->
+<div class="cards-grid">
+    
+    <!-- Card 1: Converter -->
+    <a href="converter.html" class="card-link">
+        <div class="card glass">
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&h=400&fit=crop" alt="Contact Lens Converter" class="card-image">
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">🔀 Specs to CL Converter</h3>
+                    <p class="card-description">Convert spectacle prescriptions to contact lens power instantly. Vertex distance calculations, axis rounding, and spherical equivalents.</p>
+                </div>
+                <span class="card-badge">Most Used</span>
+            </div>
+        </div>
+    </a>
+    
+    <!-- Card 2: Driver's License -->
+    <a href="drivers.html" class="card-link">
+        <div class="card glass">
+            <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&h=400&fit=crop" alt="Driver's License" class="card-image">
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">🚗 Driver's License</h3>
+                    <p class="card-description">Vision requirements for driving licenses, temporary license info, and foreign license conversion guidelines.</p>
+                </div>
+                <span class="card-badge">South Africa</span>
+            </div>
+        </div>
+    </a>
+    
+    <!-- Card 3: Vision Charts -->
+    <a href="vision.html" class="card-link">
+        <div class="card glass">
+            <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&h=400&fit=crop" alt="Vision Charts" class="card-image">
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">👁️ Vision Charts</h3>
+                    <p class="card-description">Visual acuity reference tables, Snellen/LogMAR/Decimal converters, and near vision (N-point) equivalents.</p>
+                </div>
+                <span class="card-badge">Reference</span>
+            </div>
+        </div>
+    </a>
+    
+    <!-- Card 4: Prescription Terms -->
+    <a href="prescription.html" class="card-link">
+        <div class="card glass">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&h=400&fit=crop" alt="Prescription Terms" class="card-image">
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">📝 Prescription Terms</h3>
+                    <p class="card-description">Common ophthalmic abbreviations, Latin terminology, and prescription notation guide for eyecare professionals.</p>
+                </div>
+                <span class="card-badge">Quick Reference</span>
+            </div>
+        </div>
+    </a>
+    
+    <!-- Card 5: WHO Classification -->
+    <a href="who.html" class="card-link">
+        <div class="card glass">
+            <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=600&h=400&fit=crop" alt="WHO Classification" class="card-image">
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">🇺🇳 WHO Classification</h3>
+                    <p class="card-description">World Health Organization visual impairment categories, ICD codes, and global vision health standards.</p>
+                </div>
+                <span class="card-badge">Clinical</span>
+            </div>
+        </div>
+    </a>
+    
+    <!-- Card 6: About/Contact -->
+    <a href="https://instagram.com/tnvrakhtar" target="_blank" rel="noopener noreferrer" class="card-link">
+        <div class="card glass">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop" alt="About Optco" class="card-image">
+            <div class="card-content">
+                <div>
+                    <h3 class="card-title">👤 About Optco</h3>
+                    <p class="card-description">Professional eyecare resources created by optometrists. Follow for updates, tools, and clinical insights.</p>
+                </div>
+                <span class="card-badge">Connect</span>
+            </div>
+        </div>
+    </a>
+    
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p class="footer-text">© 2026 Optco — Professional Eyecare Tools<br>bio.site/optco</p>
+</div>
+
+<!-- Scripts -->
+<script>
+// Hamburger Menu Toggle
+function toggleMenu() {
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('hamburgerMenu');
+    menu.classList.toggle('active');
+    btn.classList.toggle('active');
+    btn.textContent = menu.classList.contains('active') ? '✕' : '☰';
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    const menu = document.getElementById('hamburgerMenu');
+    const btn = document.getElementById('menuBtn');
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.remove('active');
+        btn.classList.remove('active');
+        btn.textContent = '☰';
+    }
+});
+
+// Compact Mode Toggle
+function toggleCompact() {
+    document.body.classList.toggle('compact');
+    const isCompact = document.body.classList.contains('compact');
+    localStorage.setItem('compactMode', isCompact);
+}
+
+// Theme Changer
+const gradients = [
+    'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+    'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+    'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+    'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+    'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+    'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
+    'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+    'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
+    'linear-gradient(135deg, #d299c2 0%, #fef9d7 100%)',
+    'linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)',
+    'linear-gradient(135deg, #cd9cf2 0%, #f6f3ff 100%)',
+    'linear-gradient(135deg, #fbc7d4 0%, #9796f0 100%)',
+    'linear-gradient(135deg, #fddb92 0%, #d1fdff 100%)'
+];
+
+function changeTheme() {
+    let idx = parseInt(localStorage.getItem('themeIndex') || '0');
+    idx = (idx + 1) % gradients.length;
+    localStorage.setItem('themeIndex', idx);
+    document.documentElement.style.setProperty('--dynamic-gradient', gradients[idx]);
+}
+
+// Load saved preferences
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('compactMode') === 'true') {
+        document.body.classList.add('compact');
+    }
+    const savedTheme = localStorage.getItem('themeIndex');
+    const themeIdx = savedTheme !== null ? parseInt(savedTheme) : 0;
+    document.documentElement.style.setProperty('--dynamic-gradient', gradients[themeIdx]);
+    localStorage.setItem('themeIndex', themeIdx);
+});
+</script>
+
+</body>
+</html>
