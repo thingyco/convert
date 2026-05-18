@@ -1,0 +1,196 @@
+/* ===== VARIABLES & RESET ===== */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.25);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    --glass-highlight: rgba(255, 255, 255, 0.1);
+    --text-primary: rgba(30, 30, 40, 0.95);
+    --text-secondary: rgba(60, 60, 80, 0.85);
+    --accent-glow: rgba(50, 120, 200, 0.5);
+    --border-color: #e5e7eb;
+    --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ===== BASE & BACKGROUND ===== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    color: var(--text-primary);
+    background: var(--dynamic-gradient, linear-gradient(135deg, #a8edea 0%, #fed6e3 100%));
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(ellipse at 20% 80%, rgba(120, 180, 255, 0.12), transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(180, 120, 255, 0.12), transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.04), transparent 70%);
+    pointer-events: none; z-index: -1;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6, p, div, span, label, td, th, input, button, select, textarea {
+    font-family: inherit; color: var(--text-primary);
+}
+
+/* ===== THEME TOGGLE ===== */
+.theme-toggle {
+    position: fixed; top: 20px; right: 20px; z-index: 1100;
+}
+.control-btn {
+    width: 44px; height: 44px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border); border-radius: 12px;
+    font-size: 18px; color: var(--text-primary);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: var(--transition); box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.control-btn:hover { background: rgba(255, 255, 255, 0.3); transform: scale(1.05); }
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+    text-align: center;
+    margin: 60px 0 40px;
+}
+.hero-logo {
+    height: 64px;
+    width: auto;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+}
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ===== GLASS COMPONENT ===== */
+.glass {
+    background: var(--glass-bg); backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border); border-radius: 24px;
+    box-shadow: var(--glass-shadow); position: relative; overflow: hidden;
+}
+
+/* ===== CARD GRID ===== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin: 40px 0;
+}
+
+/* ===== CARD STYLES ===== */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: var(--transition);
+}
+.card-link:hover {
+    transform: translateY(-4px) scale(1.02);
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--glass-shadow);
+    transition: var(--transition);
+    aspect-ratio: 1 / 1.1;
+    display: flex;
+    flex-direction: column;
+}
+.card:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+    width: 100%;
+    height: 55%;
+    object-fit: cover;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.card-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.card-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.card-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(59, 130, 246, 0.2);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 12px;
+    width: fit-content;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    border-top: 1px solid var(--glass-border);
+}
+.footer-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .hero-logo { height: 52px; }
+    .hero-subtitle { font-size: 1rem; padding: 0 16px; }
+    .cards-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .card { aspect-ratio: 1 / 1.2; }
+    .theme-toggle { top: 16px; right: 16px; }
+    .control-btn { width: 40px; height: 40px; font-size: 16px; }
+}
+
+@media (max-width: 480px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .card { aspect-ratio: 1 / 1.1; }
+}
+
+/* Disable unnecessary animations */
+.glass::before, .buttons::before, .tab-button::after { display: none !important; }
