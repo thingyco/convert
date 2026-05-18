@@ -32,11 +32,18 @@
     .controls h3 { margin: 15px 0 8px; font-size: 1rem; border-bottom: 2px solid var(--primary-color); padding-bottom: 4px; }
     .field { margin-bottom: 12px; }
     .field label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
-    .field input, .field select, .field textarea {
+    .field input, .field select, .field textarea, .field .checkbox-label {
       width: 100%; padding: 8px 10px; border: 1px solid var(--border-color);
       border-radius: 4px; font-size: 0.9rem;
     }
     .field textarea { resize: vertical; min-height: 60px; }
+    .field input[type="checkbox"] {
+      width: auto; margin-right: 8px; vertical-align: middle;
+    }
+    .field .checkbox-label {
+      display: flex; align-items: center; padding: 8px 10px; border: 1px solid var(--border-color);
+      border-radius: 4px; font-size: 0.9rem; cursor: pointer; background: #fff;
+    }
     .row { display: flex; gap: 10px; }
     .row > .field { flex: 1; }
     .btn-export {
@@ -68,7 +75,7 @@
     .letter-header {
       display: flex; 
       justify-content: space-between; 
-      align-items: center; /* Vertically centers logo with text block */
+      align-items: center;
       margin-bottom: 0;
       padding-bottom: 0;
       position: relative;
@@ -110,8 +117,6 @@
     
     .letter-body { font-size: 11pt; line-height: 1.7; color: #111; }
     .letter-body p { margin: 10px 0; }
-    
-    /* Removed .dynamic class styling */
     
     .signature { margin-top: 40px; }
     .signature p { margin: 4px 0; }
@@ -162,7 +167,7 @@
         display: flex !important;
         flex-direction: row !important;
         justify-content: space-between !important;
-        align-items: center !important; /* Keeps alignment in PDF */
+        align-items: center !important;
         page-break-inside: avoid;
       }
       .logo-area {
@@ -275,6 +280,15 @@
         <div class="field"><label>Qualifications</label><input type="text" id="doctorQual" value="BSc(Hons) Optom.& Ortho."></div>
       </div>
       <div class="field"><label>Reason / Prescription</label><textarea id="reason" rows="2">was present at our clinic for a full eye test and was prescribed new spectacles for regular use.</textarea></div>
+      
+      <!-- Excuse Toggle -->
+      <div class="field">
+        <label class="checkbox-label">
+          <input type="checkbox" id="showExcuse" checked>
+          Include "Kindly excuse..." sentence
+        </label>
+      </div>
+      
       <div class="row">
         <div class="field"><label>Excuse From</label>
           <select id="excuseType">
@@ -323,10 +337,11 @@
         <b>Escorted by:</b> <span id="p_escort">Self</span><br>
         <b>Tested by:</b> <span id="p_doctor">Optometrist M. T. Akhtar</span></p>
         
-        
+        <!-- Excuse sentence - toggleable -->
+        <p id="p_excuseParagraph">Kindly excuse <span id="p_pronounObj"></span> from <span id="p_excuseType"></span> for <span id="p_duration"></span> spent at our clinic.</p>
         
         <div id="p_notes" class="notes-box" style="display:none;"></div>
-        <p>Kindly excuse <span id="p_pronounObj"></span> from <span id="p_excuseType"></span> for <span id="p_duration"></span> spent at our clinic.</p>
+        
         <p>Should there be any queries, please do not hesitate to contact us.</p>
         
         <div class="signature">
@@ -395,6 +410,9 @@
           reader.readAsDataURL(e.target.files[0]);
         }
       });
+      
+      // Excuse sentence toggle
+      document.getElementById('showExcuse').addEventListener('change', updateExcuseVisibility);
     });
 
     function updateLogo() {
@@ -403,6 +421,11 @@
       if (LOGOS[selector]) {
         document.getElementById('logoImg').src = LOGOS[selector];
       }
+    }
+
+    function updateExcuseVisibility() {
+      const show = document.getElementById('showExcuse').checked;
+      document.getElementById('p_excuseParagraph').style.display = show ? 'block' : 'none';
     }
 
     function updateAll() {
@@ -461,6 +484,9 @@
       } else {
         notesEl.style.display = 'none';
       }
+      
+      // Excuse visibility
+      updateExcuseVisibility();
     }
 
     function formatDate(dateStr) {
