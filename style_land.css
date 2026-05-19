@@ -66,10 +66,13 @@ h1, h2, h3, h4, h5, h6, p, div, span, label, td, th, input, button, select, text
     margin: 60px 0 40px;
 }
 .hero-logo {
-    height: 44px;
+    /* Fluid scaling: 40px on mobile → 64px on desktop → max 80px on huge screens */
+    height: clamp(40px, 8vw, 80px);
     width: auto;
+    max-width: 90vw;           /* Prevents overflow on very small screens */
     margin-bottom: 16px;
     filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+    transition: height 0.2s ease; /* Smooth resize */
 }
 .hero-subtitle {
     font-size: 1.15rem;
