@@ -66,7 +66,7 @@ h1, h2, h3, h4, h5, h6, p, div, span, label, td, th, input, button, select, text
     margin: 60px 0 40px;
 }
 .hero-logo {
-    height: 64px;
+    height: 44px;
     width: auto;
     margin-bottom: 16px;
     filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
@@ -126,10 +126,13 @@ h1, h2, h3, h4, h5, h6, p, div, span, label, td, th, input, button, select, text
 
 .card-image {
     width: 100%;
-    height: 55%;
-    object-fit: cover;
+    aspect-ratio: 3 / 1.5;      /* Forces perfect square container */
+    object-fit: cover;        /* Crops overflow, never stretches */
+    object-position: center;  /* Keeps focal point centered */
     border-bottom: 1px solid var(--glass-border);
+    display: block;           /* Removes inline spacing gap */
 }
+
 
 .card-content {
     padding: 20px;
