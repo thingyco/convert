@@ -43,7 +43,7 @@
     left: 0;
     width: 100%;
     height: 35px;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 9999;
     pointer-events: none;
     border-radius: 48px 48px 0 0;
