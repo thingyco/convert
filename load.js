@@ -72,7 +72,7 @@
   `;
   
   const img = document.createElement('img');
-  img.src = 'https://theattn.com/opthead.png';
+  img.src = 'https://akhtar.co.za/opthead.png';
   img.alt = 'akhtar.co.za';
   img.className = 'fixed-corner-img';
   img.style.cssText = `
