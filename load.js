@@ -4,7 +4,7 @@
 
     const style = document.createElement('style');
     style.textContent = `
-      #pl-indicator { position: fixed; bottom: 26px; left: 16px; display: flex; gap: 8px; z-index: 999999; pointer-events: none; opacity: 1; transition: opacity 0.3s ease; }
+      #pl-indicator { position: fixed; top: 26px; left: 50%; display: flex; gap: 8px; z-index: 999999; pointer-events: none; opacity: 1; transition: opacity 0.3s ease; }
       .pl-dot { width: 10px; height: 10px; border-radius: 50%; animation: plBounce 1.2s ease-in-out infinite; }
       .pl-dot:nth-child(1) { background: #ff4d4d; }
       .pl-dot:nth-child(2) { background: #ff9f43; animation-delay: 0.15s; }
