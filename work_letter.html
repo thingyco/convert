@@ -324,7 +324,7 @@
           <strong>Date: <span id="p_date"></span></strong><br><br>
           <span id="p_practiceName">Spec-Savers Blue Hills</span><br>
           <span id="p_address">Blue Hills Shopping Centre, Corner of Oliphants Road and African View Drive, Midrand.</span><br>
-          <a id="p_email" href="#">bluehills@specstores.co.za</a> <span id="p_phone">011 318 4255</span>
+          <a id="p_email">bluehills@specstores.co.za</a><br><span id="p_phone">011 318 4255</span>
         </div>
       </div>
       
@@ -341,7 +341,7 @@
         
         <!-- Excuse sentence - toggleable -->
         <p id="p_excuseParagraph">Kindly excuse <span id="p_pronounObj"></span> from <span id="p_excuseType"></span> for <span id="p_duration"></span> spent at our clinic.</p>
-        
+        <b>Comments:</b>
         <div id="p_notes" class="notes-box" style="display:none;"></div>
         
         <p>Should there be any queries, please do not hesitate to contact us.</p>
@@ -446,7 +446,6 @@
       document.getElementById('p_practiceName').textContent = document.getElementById('practiceName').value || '[Practice Name]';
       document.getElementById('p_address').innerHTML = document.getElementById('practiceAddress').value.replace(/\n/g, '<br>') || '[Address]';
       document.getElementById('p_email').textContent = document.getElementById('practiceEmail').value;
-      document.getElementById('p_email').href = `mailto:${document.getElementById('practiceEmail').value}`;
       document.getElementById('p_phone').textContent = document.getElementById('practicePhone').value;
 
       // Gender & Pronoun Logic
@@ -498,5 +497,6 @@
     }
   </script>
   <script src="load.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"9f5e4a75ce0748f68f10a89c272c559f","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
