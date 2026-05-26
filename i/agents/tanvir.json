@@ -1,0 +1,54 @@
+{
+  "agent": {
+    "name": "Tanvir Akhtar",
+    "title": "Property Broker & Lease Advisor",
+    "badge": "Multiple Award-Winning Agent",
+    "avatar": "https://drive.propcon.co.za/user/20241009/acff0b0c2f84b5e7b64a227330eb53be/20241009092534.jpg",
+    "shortLink": "theattn.com/tanvir",
+    "shortLinkUrl": "https://theattn.com/tanvir"
+  },
+  "socials": [
+    { "platform": "whatsapp", "icon": "fab fa-whatsapp", "url": "https://wa.me/27123456789" },
+    { "platform": "phone", "icon": "fas fa-phone", "url": "tel:+27795595770" },
+    { "platform": "email", "icon": "fas fa-envelope", "url": "mailto:javeria@evolate.co.za" },
+    { "platform": "instagram", "icon": "fab fa-instagram", "url": "https://instagram.com/tnvrakhtar" },
+    { "platform": "tiktok", "icon": "fab fa-tiktok", "url": "https://tiktok.com/@tanvir_akhtar" }
+  ],
+  "listings": [
+    {
+      "title": "For Sale → Property24",
+      "url": "https://www.property24.com/for-sale/agency/evolate-real-estate/javeria-s-akhtar/465917",
+      "description": "Browse exclusive listings across South Africa. Filter by price, location, bedrooms, and property type.",
+      "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop&auto=format",
+      "icon": "fas fa-home"
+    },
+    {
+      "title": "To Rent → Property24",
+      "url": "https://www.property24.com/to-rent/agency/evolate-real-estate/javeria-s-akhtar/465917",
+      "description": "Discover rental opportunities from apartments to family homes. Flexible lease terms and professional management.",
+      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=400&fit=crop&auto=format",
+      "icon": "fas fa-key"
+    },
+    {
+      "title": "Listings on Evolate.co.za",
+      "url": "https://www.evolate.co.za/estate-agent/javeria-akhtar",
+      "description": "View full portfolio directly on the Evolate Properties platform. Updated in real-time with new listings.",
+      "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop&auto=format",
+      "icon": "fas fa-building"
+    },
+    {
+      "title": "About Evolate Properties",
+      "url": "https://www.evolate.co.za/about-us",
+      "description": "Learn about our award-winning team, client-first philosophy, and why we're trusted by property investors nationwide.",
+      "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop&auto=format",
+      "icon": "fas fa-users"
+    }
+  ],
+  "company": {
+    "logo": "https://drive.propcon.co.za/agency/a3fea99cf5faab20f2348410e677d942/branch/b85d580bd35b51e00d46007739ff5291/images/logo-big-new.webp",
+    "name": "Evolate Properties",
+    "url": "https://agent.propcon.co.za/estate-agent/javeria-akhtar",
+    "tagline": "Formerly Titan Property Group. Helping clients buy, sell & rent with confidence.",
+    "copyright": "© 2026"
+  }
+}
