@@ -42,7 +42,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 35px;
+    height: 15px;
     background: rgba(0, 0, 0, 0.5);
     z-index: 9999;
     pointer-events: none;
