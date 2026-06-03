@@ -54,7 +54,7 @@
   document.body.appendChild(stripe);
   
   const link = document.createElement('a');
-  link.href = 'https://akhtar.co.za/';
+  link.href = 'https://theattn.com/';
   link.className = 'fixed-corner-link';
   link.style.cssText = `
     position: fixed;
@@ -73,7 +73,7 @@
   
   const img = document.createElement('img');
   img.src = 'https://akhtar.co.za/opthead.png';
-  img.alt = 'akhtar.co.za';
+  img.alt = 'theattn.com';
   img.className = 'fixed-corner-img';
   img.style.cssText = `
     width: 120px;
