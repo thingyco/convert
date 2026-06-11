@@ -31,7 +31,7 @@
         }
         #pl-footer.show { transform: translateY(0); }
         #pl-footer a { 
-          color: ##F8F7FF; 
+          color: #F8F7FF; 
           text-decoration: none; 
           display: inline-flex; 
           align-items: center; 
