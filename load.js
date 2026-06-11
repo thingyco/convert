@@ -20,7 +20,7 @@
           left: 0; 
           width: 100%; 
           height: 32px; 
-          background: rgba(248, 248, 255, 0.5); 
+          background: rgba(248, 248, 255, 0); 
           border-radius: 48px 48px 0 0; 
           z-index: 9999; 
           display: flex; 
