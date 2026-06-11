@@ -31,16 +31,16 @@
         }
         #pl-footer.show { transform: translateY(0); }
         #pl-footer a { 
-          color: #fff; 
+          color: ##F8F7FF; 
           text-decoration: none; 
           display: inline-flex; 
           align-items: center; 
           gap: 6px; 
           font-family: system-ui, sans-serif; 
-          font-size: 11px; 
+          font-size: 9px; 
           line-height: 1;
         }
-        #pl-footer img { height: 14px; width: auto; display: block; }
+        #pl-footer img { height: 16px; width: auto; display: block; }
       `;
       document.head.appendChild(style);
     }
@@ -63,7 +63,7 @@
       footer.id = 'pl-footer';
       footer.innerHTML = `
         <a href="https://theattn.com/" target="_blank" rel="noopener">
-          Powered by <img src="https://theattn.com/favicons/favicon-32x32.png" alt="theattn" class="status-text"> theattn
+          powered by <img src="https://theattn.com/favicons/favicon-32x32.png" alt="theattn" class="status-text"> theattn
         </a>
       `;
       document.body.appendChild(footer);
