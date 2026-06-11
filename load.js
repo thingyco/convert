@@ -19,8 +19,8 @@
           bottom: 0; 
           left: 0; 
           width: 100%; 
-          height: 25px; 
-          background: rgba(0, 0, 0, 0.5); 
+          height: 32px; 
+          background: rgba(248, 248, 255, 0.5); 
           border-radius: 48px 48px 0 0; 
           z-index: 9999; 
           display: flex; 
@@ -31,7 +31,7 @@
         }
         #pl-footer.show { transform: translateY(0); }
         #pl-footer a { 
-          color: #F8F7FF; 
+          color: #000; 
           text-decoration: none; 
           display: inline-flex; 
           align-items: center; 
@@ -63,7 +63,7 @@
       footer.id = 'pl-footer';
       footer.innerHTML = `
         <a href="https://theattn.com/" target="_blank" rel="noopener">
-          powered by <img src="https://theattn.com/favicons/favicon-32x32.png" alt="theattn" class="status-text"> theattn
+         <img src="https://theattn.com/favicons/favicon-32x32.png" alt="theattn" class="status-text">
         </a>
       `;
       document.body.appendChild(footer);
