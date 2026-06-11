@@ -76,7 +76,7 @@
   const img = document.createElement('img');
   img.src = 'https://akhtar.co.za/opthead.png';
   img.alt = 'theattn.com';
-  img.className = 'fixed-corner-img';
+  img.className = 'status-text';
   img.style.cssText = `
     width: 120px;
     height: auto;
