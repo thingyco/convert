@@ -1,102 +1,70 @@
 (function() {
-  function initLoader() {
-    if (document.getElementById('pl-indicator')) return;
+  function init() {
+    // --- UNIFIED STYLES ---
+    if (!document.getElementById('pl-unified-styles')) {
+      const style = document.createElement('style');
+      style.id = 'pl-unified-styles';
+      style.textContent = `
+        /* --- Loader --- */
+        #pl-indicator { position: fixed; top: 20px; left: 20px; display: flex; gap: 6px; z-index: 999999; pointer-events: none; transition: opacity 0.4s ease; }
+        .pl-dot { width: 8px; height: 8px; border-radius: 50%; animation: plBounce 1.2s ease-in-out infinite; }
+        .pl-dot:nth-child(1) { background: #ff4d4d; }
+        .pl-dot:nth-child(2) { background: #ff9f43; animation-delay: 0.15s; }
+        .pl-dot:nth-child(3) { background: #2ecc71; animation-delay: 0.3s; }
+        @keyframes plBounce { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-6px); opacity: 0.6; } }
 
-    const style = document.createElement('style');
-    style.textContent = `
-      #pl-indicator { position: fixed; top: 26px; left: 26px; display: flex; flex-direction: column; gap: 8px; z-index: 999999; pointer-events: none; opacity: 1; transition: opacity 0.3s ease; }
-      .pl-dot { width: 10px; height: 10px; border-radius: 0%; animation: plBounce 1.2s ease-in-out infinite; }
-      .pl-dot:nth-child(1) { background: #ff4d4d; }
-      .pl-dot:nth-child(2) { background: #ff9f43; animation-delay: 0.15s; }
-      .pl-dot:nth-child(3) { background: #2ecc71; animation-delay: 0.3s; }
-      @keyframes plBounce { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-8px); opacity: 0.8; } }
-      .status-text {font-size: 11px; color: var(--text-dim); animation: pulse-dot 2s ease-in-out infinite;}
-      @keyframes pulse-dot {0%, 100% { opacity: 1; } 50% { opacity: 0.3; }}
-    `;
-    document.head.appendChild(style);
+        /* --- Footer --- */
+        #pl-footer { 
+          position: fixed; bottom: 0; left: 0; width: 100%; 
+          background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); 
+          color: #fff; font: 13px/1 system-ui, sans-serif; text-align: center; padding: 10px 0; 
+          z-index: 9999; transform: translateY(100%); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        #pl-footer.show { transform: translateY(0); }
+        #pl-footer a { color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; opacity: 0.85; transition: opacity 0.2s; }
+        #pl-footer a:hover { opacity: 1; }
+        #pl-footer img { height: 20px; width: auto; display: block; }
+      `;
+      document.head.appendChild(style);
+    }
 
-    const container = document.createElement('div');
-    container.id = 'pl-indicator';
-    container.innerHTML = '<div class="pl-dot"></div><div class="pl-dot"></div><div class="pl-dot"></div>';
-    document.body.appendChild(container);
+    // --- LOADER ---
+    if (!document.getElementById('pl-indicator')) {
+      const loader = document.createElement('div');
+      loader.id = 'pl-indicator';
+      loader.innerHTML = '<div class="pl-dot"></div><div class="pl-dot"></div><div class="pl-dot"></div>';
+      document.body.appendChild(loader);
 
-    setTimeout(() => {
-      container.style.opacity = '0';
-      setTimeout(() => container.remove(), 300);
-    }, 3000);
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 400); // Matches the 0.4s CSS transition
+      }, 3000);
+    }
+
+    // --- FOOTER ---
+    if (!document.getElementById('pl-footer')) {
+      const footer = document.createElement('div');
+      footer.id = 'pl-footer';
+      footer.innerHTML = `
+        <a href="https://theattn.com/" target="_blank" rel="noopener">
+          Powered by <img src="https://theattn.com/favicons/favicon-32x32.png" alt="theattn" class="status-text"> theattn
+        </a>
+      `;
+      document.body.appendChild(footer);
+      
+      // Clean animation trigger without reflow hacks
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          footer.classList.add('show');
+        });
+      });
+    }
   }
 
+  // Ensure DOM is fully loaded before injecting elements
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLoader);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    initLoader();
+    init();
   }
-})();
-
-(function() {
-  if (document.querySelector('.fixed-corner-link')) return; // prevent duplicates
-  
-  // --- STRIPE BACKGROUND ---
-  const stripe = document.createElement('div');
-  stripe.className = 'fixed-corner-stripe';
-  stripe.style.cssText = `
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 25px;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    pointer-events: none;
-    border-radius: 48px 48px 0 0;
-    transform: translateY(100%); /* Start hidden below viewport */
-    opacity: 0;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
-  `;
-  document.body.appendChild(stripe);
-  
-  const link = document.createElement('a');
-  link.href = 'https://theattn.com/';
-  link.className = 'fixed-corner-link';
-  link.style.cssText = `
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px); /* Start hidden + centered horizontally */
-    display: block;
-    z-index: 10000;
-    line-height: 0;
-    width: auto;
-    max-width: none;
-    min-width: 0;
-    opacity: 0;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
-  `;
-  
-  const img = document.createElement('img');
-  img.src = 'https://akhtar.co.za/opthead.png';
-  img.alt = 'theattn.com';
-  img.className = 'status-text';
-  img.style.cssText = `
-    width: 120px;
-    height: auto;
-    display: block;
-    border: none;
-  `;
-  
-  link.appendChild(img);
-  document.body.appendChild(link);
-  
-  // --- TRIGGER ANIMATION ---
-  // Force reflow to ensure initial styles apply before transition
-  void stripe.offsetWidth;
-  void link.offsetWidth;
-  
-  // Animate to final position
-  stripe.style.transform = 'translateY(0)';
-  stripe.style.opacity = '1';
-  
-  link.style.transform = 'translateX(-50%) translateY(0)';
-  link.style.opacity = '1';
-  // --- END ANIMATION ---
 })();
