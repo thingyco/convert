@@ -7,7 +7,7 @@
       style.textContent = `
         /* --- Loader --- */
         #pl-indicator { position: fixed; top: 26px; left: 26px; display: flex; flex-direction: column; gap: 8px; z-index: 999999; pointer-events: none; transition: opacity 0.3s ease; }
-        .pl-dot { width: 10px; height: 10px; border-radius: 50%; animation: plBounce 1.2s ease-in-out infinite; }
+        .pl-dot { width: 10px; height: 10px; animation: plBounce 1.2s ease-in-out infinite; }
         .pl-dot:nth-child(1) { background: #ff4d4d; }
         .pl-dot:nth-child(2) { background: #ff9f43; animation-delay: 0.15s; }
         .pl-dot:nth-child(3) { background: #2ecc71; animation-delay: 0.3s; }
