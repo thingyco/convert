@@ -12,7 +12,7 @@
         .pl-dot:nth-child(2) { background: #ff9f43; animation-delay: 0.15s; }
         .pl-dot:nth-child(3) { background: #2ecc71; animation-delay: 0.3s; }
         @keyframes plBounce { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-8px); opacity: 0.8; } }
-        .status-text {font-size: 14px; color: #ff0000; animation: pulse-dot 2s ease-in-out infinite;}
+        .status-text {font-size: 14px; color: #ffffff; animation: pulse-dot 2s ease-in-out infinite;}
   @keyframes pulse-dot {0%, 100% { opacity: 1; } 50% { opacity: 0.3; }}
         /* --- Footer --- */
         #pl-footer { 
