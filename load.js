@@ -12,8 +12,8 @@
         .pl-dot:nth-child(2) { background: #ff9f43; animation-delay: 0.15s; }
         .pl-dot:nth-child(3) { background: #2ecc71; animation-delay: 0.3s; }
         @keyframes plBounce { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-8px); opacity: 0.8; } }
-        .status-text {width: 8px; height: 8px; border-radius: 50%; background-color: rgb(var(--accent-rgb, 0, 0, 0)); display: inline-block; vertical-align: middle; animation: blink 1.5s step-end infinite;}
-        @keyframes blink {0%, 100% { opacity: 1; } 50% { opacity: 0; }}
+        .status-text {width: 8px; height: 8px; display: inline-block; vertical-align: middle; animation: blink 1.5s step-end infinite;}
+        @keyframes blink {0%, 100% { opacity: 1; } 50% { opacity: 0.3; }}
      
         /* --- Footer --- */
         #pl-footer { 
