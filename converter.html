@@ -38,6 +38,8 @@
 <button class="tab-button" onclick="openTab('tab3', event)"><i class="fas fa-eye" aria-hidden="true"></i> Vision Charts</button>
 <button class="tab-button" onclick="openTab('tab4', event)"><i class="fas fa-prescription" aria-hidden="true"></i> Rx Terms</button>
 <button class="tab-button" onclick="openTab('tab5', event)"><i class="fas fa-globe" aria-hidden="true"></i> WHO</button>
+		<!-- Add this line after the WHO button -->
+<button class="tab-button" onclick="openTab('tab6', event)"><i class="fas fa-scale-balanced" aria-hidden="true"></i> HPCSA Rules</button>
 			 <hr class="menu-divider">
 	<a href="/javeria" target="_blank" rel="noopener noreferrer" class="menu-item">
   <i class="fas fa-house-chimney" aria-hidden="true"></i> Properties
@@ -591,6 +593,102 @@ function adjustValue(id, delta) {
 </div>
 				
             </div>
+
+	<!-- Tab 6: HPCSA Regulations -->
+<div id="tab6" class="tab-pane">
+    <h2><i class="fas fa-scale-balanced" aria-hidden="true"></i> HPCSA Contact Lens Regulations</h2>
+    
+    <!-- HPCSA Regulations Section -->
+    <div class="glass" style="margin-top: 28px; padding: 24px;">
+        
+        <h3 style="margin-bottom: 20px; font-size: 1.3rem; color: var(--text-primary);">⚖️ HPCSA Regulations: Contact Lens Prescription Validity</h3>
+        
+        <!-- Intro Card -->
+        <div style="background: rgba(255,255,255,0.08); padding: 16px 20px; border-radius: 12px; margin-bottom: 24px; border-left: 3px solid #3b82f6;">
+            <p style="color: var(--text-secondary); margin: 0; line-height: 1.7;">
+                The 12-month prescription validity rule is legally binding for all contact lens retail in South Africa — online and in-store. 
+                Source: <strong>Health Professions Council of South Africa (HPCSA)</strong> & National Department of Health.
+            </p>
+        </div>
+        
+        <!-- Section 1: Ethical Rules -->
+        <h4 style="margin: 24px 0 12px; font-size: 1.1rem; color: var(--text-primary);">1️⃣ HPCSA Ethical Rules of Conduct</h4>
+        
+        <div style="background: rgba(59, 130, 246, 0.12); padding: 16px 20px; border-radius: 12px; margin-bottom: 16px; border-left: 3px solid #3b82f6;">
+            <p style="color: var(--text-secondary); margin: 0; line-height: 1.7;">
+                Published in the <strong>South African Government Gazette No. 43632</strong> under the Health Professions Act.
+            </p>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.08); padding: 16px 20px; border-radius: 12px; margin-bottom: 20px;">
+            <strong style="display: block; margin-bottom: 8px; color: var(--text-primary);">📜 Section 5(e) — Key Requirement</strong>
+            <p style="color: var(--text-secondary); margin: 0; line-height: 1.7; font-style: italic;">
+                "The sale of contact lenses (or spectacles) is strictly limited to a <strong>valid prescription that is less than a year from the date of eye examination</strong>."
+            </p>
+        </div>
+        
+        <p style="color: var(--text-secondary); margin: 0 0 24px; line-height: 1.7;">
+            ✅ Applies to: All optometrists, dispensing opticians, and retail outlets<br>
+            ✅ Enforced by: HPCSA Professional Conduct Committee<br>
+            ✅ Penalty for non-compliance: Disciplinary hearing, fines, or suspension
+        </p>
+        
+        <hr style="margin: 28px 0; opacity: 0.3;">
+        
+        <!-- Section 2: Clinical Guidelines -->
+        <h4 style="margin: 24px 0 12px; font-size: 1.1rem; color: var(--text-primary);">2️⃣ HPCSA Clinical Guidelines for Contact Lens Fitting</h4>
+        
+        <p style="color: var(--text-secondary); margin: 0 0 16px; line-height: 1.7;">
+            Professional standards outlined in the official <strong>HPCSA Board for Optometry and Dispensing Opticians Guidelines</strong>.
+        </p>
+        
+        <div style="display: grid; gap: 12px; margin-bottom: 24px;">
+            
+            <div style="background: rgba(34, 197, 94, 0.12); padding: 14px 18px; border-radius: 12px; border-left: 3px solid #22c55e;">
+                <strong style="color: var(--text-primary); display: block; margin-bottom: 4px;">👁️ Ocular Health Evaluation</strong>
+                <span style="color: var(--text-secondary);">
+                    Contact lenses must not be dispensed without a current ocular health evaluation if <strong>more than 12 months</strong> have passed since the last consultation.
+                </span>
+            </div>
+            
+            <div style="background: rgba(245, 158, 11, 0.12); padding: 14px 18px; border-radius: 12px; border-left: 3px solid #f59e0b;">
+                <strong style="color: var(--text-primary); display: block; margin-bottom: 4px;">🔄 Disposable Lens Patients</strong>
+                <span style="color: var(--text-secondary);">
+                    For monthly or two-weekly disposables: Patients must be <strong>formally advised</strong> to undergo an eye examination annually to monitor corneal health.
+                </span>
+            </div>
+            
+        </div>
+        
+        <!-- Quick Reference Box -->
+        <div style="background: rgba(139, 92, 246, 0.12); padding: 16px 20px; border-radius: 12px; margin: 24px 0; border-left: 3px solid #8b5cf6;">
+            <strong style="color: var(--text-primary); display: block; margin-bottom: 8px;">📋 Quick Compliance Checklist</strong>
+            <ul style="color: var(--text-secondary); padding-left: 20px; margin: 0; line-height: 1.8;">
+                <li>Verify prescription date is within 12 months of sale</li>
+                <li>Document ocular health evaluation in patient records</li>
+                <li>Provide written advice for annual exams to disposable lens wearers</li>
+                <li>Retain prescription copies for minimum 5 years (HPCSA record-keeping rule)</li>
+            </ul>
+        </div>
+        
+        <!-- Official Sources -->
+        <details style="background: rgba(255,255,255,0.05); padding: 16px 20px; border-radius: 12px; cursor: pointer;">
+            <summary style="font-weight: 600; color: var(--text-primary); margin-bottom: 12px; cursor: pointer;">🔗 Official Sources & Documents <span style="color: var(--text-secondary); font-weight: 400; font-size: 0.9rem;">(click to expand)</span></summary>
+            
+            <ol style="color: var(--text-secondary); padding-left: 20px; line-height: 1.8; font-size: 0.9rem; margin-top: 8px;">
+                <li><a href="https://www.hpcsa.co.za/Uploads/editor/General/ethical_rules/General_ethical_rules_for_the_health_professions_2021.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--accent-glow); text-decoration: none;">HPCSA Ethical Rules of Conduct (PDF)</a></li>
+                <li><a href="https://www.hpcsa.co.za/Uploads/editor/General/Boards/Optometry/Board_Notice_141_of_2021_-_Guidelines_for_the_fitting_of_contact_lenses.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--accent-glow); text-decoration: none;">HPCSA Contact Lens Fitting Guidelines (PDF)</a></li>
+                <li><a href="https://www.gov.za/documents/health-professions-act-56-1974" target="_blank" rel="noopener noreferrer" style="color: var(--accent-glow); text-decoration: none;">Health Professions Act 56 of 1974 (Government Gazette)</a></li>
+                <li><a href="https://www.hpcsa.co.za" target="_blank" rel="noopener noreferrer" style="color: var(--accent-glow); text-decoration: none;">HPCSA Official Website</a></li>
+            </ol>
+        </details>
+        
+        <p style="margin-top: 24px; font-size: 0.85rem; color: var(--text-secondary); opacity: 0.85; text-align: center; border-top: 1px dashed var(--glass-border); padding-top: 16px;">
+            <em>ℹ️ This summary is for informational purposes. Always consult the latest HPCSA publications and legal counsel for compliance decisions.</em>
+        </p>
+        
+    </div>
+</div>
         </div>
     
 
