@@ -665,7 +665,9 @@
             currentTextColor = color;
             document.getElementById('companyName').style.color = currentTextColor;
             document.getElementById('invoiceTitle').style.color = currentTextColor;
-            document.getElementById('thankYouText').style.color = currentTextColor;
+            if(document.getElementById('thankYouText')) {
+                document.getElementById('thankYouText').style.color = currentTextColor;
+            }
             document.getElementById('billToTitle').style.backgroundColor = currentTextColor;
             document.getElementById('commentsTitle').style.backgroundColor = currentTextColor;
             document.querySelectorAll('th').forEach(h => h.style.backgroundColor = currentTextColor);
@@ -699,15 +701,6 @@
         element.classList.remove('pdf-export-mode'); // Clean up after export
     });
 }
-
-            const inputs = element.querySelectorAll('input, textarea');
-            inputs.forEach(input => input.style.border = 'none');
-
-            html2pdf().set(opt).from(element).save().then(() => {
-                inputs.forEach(input => input.style.border = '');
-                element.classList.remove('hide-remove-buttons');
-            });
-        }
 
         document.addEventListener('DOMContentLoaded', function() {
             calculateTotals();
