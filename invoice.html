@@ -20,7 +20,11 @@
         line-height: 1.4;
         padding-bottom: 20px;
     }
-
+/* Fixes blank second page during PDF export */
+.pdf-export-mode {
+    min-height: auto !important;
+    height: auto !important;
+}
     /* --- MAIN LAYOUT --- */
     .main-wrapper {
         display: flex;
@@ -668,18 +672,33 @@
             document.querySelector('.total-row').style.backgroundColor = currentTextColor;
         }
 
-        function exportPDF() {
-            const element = document.getElementById('invoice');
-            const size = document.getElementById('paperSize').value;
-            element.classList.add('hide-remove-buttons');
-            
-            const opt = {
-                margin: 0,
-                filename: 'invoice-' + (document.getElementById('invoiceNumber').value || 'draft') + '.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0, backgroundColor: '#ffffff' },
-                jsPDF: { unit: size === 'a4' ? 'mm' : 'in', format: size === 'a4' ? 'a4' : 'letter', orientation: 'portrait' }
-            };
+      function exportPDF() {
+    const element = document.getElementById('invoice');
+    const size = document.getElementById('paperSize').value;
+    
+    // Add classes to hide UI elements and remove forced min-height
+    element.classList.add('hide-remove-buttons');
+    element.classList.add('pdf-export-mode'); 
+    
+    const opt = {
+        margin: 0,
+        filename: 'invoice-' + (document.getElementById('invoiceNumber').value || 'draft') + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0, backgroundColor: '#ffffff' },
+        jsPDF: { unit: size === 'a4' ? 'mm' : 'in', format: size === 'a4' ? 'a4' : 'letter', orientation: 'portrait' },
+        // Prevents awkward page splits and blank pages
+        pagebreak: { mode: ['css', 'legacy'] } 
+    };
+
+    const inputs = element.querySelectorAll('input, textarea');
+    inputs.forEach(input => input.style.border = 'none');
+
+    html2pdf().set(opt).from(element).save().then(() => {
+        inputs.forEach(input => input.style.border = '');
+        element.classList.remove('hide-remove-buttons');
+        element.classList.remove('pdf-export-mode'); // Clean up after export
+    });
+}
 
             const inputs = element.querySelectorAll('input, textarea');
             inputs.forEach(input => input.style.border = 'none');
