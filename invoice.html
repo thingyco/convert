@@ -386,6 +386,75 @@
 <script src="load.js"></script>
 
     <div class="main-wrapper">
+        <!-- TOOLS PANEL (MOVED TO LEFT) -->
+        <div class="controls" id="controlsPanel">
+            <div class="controls-header" onclick="toggleControls()">
+                <h3>Configuration</h3>
+                <button class="toggle-controls-btn" aria-label="Toggle tools">▼</button>
+            </div>
+            
+            <div class="controls-content">
+                <div class="control-group">
+                    <label>Invoice Title</label>
+                    <select id="titleSelect" onchange="updateTitle()">
+                        <option value="TAX INVOICE" selected>TAX INVOICE</option>
+                        <option value="INVOICE">INVOICE</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Paper Size</label>
+                    <select id="paperSize" onchange="changePaperSize()">
+                        <option value="a4" selected>A4</option>
+                        <option value="letter">Letter</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Currency</label>
+                    <select id="currencySelect" onchange="updateCurrency()">
+                        <option value="R">Rand 🇿🇦 R</option>
+                        <option value="$">USD 🇺🇸 $</option>
+                        <option value="€">EUR 🇪🇺 €</option>
+                        <option value="£">GBP 🇬🇧 £</option>
+                        <option value="¥">JPY 🇯🇵 ¥</option>
+                        <option value="₹">INR 🇮🇳 ₹</option>
+                        <option value="₦">NGN 🇳🇬 ₦</option>
+                        <option value="Rs">PKR 🇵🇰 Rs</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+
+                <div class="control-group" id="customCurrencyGroup" style="display: none;">
+                    <label>Custom Symbol</label>
+                    <input type="text" id="customCurrency" value="" maxlength="5" onchange="updateCurrency()">
+                </div>
+
+                <div class="control-group">
+                    <label>Theme Color</label>
+                    <div class="color-presets">
+                        <div class="color-swatch active" style="background:#2c5282" onclick="selectColor('#2c5282', this)"></div>
+                        <div class="color-swatch" style="background:#38a169" onclick="selectColor('#38a169', this)"></div>
+                        <div class="color-swatch" style="background:#000000" onclick="selectColor('#000000', this)"></div>
+                        <div class="color-swatch" style="background:#e53e3e" onclick="selectColor('#e53e3e', this)"></div>
+                        <div class="color-swatch" style="background:#805ad5" onclick="selectColor('#805ad5', this)"></div>
+                        <div class="color-swatch" style="background:#000000" onclick="toggleCustomColor()"><i class="fas fa-palette" aria-hidden="true"></i></div>
+                    </div>
+                    <div id="colorPickerWrapper">
+                        <input type="color" id="themeColorPicker" value="#2c5282" oninput="updateTextColor(this.value)">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Actions</label>
+                    <input type="file" id="logoUpload" accept="image/*" style="display: none;">
+                    <button class="btn btn-primary" onclick="document.getElementById('logoUpload').click()"><i class="fa fa-image" aria-hidden="true"></i> Add Logo</button>
+                    <button class="btn btn-primary" onclick="addRow()"><i class="fa fa-plus" aria-hidden="true"></i> Add Row</button>
+                    <button class="btn btn-success" onclick="exportPDF()"><i class="fa fa-file-text" aria-hidden="true"></i> Save PDF</button>
+                </div>
+            </div>
+        </div>
+
         <!-- INVOICE -->
         <div class="invoice-container page-a4" id="invoice">
             <div class="invoice-header">
@@ -474,75 +543,6 @@
 
             <div class="footer">
                 <h3 id="thankYouText">Thank You For Your Business!</h3>
-            </div>
-        </div>
-
-        <!-- TOOLS PANEL -->
-        <div class="controls" id="controlsPanel">
-            <div class="controls-header" onclick="toggleControls()">
-                <h3>SimpleInvoice</h3>
-                <button class="toggle-controls-btn" aria-label="Toggle tools">▼</button>
-            </div>
-            
-            <div class="controls-content">
-                <div class="control-group">
-                    <label>Invoice Title</label>
-                    <select id="titleSelect" onchange="updateTitle()">
-                        <option value="TAX INVOICE" selected>TAX INVOICE</option>
-                        <option value="INVOICE">INVOICE</option>
-                    </select>
-                </div>
-
-                <div class="control-group">
-                    <label>Paper Size</label>
-                    <select id="paperSize" onchange="changePaperSize()">
-                        <option value="a4" selected>A4</option>
-                        <option value="letter">Letter</option>
-                    </select>
-                </div>
-
-                <div class="control-group">
-                    <label>Currency</label>
-                    <select id="currencySelect" onchange="updateCurrency()">
-                        <option value="R">Rand 🇿🇦 R</option>
-                        <option value="$">USD 🇺🇸 $</option>
-                        <option value="€">EUR 🇪🇺 €</option>
-                        <option value="£">GBP 🇬🇧 £</option>
-                        <option value="¥">JPY 🇯🇵 ¥</option>
-                        <option value="₹">INR 🇮🇳 ₹</option>
-                        <option value="₦">NGN 🇳🇬 ₦</option>
-                        <option value="Rs">PKR 🇵🇰 Rs</option>
-                        <option value="custom">Custom</option>
-                    </select>
-                </div>
-
-                <div class="control-group" id="customCurrencyGroup" style="display: none;">
-                    <label>Custom Symbol</label>
-                    <input type="text" id="customCurrency" value="" maxlength="5" onchange="updateCurrency()">
-                </div>
-
-                <div class="control-group">
-                    <label>Theme Color</label>
-                    <div class="color-presets">
-                        <div class="color-swatch active" style="background:#2c5282" onclick="selectColor('#2c5282', this)"></div>
-                        <div class="color-swatch" style="background:#38a169" onclick="selectColor('#38a169', this)"></div>
-                        <div class="color-swatch" style="background:#000000" onclick="selectColor('#000000', this)"></div>
-                        <div class="color-swatch" style="background:#e53e3e" onclick="selectColor('#e53e3e', this)"></div>
-                        <div class="color-swatch" style="background:#805ad5" onclick="selectColor('#805ad5', this)"></div>
-                        <div class="color-swatch" style="background:#000000" onclick="toggleCustomColor()"><i class="fas fa-palette" aria-hidden="true"></i></div>
-                    </div>
-                    <div id="colorPickerWrapper">
-                        <input type="color" id="themeColorPicker" value="#2c5282" oninput="updateTextColor(this.value)">
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label>Actions</label>
-                    <input type="file" id="logoUpload" accept="image/*" style="display: none;">
-                    <button class="btn btn-primary" onclick="document.getElementById('logoUpload').click()"><i class="fa fa-image" aria-hidden="true"></i> Add Logo</button>
-                    <button class="btn btn-primary" onclick="addRow()"><i class="fa fa-plus" aria-hidden="true"></i> Add Row</button>
-                    <button class="btn btn-success" onclick="exportPDF()"><i class="fa fa-file-text" aria-hidden="true"></i> Save PDF</button>
-                </div>
             </div>
         </div>
     </div>
