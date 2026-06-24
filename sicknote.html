@@ -221,7 +221,21 @@
     <!-- CONTROL PANEL -->
     <div class="controls">
       <h2>Configuration</h2>
-      
+       <!-- LOGO SELECTION -->
+      <h3>Logo Selection</h3>
+      <div class="field">
+        <label>Choose Logo</label>
+     <select id="logoSelector">
+  <option value="specsavers">Spec Savers</option>
+  <option value="execuspecs">Execuspecs</option>
+  <option value="company" selected>Company</option>
+  <option value="custom">Custom Upload</option>
+</select>
+      </div>
+      <div class="field hidden" id="customLogoField">
+        <label>Upload Custom Logo</label>
+        <input type="file" id="logoUpload" accept="image/*">
+      </div>
       <div class="row">
         <div class="field">
            <label>Theme Color</label>
@@ -245,21 +259,7 @@
         <div class="field"><label>Phone</label><input type="tel" id="practicePhone" value="011 XXX XXXX"></div>
       </div>
 
-      <!-- LOGO SELECTION -->
-      <h3>Logo Selection</h3>
-      <div class="field">
-        <label>Choose Logo</label>
-     <select id="logoSelector">
-  <option value="specsavers">Spec Savers</option>
-  <option value="execuspecs">Execuspecs</option>
-  <option value="company" selected>Company</option>
-  <option value="custom">Custom Upload</option>
-</select>
-      </div>
-      <div class="field hidden" id="customLogoField">
-        <label>Upload Custom Logo</label>
-        <input type="file" id="logoUpload" accept="image/*">
-      </div>
+     
 
       <h3>Patient Details</h3>
       <div class="row">
