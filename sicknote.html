@@ -22,19 +22,51 @@
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 320px 1fr; gap: 20px;
     }
+
     /* Controls Panel */
     .controls {
-      background: var(---bg); padding: 20px;
-      border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      height: fit-content; position: sticky; top: 20px;
+      background: #f0f2f5;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      height: fit-content;
+      position: sticky; top: 20px;
     }
-    .controls h2 { margin: 0 0 15px; font-size: 1.2rem; color: var(--primary-color); }
-    .controls h3 { margin: 15px 0 8px; font-size: 1rem; border-bottom: 2px solid var(--primary-color); padding-bottom: 4px; }
+    .controls h2 {
+      margin: 0 0 15px;
+      font-size: 1.2rem;
+      color: #333;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    /* Section Cards */
+    .control-section {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .control-section:last-of-type {
+      margin-bottom: 0;
+    }
+    .control-section h3 {
+      margin: 0 0 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #444;
+      border-bottom: 2px solid #e9ecef;
+      padding-bottom: 6px;
+    }
+
     .field { margin-bottom: 12px; }
-    .field label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+    .field:last-child { margin-bottom: 0; }
+    .field label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; color: #555; }
     .field input, .field select, .field textarea, .field .checkbox-label {
       width: 100%; padding: 8px 10px; border: 1px solid var(--border-color);
-      border-radius: 4px; font-size: 0.9rem;
+      border-radius: 6px; font-size: 0.9rem; background: #fff;
     }
     .field textarea { resize: vertical; min-height: 60px; }
     .field input[type="checkbox"] {
@@ -42,20 +74,22 @@
     }
     .field .checkbox-label {
       display: flex; align-items: center; padding: 8px 10px; border: 1px solid var(--border-color);
-      border-radius: 4px; font-size: 0.9rem; cursor: pointer; background: #fff;
+      border-radius: 6px; font-size: 0.9rem; cursor: pointer; background: #fff;
     }
     .row { display: flex; gap: 10px; }
     .row > .field { flex: 1; }
+
     .btn-export {
       width: 100%; padding: 12px; margin-top: 10px;
       background: #28a745; color: #fff; border: none;
-      border-radius: 4px; font-weight: bold; cursor: pointer;
+      border-radius: 8px; font-weight: bold; cursor: pointer;
       font-size: 1rem; transition: background 0.2s;
     }
+    .btn-export:first-child { margin-top: 0; }
     .btn-export:hover { background: #218838; }
     .btn-reset { background: #6c757d; margin-top: 8px; }
     .btn-reset:hover { background: #5a6268; }
-    
+
     /* Toggle for Custom Upload */
     .hidden { display: none; }
 
@@ -213,7 +247,6 @@
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 </head>
 <body>
 
@@ -221,96 +254,110 @@
     <!-- CONTROL PANEL -->
     <div class="controls">
       <h2>Configuration</h2>
-       <!-- LOGO SELECTION -->
-      <h3>Logo Selection</h3>
-      <div class="field">
-        <label>Choose Logo</label>
-     <select id="logoSelector">
-  <option value="specsavers">Spec Savers</option>
-  <option value="execuspecs">Execuspecs</option>
-  <option value="company" selected>Company</option>
-  <option value="custom">Custom Upload</option>
-</select>
-      </div>
-      <div class="field hidden" id="customLogoField">
-        <label>Upload Custom Logo</label>
-        <input type="file" id="logoUpload" accept="image/*">
-      </div>
-      <div class="row">
+
+      <!-- LOGO & APPEARANCE -->
+      <div class="control-section">
+        <h3>Logo & Appearance</h3>
         <div class="field">
-           <label>Theme Color</label>
-           <input type="color" id="themeColor" value="#d9534f">
+          <label>Choose Logo</label>
+          <select id="logoSelector">
+            <option value="specsavers">Spec Savers</option>
+            <option value="execuspecs">Execuspecs</option>
+            <option value="company" selected>Company</option>
+            <option value="custom">Custom Upload</option>
+          </select>
         </div>
+        <div class="field hidden" id="customLogoField">
+          <label>Upload Custom Logo</label>
+          <input type="file" id="logoUpload" accept="image/*">
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>Theme Color</label>
+            <input type="color" id="themeColor" value="#d9534f">
+          </div>
+          <div class="field">
+            <label>Letter Title / Headline</label>
+            <input type="text" id="headlineInput" placeholder="e.g. SICK NOTE">
+          </div>
+        </div>
+      </div>
+
+      <!-- PRACTICE DETAILS -->
+      <div class="control-section">
+        <h3>Practice Details</h3>
+        <div class="row">
+          <div class="field"><label>Practice No.</label><input type="text" id="practiceNo" value="0XXXXXX"></div>
+          <div class="field"><label>Letter Date</label><input type="date" id="letterDate"></div>
+        </div>
+        <div class="field"><label>Practice Name</label><input type="text" id="practiceName" value="123 Clinic"></div>
+        <div class="field"><label>Address</label><textarea id="practiceAddress" rows="2">XYZ Centre, ABC Drive, PQR City</textarea></div>
+        <div class="row">
+          <div class="field"><label>Email</label><input type="email" id="practiceEmail" value="clinic@example.co.za"></div>
+          <div class="field"><label>Phone</label><input type="tel" id="practicePhone" value="011 XXX XXXX"></div>
+        </div>
+      </div>
+
+      <!-- PATIENT DETAILS -->
+      <div class="control-section">
+        <h3>Patient Details</h3>
+        <div class="row">
+          <div class="field"><label>Full Name</label><input type="text" id="patientName" value="Patient Name"></div>
+          <div class="field"><label>Gender</label>
+            <select id="patientGender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Non-binary / Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Attendance Date</label><input type="date" id="attendanceDate"></div>
+          <div class="field"><label>Escorted By</label><input type="text" id="escort" value="Self"></div>
+        </div>
+      </div>
+
+      <!-- CLINICAL & ADMIN -->
+      <div class="control-section">
+        <h3>Clinical & Admin</h3>
+        <div class="row">
+          <div class="field"><label>Optometrist Name</label><input type="text" id="doctorName" value="Mr XYZ"></div>
+          <div class="field"><label>Qualifications</label><input type="text" id="doctorQual" value="Qualification (UJ)"></div>
+        </div>
+        <div class="field"><label>Reason / Prescription</label><textarea id="reason" rows="2">was present at our clinic for a full eye test and was prescribed new spectacles for regular use.</textarea></div>
+        
+        <!-- Excuse Toggle -->
         <div class="field">
-           <label>Letter Title / Headline</label>
-           <input type="text" id="headlineInput" placeholder="e.g. SICK NOTE">
+          <label class="checkbox-label">
+            <input type="checkbox" id="showExcuse" checked>
+            Include "Kindly excuse..." sentence
+          </label>
         </div>
-      </div>
-
-      <h3>Practice Details</h3>
-      <div class="row">
-        <div class="field"><label>Practice No.</label><input type="text" id="practiceNo" value="0XXXXXX"></div>
-        <div class="field"><label>Letter Date</label><input type="date" id="letterDate"></div>
-      </div>
-      <div class="field"><label>Practice Name</label><input type="text" id="practiceName" value="123 Clinic"></div>
-      <div class="field"><label>Address</label><textarea id="practiceAddress" rows="2">XYZ Centre, ABC Drive, PQR City</textarea></div>
-      <div class="row">
-        <div class="field"><label>Email</label><input type="email" id="practiceEmail" value="clinic@example.co.za"></div>
-        <div class="field"><label>Phone</label><input type="tel" id="practicePhone" value="011 XXX XXXX"></div>
-      </div>
-
-     
-
-      <h3>Patient Details</h3>
-      <div class="row">
-        <div class="field"><label>Full Name</label><input type="text" id="patientName" value="Patient Name"></div>
-        <div class="field"><label>Gender</label>
-          <select id="patientGender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Non-binary / Other</option>
-          </select>
+        
+        <div class="row">
+          <div class="field"><label>Excuse From</label>
+            <select id="excuseType">
+              <option value="work">Work</option>
+              <option value="school">School</option>
+            </select>
+          </div>
+          <div class="field"><label>Duration</label>
+            <select id="durationType">
+              <option value="the day">the day</option>
+              <option value="the time">the time</option>
+              <option value="the day and time">the day and time</option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="field"><label>Attendance Date</label><input type="date" id="attendanceDate"></div>
-        <div class="field"><label>Escorted By</label><input type="text" id="escort" value="Self"></div>
+        <div class="field"><label>Additional Notes</label><textarea id="additionalNotes" rows="3" placeholder="Leave blank to hide..."></textarea></div>
       </div>
 
-      <h3>Clinical & Admin</h3>
-      <div class="row">
-        <div class="field"><label>Optometrist Name</label><input type="text" id="doctorName" value="Mr XYZ"></div>
-        <div class="field"><label>Qualifications</label><input type="text" id="doctorQual" value="Qualification (UJ)"></div>
+      <!-- EXPORT -->
+      <div class="control-section">
+        <h3>Export</h3>
+        <button class="btn-export" onclick="window.print()"><i class="fa fa-print" aria-hidden="true"></i> Export / Print as PDF (A4)</button>
+        <button class="btn-export btn-reset" onclick="location.reload()"><i class="fa fa-refresh" aria-hidden="true"></i> Reset Defaults</button>
       </div>
-      <div class="field"><label>Reason / Prescription</label><textarea id="reason" rows="2">was present at our clinic for a full eye test and was prescribed new spectacles for regular use.</textarea></div>
-      
-      <!-- Excuse Toggle -->
-      <div class="field">
-        <label class="checkbox-label">
-          <input type="checkbox" id="showExcuse" checked>
-          Include "Kindly excuse..." sentence
-        </label>
-      </div>
-      
-      <div class="row">
-        <div class="field"><label>Excuse From</label>
-          <select id="excuseType">
-            <option value="work">Work</option>
-            <option value="school">School</option>
-          </select>
-        </div>
-        <div class="field"><label>Duration</label>
-          <select id="durationType">
-            <option value="the day">the day</option>
-            <option value="the time">the time</option>
-            <option value="the day and time">the day and time</option>
-          </select>
-        </div>
-      </div>
-      <div class="field"><label>Additional Notes</label><textarea id="additionalNotes" rows="3" placeholder="Leave blank to hide..."></textarea></div>
-
-      <button class="btn-export" onclick="window.print()"><i class="fa fa-print" aria-hidden="true"></i> Export / Print as PDF (A4)</button>
-      <button class="btn-export btn-reset" onclick="location.reload()"><i class="fa fa-refresh" aria-hidden="true"></i> Reset Defaults</button>
     </div>
 
     <!-- LETTER PREVIEW -->
@@ -352,11 +399,11 @@
           <p><strong id="p_doctorSign">Optom. XYZ</strong><br>
           <span id="p_qual">Qualifaction (UJ)</span></p>
         </div>
-          <div class="color-strip"></div>
+        <div class="color-strip"></div>
       </div>
       
       <!-- Footer -->
-   <div class="letter-footer">
+      <div class="letter-footer">
         <p>A valid sick note must be issued and signed by a medical practitioner registered with the Health Professions Council of South Africa (HPCSA).</p>
       </div>
     </div>
@@ -367,10 +414,10 @@
     // CONFIGURATION: Replace these strings with your actual image URLs or Base64 Data
     // ==========================================================
     const LOGOS = {
-  execuspecs: "execuspecs.png",
-  specsavers: "specsavers.png",
-  company: "company.png"
-};
+      execuspecs: "execuspecs.png",
+      specsavers: "specsavers.png",
+      company: "company.png"
+    };
     // ==========================================================
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -389,7 +436,7 @@
       inputs.forEach(el => el.addEventListener('input', updateAll));
       inputs.forEach(el => el.addEventListener('change', updateAll));
 
-      // Theme color
+      // Theme color — ONLY updates the CSS variable used by the letter preview
       document.getElementById('themeColor').addEventListener('input', (e) => {
         document.documentElement.style.setProperty('--primary-color', e.target.value);
       });
@@ -500,6 +547,5 @@
     }
   </script>
   <script src="load.js"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"9f5e4a75ce0748f68f10a89c272c559f","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
