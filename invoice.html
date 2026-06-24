@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,8 +14,7 @@
 
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #1e3c72, #2a5298, #4a90e2);
-        background-attachment: fixed;
+        background: #e9ecef;
         min-height: 100vh;
         color: #333;
         line-height: 1.4;
@@ -40,7 +40,7 @@
         flex: 1;
         max-width: 850px;
         background: white;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         font-size: 12px;
         border-radius: 4px;
         break-inside: avoid;
@@ -101,19 +101,17 @@
     /* --- FIXED: BOTTOM SECTION USING CSS GRID (NO OVERLAP) --- */
     .bottom-section { 
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Exactly 50/50 */
+        grid-template-columns: 1fr 1fr;
         gap: 20px; 
         margin-top: 20px; 
     }
     .comments-section { 
         width: 100%; 
-       
     }
     .totals-section { 
         width: 100%;
         display: flex; 
         justify-content: flex-end;
-       
     }
     
     .totals-table { 
@@ -145,19 +143,16 @@
     }
     .remove-row:hover { background: #c53030; }
 
-    /* --- GLASS CONTROLS --- */
+    /* --- CONTROLS PANEL (MATCHING SICK NOTE THEME) --- */
     .controls {
-        width: 260px;
+        width: 320px;
         position: sticky;
         top: 20px;
-        padding: 15px;
-        background: rgba(33, 33, 33, 1);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        color: #fff;
+        padding: 20px;
+        background: #f0f2f5;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        color: #333;
         max-height: calc(100vh - 40px);
         overflow-y: auto;
         transition: all 0.3s ease;
@@ -169,18 +164,24 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        margin-bottom: 12px;
+        margin-bottom: 15px;
         cursor: pointer;
     }
-    .controls-header h2 { margin: 0; text-align: center; }
+    .controls-header h3 { 
+        margin: 0; 
+        text-align: center; 
+        font-size: 1.2rem;
+        color: #333;
+        letter-spacing: 0.5px;
+    }
     
     .toggle-controls-btn {
         position: absolute;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
-        background: rgba(255,255,255,0.25);
-        border: 1px solid rgba(255,255,255,0.4);
+        background: #fff;
+        border: 1px solid #e0e0e0;
         border-radius: 50%;
         width: 26px;
         height: 26px;
@@ -188,11 +189,11 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        color: white;
+        color: #666;
         font-size: 12px;
         transition: all 0.2s ease;
     }
-    .toggle-controls-btn:hover { background: rgba(255,255,255,0.4); }
+    .toggle-controls-btn:hover { background: #f7fafc; }
 
     /* Controls Content Wrapper */
     .controls-content {
@@ -202,44 +203,63 @@
         overflow: hidden;
     }
 
-    .control-group { margin-bottom: 12px; }
-    .control-group label { display: block; font-size: 10px; margin-bottom: 4px; color: #fff; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+    /* Control Section Cards */
+    .control-group {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .control-group:last-of-type {
+        margin-bottom: 0;
+    }
+    .control-group label { 
+        display: block; 
+        font-size: 0.85rem; 
+        margin-bottom: 6px; 
+        color: #555; 
+        font-weight: 600; 
+    }
     
     .controls select, .controls input[type="text"], .controls input[type="number"],
     .controls input[type="date"] {
-        width: 100%; padding: 7px 10px; border: 1px solid rgba(255,255,255,0.4);
-        border-radius: 8px; background: rgba(255, 255, 255, 0.9); font-size: 12px; outline: none;
+        width: 100%; padding: 8px 10px; border: 1px solid #ced4da;
+        border-radius: 6px; background: #fff; font-size: 0.9rem; outline: none;
     }
-    .controls select:focus, .controls input:focus { border-color: #2c5282; box-shadow: 0 0 0 2px rgba(44, 82, 130, 0.3); }
+    .controls select:focus, .controls input:focus { border-color: #4299e1; box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2); }
 
     .btn {
-        width: 100%; padding: 8px 12px; margin-bottom: 8px; border: none; border-radius: 10px;
-        cursor: pointer; font-size: 12px; font-weight: 600; color: black;
-         min-height: 38px;
-        background: rgba(255, 255, 255, 1); backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px); border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.2s;
+        width: 100%; padding: 12px; margin-bottom: 8px; border: none; border-radius: 8px;
+        cursor: pointer; font-size: 1rem; font-weight: bold; color: white;
+        min-height: 38px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.2s;
     }
     .btn:last-child { margin-bottom: 0; }
-    .btn:active { transform: scale(0.97); background: rgba(255,255,255,0.35); }
+    .btn-primary { background: #4299e1; }
+    .btn-primary:hover { background: #3182ce; }
+    .btn-success { background: #28a745; }
+    .btn-success:hover { background: #218838; }
+    .btn:active { transform: scale(0.97); }
 
     .color-presets { display: flex; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
     .color-swatch {
         width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
-        border: 2px solid rgba(255,255,255,0.6); transition: transform 0.2s;
+        border: 2px solid #e0e0e0; transition: transform 0.2s;
         display: flex; align-items: center; justify-content: center;
         font-size: 14px; text-shadow: none;
     }
     .color-swatch:hover { transform: scale(1.1); }
-    .color-swatch.active { border-color: #fff; box-shadow: 0 0 0 2px rgba(0,0,0,0.3); }
+    .color-swatch.active { border-color: #333; box-shadow: 0 0 0 2px rgba(0,0,0,0.2); }
     
     #colorPickerWrapper { display: none; margin-top: 8px; }
     #colorPickerWrapper.show { display: block; }
     input[type="color"] {
-        width: 100%; height: 36px; border: none; border-radius: 8px; cursor: pointer; background: transparent;
+        width: 100%; height: 36px; border: 1px solid #ced4da; border-radius: 6px; cursor: pointer; background: #fff;
     }
     input[type="color"]::-webkit-color-swatch-wrapper { padding: 2px; }
-    input[type="color"]::-webkit-color-swatch { border: none; border-radius: 6px; }
+    input[type="color"]::-webkit-color-swatch { border: none; border-radius: 4px; }
 
     /* --- COLLAPSED STATE --- */
     .controls.collapsed .controls-content {
@@ -284,12 +304,12 @@
         }
         
         .controls-header { margin-bottom: 12px; }
-        .controls-header h2 { font-size: 15px; }
+        .controls-header h3 { font-size: 15px; }
         .control-group { width: 100%; margin-bottom: 12px; }
         
         .controls select, .controls input { 
             width: 100%; padding: 10px; font-size: 14px; min-height: 44px; 
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 1px solid #ced4da;
         }
         
         .btn { 
@@ -303,7 +323,7 @@
             max-height: 48px;
         }
         .controls.collapsed .controls-header { margin-bottom: 0; }
-        .controls.collapsed .controls-header h2 { font-size: 14px; }
+        .controls.collapsed .controls-header h3 { font-size: 14px; }
         .controls.collapsed .toggle-controls-btn { width: 28px; height: 28px; }
         
         /* Invoice adjustments for mobile */
@@ -319,7 +339,7 @@
         
         /* Mobile: Stack columns */
         .bottom-section { 
-            grid-template-columns: 1fr; /* Single column */
+            grid-template-columns: 1fr;
             gap: 15px; 
         }
         .totals-section { justify-content: flex-start; }
@@ -345,10 +365,10 @@
     /* Page Footer */
     .page-footer {
         text-align: center; padding: 15px;
-        color: rgba(255,255,255,0.9); font-size: 12px;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        color: #666; font-size: 12px;
     }
-    .page-footer a { color: white; text-decoration: none; font-weight: 600; }
+    .page-footer a { color: #4299e1; text-decoration: none; font-weight: 600; }
+    .page-footer a:hover { text-decoration: underline; }
 
     @media print {
         .controls, .page-footer { display: none !important; }
@@ -465,7 +485,7 @@
             </div>
             
             <div class="controls-content">
-                <div class="control-group full-width">
+                <div class="control-group">
                     <label>Invoice Title</label>
                     <select id="titleSelect" onchange="updateTitle()">
                         <option value="TAX INVOICE" selected>TAX INVOICE</option>
@@ -484,24 +504,24 @@
                 <div class="control-group">
                     <label>Currency</label>
                     <select id="currencySelect" onchange="updateCurrency()">
-    <option value="R">Rand 🇿🇦 R</option>
-    <option value="$">USD 🇺🇸 $</option>
-    <option value="€">EUR 🇪🇺 €</option>
-    <option value="£">GBP 🇬🇧 £</option>
-    <option value="¥">JPY 🇯🇵 ¥</option>
-    <option value="₹">INR 🇮🇳 ₹</option>
-    <option value="₦">NGN 🇳🇬 ₦</option>
-    <option value="Rs">PKR 🇵🇰 Rs</option>
-    <option value="custom">Custom</option>
-</select>
+                        <option value="R">Rand 🇿🇦 R</option>
+                        <option value="$">USD 🇺🇸 $</option>
+                        <option value="€">EUR 🇪🇺 €</option>
+                        <option value="£">GBP 🇬🇧 £</option>
+                        <option value="¥">JPY 🇯🇵 ¥</option>
+                        <option value="₹">INR 🇮🇳 ₹</option>
+                        <option value="₦">NGN 🇳🇬 ₦</option>
+                        <option value="Rs">PKR 🇵🇰 Rs</option>
+                        <option value="custom">Custom</option>
+                    </select>
                 </div>
 
-                <div class="control-group full-width" id="customCurrencyGroup" style="display: none;">
+                <div class="control-group" id="customCurrencyGroup" style="display: none;">
                     <label>Custom Symbol</label>
                     <input type="text" id="customCurrency" value="" maxlength="5" onchange="updateCurrency()">
                 </div>
 
-                <div class="control-group full-width">
+                <div class="control-group">
                     <label>Theme Color</label>
                     <div class="color-presets">
                         <div class="color-swatch active" style="background:#2c5282" onclick="selectColor('#2c5282', this)"></div>
@@ -516,7 +536,8 @@
                     </div>
                 </div>
 
-                <div class="control-group full-width" style="margin-top: 8px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 10px;">
+                <div class="control-group">
+                    <label>Actions</label>
                     <input type="file" id="logoUpload" accept="image/*" style="display: none;">
                     <button class="btn btn-primary" onclick="document.getElementById('logoUpload').click()"><i class="fa fa-image" aria-hidden="true"></i> Add Logo</button>
                     <button class="btn btn-primary" onclick="addRow()"><i class="fa fa-plus" aria-hidden="true"></i> Add Row</button>
