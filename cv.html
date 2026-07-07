@@ -3,785 +3,696 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Muhammad Tanvir Akhtar - Professional Optometrist specializing in myopia management, contact lenses, and low vision. Based in Johannesburg, South Africa.">
-    <title>Muhammad Tanvir Akhtar | Optometrist</title>
+    <title>Muhammad Tanvir Akhtar — Optometrist</title>
+    <meta name="description" content="CV of Muhammad Tanvir Akhtar, Optometrist based in Johannesburg, South Africa. BSc (Hons) Optometry & Orthoptics.">
+    <link rel="canonical" href="https://akhtar.co.za/cv">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        med: {
+                            50: '#EFF8FF', 100: '#DBEFFE', 200: '#BFE3FE', 300: '#93D1FD',
+                            400: '#60B5FA', 500: '#5FA8D3', 600: '#3B82C4', 700: '#1B4965',
+                            800: '#173A50', 900: '#0F2B3D', 950: '#0A1F2E',
+                        },
+                        accent: {
+                            50: '#E6F7F7', 100: '#BEE9E8', 200: '#A0DED0', 300: '#62B6CB',
+                            400: '#4BA3B8', 500: '#3A8FA3',
+                        },
+                        slate: {
+                            50: '#F8FAFC', 100: '#F1F5F9', 200: '#E2E8F0', 300: '#CBD5E1',
+                            400: '#94A3B8', 500: '#64748B', 600: '#475569', 700: '#334155',
+                            800: '#1E293B', 900: '#0F172A',
+                        },
+                        lvl: {
+                            c2: '#0A1F2E',
+                            c1: '#1B4965',
+                            b2: '#3B82C4',
+                            b1: '#5FA8D3',
+                            a2: '#94A3B8',
+                            a1: '#CBD5E1',
+                            na: '#F1F5F9',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary: #0d7377;
-            --primary-light: #14a085;
-            --primary-dark: #095c5f;
-            --accent: #e8f6f5;
-            --text: #2c3e50;
-            --text-light: #5a6c7d;
-            --bg: #fafbfc;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        html { scroll-behavior: smooth; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F1F5F9; }
+        ::-webkit-scrollbar-thumb { background: #93D1FD; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #5FA8D3; }
+
+        .skill-bar-fill {
+            transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 0;
+        }
+        .skill-bar-fill.animate { width: var(--fill-width); }
+
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .timeline-item.visible { opacity: 1; transform: translateY(0); }
+
+        .photo-ring {
+            background: conic-gradient(from 180deg, #5FA8D3, #62B6CB, #BEE9E8, #1B4965, #5FA8D3);
+            padding: 3px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        .lvl-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 2rem; height: 2rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 700; color: white; }
+        .lvl-badge.na { background: #F1F5F9; color: #94A3B8; border: 1px solid #E2E8F0; }
+        .lvl-badge.c2 { background: #0A1F2E; }
+        .lvl-badge.c1 { background: #1B4965; }
+        .lvl-badge.b2 { background: #3B82C4; }
+        .lvl-badge.b1 { background: #5FA8D3; }
+        .lvl-badge.a2 { background: #94A3B8; }
+        .lvl-badge.a1 { background: #CBD5E1; color: #64748B; }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Header / Hero */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
-            color: white;
-            padding: 3rem 1.5rem 5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 50%;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 50%;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-top {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .profile-img {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            border: 4px solid rgba(255,255,255,0.3);
-            object-fit: cover;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            flex-shrink: 0;
-            background: var(--primary-dark);
-        }
-
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-text .title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-text .location {
-            font-size: 0.9rem;
-            opacity: 0.75;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .hero-summary {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            opacity: 0.92;
-            max-width: 700px;
-        }
-
-        /* Contact Bar */
-        .contact-bar {
-            background: var(--card);
-            margin: -2.5rem 1.5rem 0;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 16px;
-            padding: 1.25rem 1.5rem;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .contact-item:hover {
-            background: var(--accent);
-            color: var(--primary);
-        }
-
-        .contact-item svg {
-            width: 18px;
-            height: 18px;
-            color: var(--primary);
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-
-        section {
-            margin-bottom: 3rem;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-        }
-
-        .section-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--accent);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .section-icon svg {
-            width: 20px;
-            height: 20px;
-            color: var(--primary);
-        }
-
-        /* Experience Cards */
-        .exp-card {
-            background: var(--card);
-            border-radius: 16px;
-            padding: 1.75rem;
-            margin-bottom: 1.25rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .exp-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .exp-title {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .exp-company {
-            color: var(--primary);
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .exp-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 0.85rem;
-            color: var(--text-light);
-            flex-wrap: wrap;
-        }
-
-        .exp-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .exp-list {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .exp-list li {
-            padding: 0.35rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-
-        .exp-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.85rem;
-            width: 6px;
-            height: 6px;
-            background: var(--primary-light);
-            border-radius: 50%;
-        }
-
-        /* Education */
-        .edu-card {
-            background: var(--card);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            margin-bottom: 1rem;
-        }
-
-        .edu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .edu-degree {
-            font-weight: 600;
-            font-size: 1.05rem;
-        }
-
-        .edu-school {
-            color: var(--primary);
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .edu-year {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            background: var(--accent);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-weight: 500;
-        }
-
-        /* Certifications Grid */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1rem;
-        }
-
-        .cert-card {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 1.25rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--primary);
-        }
-
-        .cert-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .cert-org {
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        .cert-date {
-            font-size: 0.8rem;
-            color: var(--primary);
-            font-weight: 500;
-            margin-top: 0.5rem;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-        }
-
-        .skill-tag {
-            background: var(--accent);
-            color: var(--primary-dark);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid rgba(13, 115, 119, 0.15);
-        }
-
-        /* Languages */
-        .lang-table {
-            width: 100%;
-            background: var(--card);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-        }
-
-        .lang-table table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .lang-table th {
-            background: var(--accent);
-            padding: 0.875rem 1rem;
-            text-align: left;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .lang-table td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
-        }
-
-        .lang-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .lang-name {
-            font-weight: 600;
-        }
-
-        .level-badge {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .level-c1 { background: #d4edda; color: #155724; }
-        .level-b2 { background: #fff3cd; color: #856404; }
-        .level-a2 { background: #e2e3e5; color: #383d41; }
-        .level-a1 { background: #f8d7da; color: #721c24; }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 2rem 1.5rem;
-            color: var(--text-light);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border);
-        }
-
-        /* Print Styles */
         @media print {
-            .hero {
-                background: var(--primary) !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            .contact-bar {
-                box-shadow: none;
-                border: 1px solid var(--border);
-            }
-            .exp-card, .edu-card, .cert-card {
-                break-inside: avoid;
-                box-shadow: none;
-                border: 1px solid var(--border);
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-in {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            .hero {
-                padding: 2rem 1rem 4rem;
-            }
-            
-            .hero-top {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .profile-img {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .hero-text h1 {
-                font-size: 1.6rem;
-            }
-            
-            .contact-bar {
-                margin: -2rem 1rem 0;
-                padding: 1rem;
-            }
-            
-            .exp-header {
-                flex-direction: column;
-            }
-            
-            .container {
-                padding: 2rem 1rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.3rem;
-            }
+            body { background: white !important; }
+            .no-print { display: none !important; }
+            .print-break { page-break-inside: avoid; }
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800">
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-content">
-            <div class="hero-top">
-                <!-- 
-                    REPLACE THIS IMAGE SOURCE:
-                    Upload your profile photo to your server and update the src below.
-                    Recommended: a 400x400px or larger square photo. 
-                    The CSS will crop it to a perfect circle.
-                -->
-                <img src="profile.jpg" alt="Muhammad Tanvir Akhtar" class="profile-img" onerror="this.style.display='none'">
-                <div class="hero-text">
-                    <h1>Muhammad Tanvir Akhtar</h1>
-                    <div class="title">Optometrist</div>
-                    <div class="location">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+    <!-- Top Accent Bar -->
+    <div class="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-med-700 via-accent-300 to-med-500 z-50"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-1 left-0 right-0 z-40 no-print">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="mt-3 flex items-center justify-between bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-xl px-4 sm:px-6 py-3 shadow-sm">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-med-700 flex items-center justify-center">
+                        <span class="iconify text-white text-sm" data-icon="mdi:eye-outline"></span>
+                    </div>
+                    <span class="font-semibold text-med-900 text-sm tracking-tight">MT Akhtar</span>
+                </div>
+                <div class="hidden sm:flex items-center gap-5 text-xs font-medium text-slate-500">
+                    <a href="#experience" class="hover:text-med-700 transition-colors duration-150">Experience</a>
+                    <a href="#education" class="hover:text-med-700 transition-colors duration-150">Education</a>
+                    <a href="#skills" class="hover:text-med-700 transition-colors duration-150">Skills</a>
+                    <a href="#languages" class="hover:text-med-700 transition-colors duration-150">Languages</a>
+                </div>
+                <button id="mobileMenuBtn" class="sm:hidden p-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+                    <span class="iconify text-xl text-slate-600" data-icon="mdi:menu"></span>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden sm:hidden max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="mt-1 bg-white/95 backdrop-blur-xl border border-slate-200/60 rounded-xl px-4 py-3 shadow-lg">
+                <div class="flex flex-col gap-1">
+                    <a href="#experience" class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-600 hover:text-med-700 hover:bg-med-50 rounded-lg transition-all duration-150">Experience</a>
+                    <a href="#education" class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-600 hover:text-med-700 hover:bg-med-50 rounded-lg transition-all duration-150">Education</a>
+                    <a href="#skills" class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-600 hover:text-med-700 hover:bg-med-50 rounded-lg transition-all duration-150">Skills</a>
+                    <a href="#languages" class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-600 hover:text-med-700 hover:bg-med-50 rounded-lg transition-all duration-150">Languages</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-24 pb-16">
+
+        <!-- Hero / Profile Section -->
+        <section class="mb-12 sm:mb-16">
+            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden">
+                <div class="relative h-28 sm:h-36 bg-gradient-to-br from-med-700 via-med-800 to-med-950 overflow-hidden">
+                    <div class="absolute inset-0 opacity-10">
+                        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid)"/>
+                        </svg>
+                    </div>
+                    <div class="absolute top-4 right-4 sm:top-6 sm:right-6 flex gap-2">
+                        <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-2 border-white/10 bg-white/5"></div>
+                        <div class="w-14 h-14 sm:w-20 sm:h-20 rounded-full border-2 border-white/5 bg-white/5 mt-6 sm:mt-8"></div>
+                    </div>
+                </div>
+
+                <div class="relative px-5 sm:px-8 pb-7 sm:pb-8">
+                    <div class="absolute -top-14 sm:-top-16 left-5 sm:left-8">
+                        <div class="photo-ring rounded-full">
+                            <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden bg-slate-200 border-4 border-white">
+                                <img 
+                                    src="mtakhtar.png" 
+                                    alt="Muhammad Tanvir Akhtar" 
+                                    class="w-full h-full object-cover"
+                                    onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center bg-med-100\'><span class=\'iconify text-4xl sm:text-5xl text-med-400\' data-icon=\'mdi:account\'></span></div>'"
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-20 sm:pt-28 mb-5">
+                        <h1 class="text-2xl sm:text-3xl font-semibold text-slate-900 tracking-tight leading-tight">
+                            Muhammad Tanvir Akhtar
+                        </h1>
+                        <p class="mt-1.5 flex items-center gap-2 text-med-600 font-medium text-sm sm:text-base">
+                            <span class="iconify text-lg" data-icon="mdi:eye-outline"></span>
+                            Optometrist
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <a href="mailto:tanvir@akhtar.co.za" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-med-50 hover:text-med-700 transition-all duration-150 group">
+                            <span class="iconify text-med-500 group-hover:text-med-600 text-lg flex-shrink-0" data-icon="mdi:email-outline"></span>
+                            <span class="text-sm text-slate-600 group-hover:text-med-700 truncate">tanvir@akhtar.co.za</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mtakhtar" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-med-50 hover:text-med-700 transition-all duration-150 group">
+                            <span class="iconify text-med-500 group-hover:text-med-600 text-lg flex-shrink-0" data-icon="mdi:linkedin"></span>
+                            <span class="text-sm text-slate-600 group-hover:text-med-700">linkedin.com/in/mtakhtar</span>
+                        </a>
+                        <div class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-50">
+                            <span class="iconify text-med-500 text-lg flex-shrink-0" data-icon="mdi:map-marker-outline"></span>
+                            <span class="text-sm text-slate-600">Johannesburg, South Africa</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-med-50 border border-med-200/60 text-med-700 text-xs font-medium">
+                            <span class="iconify text-sm" data-icon="mdi:briefcase-outline"></span>
+                            13+ Years Experience
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent-50 border border-accent-200/60 text-accent-500 text-xs font-medium">
+                            <span class="iconify text-sm" data-icon="mdi:school-outline"></span>
+                            BSc (Hons) Optometry
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200/60 text-slate-600 text-xs font-medium">
+                            <span class="iconify text-sm" data-icon="mdi:earth"></span>
+                            3 Countries
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience -->
+        <section id="experience" class="mb-12 sm:mb-16 scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-med-700 flex items-center justify-center shadow-sm">
+                    <span class="iconify text-white text-xl" data-icon="mdi:briefcase-outline"></span>
+                </div>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">Work Experience</h2>
+                    <p class="text-xs text-slate-400 font-medium">Professional background</p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1.5 mb-3">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-semibold text-slate-900">Optometrist</h3>
+                            <p class="text-sm font-medium text-med-600">Spec-Savers</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2.5 py-1 rounded-full w-fit">
+                            <span class="iconify text-sm" data-icon="mdi:calendar-outline"></span>
+                            Apr 2019 – Present
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs text-slate-400 mb-4">
+                        <span class="iconify text-sm" data-icon="mdi:map-marker-outline"></span>
                         Johannesburg, South Africa
                     </div>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Refraction for spectacles & contact lenses</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Diagnosis & referral of eye diseases</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Myopia control treatment</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Low vision management</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Fundoscopy</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Staff & stock management</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Fitting & adjusting of frames</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Cutting and edging lenses</li>
+                    </ul>
                 </div>
-            </div>
-            <p class="hero-summary">
-                Dedicated optometrist with over 13 years of clinical experience across Pakistan, Saudi Arabia, and South Africa. Specialized in myopia management, contact lens fitting, low vision rehabilitation, and ocular disease diagnosis. Committed to delivering patient-centered eye care with precision and compassion.
-            </p>
-        </div>
-    </header>
 
-    <!-- Contact Bar -->
-    <div class="contact-bar">
-        <a href="mailto:tanvir@akhtar.co.za" class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            tanvir@akhtar.co.za
-        </a>
-        <a href="https://linkedin.com/in/mtakhtar" target="_blank" rel="noopener" class="contact-item">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            linkedin.com/in/mtakhtar
-        </a>
-        <a href="https://akhtar.co.za" class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            akhtar.co.za
-        </a>
-    </div>
-
-    <main class="container">
-
-        <!-- Professional Experience -->
-        <section>
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                </div>
-                <h2>Professional Experience</h2>
-            </div>
-
-            <div class="exp-card">
-                <div class="exp-header">
-                    <div>
-                        <div class="exp-title">Optometrist</div>
-                        <div class="exp-company">Spec-Savers</div>
-                    </div>
-                    <div class="exp-meta">
-                        <span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                            Apr 2019 – Present
-                        </span>
-                        <span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            Johannesburg, South Africa
-                        </span>
-                    </div>
-                </div>
-                <ul class="exp-list">
-                    <li>Comprehensive refraction for spectacle and contact lens fitting</li>
-                    <li>Diagnosis and referral of ocular diseases and pathologies</li>
-                    <li>Myopia control treatment and management programs</li>
-                    <li>Low vision assessment and rehabilitation management</li>
-                    <li>Fundoscopic examination and retinal health screening</li>
-                    <li>Team leadership, staff training, and clinic operations</li>
-                    <li>Inventory and stock management for optical dispensary</li>
-                    <li>Frame fitting, adjustment, and lens edging services</li>
-                </ul>
-            </div>
-
-            <div class="exp-card">
-                <div class="exp-header">
-                    <div>
-                        <div class="exp-title">Specialist in Optometry</div>
-                        <div class="exp-company">Al-Hejaz Optical</div>
-                    </div>
-                    <div class="exp-meta">
-                        <span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1.5 mb-3">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-semibold text-slate-900">Specialist in Optometry</h3>
+                            <p class="text-sm font-medium text-med-600">Al-Hejaz Optical</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2.5 py-1 rounded-full w-fit">
+                            <span class="iconify text-sm" data-icon="mdi:calendar-outline"></span>
                             Dec 2013 – Dec 2016
-                        </span>
-                        <span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            Medina, Saudi Arabia
-                        </span>
+                        </div>
                     </div>
+                    <div class="flex items-center gap-1.5 text-xs text-slate-400 mb-4">
+                        <span class="iconify text-sm" data-icon="mdi:map-marker-outline"></span>
+                        Medina, Saudi Arabia
+                    </div>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Refraction & retinoscopy</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Funduscopy</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Contact lens fitting</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Cutting and edging lenses</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Salesmanship & administration</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Staff training</li>
+                    </ul>
                 </div>
-                <ul class="exp-list">
-                    <li>Clinical refraction and retinoscopy for accurate prescriptions</li>
-                    <li>Funduscopy and anterior segment examination</li>
-                    <li>Contact lens fitting, training, and aftercare</li>
-                    <li>Lens cutting, edging, and glazing</li>
-                    <li>Optical sales and patient consultation</li>
-                    <li>Administrative oversight and staff training programs</li>
-                </ul>
-            </div>
 
-            <div class="exp-card">
-                <div class="exp-header">
-                    <div>
-                        <div class="exp-title">Optometrist</div>
-                        <div class="exp-company">Lakson Medical Trust Hospital</div>
-                    </div>
-                    <div class="exp-meta">
-                        <span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1.5 mb-3">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-semibold text-slate-900">Optometrist</h3>
+                            <p class="text-sm font-medium text-med-600">Lakson Medical Trust Hospital</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2.5 py-1 rounded-full w-fit">
+                            <span class="iconify text-sm" data-icon="mdi:calendar-outline"></span>
                             Jan 2011 – Jan 2013
-                        </span>
-                        <span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            Sahiwal, Pakistan
-                        </span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs text-slate-400 mb-4">
+                        <span class="iconify text-sm" data-icon="mdi:map-marker-outline"></span>
+                        Sahiwal, Pakistan
+                    </div>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Refraction</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Biometry</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Visual field testing</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Ultrasound</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Training -->
+        <section id="education" class="mb-12 sm:mb-16 scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-med-700 flex items-center justify-center shadow-sm">
+                    <span class="iconify text-white text-xl" data-icon="mdi:school-outline"></span>
+                </div>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">Education & Training</h2>
+                    <p class="text-xs text-slate-400 font-medium">Qualifications & certifications</p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1.5 mb-2">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-semibold text-slate-900">BSc (Hons) Optometry & Orthoptics</h3>
+                            <p class="text-sm font-medium text-med-600">University of Health Sciences</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2.5 py-1 rounded-full w-fit">
+                            <span class="iconify text-sm" data-icon="mdi:calendar-outline"></span>
+                            May 2006 – May 2010
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs text-slate-400 mb-3">
+                        <span class="iconify text-sm" data-icon="mdi:map-marker-outline"></span>
+                        Lahore, Pakistan
+                    </div>
+                    <a href="https://www.uhs.edu.pk/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-med-600 hover:text-med-700 transition-colors">
+                        <span class="iconify text-sm" data-icon="mdi:open-in-new"></span>uhs.edu.pk
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 hover:shadow-md transition-shadow duration-300">
+                        <div class="flex items-center gap-2.5 mb-3">
+                            <div class="w-9 h-9 rounded-lg bg-accent-50 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-accent-400 text-lg" data-icon="mdi:certificate-outline"></span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold text-slate-900 leading-tight">Myopia Management Accreditation</h3>
+                                <p class="text-xs text-med-600 font-medium">Hoya Vision</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Dec 2023</span>
+                            <a href="https://www.hoyavision.com/za/" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-med-600 hover:text-med-700 transition-colors flex items-center gap-1">hoyavision.com <span class="iconify text-xs" data-icon="mdi:open-in-new"></span></a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 hover:shadow-md transition-shadow duration-300">
+                        <div class="flex items-center gap-2.5 mb-3">
+                            <div class="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-red-400 text-lg" data-icon="mdi:heart-pulse"></span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold text-slate-900 leading-tight">CPR Certificate</h3>
+                                <p class="text-xs text-med-600 font-medium">Saudi Heart Association</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Dec 2013</span>
+                            <a href="https://saudi-heart.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-med-600 hover:text-med-700 transition-colors flex items-center gap-1">saudi-heart.com <span class="iconify text-xs" data-icon="mdi:open-in-new"></span></a>
+                        </div>
                     </div>
                 </div>
-                <ul class="exp-list">
-                    <li>Refraction and prescription management</li>
-                    <li>Biometry for intraocular lens calculation</li>
-                    <li>Visual field testing and glaucoma screening</li>
-                    <li>Ocular ultrasound diagnostics</li>
-                </ul>
             </div>
         </section>
 
-        <!-- Education -->
-        <section>
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+        <!-- Skills Section -->
+        <section id="skills" class="mb-12 sm:mb-16 scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-med-700 flex items-center justify-center shadow-sm">
+                    <span class="iconify text-white text-xl" data-icon="mdi:monitor-cellphone-star"></span>
                 </div>
-                <h2>Education</h2>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">Digital Skills</h2>
+                    <p class="text-xs text-slate-400 font-medium">Based on Digital Competence Framework 2.1</p>
+                </div>
             </div>
 
-            <div class="edu-card">
-                <div class="edu-header">
-                    <div>
-                        <div class="edu-degree">BSc (Hons) Optometry & Orthoptics</div>
-                        <div class="edu-school">University of Health Sciences, Lahore, Pakistan</div>
+            <div class="bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6">
+                <div class="space-y-4">
+                    <div class="skill-item">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-sm font-medium text-slate-700">Information & Data Literacy</span>
+                            <div class="flex items-center gap-2"><span class="text-xs font-semibold text-med-700">6/6</span><span class="text-[10px] font-medium text-accent-400 bg-accent-50 px-1.5 py-0.5 rounded">ADVANCED</span></div>
+                        </div>
+                        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="skill-bar-fill h-full bg-gradient-to-r from-med-700 to-accent-300 rounded-full" style="--fill-width: 100%"></div></div>
                     </div>
-                    <span class="edu-year">2006 – 2010</span>
+                    <div class="skill-item">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-sm font-medium text-slate-700">Communication & Collaboration</span>
+                            <div class="flex items-center gap-2"><span class="text-xs font-semibold text-med-700">6/6</span><span class="text-[10px] font-medium text-accent-400 bg-accent-50 px-1.5 py-0.5 rounded">ADVANCED</span></div>
+                        </div>
+                        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="skill-bar-fill h-full bg-gradient-to-r from-med-700 to-accent-300 rounded-full" style="--fill-width: 100%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-sm font-medium text-slate-700">Digital Content Creation</span>
+                            <div class="flex items-center gap-2"><span class="text-xs font-semibold text-med-700">5/6</span><span class="text-[10px] font-medium text-accent-400 bg-accent-50 px-1.5 py-0.5 rounded">ADVANCED</span></div>
+                        </div>
+                        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="skill-bar-fill h-full bg-gradient-to-r from-med-700 to-accent-300 rounded-full" style="--fill-width: 83.3%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-sm font-medium text-slate-700">Safety</span>
+                            <div class="flex items-center gap-2"><span class="text-xs font-semibold text-med-700">6/6</span><span class="text-[10px] font-medium text-accent-400 bg-accent-50 px-1.5 py-0.5 rounded">ADVANCED</span></div>
+                        </div>
+                        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="skill-bar-fill h-full bg-gradient-to-r from-med-700 to-accent-300 rounded-full" style="--fill-width: 100%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-sm font-medium text-slate-700">Problem Solving</span>
+                            <div class="flex items-center gap-2"><span class="text-xs font-semibold text-med-700">6/6</span><span class="text-[10px] font-medium text-accent-400 bg-accent-50 px-1.5 py-0.5 rounded">ADVANCED</span></div>
+                        </div>
+                        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="skill-bar-fill h-full bg-gradient-to-r from-med-700 to-accent-300 rounded-full" style="--fill-width: 100%"></div></div>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Certifications -->
-        <section>
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-                </div>
-                <h2>Certifications & Accreditation</h2>
-            </div>
-
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <div class="cert-title">Myopia Management Accreditation</div>
-                    <div class="cert-org">Hoya Vision, Johannesburg, South Africa</div>
-                    <div class="cert-date">Dec 2023</div>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-title">CPR Certificate</div>
-                    <div class="cert-org">Saudi Heart Association, Medina, Saudi Arabia</div>
-                    <div class="cert-date">Dec 2013</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Clinical Skills -->
-        <section>
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-                </div>
-                <h2>Clinical Skills</h2>
-            </div>
-            <div class="skills-grid">
-                <span class="skill-tag">Refraction</span>
-                <span class="skill-tag">Retinoscopy</span>
-                <span class="skill-tag">Fundoscopy</span>
-                <span class="skill-tag">Contact Lens Fitting</span>
-                <span class="skill-tag">Myopia Management</span>
-                <span class="skill-tag">Low Vision Rehabilitation</span>
-                <span class="skill-tag">Biometry</span>
-                <span class="skill-tag">Visual Field Testing</span>
-                <span class="skill-tag">Ocular Ultrasound</span>
-                <span class="skill-tag">Lens Edging & Glazing</span>
-                <span class="skill-tag">Frame Fitting</span>
-                <span class="skill-tag">Staff Training</span>
-                <span class="skill-tag">Clinic Administration</span>
-                <span class="skill-tag">Patient Education</span>
             </div>
         </section>
 
         <!-- Languages -->
-        <section>
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+        <section id="languages" class="mb-12 sm:mb-16 scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-med-700 flex items-center justify-center shadow-sm">
+                    <span class="iconify text-white text-xl" data-icon="mdi:translate"></span>
                 </div>
-                <h2>Languages</h2>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">Language Skills</h2>
+                    <p class="text-xs text-slate-400 font-medium">CEFR proficiency levels</p>
+                </div>
             </div>
-            <div class="lang-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Language</th>
-                            <th>Listening</th>
-                            <th>Reading</th>
-                            <th>Speaking</th>
-                            <th>Writing</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="lang-name">English</td>
-                            <td><span class="level-badge level-c1">C2</span></td>
-                            <td><span class="level-badge level-c1">C2</span></td>
-                            <td><span class="level-badge level-c1">C2</span></td>
-                            <td><span class="level-badge level-c1">C2</span></td>
-                        </tr>
-                        <tr>
-                            <td class="lang-name">Arabic</td>
-                            <td><span class="level-badge level-a1">A1</span></td>
-                            <td><span class="level-badge level-b2">C1</span></td>
-                            <td><span class="level-badge level-a1">A1</span></td>
-                            <td><span class="level-badge level-a1">A1</span></td>
-                        </tr>
-                        <tr>
-                            <td class="lang-name">Hindi / Punjabi</td>
-                            <td colspan="4" style="text-align: center; color: var(--text-light);">Mother Tongue</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <div class="bg-white rounded-xl border border-slate-200/60 overflow-hidden">
+                <!-- Desktop Table -->
+                <div class="hidden sm:block overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200/60">
+                                <th class="text-left px-5 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Language</th>
+                                <th class="text-center px-3 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Listening</th>
+                                <th class="text-center px-3 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Reading</th>
+                                <th class="text-center px-3 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Spoken Interaction</th>
+                                <th class="text-center px-3 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Spoken Production</th>
+                                <th class="text-center px-3 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Writing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- English — all C2 -->
+                            <tr class="border-b border-slate-100">
+                                <td class="px-5 py-3.5 font-medium text-slate-900">English</td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                            </tr>
+                            <!-- Urdu — all C2 -->
+                            <tr class="border-b border-slate-100">
+                                <td class="px-5 py-3.5 font-medium text-slate-900">Urdu</td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                            </tr>
+                            <!-- Hindi — C2 spoken, N/A read/write -->
+                            <tr class="border-b border-slate-100">
+                                <td class="px-5 py-3.5 font-medium text-slate-900">Hindi</td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge na">—</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge na">—</span></td>
+                            </tr>
+                            <!-- Punjabi — C2 spoken, N/A read/write -->
+                            <tr class="border-b border-slate-100">
+                                <td class="px-5 py-3.5 font-medium text-slate-900">Punjabi</td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge na">—</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge na">—</span></td>
+                            </tr>
+                            <!-- Arabic — basic spoken, C1 read/write -->
+                            <tr>
+                                <td class="px-5 py-3.5 font-medium text-slate-900">Arabic</td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge a1">A1</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c1">C1</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge a1">A1</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge a1">A1</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c1">C1</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mobile Cards -->
+                <div class="sm:hidden divide-y divide-slate-100">
+                    <!-- English -->
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-semibold text-slate-900 text-sm">English</span>
+                            <span class="text-xs font-bold text-lvl-c2 bg-lvl-c2/10 px-2 py-0.5 rounded-full text-white">Proficient</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1.5 text-center">
+                            <div><div class="text-[10px] text-slate-400 mb-1">Listening</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Reading</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Int.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Prod.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Writing</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                        </div>
+                    </div>
+                    <!-- Urdu -->
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-semibold text-slate-900 text-sm">Urdu</span>
+                            <span class="text-xs font-bold text-white bg-lvl-c2 px-2 py-0.5 rounded-full">Proficient</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1.5 text-center">
+                            <div><div class="text-[10px] text-slate-400 mb-1">Listening</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Reading</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Int.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Prod.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Writing</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                        </div>
+                    </div>
+                    <!-- Hindi -->
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-semibold text-slate-900 text-sm">Hindi</span>
+                            <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">Spoken only</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1.5 text-center">
+                            <div><div class="text-[10px] text-slate-400 mb-1">Listening</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Reading</div><span class="lvl-badge na w-full aspect-square rounded-lg">—</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Int.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Prod.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Writing</div><span class="lvl-badge na w-full aspect-square rounded-lg">—</span></div>
+                        </div>
+                    </div>
+                    <!-- Punjabi -->
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-semibold text-slate-900 text-sm">Punjabi</span>
+                            <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">Spoken only</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1.5 text-center">
+                            <div><div class="text-[10px] text-slate-400 mb-1">Listening</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Reading</div><span class="lvl-badge na w-full aspect-square rounded-lg">—</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Int.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Prod.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Writing</div><span class="lvl-badge na w-full aspect-square rounded-lg">—</span></div>
+                        </div>
+                    </div>
+                    <!-- Arabic -->
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-semibold text-slate-900 text-sm">Arabic</span>
+                            <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">Mixed</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1.5 text-center">
+                            <div><div class="text-[10px] text-slate-400 mb-1">Listening</div><span class="lvl-badge a1 w-full aspect-square rounded-lg">A1</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Reading</div><span class="lvl-badge c1 w-full aspect-square rounded-lg">C1</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Int.</div><span class="lvl-badge a1 w-full aspect-square rounded-lg">A1</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Prod.</div><span class="lvl-badge a1 w-full aspect-square rounded-lg">A1</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Writing</div><span class="lvl-badge c1 w-full aspect-square rounded-lg">C1</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div class="px-5 py-3 bg-slate-50/80 border-t border-slate-100">
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[10px] text-slate-400">
+                        <span class="font-semibold text-slate-500">Color scale:</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-c2"></span> C2 Proficient</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-c1"></span> C1</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-b2"></span> B2</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-b1"></span> B1</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-a2"></span> A2</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-a1"></span> A1 Basic</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-na border border-slate-200"></span> N/A</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Digital Skills -->
-        <section>
-            <div class="section-header">
-                <div class="section-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        <!-- Footer Note -->
+        <section class="mb-8">
+            <div class="bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6 text-center">
+                <p class="text-sm text-slate-500 leading-relaxed">
+                    References are available on request. Copies of degrees and certificates will be provided if needed.
+                </p>
+                <div class="mt-4 flex items-center justify-center gap-1.5 text-xs text-slate-400">
+                    <span class="iconify text-sm" data-icon="mdi:calendar-outline"></span>
+                    Johannesburg, 01 February 2024
                 </div>
-                <h2>Digital Competence</h2>
-            </div>
-            <div class="skills-grid">
-                <span class="skill-tag">Information & Data Literacy — Advanced (6/6)</span>
-                <span class="skill-tag">Digital Content Creation — Advanced (5/6)</span>
-                <span class="skill-tag">Online Safety — Advanced (6/6)</span>
-                <span class="skill-tag">Communication & Collaboration</span>
-                <span class="skill-tag">Problem Solving</span>
             </div>
         </section>
+
+        <!-- Print / Download Button -->
+        <div class="no-print flex justify-center gap-3 mb-8">
+            <button onclick="window.print()" class="inline-flex items-center gap-2 px-5 py-2.5 bg-med-700 hover:bg-med-800 text-white text-sm font-medium rounded-xl transition-colors duration-150 shadow-sm">
+                <span class="iconify text-base" data-icon="mdi:printer-outline"></span>
+                Print CV
+            </button>
+            <a href="mailto:tanvir@akhtar.co.za?subject=CV%20Inquiry%20-%20Muhammad%20Tanvir%20Akhtar" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-slate-50 text-slate-700 text-sm font-medium rounded-xl border border-slate-200 transition-colors duration-150">
+                <span class="iconify text-base" data-icon="mdi:email-outline"></span>
+                Contact Me
+            </a>
+        </div>
 
     </main>
 
-    <footer class="footer">
-        <p>References available upon request. &copy; 2024 Muhammad Tanvir Akhtar</p>
+    <!-- Footer -->
+    <footer class="no-print border-t border-slate-200/60 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-md bg-med-700 flex items-center justify-center">
+                    <span class="iconify text-white text-xs" data-icon="mdi:eye-outline"></span>
+                </div>
+                <span class="text-xs text-slate-400">akhtar.co.za/cv</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://www.linkedin.com/in/mtakhtar" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-med-600 transition-colors">
+                    <span class="iconify text-lg" data-icon="mdi:linkedin"></span>
+                </a>
+                <a href="mailto:tanvir@akhtar.co.za" class="text-slate-400 hover:text-med-600 transition-colors">
+                    <span class="iconify text-lg" data-icon="mdi:email-outline"></span>
+                </a>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('hidden', !menuOpen);
+            mobileMenuBtn.querySelector('.iconify').setAttribute('data-icon', menuOpen ? 'mdi:close' : 'mdi:menu');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.querySelector('.iconify').setAttribute('data-icon', 'mdi:menu');
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), index * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.timeline-item').forEach(item => observer.observe(item));
+
+        const skillsContainer = document.querySelector('#skills .bg-white');
+        if (skillsContainer) {
+            const skillObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.skill-bar-fill').forEach((bar, i) => {
+                            setTimeout(() => bar.classList.add('animate'), i * 120);
+                        });
+                        skillObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            skillObs.observe(skillsContainer);
+        }
+
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 120) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('text-med-700');
+                link.classList.add('text-slate-500');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-med-700');
+                    link.classList.remove('text-slate-500');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
