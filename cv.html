@@ -45,7 +45,7 @@
             left:var(--cursor-x); top:var(--cursor-y);
             transition:left 0.1s ease-out, top 0.1s ease-out; mix-blend-mode:screen; }
         .mesh-bg { position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
-        .mesh-blob { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.4; animation:blobFloat 20s ease-in-out infinite; }
+        .mesh-blob { position:absolute; border-radius:50%; filter:blur(50px); opacity:0.7; animation:blobFloat 20s ease-in-out infinite; }
         .mesh-blob:nth-child(1) { width:500px; height:500px; background:linear-gradient(135deg,#BAE6FD,#7DD3FC); top:-10%; left:-10%; animation-delay:0s; }
         .mesh-blob:nth-child(2) { width:400px; height:400px; background:linear-gradient(135deg,#A7F3D0,#6EE7B7); bottom:10%; right:-5%; animation-delay:-5s; animation-duration:25s; }
         .mesh-blob:nth-child(3) { width:300px; height:300px; background:linear-gradient(135deg,#FDE68A,#FCD34D); top:40%; left:60%; animation-delay:-10s; animation-duration:18s; opacity:0.2; }
@@ -59,11 +59,11 @@
 
         .hero-section { position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; }
         .hero-grid { position:absolute; inset:0;
-            background-image:linear-gradient(rgba(14,165,233,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(14,165,233,0.03) 1px,transparent 1px);
+            background-image:linear-gradient(rgba(14,165,233,0.10) 1px,transparent 1px),linear-gradient(90deg,rgba(14,165,233,0.03) 1px,transparent 1px);
             background-size:60px 60px;
             mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%);
             -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 70%); }
-        .hero-glow { position:absolute; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle,rgba(14,165,233,0.1) 0%,transparent 60%); top:50%; left:50%; transform:translate(-50%,-50%); animation:pulseGlow 4s ease-in-out infinite; }
+        .hero-glow { position:absolute; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle,rgba(14,165,233,0.25) 0%,transparent 60%); top:50%; left:50%; transform:translate(-50%,-50%); animation:pulseGlow 4s ease-in-out infinite; }
         @keyframes pulseGlow { 0%,100%{transform:translate(-50%,-50%) scale(1); opacity:0.5;} 50%{transform:translate(-50%,-50%) scale(1.2); opacity:0.8;} }
 
         .reveal-text { opacity:0; transform:translateY(40px); animation:revealUp 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
@@ -914,7 +914,7 @@
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const particleCount = 50;
+        const particleCount = 80;
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
@@ -924,7 +924,7 @@
                 this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 2 + 0.5;
                 this.speedX = (Math.random() - 0.5) * 0.3; this.speedY = (Math.random() - 0.5) * 0.3;
-                this.opacity = Math.random() * 0.5 + 0.1;
+                this.opacity = Math.random() * 0.6 + 0.1;
                 this.color = ['#0EA5E9','#10B981','#F59E0B','#94A3B8'][Math.floor(Math.random()*4)];
             }
             update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset(); }
@@ -937,7 +937,7 @@
             particles.forEach((p1, i) => {
                 particles.slice(i+1).forEach(p2 => {
                     const dx = p1.x - p2.x, dy = p1.y - p2.y, dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < 150) { ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.strokeStyle = '#0EA5E9'; ctx.globalAlpha = (1 - dist/150) * 0.1; ctx.lineWidth = 0.5; ctx.stroke(); }
+                    if (dist < 150) { ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.strokeStyle = '#0EA5E9'; ctx.globalAlpha = (1 - dist/150) * 0.25; ctx.lineWidth = 0.5; ctx.stroke(); }
                 });
             });
             ctx.globalAlpha = 1;
