@@ -185,6 +185,7 @@
         }
     </style>
 <base target="_blank">
+<base target="_blank">
 </head>
 <body class="bg-slate-50 text-slate-800 relative">
 
@@ -672,102 +673,94 @@
     <!-- ===== PRINT-ONLY VERSION (Clean A4 Layout) ===== -->
     <div class="print-only">
         <style>
-            .print-only { font-family:'Inter',sans-serif; color:#16262B; line-height:1.5; }
+            .print-only { font-family:'Inter',sans-serif; color:#16262B; line-height:1.35; }
             .print-only * { box-sizing:border-box; }
             .print-sheet {
                 max-width:960px; margin:0 auto; background:#FFFFFF;
-                display:grid; grid-template-columns:280px 1fr;
+                display:grid; grid-template-columns:200px 1fr;
                 box-shadow:0 1px 3px rgba(10,42,59,0.06), 0 18px 40px -20px rgba(10,42,59,0.25);
                 border-radius:20px; overflow:hidden;
             }
             .print-sidebar {
                 background:linear-gradient(175deg, #0A2A3B 0%, #071D29 100%);
-                color:#EAF2F2; padding:40px 28px; position:relative;
+                color:#EAF2F2; padding:20px 18px; position:relative;
             }
-            .print-photo-wrap {
-                width:118px; height:118px; border-radius:50%; padding:4px;
-                background:conic-gradient(from 220deg, #4FBAC2, #0E7C86 40%, transparent 41%, transparent 100%);
-                margin-bottom:22px;
-            }
-            .print-photo-wrap img { width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; border:3px solid #071D29; }
-            .print-name { font-family:'Fraunces',serif; font-size:28px; font-weight:600; line-height:1.15; margin:0 0 6px 0; color:#fff; }
-            .print-role { font-size:14px; color:#4FBAC2; font-weight:500; margin:0 0 26px 0; letter-spacing:0.01em; }
-            .print-sb-section { margin-bottom:30px; }
+            .print-name { font-family:'Fraunces',serif; font-size:22px; font-weight:600; line-height:1.15; margin:0 0 3px 0; color:#fff; }
+            .print-role { font-size:12px; color:#4FBAC2; font-weight:500; margin:0 0 14px 0; letter-spacing:0.01em; }
+            .print-sb-section { margin-bottom:14px; }
             .print-sb-section:last-child { margin-bottom:0; }
-            .print-sb-title { font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#4FBAC2; margin-bottom:14px; font-weight:500; }
-            .print-contact-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px; }
-            .print-contact-list li { display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:#D8E5E5; }
-            .print-contact-list svg { flex:none; width:15px; height:15px; margin-top:1px; color:#4FBAC2; }
+            .print-sb-title { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:#4FBAC2; margin-bottom:7px; font-weight:500; }
+            .print-contact-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
+            .print-contact-list li { display:flex; gap:7px; align-items:flex-start; font-size:10.5px; color:#D8E5E5; }
+            .print-contact-list svg { flex:none; width:12px; height:12px; margin-top:1px; color:#4FBAC2; }
             .print-contact-list a { color:inherit; text-decoration:none; }
-            .print-lang-row { margin-bottom:13px; }
-            .print-lang-head { display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px; }
+            .print-lang-row { margin-bottom:7px; }
+            .print-lang-head { display:flex; justify-content:space-between; font-size:10.5px; margin-bottom:2px; }
             .print-lang-head b { font-weight:600; color:#fff; }
-            .print-lang-head span { color:#8FA4AC; font-family:'IBM Plex Mono',monospace; font-size:11px; }
-            .print-dots { display:flex; gap:4px; }
-            .print-dot { width:16px; height:5px; border-radius:2px; background:rgba(255,255,255,0.14); }
+            .print-lang-head span { color:#8FA4AC; font-family:'IBM Plex Mono',monospace; font-size:9px; }
+            .print-dots { display:flex; gap:2px; }
+            .print-dot { width:12px; height:3px; border-radius:1px; background:rgba(255,255,255,0.14); }
             .print-dot.on { background:#4FBAC2; }
-            .print-skill-row { margin-bottom:12px; }
-            .print-skill-head { display:flex; justify-content:space-between; font-size:12.5px; color:#D8E5E5; margin-bottom:5px; }
-            .print-skill-head b { font-weight:500; color:#fff; font-size:12.5px; }
-            .print-meter { height:4px; border-radius:2px; background:rgba(255,255,255,0.14); overflow:hidden; }
-            .print-meter i { display:block; height:100%; background:linear-gradient(90deg,#0E7C86,#4FBAC2); border-radius:2px; }
-            .print-cert-item { font-size:13px; color:#D8E5E5; margin-bottom:12px; }
+            .print-skill-row { margin-bottom:7px; }
+            .print-skill-head { display:flex; justify-content:space-between; font-size:10px; color:#D8E5E5; margin-bottom:2px; }
+            .print-skill-head b { font-weight:500; color:#fff; font-size:10px; }
+            .print-meter { height:3px; border-radius:1px; background:rgba(255,255,255,0.14); overflow:hidden; }
+            .print-meter i { display:block; height:100%; background:linear-gradient(90deg,#0E7C86,#4FBAC2); border-radius:1px; }
+            .print-cert-item { font-size:10.5px; color:#D8E5E5; margin-bottom:7px; }
             .print-cert-item:last-child { margin-bottom:0; }
-            .print-cert-item b { display:block; color:#fff; font-weight:600; font-size:13.5px; margin-bottom:2px; }
-            .print-cert-meta { font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#8FA4AC; }
-            .print-main { padding:44px 46px 50px; }
-            .print-main-section { margin-bottom:34px; }
+            .print-cert-item b { display:block; color:#fff; font-weight:600; font-size:10.5px; margin-bottom:1px; }
+            .print-cert-meta { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#8FA4AC; }
+            .print-main { padding:20px 26px 20px; }
+            .print-main-section { margin-bottom:14px; }
             .print-main-section:last-child { margin-bottom:0; }
-            .print-section-title { font-family:'Fraunces',serif; font-size:19px; font-weight:600; color:#0A2A3B; margin:0 0 14px 0; }
-            .print-summary { font-size:14.5px; color:#3A4C53; line-height:1.65; max-width:56ch; }
-            .print-timeline { position:relative; padding-left:24px; }
-            .print-timeline::before { content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:#DDE6E6; }
-            .print-job { position:relative; margin-bottom:26px; }
+            .print-section-title { font-family:'Fraunces',serif; font-size:15px; font-weight:600; color:#0A2A3B; margin:0 0 7px 0; }
+            .print-summary { font-size:11.5px; color:#3A4C53; line-height:1.45; max-width:56ch; }
+            .print-timeline { position:relative; padding-left:16px; }
+            .print-timeline::before { content:""; position:absolute; left:3px; top:3px; bottom:3px; width:1px; background:#DDE6E6; }
+            .print-job { position:relative; margin-bottom:10px; }
             .print-job:last-child { margin-bottom:0; }
-            .print-job::before { content:""; position:absolute; left:-24px; top:5px; width:11px; height:11px; border-radius:50%; background:#fff; border:2px solid #0E7C86; }
-            .print-job-head { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:6px 16px; margin-bottom:3px; }
-            .print-job-title { font-size:15.5px; font-weight:600; color:#16262B; }
+            .print-job::before { content:""; position:absolute; left:-16px; top:3px; width:8px; height:8px; border-radius:50%; background:#fff; border:2px solid #0E7C86; }
+            .print-job-head { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:2px 10px; margin-bottom:1px; }
+            .print-job-title { font-size:12.5px; font-weight:600; color:#16262B; }
             .print-job-title .print-org { color:#0E7C86; font-weight:600; }
-            .print-job-date { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#5C7481; white-space:nowrap; }
-            .print-job-loc { font-size:12.5px; color:#5C7481; margin-bottom:9px; }
-            .print-job ul { margin:0; padding-left:18px; color:#3A4C53; font-size:13.5px; line-height:1.65; }
-            .print-job li { margin-bottom:2px; }
-            .print-edu-item { margin-bottom:18px; }
+            .print-job-date { font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:#5C7481; white-space:nowrap; }
+            .print-job-loc { font-size:10.5px; color:#5C7481; margin-bottom:3px; }
+            .print-job ul { margin:0; padding-left:12px; color:#3A4C53; font-size:10.5px; line-height:1.45; }
+            .print-job li { margin-bottom:0px; }
+            .print-edu-item { margin-bottom:8px; }
             .print-edu-item:last-child { margin-bottom:0; }
-            .print-edu-head { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:4px 16px; }
-            .print-edu-title { font-size:14.5px; font-weight:600; color:#16262B; }
-            .print-edu-org { font-size:13px; color:#0E7C86; font-weight:500; margin-top:1px; }
-            .print-edu-date { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#5C7481; white-space:nowrap; }
-            .print-edu-loc { font-size:12.5px; color:#5C7481; margin-top:2px; }
-            .print-refs-note { font-size:12.5px; color:#5C7481; font-style:italic; }
-            .print-license-item { margin-bottom:14px; padding:12px; background:#F5F9F9; border-radius:8px; border-left:3px solid #0E7C86; }
+            .print-edu-head { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:2px 10px; }
+            .print-edu-title { font-size:12px; font-weight:600; color:#16262B; }
+            .print-edu-org { font-size:10.5px; color:#0E7C86; font-weight:500; margin-top:0px; }
+            .print-edu-date { font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:#5C7481; white-space:nowrap; }
+            .print-edu-loc { font-size:10.5px; color:#5C7481; margin-top:0px; }
+            .print-refs-note { font-size:10.5px; color:#5C7481; font-style:italic; }
+            .print-license-item { margin-bottom:7px; padding:6px 8px; background:#F5F9F9; border-radius:5px; border-left:3px solid #0E7C86; }
             .print-license-item:last-child { margin-bottom:0; }
-            .print-license-item b { font-size:13.5px; color:#0A2A3B; }
-            .print-license-item .print-license-org { font-size:12px; color:#0E7C86; }
-            .print-license-item .print-license-meta { font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#5C7481; margin-top:2px; }
+            .print-license-item b { font-size:11px; color:#0A2A3B; }
+            .print-license-item .print-license-org { font-size:9.5px; color:#0E7C86; }
+            .print-license-item .print-license-meta { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#5C7481; margin-top:1px; }
 
             @media (max-width:760px) {
                 .print-sheet { grid-template-columns:1fr; margin:0; border-radius:0; max-width:100%; }
-                .print-sidebar { padding:34px 24px; }
-                .print-main { padding:34px 24px 44px; }
-                .print-name { font-size:25px; }
+                .print-sidebar { padding:20px 18px; }
+                .print-main { padding:20px 18px 20px; }
+                .print-name { font-size:20px; }
                 .print-job-head, .print-edu-head { flex-direction:column; align-items:flex-start; gap:2px; }
             }
             @media print {
                 @page { size:A4; margin:0; }
                 .print-only { display:block !important; }
-                .print-sheet { box-shadow:none; border-radius:0; margin:0; max-width:100%; grid-template-columns:270px 1fr; }
+                .print-sheet { box-shadow:none; border-radius:0; margin:0; max-width:100%; grid-template-columns:180px 1fr; }
                 .print-sidebar { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-                .print-main { padding:34px 34px 34px; }
+                .print-main { padding:16px 22px 16px; }
                 .print-job, .print-edu-item, .print-license-item { break-inside:avoid; }
+                body { background:#fff !important; }
             }
         </style>
 
         <main class="print-sheet">
             <aside class="print-sidebar">
-                <div class="print-photo-wrap">
-                    <img src="profile.jpeg" alt="Portrait of Muhammad Tanvir Akhtar">
-                </div>
                 <h1 class="print-name">M. T.<br>Akhtar</h1>
                 <p class="print-role">Optometrist</p>
 
