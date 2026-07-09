@@ -1,658 +1,926 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muhammad Tanvir Akhtar — Optometrist</title>
-<meta name="description" content="CV of Muhammad Tanvir Akhtar, Optometrist based in Johannesburg, South Africa.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --navy:#0A2A3B;
-    --navy-deep:#071D29;
-    --teal:#0E7C86;
-    --teal-light:#4FBAC2;
-    --bg:#F5F9F9;
-    --paper:#FFFFFF;
-    --ink:#16262B;
-    --muted:#5C7481;
-    --muted-light:#8FA4AC;
-    --line:#DDE6E6;
-    --line-dark:rgba(255,255,255,0.14);
-    --radius:14px;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Tanvir Akhtar — Optometrist</title>
+    <meta name="description" content="CV of Muhammad Tanvir Akhtar, Optometrist based in Johannesburg, South Africa. BSc (Hons) Optometry & Orthoptics.">
+    <link rel="canonical" href="https://akhtar.co.za/cv">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        med: {
+                            50: '#EFF8FF', 100: '#DBEFFE', 200: '#BFE3FE', 300: '#93D1FD',
+                            400: '#60B5FA', 500: '#5FA8D3', 600: '#3B82C4', 700: '#1B4965',
+                            800: '#173A50', 900: '#0F2B3D', 950: '#0A1F2E',
+                        },
+                        accent: {
+                            50: '#E6F7F7', 100: '#BEE9E8', 200: '#A0DED0', 300: '#62B6CB',
+                            400: '#4BA3B8', 500: '#3A8FA3',
+                        },
+                        slate: {
+                            50: '#F8FAFC', 100: '#F1F5F9', 200: '#E2E8F0', 300: '#CBD5E1',
+                            400: '#94A3B8', 500: '#64748B', 600: '#475569', 700: '#334155',
+                            800: '#1E293B', 900: '#0F172A',
+                        },
+                        lvl: {
+                            c2: '#0A1F2E',
+                            c1: '#1B4965',
+                            b2: '#3B82C4',
+                            b1: '#5FA8D3',
+                            a2: '#94A3B8',
+                            a1: '#CBD5E1',
+                            na: '#F1F5F9',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        html { scroll-behavior: smooth; }
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Inter',sans-serif;
-    -webkit-font-smoothing:antialiased;
-    line-height:1.5;
-  }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F1F5F9; }
+        ::-webkit-scrollbar-thumb { background: #93D1FD; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #5FA8D3; }
 
-  .eyebrow{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--teal);
-    font-weight:500;
-  }
+        .skill-bar-fill {
+            transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 0;
+        }
+        .skill-bar-fill.animate { width: var(--fill-width); }
 
-  .acuity-rule{
-    display:flex;
-    align-items:baseline;
-    gap:0.45em;
-    font-family:'Fraunces',serif;
-    font-weight:600;
-    color:var(--muted-light);
-    line-height:1;
-    user-select:none;
-    margin:0 0 18px 0;
-  }
-  .acuity-rule span{opacity:0.9;}
-  .acuity-rule span:nth-child(1){font-size:22px;color:var(--teal);}
-  .acuity-rule span:nth-child(2){font-size:17px;}
-  .acuity-rule span:nth-child(3){font-size:13px;}
-  .acuity-rule span:nth-child(4){font-size:10px;}
-  .acuity-rule span:nth-child(5){font-size:8px;}
-  .acuity-rule::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:var(--line);
-    margin-left:6px;
-  }
-  .sidebar .acuity-rule::after{background:var(--line-dark);}
-  .sidebar .acuity-rule span{color:var(--teal-light);}
-  .sidebar .acuity-rule span:nth-child(1){color:#fff;}
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .timeline-item.visible { opacity: 1; transform: translateY(0); }
 
-  .sheet{
-    max-width:960px;
-    margin:36px auto;
-    background:var(--paper);
-    display:grid;
-    grid-template-columns:280px 1fr;
-    box-shadow:0 1px 3px rgba(10,42,59,0.06), 0 18px 40px -20px rgba(10,42,59,0.25);
-    border-radius:20px;
-    overflow:hidden;
-  }
+        .photo-ring {
+            background: conic-gradient(from 180deg, #5FA8D3, #62B6CB, #BEE9E8, #1B4965, #5FA8D3);
+            padding: 3px;
+        }
 
-  .sidebar{
-    background:linear-gradient(175deg, var(--navy) 0%, var(--navy-deep) 100%);
-    color:#EAF2F2;
-    padding:40px 28px;
-    position:relative;
-  }
-  .photo-wrap{
-    width:118px;height:118px;
-    border-radius:50%;
-    padding:4px;
-    background:conic-gradient(from 220deg, var(--teal-light), var(--teal) 40%, transparent 41%, transparent 100%);
-    margin-bottom:22px;
-  }
-  .photo-wrap img{
-    width:100%;height:100%;
-    border-radius:50%;
-    object-fit:cover;
-    display:block;
-    border:3px solid var(--navy-deep);
-  }
-  .name{
-    font-family:'Fraunces',serif;
-    font-size:28px;
-    font-weight:600;
-    line-height:1.15;
-    margin:0 0 6px 0;
-    color:#fff;
-  }
-  .role{
-    font-size:14px;
-    color:var(--teal-light);
-    font-weight:500;
-    margin:0 0 26px 0;
-    letter-spacing:0.01em;
-  }
+        .lvl-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 2rem; height: 2rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 700; color: white; }
+        .lvl-badge.na { background: #F1F5F9; color: #94A3B8; border: 1px solid #E2E8F0; }
+        .lvl-badge.c2 { background: #0A1F2E; }
+        .lvl-badge.c1 { background: #1B4965; }
+        .lvl-badge.b2 { background: #3B82C4; }
+        .lvl-badge.b1 { background: #5FA8D3; }
+        .lvl-badge.a2 { background: #94A3B8; }
+        .lvl-badge.a1 { background: #CBD5E1; color: #64748B; }
 
-  .sb-section{margin-bottom:30px;}
-  .sb-section:last-child{margin-bottom:0;}
-  .sb-title{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:10.5px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--teal-light);
-    margin-bottom:14px;
-    font-weight:500;
-  }
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 31, 46, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            padding: 1rem;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-glass {
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid #E2E8F0;
+            border-radius: 1rem;
+            padding: 2rem;
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(10, 42, 59, 0.35);
+            transform: translateY(20px) scale(0.96);
+            transition: transform 0.25s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-overlay.active .modal-glass {
+            transform: translateY(0) scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            font-size: 1.75rem;
+            color: #94A3B8;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.25rem;
+            transition: color 0.15s ease;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+        }
+        .modal-close:hover {
+            color: #1B4965;
+            background: #F1F5F9;
+        }
+        .modal-title {
+            
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #0F2B3D;
+            margin: 0 0 0.375rem 0;
+        }
+        .modal-desc {
+            font-size: 0.875rem;
+            color: #64748B;
+            margin: 0 0 1.5rem 0;
+        }
+        .form-group {
+            margin-bottom: 1.125rem;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.6875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #1B4965;
+            font-weight: 600;
+            margin-bottom: 0.375rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.625rem 0.75rem;
+            border: 1px solid #E2E8F0;
+            border-radius: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            color: #1E293B;
+            background: #fff;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #5FA8D3;
+            box-shadow: 0 0 0 3px rgba(95, 168, 211, 0.15);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .submit-btn {
+            width: 100%;
+            background: #1B4965;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s ease, transform 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .submit-btn:hover {
+            background: #173A50;
+        }
+        .submit-btn:active {
+            transform: translateY(1px);
+        }
+        .submit-btn:disabled {
+            background: #94A3B8;
+            cursor: not-allowed;
+            transform: none;
+        }
 
-  .contact-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
-  .contact-list li{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:#D8E5E5;}
-  .contact-list svg{flex:none;width:15px;height:15px;margin-top:1px;color:var(--teal-light);}
-  .contact-list a{color:inherit;text-decoration:none;}
-  .contact-list a:hover{color:#fff;text-decoration:underline;}
-
-  .lang-row{margin-bottom:13px;}
-  .lang-row:last-child{margin-bottom:0;}
-  .lang-head{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;}
-  .lang-head b{font-weight:600;color:#fff;}
-  .lang-head span{color:var(--muted-light);font-family:'IBM Plex Mono',monospace;font-size:11px;}
-  .dots{display:flex;gap:4px;}
-  .dot{width:16px;height:5px;border-radius:2px;background:rgba(255,255,255,0.14);}
-  .dot.on{background:var(--teal-light);}
-
-  .skill-row{margin-bottom:12px;}
-  .skill-row:last-child{margin-bottom:0;}
-  .skill-head{display:flex;justify-content:space-between;font-size:12.5px;color:#D8E5E5;margin-bottom:5px;}
-  .skill-head b{font-weight:500;color:#fff;font-size:12.5px;}
-  .meter{height:4px;border-radius:2px;background:rgba(255,255,255,0.14);overflow:hidden;}
-  .meter i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--teal-light));border-radius:2px;}
-
-  .cert-item{font-size:13px;color:#D8E5E5;margin-bottom:12px;}
-  .cert-item:last-child{margin-bottom:0;}
-  .cert-item b{display:block;color:#fff;font-weight:600;font-size:13.5px;margin-bottom:2px;}
-  .cert-item .cert-meta{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted-light);}
-
-  .main{padding:44px 46px 50px;}
-  .main-section{margin-bottom:34px;}
-  .main-section:last-child{margin-bottom:0;}
-  .section-title{
-    font-family:'Fraunces',serif;
-    font-size:19px;
-    font-weight:600;
-    color:var(--navy);
-    margin:0 0 14px 0;
-  }
-
-  .summary{
-    font-size:14.5px;
-    color:#3A4C53;
-    line-height:1.65;
-    max-width:56ch;
-  }
-
-  .timeline{position:relative;padding-left:24px;}
-  .timeline::before{
-    content:"";
-    position:absolute;left:5px;top:6px;bottom:6px;
-    width:1px;background:var(--line);
-  }
-  .job{position:relative;margin-bottom:26px;}
-  .job:last-child{margin-bottom:0;}
-  .job::before{
-    content:"";
-    position:absolute;left:-24px;top:5px;
-    width:11px;height:11px;border-radius:50%;
-    background:var(--paper);
-    border:2px solid var(--teal);
-  }
-  .job-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px;margin-bottom:3px;}
-  .job-title{font-size:15.5px;font-weight:600;color:var(--ink);}
-  .job-title .org{color:var(--teal);font-weight:600;}
-  .job-date{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);white-space:nowrap;}
-  .job-loc{font-size:12.5px;color:var(--muted);margin-bottom:9px;}
-  .job ul{margin:0;padding-left:18px;color:#3A4C53;font-size:13.5px;line-height:1.65;}
-  .job li{margin-bottom:2px;}
-
-  .edu-item{margin-bottom:18px;}
-  .edu-item:last-child{margin-bottom:0;}
-  .edu-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px;}
-  .edu-title{font-size:14.5px;font-weight:600;color:var(--ink);}
-  .edu-org{font-size:13px;color:var(--teal);font-weight:500;margin-top:1px;}
-  .edu-date{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);white-space:nowrap;}
-  .edu-loc{font-size:12.5px;color:var(--muted);margin-top:2px;}
-
-  .refs-note{font-size:12.5px;color:var(--muted);font-style:italic;}
-
-  /* ---------- Top action bar ---------- */
-  .print-bar{
-    max-width:960px;
-    margin:0 auto 0;
-    padding:18px 4px 0;
-    display:flex;
-    justify-content:flex-end;
-    gap:12px;
-  }
-  .print-btn, .notify-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    border:none;
-    padding:11px 20px;
-    border-radius:999px;
-    font-family:'Inter',sans-serif;
-    font-size:13.5px;
-    font-weight:600;
-    cursor:pointer;
-    transition:background 0.15s ease, transform 0.15s ease;
-  }
-  .print-btn{
-    background:var(--navy);
-    color:#fff;
-    box-shadow:0 8px 20px -8px rgba(10,42,59,0.5);
-  }
-  .print-btn:hover{background:var(--teal);}
-  .notify-btn{
-    background:var(--teal);
-    color:#fff;
-    box-shadow:0 8px 20px -8px rgba(14,124,134,0.5);
-  }
-  .notify-btn:hover{background:var(--navy);}
-  .print-btn:active, .notify-btn:active{transform:translateY(1px);}
-  .print-btn svg{width:16px;height:16px;}
-  .print-btn:focus-visible, .notify-btn:focus-visible, a:focus-visible, button:focus-visible{
-    outline:2px solid var(--teal-light);
-    outline-offset:2px;
-  }
-
-  /* ---------- Modal ---------- */
-  .modal-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(7,29,41,0.6);
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:1000;
-    opacity:0;
-    pointer-events:none;
-    transition:opacity 0.2s ease;
-    padding:20px;
-  }
-  .modal-overlay.active{
-    opacity:1;
-    pointer-events:auto;
-  }
-  .modal-glass{
-    background:rgba(255,255,255,0.98);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:32px;
-    width:100%;
-    max-width:460px;
-    position:relative;
-    box-shadow:0 20px 40px -10px rgba(10,42,59,0.3);
-    transform:translateY(20px);
-    transition:transform 0.2s ease;
-    max-height:90vh;
-    overflow-y:auto;
-  }
-  .modal-overlay.active .modal-glass{
-    transform:translateY(0);
-  }
-  .modal-close{
-    position:absolute;
-    top:16px;
-    right:16px;
-    background:transparent;
-    border:none;
-    font-size:28px;
-    color:var(--muted);
-    cursor:pointer;
-    line-height:1;
-    padding:4px;
-    transition:color 0.15s ease;
-  }
-  .modal-close:hover{color:var(--navy);}
-  .modal-title{
-    font-family:'Fraunces',serif;
-    font-size:22px;
-    font-weight:600;
-    color:var(--navy);
-    margin:0 0 6px 0;
-  }
-  .modal-desc{
-    font-size:14px;
-    color:var(--muted);
-    margin:0 0 24px 0;
-  }
-  .form-group{margin-bottom:18px;}
-  .form-group label{
-    display:block;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--teal);
-    font-weight:500;
-    margin-bottom:6px;
-  }
-  .form-group input,
-  .form-group textarea{
-    width:100%;
-    padding:10px 12px;
-    border:1px solid var(--line);
-    border-radius:8px;
-    font-family:'Inter',sans-serif;
-    font-size:14px;
-    color:var(--ink);
-    background:#fff;
-    transition:border-color 0.15s ease, box-shadow 0.15s ease;
-  }
-  .form-group input:focus,
-  .form-group textarea:focus{
-    outline:none;
-    border-color:var(--teal);
-    box-shadow:0 0 0 3px rgba(14,124,134,0.15);
-  }
-  .form-group textarea{
-    resize:vertical;
-    min-height:100px;
-  }
-  .submit-btn{
-    width:100%;
-    background:var(--navy);
-    color:#fff;
-    border:none;
-    padding:12px 20px;
-    border-radius:8px;
-    font-family:'Inter',sans-serif;
-    font-size:14px;
-    font-weight:600;
-    cursor:pointer;
-    transition:background 0.15s ease;
-  }
-  .submit-btn:hover{background:var(--teal);}
-  .submit-btn:disabled{
-    background:var(--muted-light);
-    cursor:not-allowed;
-  }
-
-  @media (max-width:760px){
-    .print-bar{
-      padding:16px 16px 0;
-      justify-content:center;
-      flex-direction:column;
-      align-items:stretch;
-    }
-    .print-btn, .notify-btn{
-      width:100%;
-      justify-content:center;
-    }
-    .sheet{
-      grid-template-columns:1fr;
-      margin:0;
-      border-radius:0;
-      max-width:100%;
-    }
-    .sidebar{padding:34px 24px;}
-    .main{padding:34px 24px 44px;}
-    .name{font-size:25px;}
-    .job-head, .edu-head{flex-direction:column;align-items:flex-start;gap:2px;}
-  }
-
-  @media (prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto;}
-    *{transition:none !important;}
-  }
-
-  @media print{
-    @page{ size:A4; margin:0; }
-    body{background:#fff;}
-    .print-bar{display:none;}
-    .modal-overlay{display:none !important;}
-    .sheet{
-      box-shadow:none;
-      border-radius:0;
-      margin:0;
-      max-width:100%;
-      grid-template-columns:270px 1fr;
-    }
-    .sidebar{
-      -webkit-print-color-adjust:exact;
-      print-color-adjust:exact;
-    }
-    .main{padding:34px 34px 34px;}
-    .job, .edu-item{break-inside:avoid;}
-  }
-</style>
+        @media print {
+            body { background: white !important; }
+            .no-print { display: none !important; }
+            .print-break { page-break-inside: avoid; }
+            .modal-overlay { display: none !important; }
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800">
 
-  <div class="print-bar">
-    <button class="notify-btn" id="openContact" type="button">Contact Me</button>
-    <button class="print-btn" onclick="window.print()" aria-label="Print or save this CV as PDF">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-      Print / Save as PDF
-    </button>
-  </div>
+    <!-- Top Accent Bar -->
+    <div class="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-med-700 via-accent-300 to-med-500 z-50"></div>
 
-  <main class="sheet">
-    <aside class="sidebar">
-      <div class="photo-wrap">
-        <img src="profile.jpeg" alt="Portrait of Muhammad Tanvir Akhtar">
-      </div>
-      <h1 class="name">M. T.<br>Akhtar</h1>
-      <p class="role">Optometrist</p>
-
-      <div class="sb-section">
-        <p class="sb-title">Contact</p>
-        <ul class="contact-list">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            <a>On Request</a>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"></path><path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6z"></path><path d="m22 6-10 7L2 6"></path></svg>
-            <a href="mailto:tanvir@akhtar.co.za">tanvir@akhtar.co.za</a>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <span>Johannesburg, South Africa</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            <a href="https://akhtar.co.za/cv" target="_blank" rel="noopener">akhtar.co.za/cv</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="sb-section">
-        <p class="sb-title">Languages</p>
-        <div class="lang-row">
-          <div class="lang-head"><b>English</b><span>C2</span></div>
-          <div class="dots">
-            <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
-          </div>
-        </div>
-        <div class="lang-row">
-          <div class="lang-head"><b>Punjabi / Hindi</b><span>Native</span></div>
-          <div class="dots">
-            <div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div>
-          </div>
-        </div>
-        <div class="lang-row">
-          <div class="lang-head"><b>Arabic</b><span>A2</span></div>
-          <div class="dots">
-            <div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sb-section">
-        <p class="sb-title">Digital Competency</p>
-        <div class="skill-row">
-          <div class="skill-head"><b>Information &amp; data literacy</b></div>
-          <div class="meter"><i style="width:100%"></i></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-head"><b>Communication &amp; collaboration</b></div>
-          <div class="meter"><i style="width:100%"></i></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-head"><b>Digital content creation</b></div>
-          <div class="meter"><i style="width:83%"></i></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-head"><b>Safety</b></div>
-          <div class="meter"><i style="width:100%"></i></div>
-        </div>
-        <div class="skill-row">
-          <div class="skill-head"><b>Problem solving</b></div>
-          <div class="meter"><i style="width:100%"></i></div>
-        </div>
-      </div>
-
-      <div class="sb-section">
-        <p class="sb-title">Certifications</p>
-        <div class="cert-item">
-          <b>Myopia Management Accreditation</b>
-          Hoya Vision
-          <div class="cert-meta">Dec 2023 · Johannesburg</div>
-        </div>
-        <div class="cert-item">
-          <b>CPR Certificate</b>
-          Saudi Heart Association
-          <div class="cert-meta">Dec 2013 · Medina</div>
-        </div>
-      </div>
-    </aside>
-
-    <section class="main">
-      <div class="main-section">
-        <div class="acuity-rule"><span>I</span><span>N T</span><span>R O D</span><span>U C T I</span><span>O N</span></div>
-        <p class="summary">Optometrist with 15+ years of clinical experience across South Africa, Saudi Arabia and Pakistan, spanning independent practice, hospital ophthalmology and multi-branch retail optics. Skilled in refraction, myopia control, low vision management and contact lens fitting, with a track record of leading staff, managing stock and building patient trust in fast-paced clinical environments. Hoya-accredited in myopia management, with a BSc (Hons) in Optometry &amp; Orthoptics.</p>
-      </div>
-
-      <div class="main-section">
-        <h2 class="section-title">Experience</h2>
-        <div class="timeline">
-          <div class="job">
-            <div class="job-head">
-              <div class="job-title">Optometrist <span class="org">· Spec-Savers 🇿🇦</span></div>
-              <div class="job-date">APR 2019 — PRESENT</div>
+    <!-- Navigation -->
+    <nav class="fixed top-1 left-0 right-0 z-40 no-print">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="mt-3 flex items-center justify-between bg-white/80 backdrop-blur-xl border border-slate-200/60 rounded-xl px-4 sm:px-6 py-3 shadow-sm">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-med-700 flex items-center justify-center">
+                        <span class="iconify text-white text-sm" data-icon="mdi:eye-outline"></span>
+                    </div>
+                    <span class="font-semibold text-med-900 text-sm tracking-tight">MT Akhtar</span>
+                </div>
+                <div class="hidden sm:flex items-center gap-5 text-xs font-medium text-slate-500">
+                    <a href="#experience" class="hover:text-med-700 transition-colors duration-150">Experience</a>
+                    <a href="#education" class="hover:text-med-700 transition-colors duration-150">Education</a>
+                    <a href="#skills" class="hover:text-med-700 transition-colors duration-150">Skills</a>
+                    <a href="#languages" class="hover:text-med-700 transition-colors duration-150">Languages</a>
+                </div>
+                <button id="mobileMenuBtn" class="sm:hidden p-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+                    <span class="iconify text-xl text-slate-600" data-icon="mdi:menu"></span>
+                </button>
             </div>
-            <div class="job-loc">Johannesburg, South Africa</div>
-            <ul>
-              <li>Refraction for fitting of spectacles and contact lenses</li>
-              <li>Diagnosis and referral of eye diseases; fundoscopy</li>
-              <li>Myopia control treatment and low vision management</li>
-              <li>Staff and stock management, frame fitting/adjusting, lens cutting and edging</li>
-            </ul>
-          </div>
-          <div class="job">
-            <div class="job-head">
-              <div class="job-title">Specialist in Optometry <span class="org">· Al-Hejaz Optical 🇸🇦</span></div>
-              <div class="job-date">DEC 2013 — DEC 2016</div>
+        </div>
+        <div id="mobileMenu" class="hidden sm:hidden max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="mt-1 bg-white/95 backdrop-blur-xl border border-slate-200/60 rounded-xl px-4 py-3 shadow-lg">
+                <div class="flex flex-col gap-1">
+                    <a href="#experience" class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-600 hover:text-med-700 hover:bg-med-50 rounded-lg transition-all duration-150">Experience</a>
+                    <a href="#education" class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-600 hover:text-med-700 hover:bg-med-50 rounded-lg transition-all duration-150">Education</a>
+                    <a href="#skills" class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-600 hover:text-med-700 hover:bg-med-50 rounded-lg transition-all duration-150">Skills</a>
+                    <a href="#languages" class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-600 hover:text-med-700 hover:bg-med-50 rounded-lg transition-all duration-150">Languages</a>
+                </div>
             </div>
-            <div class="job-loc">Medina, Saudi Arabia</div>
-            <ul>
-              <li>Refraction, retinoscopy and funduscopy</li>
-              <li>Contact lens fitting, lens cutting and edging</li>
-              <li>Staff training, administration and salesmanship</li>
-            </ul>
-          </div>
-          <div class="job">
-            <div class="job-head">
-              <div class="job-title">Optometrist <span class="org">· Lakson Medical Trust Hospital 🇵🇰</span></div>
-              <div class="job-date">JAN 2011 — JAN 2013</div>
-            </div>
-            <div class="job-loc">Sahiwal, Pakistan</div>
-            <ul>
-              <li>Refraction and biometry</li>
-              <li>Visual field testing and ultrasound</li>
-            </ul>
-          </div>
         </div>
-      </div>
+    </nav>
 
-      <div class="main-section">
-        <h2 class="section-title">Education</h2>
-        <div class="edu-item">
-          <div class="edu-head">
-            <div>
-              <div class="edu-title">BSc (Hons) Optometry &amp; Orthoptics</div>
-              <div class="edu-org">University of Health Sciences</div>
-            </div>
-            <div class="edu-date">MAY 2006 — MAY 2010</div>
-          </div>
-          <div class="edu-loc">Lahore, Pakistan</div>
-        </div>
-      </div>
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-24 pb-16">
 
-      <div class="main-section">
-        <p class="refs-note">References and copies of degrees / certificates available on request.</p>
-      </div>
-    </section>
-  </main>
+        <!-- Hero / Profile Section -->
+        <section class="mb-12 sm:mb-16">
+            <div class="bg-white rounded-2xl border border-slate-200/60 shadow-sm overflow-hidden">
+                <div class="relative h-28 sm:h-36 bg-gradient-to-br from-med-700 via-med-800 to-med-950 overflow-hidden">
+                    <div class="absolute inset-0 opacity-10">
+                        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid)"/>
+                        </svg>
+                    </div>
+                    <div class="absolute top-4 right-4 sm:top-6 sm:right-6 flex gap-2">
+                        <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-2 border-white/10 bg-white/5"></div>
+                        <div class="w-14 h-14 sm:w-20 sm:h-20 rounded-full border-2 border-white/5 bg-white/5 mt-6 sm:mt-8"></div>
+                    </div>
+                </div>
 
-  <!-- Contact Modal -->
-  <div class="modal-overlay" id="contactModal">
-    <div class="modal-glass">
-      <button class="modal-close" id="closeContact" aria-label="Close" type="button">&times;</button>
-      <h2 class="modal-title">Get in touch</h2>
-      <p class="modal-desc">Have a tip, pitch, or question? We read every message.</p>
-      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-        <input type="hidden" name="access_key" value="65bb33ff-0316-4d93-9879-f4e3d82dfc52">
-        <input type="hidden" name="subject" value="New message via The Attn: Coming Soon">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required placeholder="Your name">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="you@example.com">
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required rows="4" placeholder="Your message..."></textarea>
-        </div>
-        <button type="submit" class="submit-btn">Send Message</button>
-      </form>
+                <div class="relative px-5 sm:px-8 pb-7 sm:pb-8">
+                    <div class="absolute -top-14 sm:-top-16 left-5 sm:left-8">
+                        <div class="photo-ring rounded-full">
+                            <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden bg-slate-200 border-4 border-white">
+                                <img 
+                                    src="profile.jpeg" 
+                                    alt="Muhammad Tanvir Akhtar" 
+                                    class="w-full h-full object-cover"
+                                    onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center bg-med-100\'><span class=\'iconify text-4xl sm:text-5xl text-med-400\' data-icon=\'mdi:account\'></span></div>'"
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-20 sm:pt-28 mb-5">
+                        <h1 class="text-2xl sm:text-3xl font-semibold text-slate-900 tracking-tight leading-tight">
+                            Muhammad Tanvir Akhtar
+                        </h1>
+                        <p class="mt-1.5 flex items-center gap-2 text-med-600 font-medium text-sm sm:text-base">
+                            <span class="iconify text-lg" data-icon="mdi:eye-outline"></span>
+                            Optometrist
+                        </p>
+                    </div>
+
+                 <div class="grid grid-cols-1 sm:grid-cols-4 gap-2.5">
+ <a href="javascript:void(0)" onclick="document.getElementById('openContact').click(); return false;" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-med-50 hover:text-med-700 transition-all duration-150 group cursor-pointer">
+    <span class="iconify text-med-500 group-hover:text-med-600 text-lg flex-shrink-0" data-icon="mdi:email-outline"></span>
+    <span class="text-sm text-slate-600 group-hover:text-med-700 truncate">tanvir@akhtar.co.za</span>
+</a>
+    <a href="https://www.linkedin.com/in/mtakhtar" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-med-50 hover:text-med-700 transition-all duration-150 group">
+        <span class="iconify text-med-500 group-hover:text-med-600 text-lg flex-shrink-0" data-icon="mdi:linkedin"></span>
+        <span class="text-sm text-slate-600 group-hover:text-med-700">LinkedIn</span>
+    </a>
+    <div class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-50">
+        <span class="iconify text-med-500 text-lg flex-shrink-0" data-icon="mdi:phone-outline"></span>
+        <span class="text-sm text-slate-600">On Request</span>
     </div>
-  </div>
+    <div class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-50">
+        <span class="iconify text-med-500 text-lg flex-shrink-0" data-icon="mdi:map-marker-outline"></span>
+        <span class="text-sm text-slate-600">Johannesburg 🇿🇦</span>
+    </div>
+</div>
 
-  <script>
-    const modal = document.getElementById('contactModal');
-    const openBtn = document.getElementById('openContact');
-    const closeBtn = document.getElementById('closeContact');
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-med-50 border border-med-200/60 text-med-700 text-xs font-medium">
+                            <span class="iconify text-sm" data-icon="mdi:briefcase-outline"></span>
+                            15+ Years Experience
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent-50 border border-accent-200/60 text-accent-500 text-xs font-medium">
+                            <span class="iconify text-sm" data-icon="mdi:school-outline"></span>
+                            BSc (Hons) Optometry
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200/60 text-slate-600 text-xs font-medium">
+                            <span class="iconify text-sm" data-icon="mdi:earth"></span>
+                             3 Countries
+                        </span>
+                    </div><br>
+                   <p class="text-sm text-slate-500 leading-relaxed">
+                   Optometrist with 15+ years of clinical experience across South Africa, Saudi Arabia and Pakistan, spanning independent practice, hospital ophthalmology and multi-branch retail optics. Skilled in refraction, myopia control, low vision management and contact lens fitting, with a track record of leading staff, managing stock and building patient trust in fast-paced clinical environments. Hoya-accredited in myopia management, with a BSc (Hons) in Optometry & Orthoptics.</p>
+                </div>
+            </div>
+        </section>
 
-    function openModal() {
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+        <!-- Work Experience -->
+        <section id="experience" class="mb-12 sm:mb-16 scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-med-700 flex items-center justify-center shadow-sm">
+                    <span class="iconify text-white text-xl" data-icon="mdi:briefcase-outline"></span>
+                </div>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">Work Experience</h2>
+                    <p class="text-xs text-slate-400 font-medium">Professional background</p>
+                </div>
+            </div>
 
-    function closeModal() {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+            <div class="space-y-4">
+                <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1.5 mb-3">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-semibold text-slate-900">Optometrist</h3>
+                            <p class="text-sm font-medium text-med-600">Spec-Savers</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2.5 py-1 rounded-full w-fit">
+                            <span class="iconify text-sm" data-icon="mdi:calendar-outline"></span>
+                            Apr 2019 – Present
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs text-slate-400 mb-4">
+                        <span class="iconify text-sm" data-icon="mdi:map-marker-outline"></span>
+                        Johannesburg, South Africa 🇿🇦
+                    </div>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Refraction for spectacles & contact lenses</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Diagnosis & referral of eye diseases</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Myopia control treatment</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Low vision management</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Fundoscopy</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Staff & stock management</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Fitting & adjusting of frames</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Cutting and edging lenses</li>
+                    </ul>
+                </div>
 
-    openBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
+                <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1.5 mb-3">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-semibold text-slate-900">Specialist in Optometry</h3>
+                            <p class="text-sm font-medium text-med-600">Al-Hejaz Optical</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2.5 py-1 rounded-full w-fit">
+                            <span class="iconify text-sm" data-icon="mdi:calendar-outline"></span>
+                            Dec 2013 – Dec 2016
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs text-slate-400 mb-4">
+                        <span class="iconify text-sm" data-icon="mdi:map-marker-outline"></span>
+                        Medina, Saudi Arabia 🇸🇦
+                    </div>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Refraction & retinoscopy</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Funduscopy</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Contact lens fitting</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Cutting and edging lenses</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Salesmanship & administration</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Staff training</li>
+                    </ul>
+                </div>
 
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
+                <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1.5 mb-3">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-semibold text-slate-900">Optometrist</h3>
+                            <p class="text-sm font-medium text-med-600">Lakson Medical Trust Hospital</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2.5 py-1 rounded-full w-fit">
+                            <span class="iconify text-sm" data-icon="mdi:calendar-outline"></span>
+                            Jan 2011 – Jan 2013
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs text-slate-400 mb-4">
+                        <span class="iconify text-sm" data-icon="mdi:map-marker-outline"></span>
+                        Sahiwal, Pakistan 🇵🇰
+                    </div>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Refraction</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Biometry</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Visual field testing</li>
+                        <li class="flex items-start gap-2 text-sm text-slate-600"><span class="iconify text-accent-300 text-base mt-0.5 flex-shrink-0" data-icon="mdi:check-circle-outline"></span>Ultrasound</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-    });
+        <!-- Education & Training -->
+        <section id="education" class="mb-12 sm:mb-16 scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-med-700 flex items-center justify-center shadow-sm">
+                    <span class="iconify text-white text-xl" data-icon="mdi:school-outline"></span>
+                </div>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">Education & Training</h2>
+                    <p class="text-xs text-slate-400 font-medium">Qualifications & certifications</p>
+                </div>
+            </div>
 
-    const contactForm = document.querySelector('.contact-form');
-    contactForm.addEventListener('submit', async (e) => {
-      const btn = contactForm.querySelector('.submit-btn');
-      const originalText = btn.textContent;
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
+            <div class="space-y-4">
+                <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6 hover:shadow-md transition-shadow duration-300">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1.5 mb-2">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-semibold text-slate-900">BSc (Hons) Optometry & Orthoptics</h3>
+                            <p class="text-sm font-medium text-med-600">University of Health Sciences</p>
+                        </div>
+                        <div class="flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2.5 py-1 rounded-full w-fit">
+                            <span class="iconify text-sm" data-icon="mdi:calendar-outline"></span>
+                            May 2006 – May 2010
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs text-slate-400 mb-3">
+                        <span class="iconify text-sm" data-icon="mdi:map-marker-outline"></span>
+                        Lahore, Pakistan
+                    </div>
+                    <a href="https://www.uhs.edu.pk/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-med-600 hover:text-med-700 transition-colors">
+                        <span class="iconify text-sm" data-icon="mdi:open-in-new"></span>uhs.edu.pk
+                    </a>
+                </div>
 
-      setTimeout(() => {
-        btn.textContent = 'Sent ✓';
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.disabled = false;
-          closeModal();
-          contactForm.reset();
-        }, 1500);
-      }, 800);
-    });
-  </script>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 hover:shadow-md transition-shadow duration-300">
+                        <div class="flex items-center gap-2.5 mb-3">
+                            <div class="w-9 h-9 rounded-lg bg-accent-50 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-accent-400 text-lg" data-icon="mdi:certificate-outline"></span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold text-slate-900 leading-tight">Myopia Management Accreditation</h3>
+                                <p class="text-xs text-med-600 font-medium">Hoya Vision</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Dec 2023</span>
+                            <a href="https://www.hoyavision.com/za/" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-med-600 hover:text-med-700 transition-colors flex items-center gap-1">hoyavision.com <span class="iconify text-xs" data-icon="mdi:open-in-new"></span></a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item print-break bg-white rounded-xl border border-slate-200/60 p-5 hover:shadow-md transition-shadow duration-300">
+                        <div class="flex items-center gap-2.5 mb-3">
+                            <div class="w-9 h-9 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0">
+                                <span class="iconify text-red-400 text-lg" data-icon="mdi:heart-pulse"></span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold text-slate-900 leading-tight">CPR Certificate</h3>
+                                <p class="text-xs text-med-600 font-medium">Saudi Heart Association</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-slate-400">Dec 2013</span>
+                            <a href="https://saudi-heart.com/" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-med-600 hover:text-med-700 transition-colors flex items-center gap-1">saudi-heart.com <span class="iconify text-xs" data-icon="mdi:open-in-new"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="mb-12 sm:mb-16 scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-med-700 flex items-center justify-center shadow-sm">
+                    <span class="iconify text-white text-xl" data-icon="mdi:monitor-cellphone-star"></span>
+                </div>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">Digital Skills</h2>
+                    <p class="text-xs text-slate-400 font-medium">Based on Digital Competence Framework 2.1</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6">
+                <div class="space-y-4">
+                    <div class="skill-item">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-sm font-medium text-slate-700">Information & Data Literacy</span>
+                            <div class="flex items-center gap-2"><span class="text-xs font-semibold text-med-700">6/6</span><span class="text-[10px] font-medium text-accent-400 bg-accent-50 px-1.5 py-0.5 rounded">ADVANCED</span></div>
+                        </div>
+                        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="skill-bar-fill h-full bg-gradient-to-r from-med-700 to-accent-300 rounded-full" style="--fill-width: 100%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-sm font-medium text-slate-700">Communication & Collaboration</span>
+                            <div class="flex items-center gap-2"><span class="text-xs font-semibold text-med-700">6/6</span><span class="text-[10px] font-medium text-accent-400 bg-accent-50 px-1.5 py-0.5 rounded">ADVANCED</span></div>
+                        </div>
+                        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="skill-bar-fill h-full bg-gradient-to-r from-med-700 to-accent-300 rounded-full" style="--fill-width: 100%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-sm font-medium text-slate-700">Digital Content Creation</span>
+                            <div class="flex items-center gap-2"><span class="text-xs font-semibold text-med-700">5/6</span><span class="text-[10px] font-medium text-accent-400 bg-accent-50 px-1.5 py-0.5 rounded">ADVANCED</span></div>
+                        </div>
+                        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="skill-bar-fill h-full bg-gradient-to-r from-med-700 to-accent-300 rounded-full" style="--fill-width: 83.3%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-sm font-medium text-slate-700">Safety</span>
+                            <div class="flex items-center gap-2"><span class="text-xs font-semibold text-med-700">6/6</span><span class="text-[10px] font-medium text-accent-400 bg-accent-50 px-1.5 py-0.5 rounded">ADVANCED</span></div>
+                        </div>
+                        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="skill-bar-fill h-full bg-gradient-to-r from-med-700 to-accent-300 rounded-full" style="--fill-width: 100%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-sm font-medium text-slate-700">Problem Solving</span>
+                            <div class="flex items-center gap-2"><span class="text-xs font-semibold text-med-700">6/6</span><span class="text-[10px] font-medium text-accent-400 bg-accent-50 px-1.5 py-0.5 rounded">ADVANCED</span></div>
+                        </div>
+                        <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="skill-bar-fill h-full bg-gradient-to-r from-med-700 to-accent-300 rounded-full" style="--fill-width: 100%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Languages -->
+        <section id="languages" class="mb-12 sm:mb-16 scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-xl bg-med-700 flex items-center justify-center shadow-sm">
+                    <span class="iconify text-white text-xl" data-icon="mdi:translate"></span>
+                </div>
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-semibold text-slate-900 tracking-tight">Language Skills</h2>
+                    <p class="text-xs text-slate-400 font-medium">CEFR proficiency levels</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl border border-slate-200/60 overflow-hidden">
+                <!-- Desktop Table -->
+                <div class="hidden sm:block overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-slate-50 border-b border-slate-200/60">
+                                <th class="text-left px-5 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Language</th>
+                                <th class="text-center px-3 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Listening</th>
+                                <th class="text-center px-3 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Reading</th>
+                                <th class="text-center px-3 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Spoken Interaction</th>
+                                <th class="text-center px-3 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Spoken Production</th>
+                                <th class="text-center px-3 py-3 font-semibold text-slate-700 text-xs uppercase tracking-wider">Writing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- English — all C2 -->
+                            <tr class="border-b border-slate-100">
+                                <td class="px-5 py-3.5 font-medium text-slate-900">English</td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                            </tr>
+                            <!-- Urdu — all C2 -->
+                            <tr class="border-b border-slate-100">
+                                <td class="px-5 py-3.5 font-medium text-slate-900">Urdu</td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                            </tr>
+                            <!-- Hindi — C2 spoken, N/A read/write -->
+                            <tr class="border-b border-slate-100">
+                                <td class="px-5 py-3.5 font-medium text-slate-900">Hindi</td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge na">—</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge na">—</span></td>
+                            </tr>
+                            <!-- Punjabi — C2 spoken, N/A read/write -->
+                            <tr class="border-b border-slate-100">
+                                <td class="px-5 py-3.5 font-medium text-slate-900">Punjabi</td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge na">—</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c2">C2</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge na">—</span></td>
+                            </tr>
+                            <!-- Arabic — basic spoken, C1 read/write -->
+                            <tr>
+                                <td class="px-5 py-3.5 font-medium text-slate-900">Arabic</td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge a1">A1</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c1">C1</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge a1">A1</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge a1">A1</span></td>
+                                <td class="px-3 py-3.5 text-center"><span class="lvl-badge c1">C1</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mobile Cards -->
+                <div class="sm:hidden divide-y divide-slate-100">
+                    <!-- English -->
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-semibold text-slate-900 text-sm">English</span>
+                            <span class="text-xs font-bold text-lvl-c2 bg-lvl-c2/10 px-2 py-0.5 rounded-full text-white">Proficient</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1.5 text-center">
+                            <div><div class="text-[10px] text-slate-400 mb-1">Listening</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Reading</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Int.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Prod.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Writing</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                        </div>
+                    </div>
+                    <!-- Urdu -->
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-semibold text-slate-900 text-sm">Urdu</span>
+                            <span class="text-xs font-bold text-white bg-lvl-c2 px-2 py-0.5 rounded-full">Proficient</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1.5 text-center">
+                            <div><div class="text-[10px] text-slate-400 mb-1">Listening</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Reading</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Int.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Prod.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Writing</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                        </div>
+                    </div>
+                    <!-- Hindi -->
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-semibold text-slate-900 text-sm">Hindi</span>
+                            <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">Spoken only</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1.5 text-center">
+                            <div><div class="text-[10px] text-slate-400 mb-1">Listening</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Reading</div><span class="lvl-badge na w-full aspect-square rounded-lg">—</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Int.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Prod.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Writing</div><span class="lvl-badge na w-full aspect-square rounded-lg">—</span></div>
+                        </div>
+                    </div>
+                    <!-- Punjabi -->
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-semibold text-slate-900 text-sm">Punjabi</span>
+                            <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">Spoken only</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1.5 text-center">
+                            <div><div class="text-[10px] text-slate-400 mb-1">Listening</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Reading</div><span class="lvl-badge na w-full aspect-square rounded-lg">—</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Int.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Prod.</div><span class="lvl-badge c2 w-full aspect-square rounded-lg">C2</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Writing</div><span class="lvl-badge na w-full aspect-square rounded-lg">—</span></div>
+                        </div>
+                    </div>
+                    <!-- Arabic -->
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-semibold text-slate-900 text-sm">Arabic</span>
+                            <span class="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">Mixed</span>
+                        </div>
+                        <div class="grid grid-cols-5 gap-1.5 text-center">
+                            <div><div class="text-[10px] text-slate-400 mb-1">Listening</div><span class="lvl-badge a1 w-full aspect-square rounded-lg">A1</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Reading</div><span class="lvl-badge c1 w-full aspect-square rounded-lg">C1</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Int.</div><span class="lvl-badge a1 w-full aspect-square rounded-lg">A1</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Spoken Prod.</div><span class="lvl-badge a1 w-full aspect-square rounded-lg">A1</span></div>
+                            <div><div class="text-[10px] text-slate-400 mb-1">Writing</div><span class="lvl-badge c1 w-full aspect-square rounded-lg">C1</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div class="px-5 py-3 bg-slate-50/80 border-t border-slate-100">
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[10px] text-slate-400">
+                        <span class="font-semibold text-slate-500">Color scale:</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-c2"></span> C2 Proficient</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-c1"></span> C1</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-b2"></span> B2</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-b1"></span> B1</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-a2"></span> A2</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-a1"></span> A1 Basic</span>
+                        <span class="flex items-center gap-1"><span class="inline-block w-3 h-3 rounded-sm bg-lvl-na border border-slate-200"></span> N/A</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Note -->
+        <section class="mb-8">
+            <div class="bg-white rounded-xl border border-slate-200/60 p-5 sm:p-6 text-center">
+                <p class="text-sm text-slate-500 leading-relaxed">
+                    References are available on request. Copies of degrees and certificates will be provided if needed.
+                </p>
+                <div class="mt-4 flex items-center justify-center gap-1.5 text-xs text-slate-400">
+                    <span class="iconify text-sm" data-icon="mdi:calendar-outline"></span>
+                    Johannesburg, 08 July 2026
+                </div>
+            </div>
+        </section>
+
+        <!-- Print / Download Button -->
+        <div class="no-print flex justify-center gap-3 mb-8">
+            <button onclick="window.print()" class="inline-flex items-center gap-2 px-5 py-2.5 bg-med-700 hover:bg-med-800 text-white text-sm font-medium rounded-xl transition-colors duration-150 shadow-sm">
+                <span class="iconify text-base" data-icon="mdi:printer-outline"></span>
+                Print CV
+            </button>
+            <button id="openContact" type="button" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-slate-50 text-slate-700 text-sm font-medium rounded-xl border border-slate-200 transition-colors duration-150">
+                <span class="iconify text-base" data-icon="mdi:email-outline"></span>
+                Contact Me
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="no-print border-t border-slate-200/60 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-md bg-med-700 flex items-center justify-center">
+                    <span class="iconify text-white text-xs" data-icon="mdi:eye-outline"></span>
+                </div>
+                <span class="text-xs text-slate-400">akhtar.co.za/cv</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://www.linkedin.com/in/mtakhtar" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-med-600 transition-colors">
+                    <span class="iconify text-lg" data-icon="mdi:linkedin"></span>
+                </a>
+                <button id="openContactFooter" type="button" class="text-slate-400 hover:text-med-600 transition-colors bg-transparent border-none cursor-pointer p-0">
+                    <span class="iconify text-lg" data-icon="mdi:email-outline"></span>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-glass">
+            <button class="modal-close" id="closeContact" aria-label="Close" type="button">&times;</button>
+            <h2 class="modal-title">Get in touch</h2>
+            <p class="modal-desc">Have a tip, pitch, or question? I read every message.</p>
+            
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                <input type="hidden" name="access_key" value="65bb33ff-0316-4d93-9879-f4e3d82dfc52">
+                <input type="hidden" name="subject" value="New message via akhtar.co.za/cv">
+                
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="you@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required rows="4" placeholder="Your message..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <span class="iconify text-base" data-icon="mdi:send-outline"></span>
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('hidden', !menuOpen);
+            mobileMenuBtn.querySelector('.iconify').setAttribute('data-icon', menuOpen ? 'mdi:close' : 'mdi:menu');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.querySelector('.iconify').setAttribute('data-icon', 'mdi:menu');
+            });
+        });
+
+        // Timeline animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), index * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.timeline-item').forEach(item => observer.observe(item));
+
+        // Skills animation
+        const skillsContainer = document.querySelector('#skills .bg-white');
+        if (skillsContainer) {
+            const skillObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.skill-bar-fill').forEach((bar, i) => {
+                            setTimeout(() => bar.classList.add('animate'), i * 120);
+                        });
+                        skillObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            skillObs.observe(skillsContainer);
+        }
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 120) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('text-med-700');
+                link.classList.add('text-slate-500');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-med-700');
+                    link.classList.remove('text-slate-500');
+                }
+            });
+        });
+
+        // Contact Modal
+        const modal = document.getElementById('contactModal');
+        const openBtn = document.getElementById('openContact');
+        const openBtnFooter = document.getElementById('openContactFooter');
+        const closeBtn = document.getElementById('closeContact');
+
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        openBtn.addEventListener('click', openModal);
+        openBtnFooter.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+        });
+
+        // Form submit UX feedback
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', async (e) => {
+            const btn = contactForm.querySelector('.submit-btn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<span class="iconify text-base animate-spin" data-icon="mdi:loading"></span> Sending...';
+            btn.disabled = true;
+            
+            // Let Web3Forms handle the submit; this is just UX feedback
+            setTimeout(() => {
+                btn.innerHTML = '<span class="iconify text-base" data-icon="mdi:check-circle-outline"></span> Sent ✓';
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.disabled = false;
+                    closeModal();
+                    contactForm.reset();
+                }, 1500);
+            }, 800);
+        });
+    </script>
 
 </body>
 </html>
