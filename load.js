@@ -6,12 +6,52 @@
       style.id = 'pl-bottombar-styles';
       style.textContent = `
         /* --- Loader --- */
-        #pl-indicator { position: fixed; top: 26px; right: 26px; display: flex; flex-direction: column; gap: 8px; z-index: 999999; pointer-events: none; transition: opacity 0.3s ease; }
-        .pl-dot { width: 10px; height: 10px; animation: plBounce 1.2s ease-in-out infinite; }
-        .pl-dot:nth-child(1) { background: #ff4d4d; }
-        .pl-dot:nth-child(2) { background: #ff9f43; animation-delay: 0.15s; }
-        .pl-dot:nth-child(3) { background: #2ecc71; animation-delay: 0.3s; }
-        @keyframes plBounce { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-8px); opacity: 0.8; } }
+        #pl-indicator {
+          position: fixed;
+          bottom: 60px;
+          left: 0;
+          right: 0;
+          height: 20px;
+          z-index: 999999;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+        }
+        .pl-dot {
+          position: absolute;
+          top: 50%;
+          left: -10px;
+          width: 8px;
+          height: 8px;
+          margin-top: -4px;
+          border-radius: 50%;
+          background: #d90000;
+          opacity: 0;
+        }
+        .pl-dot:nth-child(1) {
+          animation: plRace1 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+        }
+        .pl-dot:nth-child(2) {
+          animation: plRace2 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+        }
+        @keyframes plRace1 {
+          0%   { left: -10px; top: calc(50% - 8px); opacity: 0; }
+          5%   { opacity: 1; }
+          25%  { left: 50%; top: calc(50% - 8px); opacity: 1; }
+          50%  { left: 50%; top: calc(50% - 8px); opacity: 1; }
+          75%  { left: calc(100vw + 10px); top: calc(50% - 8px); opacity: 1; }
+          80%  { left: calc(100vw + 10px); top: calc(50% - 8px); opacity: 0; }
+          100% { left: calc(100vw + 10px); top: calc(50% - 8px); opacity: 0; }
+        }
+        @keyframes plRace2 {
+          0%   { left: -10px; top: calc(50% + 8px); opacity: 0; }
+          15%  { left: -10px; top: calc(50% + 8px); opacity: 0; }
+          20%  { opacity: 1; }
+          40%  { left: 50%; top: calc(50% + 8px); opacity: 1; }
+          65%  { left: 50%; top: calc(50% + 8px); opacity: 1; }
+          90%  { left: calc(100vw + 10px); top: calc(50% + 8px); opacity: 1; }
+          95%  { left: calc(100vw + 10px); top: calc(50% + 8px); opacity: 0; }
+          100% { left: calc(100vw + 10px); top: calc(50% + 8px); opacity: 0; }
+        }
         
         /* --- Fixed Bottom Bar --- */
         #pl-bottombar { 
@@ -20,9 +60,7 @@
           left: 0; 
           right: 0; 
           height: 50px; 
-          background: #ffffff; 
-          border-top: 1px solid #e5e7eb;
-          box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+          background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.85) 30%, rgba(255, 255, 255, 0) 100%);
           z-index: 99999; 
           display: flex; 
           align-items: center; 
@@ -57,6 +95,7 @@
           overflow: hidden;
           text-overflow: ellipsis;
           max-width: 400px;
+          text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
         }
       `;
       document.head.appendChild(style);
@@ -66,13 +105,13 @@
     if (!document.getElementById('pl-indicator')) {
       const loader = document.createElement('div');
       loader.id = 'pl-indicator';
-      loader.innerHTML = '<div class="pl-dot"></div><div class="pl-dot"></div><div class="pl-dot"></div>';
+      loader.innerHTML = '<div class="pl-dot"></div><div class="pl-dot"></div>';
       document.body.appendChild(loader);
 
       setTimeout(() => {
         loader.style.opacity = '0';
         setTimeout(() => loader.remove(), 400); 
-      }, 3000);
+      }, 3500);
     }
 
     // --- BOTTOM BAR ---
@@ -81,7 +120,6 @@
       const cleanTitle = rawTitle.trim();
       const pageTitle = cleanTitle || window.location.pathname.split('/').pop().replace('.html', '') || 'attn:invoice';
 
-      // Prevent overlap by pushing the body content up from the bottom
       document.body.style.paddingBottom = '50px';
 
       const bottombar = document.createElement('div');
@@ -93,7 +131,6 @@
         </a>
       `;
       
-      // Insert at the very end of the body 
       document.body.appendChild(bottombar);
       
       requestAnimationFrame(() => {
